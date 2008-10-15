@@ -1,0 +1,93 @@
+<include src="rapid" plugin="hobo"/>
+
+<include src="taglibs/auto/rapid/cards"/>
+<include src="taglibs/auto/rapid/pages"/>
+<include src="taglibs/auto/rapid/forms"/>
+
+<set-theme name="clean"/>
+
+<def tag="app-name">Hobo Cookbook</def>
+
+
+<def tag="view" for="optional_markdown"><%=
+  this_parent.markdown? ? BlueCloth.new(this).to_html : h(this) 
+%></def>
+
+
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs>
+    <nav-item href="#{base_url}/">Browse Recipes</nav-item>
+    <if test="&logged_in?">
+      <nav-item with="&current_user.recipes">My Recipes</nav-item>
+      <nav-item with="&current_user.recipes" action="new">Post a Recipe</nav-item>
+      <nav-item with="&current_user.questions" action="new">Ask a Question</nav-item>
+    </if>
+  </navigation>
+</def>
+
+
+<def tag="preview-with-more" attrs="name">
+  <section class="#{name.gsub ' ', '-'} preview-with-more">
+    <h3 param="heading"><%= name.titleize %></h3>
+    <a to="&this.member_class" param="more">More <type-name plural lowercase/>...</a>
+    <collection param/>
+  </section>
+</def>
+
+
+<extend tag="card" for="User">
+  <old-card>
+    <after-header:>
+    <div class="recent-recipes"><a repeat="recipes.recent"/></div>
+    </after-header:>
+  </old-card>
+</extend>
+
+
+<def tag="help"><div class="help" merge-attrs param="default"/></def>
+
+<extend tag="form" for="Recipe">
+  <old-form merge>
+    <field-list: fields="name"/>
+    <after-field-list:>
+      <input:body/>
+    </after-field-list:>
+  </old-form>
+</extend>  
+
+<extend tag="form" for="Question">
+  <old-form merge>
+    <field-list: replace>
+      <input:description/>
+      <p><input:markdown/> Use <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> formatting?</p>
+    </field-list:>
+  </old-form>
+</extend>
+
+<extend tag="card" for="Question">
+  <old-card merge>
+    <before-creator-link:>Asks </before-creator-link:>
+  </old-card>
+</extend>
+
+<extend tag="card" for="Recipe">
+  <old-card merge>
+  <creator-link: replace><div param="user">By: <a:user/></div></creator-link:>
+  </old-card>
+</extend>
+
+<extend tag="form" for="Comment">
+  <old-form merge>
+    <field-list: replace>
+      <input:body/>
+      <p><input:markdown/> Use <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> formatting?</p>
+    </field-list:>
+  </old-form>
+</extend>
+
+
+<extend tag="card" for="Comment">
+  <old-card merge without-creator-link>
+    <before-content:><view:created-at/>, <a:user/> said:</before-content:>
+  </old-card>
+</extend>

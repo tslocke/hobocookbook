@@ -1,0 +1,11 @@
+<new-for-user-page without-subheading>
+  <main-nav: current="Post a Recipe"/>
+  <heading:>Post your recipe!</heading:>
+  <after-heading:>
+    <help>Use <a href="http://daringfireball.net/projects/markdown/syntax">markdown syntax</a></help>
+  </after-heading:> 
+  
+  <form:> 
+    <submit: label="Post!"/>
+  </form:>
+</new-for-user-page>

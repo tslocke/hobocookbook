@@ -1,0 +1,35 @@
+<page title="Home">
+
+  <body: class="front-page"/>
+  
+  <main-nav: current="Browse Recipes"/>
+
+  <content:>
+    <header class="content-header">
+      <h1>Welcome to the Hobo Cookbook!</h1>
+      <section class="welcome-message">
+        <p>A place to publish, browse, search and request recipes - short how-to guides for using the Hobo framework for
+        Rails.</p>
+      </section>
+    </header>
+
+    <section class="content-body">
+      <preview-with-more with="&Tag.popular" name="popular tags">
+        <collection: replace><p>[Tagging not implemented yet]</p></collection:>
+      </preview-with-more>
+      
+      <section-group>
+        <section>
+          <preview-with-more name="recent recipes" with="&Recipe.recent"/>
+        </section>
+        
+        <section class="users-and-questions">
+          <preview-with-more name="recent questions" with="&Question.recent"/>
+          <preview-with-more name="active-users" with="&User.recently_active"/>
+        </section>
+      </section-group>
+        
+    </section>
+  </content:>
+  
+</page>

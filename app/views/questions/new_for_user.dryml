@@ -1,0 +1,5 @@
+<new-for-user-page without-subheading>
+  <main-nav: current="Ask a Question"/>
+  <heading:>Ask and You Shall Receive. Well... You might.</heading:>
+  <form:><submit: label="Ask!"/></form:>
+</new-for-user-page>
