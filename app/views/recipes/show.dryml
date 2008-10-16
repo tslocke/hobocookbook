@@ -1,0 +1,8 @@
+<show-page without-creator-link>
+  <heading: replace>
+    <gravatar:user/>
+    <h2><name/></h2>
+    Posted by <a:user/>. 
+    <if test="&this.answers">This recipe answers <a:questions/></if>
+  </heading:>
+</show-page>

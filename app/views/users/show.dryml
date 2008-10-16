@@ -1,0 +1,10 @@
+<show-page without-field-list>
+ <main-nav: current="My Page"/>
+ 
+ <before-heading:><gravatar/></before-heading:>
+ 
+ <collection:><card without-user without-gravatar/></collection:>
+ 
+ <preview-questions:><collection:><card without-gravatar/></collection:></preview-questions:>
+ <preview-answers:><collection:><card without-gravatar/></collection:></preview-answers:>
+</show-page>

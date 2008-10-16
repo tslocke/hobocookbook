@@ -1,0 +1,20 @@
+<index-page for-type="&Question" without-heading>
+
+  <main-nav: current="Browse Questions"/>
+
+  <content-body:>
+    <section-group>
+      <section class='with'>
+        <preview-with-more name="questions with answers" with="&Question.with_answers.recent">
+          <more: action="answered">All answered questions</more:>
+        </preview-with-more>
+      </section>
+  
+      <section class="without">
+        <preview-with-more name="questions without answers" with="&Question.without_answers.recent">
+          <more: action="open">All open questions</more:>
+        </preview-with-more>
+      </section>
+    </section-group>
+  </content-body:>
+</index-page>
