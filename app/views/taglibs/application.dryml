@@ -8,9 +8,23 @@
 
 <def tag="app-name">Hobo Cookbook</def>
 
+<extend tag="page">
+  <old-page merge>
+    <append-scripts:>
+      <javascript name="code_highlighter"/>
+      <javascript name="code_highlighter"/>
+      <javascript name="highlighters/ruby"/>
+      <javascript name="highlighters/dryml"/>
+   </append-scripts:>
+  </old-page>
+  
+</extend>
+
+
+<def tag="view" for="markdown"><%= Maruku.new(this).to_html %></def>
 
 <def tag="view" for="optional_markdown"><%=
-  this_parent.markdown? ? BlueCloth.new(this).to_html : h(this) 
+  this_parent.markdown? ? Maruku.new(this).to_html : h(this) 
 %></def>
 
 

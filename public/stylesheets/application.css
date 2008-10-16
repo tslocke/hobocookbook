@@ -43,7 +43,7 @@ pre {
     color:#444444;
     margin: 10px 0 10px 10px;
     padding: 5px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 pre code { border: none;}
@@ -61,3 +61,69 @@ pre code { border: none;}
 
 a.gravatar {display: block; border: 1px solid #999; background: #eee; padding: 2px; float:left; margin: 0 10px 10px 0;}
 .content-header a.gravatar {margin: 10px 10px 10px 0;}
+
+
+/* == Code Highlighting == */
+
+pre {
+	background: #F9F7F3;
+	border: 1px solid #E9E3D2; border-width: 1px 0;
+	font-size: 14px; line-height: 16px;
+	margin: 10px 0 10px; padding: 10px 0 10px 10px;
+    overflow: auto;
+}
+
+pre code {
+	color: #2D2D2D;
+	font-weight: normal;
+}
+
+/** RUBY / JAVASCRIPT **/
+code span.comment {
+	color: #6D6D6D;
+}
+
+code span.string {
+	color: #0F6500;
+}
+
+code span.brackets {
+	
+}
+
+code span.keywords {
+	color: #B43473; font-weight: bold;
+}
+
+code span.erb {
+	background: #333;
+}
+
+code span.symbol {
+	color: #DE352F; font-weight: bold;
+}
+
+/** DRYML **/
+code span.tag {
+	color: #005899; font-weight: bold;
+}
+
+code span.parameter {
+	color: #52115D; font-weight: bold;
+}
+
+code span.attribute {
+	color: #005899
+}
+
+code span.doctype {
+	color: #D7FF80;
+}
+pre.dryml code span.string {
+	color: #0F6500;
+}
+code span.paramdec {
+	color: #990300; font-weight: bold;
+}
+
+.command-options td, .command-options th {padding: 3px 20px 3px 0;}
