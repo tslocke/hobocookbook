@@ -8,11 +8,11 @@ OwnedModel = classy_module do
   end
 
   def updatable_by?(updater, updated)
-    user.administrator? || (updater == user && same_fields?(updated, :user))
+    updater.administrator? || (updater == user && same_fields?(updated, :user))
   end
 
   def deletable_by?(deleter)
-    user.administrator? || deleter == user
+    updater.administrator? || deleter == user
   end
 
   def viewable_by?(user, field)
