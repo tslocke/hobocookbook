@@ -5,5 +5,7 @@ class RecipesController < ApplicationController
   auto_actions :index, :show, :edit, :update, :destroy
   
   auto_actions_for :user, [:new, :create, :index]
+  
+  autocomplete
 
 end

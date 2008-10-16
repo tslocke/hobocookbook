@@ -10,26 +10,8 @@ class Comment < ActiveRecord::Base
     timestamps
   end
   
-  belongs_to :user, :creator => true
   belongs_to :recipe
 
-
-  # --- Hobo Permissions --- #
-
-  def creatable_by?(user)
-    user.administrator?
-  end
-
-  def updatable_by?(user, new)
-    user.administrator?
-  end
-
-  def deletable_by?(user)
-    user.administrator?
-  end
-
-  def viewable_by?(user, field)
-    true
-  end
+  include OwnedModel
 
 end

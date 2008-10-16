@@ -6,7 +6,7 @@
 
   <content:>
     <header class="content-header">
-      <h1>Welcome to the Hobo Cookbook!</h1>
+      <h2>Welcome to the Hobo Cookbook!</h2>
       <section class="welcome-message">
         <p>A place to publish, browse, search and request recipes - short how-to guides for using the Hobo framework for
         Rails.</p>
@@ -14,9 +14,6 @@
     </header>
 
     <section class="content-body">
-      <preview-with-more with="&Tag.popular" name="popular tags">
-        <collection: replace><p>[Tagging not implemented yet]</p></collection:>
-      </preview-with-more>
       
       <section-group>
         <section>

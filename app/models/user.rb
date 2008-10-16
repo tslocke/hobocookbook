@@ -39,7 +39,8 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :comments
   
-  named_scope :recently_active, :limit => "5" # To Do!
+  named_scope :recently_active, :order => "(select created_at from recipes where recipes.user_id = users.id order by created_at limit 1)",
+                                :limit => 6
   
 
   # --- Hobo Permissions --- #
@@ -49,7 +50,7 @@ class User < ActiveRecord::Base
   end
 
   def updatable_by?(updater, new)
-    updater.administrator? || (updater == self && only_changed_fields?(new, :password, :password_confirmation))
+    updater.administrator? || (updater == self && only_changed_fields?(new, :password, :password_confirmation, :email_address))
   end
 
   def deletable_by?(deleter)

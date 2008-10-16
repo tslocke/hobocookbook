@@ -16,9 +16,10 @@
 
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs>
+    <nav-item with="&current_user" if="&logged_in?">My Page</nav-item>
     <nav-item href="#{base_url}/">Browse Recipes</nav-item>
+    <nav-item with="&Question">Browse Questions</nav-item>
     <if test="&logged_in?">
-      <nav-item with="&current_user.recipes">My Recipes</nav-item>
       <nav-item with="&current_user.recipes" action="new">Post a Recipe</nav-item>
       <nav-item with="&current_user.questions" action="new">Ask a Question</nav-item>
     </if>
@@ -26,25 +27,10 @@
 </def>
 
 
-<def tag="preview-with-more" attrs="name">
-  <section class="#{name.gsub ' ', '-'} preview-with-more">
-    <h3 param="heading"><%= name.titleize %></h3>
-    <a to="&this.member_class" param="more">More <type-name plural lowercase/>...</a>
-    <collection param/>
-  </section>
-</def>
-
-
-<extend tag="card" for="User">
-  <old-card>
-    <after-header:>
-    <div class="recent-recipes"><a repeat="recipes.recent"/></div>
-    </after-header:>
-  </old-card>
-</extend>
-
-
 <def tag="help"><div class="help" merge-attrs param="default"/></def>
+
+
+<!-- ### Forms ### -->
 
 <extend tag="form" for="Recipe">
   <old-form merge>
@@ -58,36 +44,81 @@
 <extend tag="form" for="Question">
   <old-form merge>
     <field-list: replace>
+      <label>Subject:</label>
+      <input:subject/>
       <input:description/>
-      <p><input:markdown/> Use <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> formatting?</p>
+      <markdown-checkbox/>
     </field-list:>
   </old-form>
-</extend>
-
-<extend tag="card" for="Question">
-  <old-card merge>
-    <before-creator-link:>Asks </before-creator-link:>
-  </old-card>
-</extend>
-
-<extend tag="card" for="Recipe">
-  <old-card merge>
-  <creator-link: replace><div param="user">By: <a:user/></div></creator-link:>
-  </old-card>
 </extend>
 
 <extend tag="form" for="Comment">
   <old-form merge>
     <field-list: replace>
       <input:body/>
-      <p><input:markdown/> Use <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> formatting?</p>
+      <markdown-checkbox/>
     </field-list:>
   </old-form>
 </extend>
 
 
+<!-- ### Cards ### -->
+
+<extend tag="card" for="User">
+  <old-card>
+    <before-heading:><gravatar size='50' param/></before-heading:>
+    <after-header:>
+      <div class="recent-recipes"><repeat:recipes.recent join=", "><a/></repeat></div>
+    </after-header:>
+  </old-card>
+</extend>
+
+<extend tag="card" for="Question">
+  <old-card merge>
+    <before-heading:><gravatar:user size='50' param/></before-heading:>
+    <body:>
+      Asks <a:user/>. (<count:answers if-any/><else>No answers - help!</else>)
+    </body:>
+  </old-card>
+</extend>
+
+<extend tag="card" for="Recipe">
+  <old-card merge>
+    <before-heading:><gravatar:user size='50' param/></before-heading:>
+    <creator-link: replace><div param="user">By: <a:user/></div></creator-link:>
+  </old-card>
+</extend>
+
 <extend tag="card" for="Comment">
   <old-card merge without-creator-link>
+    <before-heading:><gravatar:user size='50' param/></before-heading:>
     <before-content:><view:created-at/>, <a:user/> said:</before-content:>
   </old-card>
 </extend>
+
+<extend tag="card" for="Answer">
+  <old-card merge without-creator-link>
+    <header:>
+      <gravatar:user size='50' param/>
+      <div param="question">In answer to <view:question/></div>
+      <a:user/> Says:
+    </header:>
+    <body:>
+      <view:body/>
+      <div param="recipe" if="recipe">See recipe: <a:recipe/></div>
+    </body:>
+  </old-card>
+</extend>
+
+
+
+<def tag="markdown-checkbox">
+  <p><input:markdown/> Use <markdown-help>markdown</markdown-help> formatting?</p>
+</def>
+
+<def tag="markdown-help">
+  <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" merge-attrs param="default"/>
+</def>
+
+
+<def tag="input" for="Recipe"><name-one merge/></def>

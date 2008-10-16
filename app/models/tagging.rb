@@ -1,3 +1,5 @@
+# NOTE- Tagging is not implemnted 
+
 class Tagging < ActiveRecord::Base
 
   hobo_model # Don't put anything above this

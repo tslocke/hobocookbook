@@ -4,6 +4,21 @@
 
 
 .front-page .users-and-questions { padding-left: 10px; width: 45%;}
+.front-page h2 {font-size:28px; float: left;}
+.front-page div.welcome-message {float:right; width: 355px; border: none; padding: 6px 0 0 0;}
+
+.index-page.question .with { width: 50%; padding-right: 10px;}
+
+
+.front-page .content-header {
+    overflow: hidden; zoom: 1; padding: 10px 20px;
+    background:#EEEEEE;
+    border: 1px solid #E8E8E8;
+    color:#222222;
+}
+
+.preview-with-more h3 {font-size:20px; margin-bottom: 20px;}
+
 
 textarea.recipe-body { margin-top: 20px; width: 100%; height: 500px;}
 textarea.question-description, textarea.comment-body { width: 100%;}
@@ -16,3 +31,33 @@ code {
     font-size:90%;
     padding:0 0.2em;
 }
+
+form.question label {display:block; font-size: 20px;}
+input.question-subject {width:100%;font-size: 20px; margin: 5px 0;}
+
+.field-list .recipe-view {padding-right:6px;}
+
+pre {
+    background-color:#F8F8FF;
+    border:1px solid #DEDEDE;
+    color:#444444;
+    margin: 10px 0 10px 10px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+pre code { border: none;}
+
+.answer.card .answer-body {margin: 10px 0;}
+
+.show-page.user .aside {width: 300px;}
+.show-page.user .content-header, .show-page.recipe .content-header, .show-page.question .content-header
+  {height:100px;}
+
+.view.question-subject {line-height: 130%;}
+
+.card.answer .question { margin-bottom: 10px;}
+.card.answer .recipe { font-style: italic;}
+
+img.gravatar {float:left; margin: 0 10px 10px 0;}
+.content-header img.gravatar {float:left; margin: 10px 10px 10px 0;}
