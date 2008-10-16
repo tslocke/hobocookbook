@@ -12,7 +12,7 @@ OwnedModel = classy_module do
   end
 
   def deletable_by?(deleter)
-    updater.administrator? || deleter == user
+    deleter.administrator? || deleter == user
   end
 
   def viewable_by?(user, field)
