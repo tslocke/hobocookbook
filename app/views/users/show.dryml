@@ -1,4 +1,4 @@
-<show-page without-field-list>
+<show-page without-field-list without-new-link>
  <main-nav: current="My Page"/>
  
  <before-heading:><gravatar/></before-heading:>
