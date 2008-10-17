@@ -1,5 +1,5 @@
 <show-page without-field-list without-new-link>
- <main-nav: current="My Page"/>
+ <main-nav: current="&'My Page' if this == current_user"/>
  
  <before-heading:><gravatar/></before-heading:>
  

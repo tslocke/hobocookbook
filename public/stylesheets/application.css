@@ -1,6 +1,7 @@
 .preview-with-more { border: 1px dotted #999; padding: 10px; margin-bottom: 10px; position: relative;}
 .preview-with-more h3 { margin-top: 0; }
 .preview-with-more a.more { position: absolute; top: 9px; right: 9px;}
+.aside .preview-with-more h3 { font-size: 16px; }
 
 
 .front-page .users-and-questions { padding-left: 10px; width: 45%;}
