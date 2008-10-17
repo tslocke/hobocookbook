@@ -5,6 +5,26 @@
  
  <collection:><card without-user without-gravatar/></collection:>
  
+ <aside:>
+   <preview-with-more:questions.with_answers.recent >
+     <heading:><Your with="&@user"/> Questions</heading:>
+     <after-heading:><p>With answers</p></after-heading:>
+     <more:>more</more:>
+   </preview-with-more>
+
+   <preview-with-more:questions.without_answers.recent >
+     <heading:><Your with="&@user"/> Questions</heading:>
+     <after-heading:><p>Without answers</p></after-heading:>
+     <more:>more</more:>
+   </preview-with-more>
+
+   <preview-with-more:answers.recent>
+     <heading:><Your with="&@user"/> Answers</heading:>
+     <more:>more</more:>
+   </preview-with-more>
+ </aside:>
+ 
+ 
  <preview-questions:><collection:><card without-gravatar/></collection:></preview-questions:>
  <preview-answers:><collection:><card without-gravatar/></collection:></preview-answers:>
 </show-page>

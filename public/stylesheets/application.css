@@ -2,6 +2,7 @@
 .preview-with-more h3 { margin-top: 0; }
 .preview-with-more a.more { position: absolute; top: 9px; right: 9px;}
 .aside .preview-with-more h3 { font-size: 16px; }
+.show-page.user .aside .preview-with-more h3 { margin-bottom: 3px; }
 
 
 .front-page .users-and-questions { padding-left: 10px; width: 45%;}
@@ -62,6 +63,9 @@ pre code { border: none;}
 
 a.gravatar {display: block; border: 1px solid #999; background: #eee; padding: 2px; float:left; margin: 0 10px 10px 0;}
 .content-header a.gravatar {margin: 10px 10px 10px 0;}
+
+
+.view.recipe-body { border: 1px solid #999; padding: 10px; background: #fcfcfc;}
 
 
 /* == Code Highlighting == */
