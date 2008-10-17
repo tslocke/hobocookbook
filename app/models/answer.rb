@@ -3,7 +3,7 @@ class Answer < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    body :optional_markdown
+    body     OptionalMarkdown
     markdown :boolean
     timestamps
   end

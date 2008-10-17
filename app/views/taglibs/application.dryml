@@ -27,6 +27,11 @@
 %></def>
 
 
+<def tag="input" for="OptionalMarkdown">
+  <input for-type="text" merge-attrs/>
+  <markdown-checkbox with="&this_parent"/>
+</def>
+
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs>
     <nav-item with="&current_user" if="&logged_in?">My Page</nav-item>
@@ -61,17 +66,13 @@
       <label>Subject:</label>
       <input:subject/>
       <input:description/>
-      <markdown-checkbox/>
     </field-list:>
   </old-form>
 </extend>
 
 <extend tag="form" for="Comment">
   <old-form merge>
-    <field-list: replace>
-      <input:body/>
-      <markdown-checkbox/>
-    </field-list:>
+    <field-list: replace><input:body/></field-list:>
   </old-form>
 </extend>
 

@@ -11,9 +11,5 @@
     recipe</a>, then return here and link to it below.</p>
   </after-add-form-heading:>
   
-  <form:>
-    <field-list: fields="body, recipe">
-      <after-body-tag:><markdown-checkbox with="&this_parent"/></after-body-tag:>
-    </field-list:>
-  </form:>
+  <form:><field-list: fields="body, recipe"/></form:>
 </show-page>

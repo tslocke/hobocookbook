@@ -1,9 +1,5 @@
-module HoboFields
+class OptionalMarkdown < HoboFields::Text
 
-  class OptionalMarkdown < HoboFields::Text
-
-    HoboFields.register_type(:optional_markdown, self)
-
-  end
+  HoboFields.register_type(:optional_markdown, self)
 
 end
