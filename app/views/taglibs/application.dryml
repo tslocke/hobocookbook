@@ -23,7 +23,7 @@
 <def tag="view" for="markdown"><%= Maruku.new(this).to_html %></def>
 
 <def tag="view" for="optional_markdown"><%=
-  this_parent.markdown? ? Maruku.new(this).to_html : h(this) 
+  this_parent.markdown? ? Maruku.new(this).to_html : HoboFields::Text.new(this).to_html
 %></def>
 
 
