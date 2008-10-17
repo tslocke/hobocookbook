@@ -6,14 +6,14 @@
 
 
 .front-page .users-and-questions { padding-left: 10px; width: 45%;}
-.front-page .content-header h2 {font-size:28px; float: left;}
+.front-page .content-header h2 {font-size:28px; line-height: 28px; float: left;}
 .front-page div.welcome-message {float:right; width: 355px; border: none; padding: 6px 0 0 0;}
 
 .index-page.question .with { width: 50%; padding-right: 10px;}
 
 
 .front-page .content-header {
-    overflow: hidden; zoom: 1; padding: 10px 20px;
+    overflow: hidden; height: 100%; padding: 10px 20px;
     background:#EEEEEE;
     border: 1px solid #E8E8E8;
     color:#222222;
