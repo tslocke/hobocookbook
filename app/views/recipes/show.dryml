@@ -1,4 +1,4 @@
-<show-page without-creator-link>
+<show-page without-creator-link without-field-names-where-true>
   <heading: replace>
     <gravatar:user/>
     <h2><name/></h2>

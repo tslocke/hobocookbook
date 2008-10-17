@@ -1,4 +1,4 @@
-<show-page>
+<show-page without-field-names-where-true>
   <before-heading:><gravatar:user/></before-heading:>
   <prepend-heading:>Question: </prepend-heading:>
   <before-creator-link:>Asks </before-creator-link:>
