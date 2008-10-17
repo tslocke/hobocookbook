@@ -2,4 +2,18 @@
   <before-heading:><gravatar:user/></before-heading:>
   <prepend-heading:>Question: </prepend-heading:>
   <before-creator-link:>Asks </before-creator-link:>
+  
+  <collection-heading:>Discussion</collection-heading:>
+  <collection:><empty-message:>No one has responded yet</empty-message:></collection:>
+  <add-form-heading:>Your response</add-form-heading:>
+  <after-add-form-heading:>
+    <p>If you have a quick answer you can post it here. Better still, post a <a to="&current_user.recipes" action="new">new
+    recipe</a>, then return here and link to it below.</p>
+  </after-add-form-heading:>
+  
+  <form:>
+    <field-list: fields="body, recipe">
+      <after-body-tag:><markdown-checkbox with="&this_parent"/></after-body-tag:>
+    </field-list:>
+  </form:>
 </show-page>

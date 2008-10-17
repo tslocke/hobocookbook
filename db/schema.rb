@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081016075217) do
+ActiveRecord::Schema.define(:version => 20081017074334) do
 
   create_table "answers", :force => true do |t|
     t.datetime "created_at"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20081016075217) do
     t.integer  "recipe_id"
     t.integer  "question_id"
     t.text     "body"
+    t.boolean  "markdown"
   end
 
   create_table "comments", :force => true do |t|
