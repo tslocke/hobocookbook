@@ -68,7 +68,7 @@ a.gravatar {display: block; border: 1px solid #999; background: #eee; padding: 2
 
 .view.recipe-body { border: 1px solid #999; padding: 10px; background: #fcfcfc;}
 
-.view p {margin 5px 0;}
+.view p {margin: 5px 0;}
 
 
 /* == Code Highlighting == */
