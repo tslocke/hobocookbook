@@ -14,7 +14,18 @@
       <javascript name="code_highlighter"/>
       <javascript name="highlighters/ruby"/>
       <javascript name="highlighters/dryml"/>
-   </append-scripts:>
+    </append-scripts:>
+    <header: replace>
+      <aside param="page-aside">
+        <h1 param="app-name"><a href="#{base_url}/"><app-name/></a></h1>
+        <a href="http://github.com/tablatom/hobocookbook/tree/master" target="github" param="view-source">View Source</a>
+        <live-search param if="&defined_route? :site_search"/>
+      </aside>
+      <header class="page-header" param>
+        <main-nav param/>
+        <account-nav if="&login_url(Hobo::User.default_user_model)" param/>
+      </header>
+    </header:>
   </old-page>
   
 </extend>

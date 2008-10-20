@@ -1,0 +1,5 @@
+<def tag="simple-page">
+  <page merge/>
+</def>
+
+<login-page/>

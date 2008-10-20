@@ -1,3 +1,73 @@
+html, body {
+	background: white; background-image: url(/images/body_bg.png); background-repeat: repeat-y;
+	color: #444;
+	font: 14px "Helvetica Neue", "Helvetica", Arial, sans-serif; line-height: 21px;
+}
+body, .login-page {
+	width: 100%; margin: 0;
+}
+p {margin: 14px 0;}
+h1, h2, h3, h4, h5, h6 {font-family: "Lucida Grande", "Trebuchet MS", Arial, sans-serif; font-weight: bold; color: black;}
+form.login .actions {width: auto;}
+
+.note {
+	background-color: #FFF9EC; border: 1px solid #FFE5B3; border-width: 1px 0; padding: 10px 20px;
+	font: bold 13px "Lucida Grande", "Trebuchet MS", Arial, sans-serif; color: #262523;
+}
+
+.page-aside {
+	float: left; width: 228px; padding: 0 30px; color: white; background: none; position: relative;
+}
+.page-header,.content {
+	margin-left: 288px; margin-top: 0;
+}
+.section.content {background: none;}
+.content-header {margin-bottom: 0; padding: 0;}
+
+h1.app-name {
+	background-image: url(/images/app_name_bg.png);
+	background-repeat: no-repeat;
+	height: 99px; margin: 0 -30px;
+	position: relative;
+}
+h1.app-name a {
+	display: block; position: absolute; text-indent: -1000px; 
+	width: 220px; height: 34px; top: 38px; left: 34px;
+}
+.page-aside a:hover {background: none; border: none;}
+.page-aside .search {
+	width: 224px; height: 43px; margin-top: 10px;
+	background-image: url(/images/search_bg.png);
+}
+.page-aside .search label {display: none;}
+.page-aside .search input.live-search {margin: 10px 0 0 15px; width: 160px;}
+#search-results-panel {right: auto; left: 25px; top: 170px;}
+#search-spinner {border: none; top: 120px; right: auto; left: 5px; background-color: #191919;}
+a.view-source {
+	display: block; position: absolute; top: 0; left: 0; 
+	text-indent: -1000px; width: 60px; height: 35px;
+	background: none; border: none;
+}
+
+.page-header {
+	height: 128px; padding: 0;
+	background-image: url(/images/page_header_bg.png);
+	background-color: white; background-repeat: repeat-x;
+}
+.page-header .navigation.main-nav {width: auto; float: right; margin-right: 0;}
+.page-header .navigation.main-nav li {margin-top: 35px;}
+.page-header .navigation.main-nav a, .page-header .navigation.main-nav li.current a {
+	background: none; color: #ddd; padding-right: 0; padding-left: 30px;
+	font-size: 13px; text-shadow: black 1px 1px 1px;
+}
+.page-header .navigation.main-nav li.current a {color: white;}
+.page-header .navigation.main-nav a:hover {background: none;}
+select.dev-user-changer {left: auto; right: 0; top: 0;}
+.page-header .account-nav {top: auto; bottom: 0; right: 0; margin-right: 45px; font-size: 12px;}
+.page-header .account-nav a, .page-header .account-nav a:hover {color: #888; font-weight: normal;}
+
+/**************/
+
 .preview-with-more { border: 1px dotted #999; padding: 10px; margin-bottom: 10px; position: relative;}
 .preview-with-more h3 { margin-top: 0; }
 .preview-with-more a.more { position: absolute; top: 9px; right: 9px;}
@@ -28,29 +98,10 @@ textarea.recipe-body { margin-top: 20px; width: 100%; height: 500px;}
 textarea.question-description, textarea.comment-body { width: 100%;}
 input.boolean { vertical-align: -15%;}
 
-code {
-    background-color:#F8F8FF;
-    border:1px solid #DEDEDE;
-    color:#444444;
-    font-size:90%;
-    padding:0 0.2em;
-}
-
 form.question label, form.recipe label {display:block; font-size: 16px; font-weight:bold;}
 input.question-subject, input.recipe-name {width:100%;font-size: 20px; margin: 5px 0;}
 
 .field-list .recipe-view {padding-right:6px;}
-
-pre {
-    background-color:#F8F8FF;
-    border:1px solid #DEDEDE;
-    color:#444444;
-    margin: 10px 0 10px 10px;
-    padding: 5px;
-    font-size: 15px;
-}
-
-pre code { border: none;}
 
 .answer.card .answer-body {margin: 10px 0;}
 
@@ -63,20 +114,15 @@ pre code { border: none;}
 .card.answer .question { margin-bottom: 10px;}
 .card.answer .recipe { font-style: italic;}
 
-a.gravatar {display: block; border: 1px solid #999; background: #eee; padding: 2px; float:left; margin: 0 10px 10px 0;}
-.content-header a.gravatar {margin: 10px 10px 10px 0;}
-
-.view.recipe-body { border: 1px solid #999; padding: 10px; background: #fcfcfc;}
-
-.view p {margin: 5px 0;}
-
+a.gravatar {display: block; border: 1px solid #ccc; background: #ccc; padding: 2px; float:left; margin: 0 10px 10px 0;}
+.content-header a.gravatar {margin: 0 20px 0 0;}
 
 /* == Code Highlighting == */
 
 pre {
 	background: #F9F7F3;
 	border: 1px solid #E9E3D2; border-width: 1px 0;
-	font-size: 14px; line-height: 16px;
+	font-size: 13px; line-height: 18px;
 	margin: 10px 0 10px; padding: 10px 0 10px 10px;
     overflow: auto;
 }
