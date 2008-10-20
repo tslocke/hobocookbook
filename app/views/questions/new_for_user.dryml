@@ -1,5 +1,10 @@
 <new-for-user-page without-subheading>
-  <main-nav: current="Ask a Question"/>
+  <main-nav: current="Request a Recipe"/>
   <heading:>Ask and You Shall Receive. Well... You might.</heading:>
+  <after-heading:>
+    <p>If you have an idea for a recipe that you think would be generally useful to Hobo programmers, please post your request
+    here. If you have a more specific question about something you're stuck with, the
+    <a href="http://groups.google.com/group/hobousers/">Hobo Users</a> group is probably the best place for that.</p>
+  </after-heading:>
   <form:><submit: label="Ask!"/></form:>
 </new-for-user-page>
