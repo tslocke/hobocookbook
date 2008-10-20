@@ -50,7 +50,7 @@
     <nav-item with="&Question">Browse Questions</nav-item>
     <if test="&logged_in?">
       <nav-item with="&current_user.recipes" action="new">Post a Recipe</nav-item>
-      <nav-item with="&current_user.questions" action="new">Ask a Question</nav-item>
+      <nav-item with="&current_user.questions" action="new">Request a Recipe</nav-item>
     </if>
   </navigation>
 </def>
@@ -96,6 +96,7 @@
     <after-header:>
       <div class="recent-recipes"><repeat:recipes.recent join=", "><a/></repeat></div>
     </after-header:>
+    <count: if-any/>
   </old-card>
 </extend>
 
