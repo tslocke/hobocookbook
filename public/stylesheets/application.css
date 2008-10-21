@@ -8,6 +8,8 @@ body, .login-page {
 }
 p {margin: 14px 0;}
 h1, h2, h3, h4, h5, h6 {font-family: "Lucida Grande", "Trebuchet MS", Arial, sans-serif; font-weight: bold; color: black;}
+.section-group {float: left;}
+.aside {background-color: transparent;}
 form.login .actions {width: auto;}
 
 .note {
@@ -65,6 +67,11 @@ a.view-source {
 select.dev-user-changer {left: auto; right: 0; top: 0;}
 .page-header .account-nav {top: auto; bottom: 0; right: 0; margin-right: 45px; font-size: 12px;}
 .page-header .account-nav a, .page-header .account-nav a:hover {color: #888; font-weight: normal;}
+
+
+.user.index-page .collection.users  { width: 100%; overflow:hidden; height:100%;}
+.user.index-page .collection.users li { float: left; width:48%;margin-right:10px; }
+.user.index-page .collection.users .card {  height: 80px; }
 
 /**************/
 
