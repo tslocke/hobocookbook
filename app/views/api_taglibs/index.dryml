@@ -12,9 +12,7 @@
       <collection with="&ApiTaglib.all">
         <h3><a><%= this.name.titleize %></a></h3>
         <view:description/>
-        <collection:tags without-empty-message>
-          <a/>
-        </collection>
+        <tags-summary/>
       </collection>
     </section>    
   </content:>

@@ -46,8 +46,10 @@ class ApiTagDef < ActiveRecord::Base
   def merged_attributes
     merge_attrs_tagdef._?.all_attributes || []
   end
-  
-  
+
+  def documented?
+    !(description.blank? && short_description.blank?)
+  end
 
   # --- Hobo Permissions --- #
 

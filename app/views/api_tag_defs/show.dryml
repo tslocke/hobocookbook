@@ -6,7 +6,7 @@
   </ul>
 </def>
   
-<show-page>
+<show-page title="#{h this.short_def_line}">
 
   <aside-content:>
     <api-navigation current="&this"/>
@@ -14,7 +14,7 @@
   
   <content:>
     <div class="content-header">
-      <h2><name/></h2>      
+      <h2><view:short-def-line/></h2>      
       <view:short-description/>
     </div>
     <div class="content-body">

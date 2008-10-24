@@ -11,6 +11,7 @@ h1, h2, h3, h4, h5, h6 {font-family: "Lucida Grande", "Trebuchet MS", Arial, san
 .section-group {float: left;}
 .aside {background-color: transparent;}
 form.login .actions {width: auto;}
+textarea.optional-markdown {width: 99%;}
 
 .note {
 	background-color: #FFF9EC; border: 1px solid #FFE5B3; border-width: 1px 0; padding: 10px 20px;
@@ -82,11 +83,11 @@ select.dev-user-changer {left: auto; right: 0; top: 0;}
 	border: 1px solid #E9E3D2; border-width: 1px 0;
 }
 .tags li {
-	float: left; margin-right: 10px;
+	float: left; margin-right: 15px;
 	font: 12px Courier, monospace; line-height: 28px;
 }
 .tags li a {background: none;}
-
+.tags .undocumented {color: #888;}
 
 /**************/
 
@@ -155,6 +156,7 @@ a.gravatar {display: block; border: 1px solid #ccc; background: #ccc; padding: 2
 .aside-content .navigation ul {list-style: none; font-size: 11px; margin: 0 0 0 5px;}
 .aside-content .navigation ul li {border-color: #333;}
 .aside-content .navigation ul li a {color: #FFD75C;}
+.aside-content .navigation ul li a.undocumented {color: #B19640;}
 .aside-content ul ul li.current a {color: #FFC000;}
 
 

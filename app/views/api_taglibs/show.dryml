@@ -1,4 +1,4 @@
-<show-page>
+<show-page title="#{this.name.titleize}">
 
   <aside-content:>
     <api-navigation current="&this"/>
@@ -6,10 +6,11 @@
   
   <content:>
     <div class="content-header">
-      <h2><name/></h2>      
+      <h2><%= this.name.titleize %></h2>      
     </div>
     <div class="content-body">
       <view:description/>
+      <tags-summary/>
     </div>
   </content:>
   

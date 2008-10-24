@@ -154,13 +154,20 @@
 
 <def tag="input" for="Recipe"><name-one merge/></def>
 
+<def tag="tags-summary">
+  <collection:tags without-empty-message>
+    <tag-def-link/>
+  </collection>
+</def>
+
+<def tag="tag-def-link"><a class="#{'undocumented' unless this.documented?}"><view:short-def-line/></a></def>
 
 <def tag="api-navigation" attrs="current">
   <h2><a with="&ApiTaglib">Tag Libraries</a></h2>
   <navigation>
     <repeat with="&ApiTaglib.all unless this.try.member_class == ApiTaglib"><nav-item><%= this.name.titleize %></nav-item>
     <ul if="&current.is_a?(ApiTaglib) && current == this || current.is_a?(ApiTagDef) && current.in?(this.tags)">
-      <li class="#{'current' if this == current}" repeat="tags"><a/></li>
+      <li class="#{'current' if this == current}" repeat="tags"><tag-def-link/></li>
     </ul>
     </repeat>
   </navigation>
