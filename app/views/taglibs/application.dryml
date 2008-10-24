@@ -20,6 +20,7 @@
         <h1 param="app-name"><a href="#{base_url}/"><app-name/></a></h1>
         <a href="http://github.com/tablatom/hobocookbook/tree/master" target="github" param="view-source">View Source</a>
         <live-search param if="&defined_route? :site_search"/>
+        <div param="aside-content"/>
       </aside>
       <header class="page-header" param>
         <main-nav param/>
@@ -149,3 +150,14 @@
 
 
 <def tag="input" for="Recipe"><name-one merge/></def>
+
+
+<def tag="api-navigation" attrs="current">
+  <h2>Taglibs</h2>
+  <collection with="&ApiTaglib.all unless this.try.member_class == ApiTaglib">
+    <a/>
+    <ul if="&current.is_a?(ApiTaglib) && current == this || current.is_a?(ApiTagDef) && current.in?(this.tags)">
+      <li class="#{'current' if this == current}" repeat="tags"><a/></li>
+    </ul>
+  </collection>
+</def>

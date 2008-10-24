@@ -117,7 +117,22 @@ input.question-subject, input.recipe-name {width:100%;font-size: 20px; margin: 5
 a.gravatar {display: block; border: 1px solid #ccc; background: #ccc; padding: 2px; float:left; margin: 0 10px 10px 0;}
 .content-header a.gravatar {margin: 0 20px 0 0;}
 
-/* == Code Highlighting == */
+/* === Main Aside === */
+
+div.aside-content { margin: 40px 0 0 0; color: #FFC000; font-size: 18px;}
+div.aside-content h2 { color: #D3D3D3;}
+div.aside-content a { background: none; color: #FFC000; text-decoration: none; border: none;}
+
+div.aside-content ul li { margin: 10px 0;}
+div.aside-content ul ul { list-style-type: none;}
+div.aside-content ul ul li { margin: 3px 0 0 20px; font-size: 14px; }
+div.aside-content ul ul li a { color: #FFD75C; padding: 2px;}
+div.aside-content ul ul li.current a { background: #FFD75C; color: #191919;}
+
+
+
+
+/* === Code Highlighting === */
 
 pre {
 	background: #F9F7F3;

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081017074334) do
+ActiveRecord::Schema.define(:version => 20081021160838) do
 
   create_table "answers", :force => true do |t|
     t.datetime "created_at"
@@ -19,6 +19,28 @@ ActiveRecord::Schema.define(:version => 20081017074334) do
     t.integer  "question_id"
     t.text     "body"
     t.boolean  "markdown"
+  end
+
+  create_table "api_tag_defs", :force => true do |t|
+    t.string   "tag"
+    t.boolean  "extension"
+    t.boolean  "polymorphic"
+    t.string   "for_type"
+    t.text     "description"
+    t.text     "tag_attributes"
+    t.text     "tag_parameters"
+    t.string   "merge_attrs"
+    t.string   "merge_params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "taglib_id"
+  end
+
+  create_table "api_taglibs", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
   end
 
   create_table "comments", :force => true do |t|

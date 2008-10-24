@@ -1,0 +1,16 @@
+<show-page>
+
+  <aside-content:>
+    <api-navigation current="&this"/>
+  </aside-content:>
+  
+  <content:>
+    <div class="content-header">
+      <h2><name/></h2>      
+    </div>
+    <div class="content-body">
+      <view:description/>
+    </div>
+  </content:>
+  
+</show-page>

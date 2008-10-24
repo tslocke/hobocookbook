@@ -1,0 +1,43 @@
+<def tag="param-list">
+  <ul if="&this.any?">
+    <li repeat><%= this.first %>
+      <param-list with="&this.last"/>
+    </li>
+  </ul>
+</def>
+  
+<show-page>
+
+  <aside-content:>
+    <api-navigation current="&this"/>
+  </aside-content:>
+  
+  <content:>
+    <div class="content-header">
+      <h2><name/></h2>      
+    </div>
+    <div class="content-body">
+      <if:tag-attributes>
+        <section class="attributes">
+          <h3>Attributes</h3>
+          <ul repeat>
+            <li><%= this %></li>
+          </ul>
+        </section>
+      </if>
+
+      <if:tag-parameters>
+        <section class="parameters">
+          <h3>Parameters</h3>
+          <param-list/>
+        </section>
+      </if>
+
+      <view:description/>
+
+    </div>
+    
+        
+  </content:>
+  
+</show-page>
