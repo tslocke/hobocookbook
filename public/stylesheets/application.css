@@ -73,6 +73,21 @@ select.dev-user-changer {left: auto; right: 0; top: 0;}
 .user.index-page .collection.users li { float: left; width:48%;margin-right:10px; }
 .user.index-page .collection.users .card {  height: 80px; }
 
+
+.api-taglibs h3 {margin-top: 30px;}
+.tags {
+	height: 100%; overflow: hidden; 
+	padding: 10px 0 10px 10px; margin: 10px 0;
+	background: #F9F7F3;
+	border: 1px solid #E9E3D2; border-width: 1px 0;
+}
+.tags li {
+	float: left; margin-right: 10px;
+	font: 12px Courier, monospace; line-height: 28px;
+}
+.tags li a {background: none;}
+
+
 /**************/
 
 .preview-with-more { border: 1px dotted #999; padding: 10px; margin-bottom: 10px; position: relative;}
@@ -126,17 +141,21 @@ a.gravatar {display: block; border: 1px solid #ccc; background: #ccc; padding: 2
 
 /* === Main Aside === */
 
-div.aside-content { margin: 40px 0 0 0; color: #FFC000; font-size: 18px;}
-div.aside-content h2 { color: #D3D3D3;}
-div.aside-content a { background: none; color: #FFC000; text-decoration: none; border: none;}
+.aside-content h2, .aside-content h3, .aside-content h4 {
+	padding-bottom: 0.4em;
+	color: white; border-bottom: 1px dotted #888;
+}
 
-div.aside-content ul li { margin: 10px 0;}
-div.aside-content ul ul { list-style-type: none;}
-div.aside-content ul ul li { margin: 3px 0 0 20px; font-size: 14px; }
-div.aside-content ul ul li a { color: #FFD75C; padding: 2px;}
-div.aside-content ul ul li.current a { background: #FFD75C; color: #191919;}
+.aside-content { margin: 40px 0 0 0; color: #FFC000; font-size: 18px;}
+.aside-content a {background: none; color: #FFC000; color: #ddd; text-decoration: none; border: none;}
+.aside-content a:hover {color: white;}
 
-
+.aside-content .navigation {list-style: none; font-size: 12px; font-weight: bold;}
+.aside-content .navigation li {margin: 4px 0; border-bottom: 1px dotted #444;}
+.aside-content .navigation ul {list-style: none; font-size: 11px; margin: 0 0 0 5px;}
+.aside-content .navigation ul li {border-color: #333;}
+.aside-content .navigation ul li a {color: #FFD75C;}
+.aside-content ul ul li.current a {color: #FFC000;}
 
 
 /* === Code Highlighting === */
@@ -149,9 +168,16 @@ pre {
     overflow: auto;
 }
 
+code {
+	background: #F9F7F3;
+	border: 1px solid #E9E3D2; border-width: 1px 0;
+	font-size: 90%; padding: 0 0.2em;
+}
+
 pre code {
 	color: #2D2D2D;
 	font-weight: normal;
+	border: none; background: transparent;
 }
 
 /** RUBY / JAVASCRIPT **/

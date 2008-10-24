@@ -1,10 +1,22 @@
 <index-page>
 
   <aside-content:>
-    <h2>Tag Libraries</h2>
-    <collection><a/></collection>
+    <api-navigation with="nothing"/>
   </aside-content:>
   
-  <content:></content:>
+  <content:>
+    <section class="content-header">
+      <h2>DRYML Taglibs Reference</h2>
+    </section>
+    <section class="content-body">
+      <collection with="&ApiTaglib.all">
+        <h3><a><%= this.name.titleize %></a></h3>
+        <view:description/>
+        <collection:tags without-empty-message>
+          <a/>
+        </collection>
+      </collection>
+    </section>    
+  </content:>
   
 </index-page>
