@@ -35,6 +35,11 @@
       </if>
 
       <view:description/>
+      
+      <a class="show-source" href="#" onclick="new Effect.BlindDown($(this).next(), {duration: 0.3})">Show Source</a>
+      <div style="display:none">
+        <pre class="dryml"><code><view:source no-wrapper/></code></pre>
+      </div>
 
     </div>
     
