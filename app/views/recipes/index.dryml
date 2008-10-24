@@ -1,0 +1,8 @@
+<index-page>
+  <aside-content:>
+    <recipe-aside/>
+  </aside-content:>
+  <after-bottom-page-nav:>
+    <preview-with-more with="&Question.recent"/>
+  </after-bottom-page-nav:>
+</index-page>

@@ -28,7 +28,7 @@ class ApiTagDef < ActiveRecord::Base
   end
   
   def short_def_line
-    "<#{tag}#{' for=\'' + for_type[0..15] + '\'' if for_type}>"
+    "<#{tag}#{' for=\'' + for_type + '\'' if for_type}>"
   end
   
   def all_attributes

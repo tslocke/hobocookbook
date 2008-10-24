@@ -46,16 +46,19 @@
 
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs>
-    <nav-item with="&current_user" if="&logged_in?">My Page</nav-item>
-    <nav-item href="#{base_url}/">Browse Recipes</nav-item>
-    <nav-item with="&Question">Browse Questions</nav-item>
+    <nav-item with="&ApiTaglib">Taglibs</nav-item>
+    <nav-item with="&Recipe">Recipes</nav-item>
+  </navigation>
+</def>
+
+<def tag="recipe-aside">
+  <navigation merge-attrs>
     <if test="&logged_in?">
       <nav-item with="&current_user.recipes" action="new">Post a Recipe</nav-item>
       <nav-item with="&current_user.questions" action="new">Request a Recipe</nav-item>
     </if>
   </navigation>
 </def>
-
 
 <def tag="help"><div class="help" merge-attrs param="default"/></def>
 
@@ -153,11 +156,12 @@
 
 
 <def tag="api-navigation" attrs="current">
-  <h2>Taglibs</h2>
-  <collection with="&ApiTaglib.all unless this.try.member_class == ApiTaglib">
-    <a/>
+  <h2><a with="&ApiTaglib">Tag Libraries</a></h2>
+  <navigation>
+    <repeat with="&ApiTaglib.all unless this.try.member_class == ApiTaglib"><nav-item><%= this.name.titleize %></nav-item>
     <ul if="&current.is_a?(ApiTaglib) && current == this || current.is_a?(ApiTagDef) && current.in?(this.tags)">
       <li class="#{'current' if this == current}" repeat="tags"><a/></li>
     </ul>
-  </collection>
+    </repeat>
+  </navigation>
 </def>
