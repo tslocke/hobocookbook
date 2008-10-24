@@ -36,8 +36,8 @@
 
       <view:description/>
       
-      <a class="show-source" href="#" onclick="Effect.toggle($(this).next(), 'blind', {duration: 0.3})">Show Source</a>
-      <div style="display:none">
+      <p class="show-source"><a href="#" onclick="Effect.toggle($(this).parentNode.next(), 'blind', {duration: 0.3})">Show Source</a></p>
+      <div class="source" style="display:none">
         <pre class="dryml"><code><view:source no-wrapper/></code></pre>
       </div>
 
