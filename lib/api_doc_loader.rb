@@ -5,8 +5,9 @@ module ApiDocLoader
   class Taglib < Hobo::Dryml::DrymlDoc::Taglib
     
     def load_into_database
-      owner = ApiTaglib.create :name => name, :description => comment_html
-      tag_defs.*.load_into_database(owner)
+      taglib = ApiTaglib.new :name => name, :description => comment_html
+      tag_defs.*.load_into_database(taglib)
+      taglib.save unless taglib.description.blank? && taglib.tags.empty?
     end
     
   end
@@ -15,10 +16,14 @@ module ApiDocLoader
   class TagDef < Hobo::Dryml::DrymlDoc::TagDef
     
     def load_into_database(owner)
-      owner.tags.create :tag => name, :extension => extension?, :polymorphic => polymorphic?,
-                        :description => comment_html, :for_type => for_type, 
-                        :tag_attributes => attributes, :tag_parameters => parameters,
-                        :merge_params => merge_params, :merge_attrs => merge_attrs
+      return if no_doc?
+      
+      owner.tags.build :tag => name, :extension => extension?, :polymorphic => polymorphic?,
+                       :short_description => comment_intro_html,
+                       :description => comment_rest_html, 
+                       :for_type => for_type, 
+                       :tag_attributes => attributes, :tag_parameters => parameters,
+                       :merge_params => merge_params, :merge_attrs => merge_attrs
     end
     
   end

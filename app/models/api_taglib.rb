@@ -1,6 +1,8 @@
 class ApiTaglib < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
+  
+  include NameAsId
 
   fields do
     name        :string
@@ -9,19 +11,7 @@ class ApiTaglib < ActiveRecord::Base
   end
 
   has_many :tags, :class_name => "ApiTagDef", :foreign_key => "taglib_id", :dependent => :destroy
-  
-  
-  def self.find(*args)
-    if args.first =~ /[a-zA-Z0-9_-]+/
-      find_by_name(args.first)
-    else
-      super
-    end
-  end
-  
-  def to_param
-    name
-  end
+    
 
   # --- Hobo Permissions --- #
 

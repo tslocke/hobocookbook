@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081021160838) do
+ActiveRecord::Schema.define(:version => 20081024131133) do
 
   create_table "answers", :force => true do |t|
     t.datetime "created_at"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20081021160838) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "taglib_id"
+    t.text     "short_description"
   end
 
   create_table "api_taglibs", :force => true do |t|

@@ -15,13 +15,14 @@
   <content:>
     <div class="content-header">
       <h2><name/></h2>      
+      <view:short-description/>
     </div>
     <div class="content-body">
-      <if:tag-attributes>
+      <if test="&this.tag_attributes.any? || this.merged_attributes.any?">
         <section class="attributes">
           <h3>Attributes</h3>
-          <ul repeat>
-            <li><%= this %></li>
+          <ul class="local-attrs">
+            <li repeat="tag-attributes"><%= this %></li>
           </ul>
         </section>
       </if>
