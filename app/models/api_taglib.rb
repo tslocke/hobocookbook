@@ -12,7 +12,7 @@ class ApiTaglib < ActiveRecord::Base
 
   has_many :tags, :class_name => "ApiTagDef", :foreign_key => "taglib_id"
   
-  set_default_order :name
+  set_default_order "name"
     
 
   # --- Hobo Permissions --- #
