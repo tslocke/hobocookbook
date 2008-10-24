@@ -10,7 +10,7 @@ class ApiTaglib < ActiveRecord::Base
     timestamps
   end
 
-  has_many :tags, :class_name => "ApiTagDef", :foreign_key => "taglib_id", :dependent => :destroy
+  has_many :tags, :class_name => "ApiTagDef", :foreign_key => "taglib_id"
     
 
   # --- Hobo Permissions --- #
