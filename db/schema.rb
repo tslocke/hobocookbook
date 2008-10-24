@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081024151700) do
+ActiveRecord::Schema.define(:version => 20081024161219) do
 
   create_table "answers", :force => true do |t|
     t.datetime "created_at"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(:version => 20081024151700) do
     t.integer  "question_id"
     t.text     "body"
     t.boolean  "markdown"
+  end
+
+  create_table "api_tag_comments", :force => true do |t|
+    t.text     "body"
+    t.boolean  "markdown"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "api_tag_def_id"
+    t.integer  "user_id"
   end
 
   create_table "api_tag_defs", :force => true do |t|

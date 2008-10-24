@@ -1,6 +1,6 @@
 CodeHighlighter.addStyle("dryml", {
 	paramdec : {
-		exp : /param(='[^']*'|"[^"]*"|)/
+		exp : /param(='[^']*'|"[^"]*"|\b)/
 	},
 	comment : {
 		exp: /&lt;!\s*(--([^-]|[\r\n]|-[^-])*--\s*)&gt;/

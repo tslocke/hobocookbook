@@ -127,6 +127,13 @@
   </old-card>
 </extend>
 
+<extend tag="card" for="ApiTagComment">
+  <old-card merge without-creator-link class="comment">
+    <before-heading:><gravatar:user size='50' param/></before-heading:>
+    <before-content:><view:created-at/>, <a:user/> said:</before-content:>
+  </old-card>
+</extend>
+
 <extend tag="card" for="Answer">
   <old-card merge without-creator-link>
     <header:>
