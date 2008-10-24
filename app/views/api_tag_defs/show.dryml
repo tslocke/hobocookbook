@@ -27,19 +27,16 @@
 
     <view:description/>
     
-    <a class="show-source" href="#" onclick="new Effect.BlindDown($(this).next(), {duration: 0.3})">Show Source</a>
-    <div style="display:none">
+    <p class="show-source">
+      <a href="#" onclick="Effect.toggle($(this).parentNode.next(), 'blind', {duration: 0.3})">Show Source</a>
+    </p>
+    <div class="source" style="display:none">
       <pre class="dryml"><code><view:source no-wrapper/></code></pre>
     </div>
 
     <section class="collection-section">
       <h3 class="collection-heading">Comments</h3>
-      
-      <p class="show-source"><a href="#" onclick="Effect.toggle($(this).parentNode.next(), 'blind', {duration: 0.3})">Show Source</a></p>
-      <div class="source" style="display:none">
-        <pre class="dryml"><code><view:source no-wrapper/></code></pre>
-      </div>
-
+    
       <collection:comments/>
 
       <section class="add-to-collection" if="&can_create?(@api_tag_def.comments)">
