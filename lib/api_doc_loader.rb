@@ -23,7 +23,8 @@ module ApiDocLoader
                        :description => comment_rest_html, 
                        :for_type => for_type, 
                        :tag_attributes => attributes, :tag_parameters => parameters,
-                       :merge_params => merge_params, :merge_attrs => merge_attrs
+                       :merge_params => merge_params, :merge_attrs => merge_attrs,
+                       :source => source
     end
     
   end

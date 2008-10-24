@@ -18,6 +18,8 @@ class ApiTagDef < ActiveRecord::Base
     merge_attrs       :string
     merge_params      :string
     
+    source            :text
+    
     timestamps
   end
   
