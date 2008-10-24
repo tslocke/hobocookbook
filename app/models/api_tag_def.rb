@@ -24,6 +24,7 @@ class ApiTagDef < ActiveRecord::Base
   end
   
   belongs_to :taglib, :class_name => "ApiTaglib"
+  has_many   :comments, :class_name => "ApiTagComment", :dependent => :destroy
   
   def def_line
     "<#{extension? ? 'extend' : 'def'} tag='#{tag}'#{' polymorphic' if polymorphic?}#{' for=\'' + for_type + '\'' if for_type}>"

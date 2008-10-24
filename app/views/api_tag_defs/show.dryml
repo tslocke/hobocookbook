@@ -12,38 +12,40 @@
     <api-navigation current="&this"/>
   </aside-content:>
   
-  <content:>
-    <div class="content-header">
-      <h2><name/></h2>      
-      <view:short-description/>
-    </div>
-    <div class="content-body">
-      <if test="&this.tag_attributes.any? || this.merged_attributes.any?">
-        <section class="attributes">
-          <h3>Attributes</h3>
-          <ul class="local-attrs">
-            <li repeat="tag-attributes"><%= this %></li>
-          </ul>
-        </section>
-      </if>
+  <content-header:>
+    <h2><name/></h2>      
+    <view:short-description/>
+  </content-header:>
+  
+  <content-body:>
+    <if:tag-parameters>
+      <section class="parameters">
+        <h3>Parameters</h3>
+        <param-list/>
+      </section>
+    </if>
 
-      <if:tag-parameters>
-        <section class="parameters">
-          <h3>Parameters</h3>
-          <param-list/>
-        </section>
-      </if>
-
-      <view:description/>
-      
-      <a class="show-source" href="#" onclick="new Effect.BlindDown($(this).next(), {duration: 0.3})">Show Source</a>
-      <div style="display:none">
-        <pre class="dryml"><code><view:source no-wrapper/></code></pre>
-      </div>
-
-    </div>
+    <view:description/>
     
-        
-  </content:>
+    <a class="show-source" href="#" onclick="new Effect.BlindDown($(this).next(), {duration: 0.3})">Show Source</a>
+    <div style="display:none">
+      <pre class="dryml"><code><view:source no-wrapper/></code></pre>
+    </div>
+
+    <section class="collection-section">
+      <h3 class="collection-heading">Comments</h3>
+      
+      <collection:comments/>
+
+      <section class="add-to-collection" if="&can_create?(@api_tag_def.comments)">
+        <h3 class="add-form-heading">Add a Comment</h3>
+        <form with="&@api_tag_def.comments.new" owner="api_tag_def" method="post" without-cancel>
+          <field-list: skip="api_tag_def, markdown"/>
+          <submit: label="Add"/>
+        </form>
+      </section>
+    </section>
+
+  </content-body:>
   
 </show-page>
