@@ -32,10 +32,24 @@
 </extend>
 
 
-<def tag="view" for="markdown"><%= Maruku.new(this).to_html %></def>
+<def tag="view" for="markdown"><%=
+  begin
+    Maruku.new(this).to_html
+  rescue => e
+    "[Uh oh - looks like there was a problem with this markdown]"
+  end
+%></def>
 
 <def tag="view" for="optional_markdown"><%=
-  this_parent.markdown? ? Maruku.new(this).to_html : HoboFields::Text.new(this).to_html
+  if this_parent.markdown?
+    begin
+      Maruku.new(this).to_html
+    rescue
+      "Uh oh - looks like there was a problem rendering that markdown."
+    end
+  else
+    HoboFields::Text.new(this).to_html
+  end
 %></def>
 
 
