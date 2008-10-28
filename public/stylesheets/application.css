@@ -145,7 +145,7 @@ a.gravatar {display: block; border: 1px solid #ccc; background: #ccc; padding: 2
 .edit-page.recipe ul.images img {float:left; padding-right: 5px;}
 .edit-page.recipe .delete-image-button { margin: 0; }
 
-.recipe-body img { display: block; margin: 10px auto; }
+.recipe-body img { display: block; margin: 10px auto; border: 1px solid #444444; }
 
 /* === Main Aside === */
 
