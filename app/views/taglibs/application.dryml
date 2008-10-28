@@ -22,7 +22,9 @@
         <h1 param="app-name"><a href="#{base_url}/"><app-name/></a></h1>
         <a href="http://github.com/tablatom/hobocookbook/tree/master" target="github" param="view-source">View Source</a>
         <live-search param if="&defined_route? :site_search"/>
-        <div param="aside-content"/>
+        <div param="aside-content">
+          <recipe-aside/>
+        </div>
       </aside>
       <header class="page-header" param>
         <main-nav param/>
