@@ -141,6 +141,12 @@ input.question-subject, input.recipe-name {width:100%;font-size: 20px; margin: 5
 a.gravatar {display: block; border: 1px solid #ccc; background: #ccc; padding: 2px; float:left; margin: 0 10px 10px 0;}
 .content-header a.gravatar {margin: 0 20px 0 0;}
 
+.edit-page.recipe ul.images li {overflow:hidden; height:100%; margin-bottom: 10px;}
+.edit-page.recipe ul.images img {float:left; padding-right: 5px;}
+.edit-page.recipe .delete-image-button { margin: 0; }
+
+.recipe-body img { display: block; margin: 10px auto; }
+
 /* === Main Aside === */
 
 .aside-content h2, .aside-content h3, .aside-content h4 {
@@ -148,7 +154,7 @@ a.gravatar {display: block; border: 1px solid #ccc; background: #ccc; padding: 2
 	color: white; border-bottom: 1px dotted #888;
 }
 
-.aside-content { margin: 40px 0 0 0; color: #FFC000; font-size: 18px;}
+.aside-content { margin: 40px 0 0 0; color: #FFC000; font-size: 14px;}
 .aside-content a {background: none; color: #FFC000; color: #ddd; text-decoration: none; border: none;}
 .aside-content a:hover {color: white;}
 

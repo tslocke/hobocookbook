@@ -4,6 +4,8 @@
 <include src="taglibs/auto/rapid/pages"/>
 <include src="taglibs/auto/rapid/forms"/>
 
+<include src="paperclip" plugin="paperclip_with_hobo"/>
+
 <set-theme name="clean"/>
 
 <def tag="app-name">Hobo Cookbook</def>
@@ -34,7 +36,9 @@
 
 <def tag="view" for="markdown"><%=
   begin
-    Maruku.new(this).to_html
+    defs = this_parent.images.map { |img| "[#{img.id}]: #{img.image.url}" }.join("\n")
+    md = this + "\n\n" + defs
+    Maruku.new(md).to_html
   rescue => e
     "[Uh oh - looks like there was a problem with this markdown]"
   end

@@ -1,0 +1,36 @@
+<def tag="yui-scripts" attrs="version, scripts"><%
+  paths = comma_split(scripts).map {|s| "#{version}/build/#{s}.js"}.join('&')
+  %><script type="text/javascript" src="http://yui.yahooapis.com/combo?#{paths}"></script>
+</def>
+
+<edit-page>
+
+  <append-scripts:>
+    <yui-scripts version="2.6.0" scripts="yuiloader/yuiloader-min, event/event-min, connection/connection-min"/>
+    <javascript name="uploader"/>
+  </append-scripts:>
+
+  <aside-content:>
+    <h3>Images</h3>
+    <collection:images part="images">
+      <img src="#{this.image.url :thumbnail}"/>
+      <delete-button label="x"/>
+      <div class="link-example">![alt text][<%= this.id %>]</div>
+    </collection>
+  
+    <h4>Upload image</h4>
+    <form:images.new class="upload">
+      <input:image/>
+      <submit label="Upload"/>
+    </form>
+  </aside-content:>
+  
+  <form:>
+    <actions:>
+      <submit label="Save"/>
+      <submit label="Save and continue editing" name="stay_here"/>
+      <or-cancel/>
+    </actions:>
+  </form:>    
+
+</edit-page>

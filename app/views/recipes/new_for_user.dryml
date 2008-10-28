@@ -1,11 +1,21 @@
 <new-for-user-page without-subheading>
   <main-nav: current="Post a Recipe"/>
-  <heading:>Post your recipe!</heading:>
+  <heading:>Post your recipe</heading:>
   <after-heading:>
-    <help>Use <a href="http://daringfireball.net/projects/markdown/syntax">markdown syntax</a></help>
+    <help>Use <markdown-help>markdown syntax</markdown-help></help>
   </after-heading:> 
   
   <form:> 
-    <submit: label="Post!"/>
+    <actions:>
+      <submit label="Post"/>
+      <submit label="Save and continue editing" name="stay_here"/>
+      <or-cancel/>
+    </actions:>
   </form:>
+  
+  <aside-content:>
+    <h3>Images</h3>
+    <p>To upload an image, you first need to "Save and continue editing"</p>
+  </aside-content:>
+  
 </new-for-user-page>
