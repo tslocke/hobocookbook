@@ -142,15 +142,25 @@
 
 <extend tag="card" for="Comment">
   <old-card merge without-creator-link>
-    <before-heading:><gravatar:user size='50' param/></before-heading:>
-    <before-content:><view:created-at/>, <a:user/> said:</before-content:>
+    <body:>
+      <gravatar:user size='50' param/>
+      <div class="content">
+        <h4>On <view:created-at format="%B %d, %Y"/> <a:user/> said:</h4>
+        <view:body/>
+      </div>
+    </body:>
   </old-card>
 </extend>
 
 <extend tag="card" for="ApiTagComment">
   <old-card merge without-creator-link class="comment">
-    <before-heading:><gravatar:user size='50' param/></before-heading:>
-    <before-content:><view:created-at/>, <a:user/> said:</before-content:>
+    <body:>
+      <gravatar:user size='50' param/>
+      <div class="content">
+        <h4>On <view:created-at format="%B %d, %Y"/> <a:user/> said:</h4>
+        <view:body/>
+      </div>
+    </body:>
   </old-card>
 </extend>
 
