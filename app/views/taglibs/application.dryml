@@ -203,7 +203,7 @@
 
 <def tag="api-navigation" attrs="current">
   <h2><a with="&ApiTaglib">Tag Libraries</a></h2>
-  <navigation current="&current">
+  <navigation current="&current.name.titleize if current.is_a?(ApiTaglib)">
     <repeat with="&ApiTaglib.all unless this.try.member_class == ApiTaglib">
       <nav-item><%= this.name.titleize %></nav-item>
       <ul if="&current.is_a?(ApiTaglib) && current == this || current.is_a?(ApiTagDef) && current.in?(this.tags)">
