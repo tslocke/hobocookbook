@@ -1,0 +1,15 @@
+<page title="The Hobo Manual">
+  <aside-content:>
+    <manual-navigation/>
+  </aside-content:>
+  
+  <content:>
+    <section class="content-header">
+      <h2>The Hobo Manual</h2>
+    
+      <p>Being very much a work in progress...</p>
+      <p>&lt;-- look over there!</p>
+    </section>
+  </content:>
+    
+</page>

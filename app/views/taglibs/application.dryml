@@ -38,8 +38,9 @@
 
 <def tag="view" for="markdown"><%=
   begin
-    defs = this_parent.images.map { |img| "[#{img.id}]: #{img.image.url}" }.join("\n")
-    md = this + "\n\n" + defs
+    images = this_parent._?.images
+    defs = images.map { |img| "[#{img.id}]: #{img.image.url}" }.join("\n") if images
+    md = "#{this}\n\n#{defs}"
     Maruku.new(md).to_html
   rescue => e
     "[Uh oh - looks like there was a problem with this markdown]"
@@ -66,8 +67,9 @@
 
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs>
-    <nav-item with="&ApiTaglib">Taglibs</nav-item>
-    <nav-item with="&Recipe">Recipes</nav-item>
+    <nav-item href="#{base_url}/manual">Manual</nav-item>
+    <nav-item with="&ApiTaglib"        >Taglibs</nav-item>
+    <nav-item with="&Recipe"           >Recipes</nav-item>
   </navigation>
 </def>
 
@@ -191,11 +193,20 @@
 
 <def tag="api-navigation" attrs="current">
   <h2><a with="&ApiTaglib">Tag Libraries</a></h2>
-  <navigation>
-    <repeat with="&ApiTaglib.all unless this.try.member_class == ApiTaglib"><nav-item><%= this.name.titleize %></nav-item>
-    <ul if="&current.is_a?(ApiTaglib) && current == this || current.is_a?(ApiTagDef) && current.in?(this.tags)">
-      <li class="#{'current' if this == current}" repeat="tags"><tag-def-link/></li>
-    </ul>
+  <navigation current="&current">
+    <repeat with="&ApiTaglib.all unless this.try.member_class == ApiTaglib">
+      <nav-item><%= this.name.titleize %></nav-item>
+      <ul if="&current.is_a?(ApiTaglib) && current == this || current.is_a?(ApiTagDef) && current.in?(this.tags)">
+        <li class="#{'current' if this == current}" repeat="tags"><tag-def-link/></li>
+      </ul>
     </repeat>
+  </navigation>
+</def>
+
+
+<def tag="manual-navigation">
+  <h2>Chapters</h2>
+  <navigation current="@title">
+    <nav-item repeat="&ManualController::TITLES" href="#{base_url}/manual/#{this_key}"><%= this %></nav-item>
   </navigation>
 </def>

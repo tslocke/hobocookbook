@@ -1,0 +1,2 @@
+module ManualHelper
+end
