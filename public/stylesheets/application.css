@@ -90,6 +90,17 @@ select.dev-user-changer {left: auto; right: 0; top: 0;}
 .tags .undocumented {color: #888;}
 p.show-source {margin-bottom: 0;}
 
+.comments .comment {
+	background-color: white; border: none;
+	background-image: url(/images/comment_bg.png);
+	background-position: 80px 0;
+	background-repeat: no-repeat;
+	min-height: 100px;
+}
+.card.comment a.gravatar {padding: 0; border: none;}
+.card.comment .content {font-size: 12px; margin: 15px 40px 0 140px;}
+.card.comment h4 {font-size: 12px; margin-bottom: 10px;}
+
 /**************/
 
 .preview-with-more { border: 1px dotted #999; padding: 10px; margin-bottom: 10px; position: relative;}
