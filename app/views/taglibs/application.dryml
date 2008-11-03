@@ -130,15 +130,25 @@
   <old-card merge>
     <before-heading:><gravatar:user size='50' param/></before-heading:>
     <body:>
-      Asks <a:user/>. (<count:answers if-any/><else>No answers - help!</else>)
+      <do param="asks">Asks <a:user/>.</do> (<count:answers if-any/><else>No answers - help!</else>)
     </body:>
   </old-card>
 </extend>
 
 <extend tag="card" for="Recipe">
-  <old-card merge>
+  <old-card merge without-count>
     <before-heading:><gravatar:user size='50' param/></before-heading:>
     <creator-link: replace><div param="user">By: <a:user/></div></creator-link:>
+    <append-body:>
+      <div param="timestamp">
+        <if test="&this.created_at == this.updated_at">
+          <view:created-at.to-date/>
+        </if>
+        <else>
+          Updated: <view:updated-at.to-date/>
+        </else>
+      </div>
+    </append-body:>
   </old-card>
 </extend>
 
