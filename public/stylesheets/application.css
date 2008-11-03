@@ -140,7 +140,9 @@ input.question-subject, input.recipe-name {width:100%;font-size: 20px; margin: 5
 
 .answer.card .answer-body {margin: 10px 0;}
 
-.show-page.user .aside {width: 300px;}
+.recipe.card .timestamp { font-style: italic; font-size: 13px;}
+
+.show-page.user .content .aside {width: 300px;}
 .show-page.user .content-header, .show-page.recipe .content-header, .show-page.question .content-header
   {height:100px;}
 
