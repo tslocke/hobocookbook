@@ -69,7 +69,7 @@ To achieve that in DRYML, you could put the angle brackets in the snippet too:
 
     <%= "<#{my_tag_name}>" %> ... <%= "</#{my_tag_name}>" %>
     
-## Wot no layouts?
+## Where are the layouts?
 
 Going back to the `<page>` tag at the start of this section, from a "normal Rails" perspective, you might be wondering why the boilerplate stuff like `<html>`, `<head>` and `<body>` are there. What happened to layouts? You don't tend to use layouts with DRYML, instead you would define your own tag, typically `<page>`, and call that. Using tags for layouts is much more flexible, and it moves the choice of layout out of the controller and into the view-layer, where it should be.
     
@@ -185,7 +185,7 @@ Which we could call like this:
     </page>
 {.dryml}
 
-Note that when you name a parameter, DRYML automatically adds css classes of the same name to the output, so the two `<div>` tags above will be output as `<div class="content">` and `<div class="aside">` respectively.
+Note that when you name a parameter, DRYML automatically adds a css class of the same name to the output, so the two `<div>` tags above will be output as `<div class="content">` and `<div class="aside">` respectively.
     
 ## Default Parameter Content
 
@@ -512,6 +512,7 @@ Another common need is to give special treatment to the first and last items in 
 
     <h3 repeat="&current_user.new_messages"><%= h(first_item? ? this.subject.upcase : this.subject) %></h3>
 
+
 ### Repeating over hashes
 
 If you give a hash as the value to repeat over, DRYML will iterate over each key/value pair, with the value available as `this` (i.e. the implicit-context) and the key available as `this_key`. This is particularly useful for grouping things in combination with the `group_by` method:
@@ -526,10 +527,133 @@ If you give a hash as the value to repeat over, DRYML will iterate over each key
     
 That example has given a sneak preview of another point - using if/unless/repeat with the implicit context. We'll get to that in a minute.
 
+
+## Using the implicit context
+
+If you don't specify the test of a conditional, or the collection to repeat over, the implicit context is used. This allows for a few nice short-hands. For example, this is a common pattern for rendering collections:
+
+    <if:comments>
+      <h3>Comments</h3>
+      <ul>
+        <li repeat> ... </li>
+      </ul>
+    </if>
+    
+We're switching the context on the `<if>` tag to be `this.comments`, which has two effects. Firstly the comments collection is used as the test for the `if`, so the whole section including the heading will be ommitted if the collection is empty (remember that `if` tests for blankness, and empty collections are considered blank). Secondly, the context is switched to be the comments collection, so that when we come to repeat the `<li>` tag, all we need to say is `repeat`.
+
+
+### One last shorthand - attributes of `this`
+
+The attribute versions of `if`/`unless` and `repeat` support a useful shortcut for accessing attributes or methods of the implicit context. If you give a literal string attribute--that is, an attribute that does not start with `&`--this is interpretted as the name of a method on `this`. For example:
+
+    <li repeat="comments"/>
+    
+is equivalent to
+
+    <li repeat="&this.comments"/>
+    
+Similarly
+
+    <p if="sticky?">This post has been marked 'sticky'</p>
+
+is equivalent to
+
+    <p if="this.sticky?">This post has been marked 'sticky'</p>
+    
+It is a bit inconsistent that these shortcuts do not work with the tag versions of `<if>`, `<unless>` and `<repeat>`. This may be remedied in a future version of DRYML.
+    
+
+# Psuedo-parameters - `before`, `after`, `append`, `prepend`, and `replace`
+
+For every parameter you define in a tag, there are five "pseduo parameters" created as well. Four allow you to insert extra content without replacing existing content, and one lets you replace or remove a parameter entirely.
+
+To help illustrate these, here's a very simple `<page>` tag:
+    
+    <def tag="page">
+      <body>
+        <h1 param="heading"><%= h @this.to_s %></h1>
+        <div param="content"></div>
+      </body>
+    </def>
+    
+We've assumed that `@this.to_s` will give us the name of the object that this page is presenting.
+
+
+## Inserting extra content
+
+The outout of the heading would look something like:
+
+    <h1 class="heading">Welcome to my new blog</h1>
+    
+Psuedo parameters give us the ability to insert extra context in four places, marked here as `(A)`, `(B)`, `(C)` and `(D)`:
+
+    (A)<h1 class="heading">(B)Welcome to my new blog(C)</h1>(D)
+    
+The parameters are:
+
+    - `(A)` -- `<before-heading:>`
+    - `(B)` -- `<prepend-heading:>`
+    - `(C)` -- `<append-heading:>`
+    - `(D)` -- `<after-heading:>`
+    
+So, for example, suppose we want to add the name of the blog to the heading:
+
+    <h1 class="heading">Welcome to my new blog -- The Hobo Blog</h1>
+    
+To achieve that on one page, we could call the `<page>` tag like this:
+    
+    <page>
+      <append-heading:> -- The Hobo Blog</append-heading:>
+      <body:>
+        ...
+      </body>
+    </page>
+    
+Or we could go a step further and create a new page tag that added that suffix automatically. We could then use that new page tag for an entire section of our site:
+
+    <def tag="blog-page">
+      <page>
+        <append-heading:> -- The Hobo Blog</append-heading:>
+        <body: param></body>
+      </page>
+    </def>
+    
+(Note: we have explicitly made sure that the `<body:>` parameter is still available. There is a better way of achieving this using `merge-params` or `merge`, which are covered later.)
+
+
+## Replacing a parameter entirely
+
+So far, we've seen how the parameter mechanism allows us to change the attributes and content of a tag, but what if we wanted to remove the tag entirely? We might want a page that has no `<h1>` tag at all, or has `h2` instead. For that situation we can use "replace parameters". Here's a page with an `<h2>`  instead of an `<h1>`:
+    
+    <page>
+      <heading: replace><h2>My Awesome Page</h2></heading:>
+    </page>
+    
+And here's one with no heading at all:
+
+    <page>
+      <heading: replace/>
+    </page>
+    
+There is a nice shorthand for the second case. For exaery parameter, your tag also supports a special `without` attribute. This is exactly equivalent to the previous example, but much more readable:
+
+    <page without-heading/>
+    
+Note: to make things more consistent, `<heading: replace>` may become `<replace-heading:>` in the future.
+    
+## Current Limitation
+
+Due to a limitation of the current DRYML implementation, you cannot use both `before` and `after` on the same parameter. You can achieve the same effect as follow (this technique is covered properly later in the section on wrapping content):
+
+    <heading: replace>
+      ... before content ...
+      <heading restore>
+      ... after content ...
+    </heading:>
+
+
 # Still to write
  
- - before/after/append/prepend and without
-  
  - nested parameters
  
  - extending tags and merging params/attributes
