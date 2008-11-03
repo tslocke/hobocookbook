@@ -90,6 +90,9 @@ select.dev-user-changer {left: auto; right: 0; top: 0;}
 .tags .undocumented {color: #888;}
 p.show-source {margin-bottom: 0;}
 
+.show-api-tag { margin-bottom: 60px;}
+.show-api-tag .header {border-bottom:1px dotted #888}
+
 .comments .comment {
 	background-color: white; border: none;
 	background-image: url(/images/comment_bg.png);

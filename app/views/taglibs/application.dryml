@@ -216,8 +216,8 @@
   <navigation current="&current.name.titleize if current.is_a?(ApiTaglib)">
     <repeat with="&ApiTaglib.all unless this.try.member_class == ApiTaglib">
       <nav-item><%= this.name.titleize %></nav-item>
-      <ul if="&current.is_a?(ApiTaglib) && current == this || current.is_a?(ApiTagDef) && current.in?(this.tags)">
-        <li class="#{'current' if this == current}" repeat="tags"><tag-def-link/></li>
+      <ul if="&current == this || current._?.taglib_is?(this)">
+        <li class="#{'current' if this == current}" repeat="tags.no_for_type"><tag-def-link/></li>
       </ul>
     </repeat>
   </navigation>

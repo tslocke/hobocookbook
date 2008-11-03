@@ -1,3 +1,30 @@
+<def tag="show-api-tag">
+  <div class="show-api-tag">
+    <header>
+      <h2><view:short-def-line/></h2>      
+      <view:short-description/>
+    </header>
+    
+    <section class="body">
+      <if:tag-parameters>
+        <section class="parameters">
+          <h3>Parameters</h3>
+          <param-list/>
+        </section>
+      </if>
+
+      <view:description/>
+    
+      <p class="show-source">
+        <a href="#" onclick="Effect.toggle($(this).parentNode.next(), 'blind', {duration: 0.3}); return false">Show Source</a>
+      </p>
+      <div class="source" style="display:none">
+        <pre class="dryml"><code><%= h this.source %></code></pre>
+      </div>
+    </section>
+  </div>
+</def>
+
 <def tag="param-list">
   <ul if="&this.any?">
     <li repeat><%= this.first %>
@@ -6,37 +33,20 @@
   </ul>
 </def>
   
-<show-page title="#{h this.short_def_line}">
+<show-page title="#{h this.short_def_line}" without-content-header>
 
   <aside-content:>
     <api-navigation current="&this"/>
   </aside-content:>
   
-  <content-header:>
-    <h2><view:short-def-line/></h2>      
-    <view:short-description/>
-  </content-header:>
-  
   <content-body:>
-    <if:tag-parameters>
-      <section class="parameters">
-        <h3>Parameters</h3>
-        <param-list/>
-      </section>
-    </if>
-
-    <view:description/>
+    <show-api-tag/>
     
-    <p class="show-source">
-      <a href="#" onclick="Effect.toggle($(this).parentNode.next(), 'blind', {duration: 0.3})">Show Source</a>
-    </p>
-    <div class="source" style="display:none">
-      <pre class="dryml"><code><%= h this.source %></code></pre>
-    </div>
-
+    <show-api-tag repeat="typed-variants"/>
+    
     <section class="collection-section">
       <h3 class="collection-heading">Comments</h3>
-    
+  
       <collection:comments/>
 
       <section class="add-to-collection" if="&can_create?(@api_tag_def.comments)">
@@ -47,7 +57,7 @@
         </form>
       </section>
     </section>
-
+    
   </content-body:>
   
 </show-page>

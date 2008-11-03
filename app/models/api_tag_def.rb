@@ -2,7 +2,17 @@ class ApiTagDef < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
-  include NameAsId
+  def self.find(*args)
+    if args.first =~ /[a-zA-Z0-9_-]+/
+      find_by_tag_and_for_type(args.first, nil)
+    else
+      super
+    end
+  end
+  
+  def to_param
+    to_s
+  end
   
   fields do
     tag               :string, :name => true
@@ -26,12 +36,19 @@ class ApiTagDef < ActiveRecord::Base
   belongs_to :taglib, :class_name => "ApiTaglib"
   has_many   :comments, :class_name => "ApiTagComment", :dependent => :destroy
   
+  named_scope :no_for_type, :conditions => "for_type is null"
+  
   def def_line
     "<#{extension? ? 'extend' : 'def'} tag='#{tag}'#{' polymorphic' if polymorphic?}#{' for=\'' + for_type + '\'' if for_type}>"
   end
   
   def short_def_line
     "<#{tag}#{' for=\'' + for_type + '\'' if for_type}>"
+  end
+  
+  def typed_variants
+    return [] if for_type
+    ApiTagDef.find :all, :conditions => ["tag = ? AND (for_type is not null)", tag]
   end
   
   def all_attributes

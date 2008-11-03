@@ -17,7 +17,7 @@ module ApiDocLoader
     def load_into_database(owner)
       return if no_doc?
       
-      t = ApiTagDef.find_or_create_by_tag(name)
+      t = ApiTagDef.find_or_create_by_tag_and_for_type(name, for_type)
       t.taglib = owner
       t.attributes = { :tag => name, :extension => extension?, :polymorphic => polymorphic?,
                        :short_description => comment_intro_html,

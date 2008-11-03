@@ -2,7 +2,17 @@ class ApiTaglib < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
   
-  include NameAsId
+  def self.find(*args)
+    if args.first =~ /[a-zA-Z0-9_-]+/
+      find_by_name args.first
+    else
+      super
+    end
+  end
+  
+  def to_param
+    to_s
+  end
 
   fields do
     name        :string
