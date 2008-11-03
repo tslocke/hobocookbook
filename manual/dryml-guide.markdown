@@ -41,7 +41,7 @@ In it's most basic usage, DRYML can be indistinguishable from a normal Rails tem
         </div>
       </body>
     </html>
-{.dryml}
+{: .dryml}
 
 ## No ERB inside tags
 
@@ -470,7 +470,8 @@ The attribute version:
 Important note! The test if performed (in Ruby terms) like this:
 
     if (...your test expression...).blank?
-    
+{: .ruby}
+
 Got that? Blankiness not thruthiness (`blank?` comes from ActiveSupport by the way -- Rails' mixed bag of core-Ruby extensions). So for example, in DRYML
 
     <if test="&current_user.comments">
@@ -493,7 +494,8 @@ The tag version:
 The attribute version:
 
     <h3 repeat="&current_user.new_messages"><%= h this.subject %></h3>
-    
+{: .dryml}
+
 Notice that as well as the content being repeated, the implicit-context is set to each item in the collection in turn.
 
 
@@ -502,7 +504,8 @@ Notice that as well as the content being repeated, the implicit-context is set t
 It's a common need to want alternating styles for items in a collection - e.g. striped table rows. Both the repeat attribute and the repeat tag set a scoped variable `scope.even_odd` which will be alternately 'even' then 'odd', so for example you could do:
 
     <h3 repeat="&current_user.new_messages" class="#{scope.even_odd}"><%= h this.subject %></h3>
-    
+{: .dryml}
+
 That example illustrates another important point -- any Ruby code in attributes is evaluated *inside* the repeat. In other words, the `repeat` attribute behaves the same as wrapping the tag in a `<repeat>` tag.
     
     
@@ -511,6 +514,7 @@ That example illustrates another important point -- any Ruby code in attributes 
 Another common need is to give special treatment to the first and last items in a collection. The `first_item?` and `last_item?` helpers can be used to find out when these items come up, e.g we could capitalise the first item:
 
     <h3 repeat="&current_user.new_messages"><%= h(first_item? ? this.subject.upcase : this.subject) %></h3>
+{: .dryml}
 
 
 ### Repeating over hashes
@@ -524,7 +528,8 @@ If you give a hash as the value to repeat over, DRYML will iterate over each key
         </ul>
       <h2>
     </div>
-    
+{: .dryml}
+
 That example has given a sneak preview of another point - using if/unless/repeat with the implicit context. We'll get to that in a minute.
 
 
@@ -538,7 +543,8 @@ If you don't specify the test of a conditional, or the collection to repeat over
         <li repeat> ... </li>
       </ul>
     </if>
-    
+{: .dryml}
+
 We're switching the context on the `<if>` tag to be `this.comments`, which has two effects. Firstly the comments collection is used as the test for the `if`, so the whole section including the heading will be ommitted if the collection is empty (remember that `if` tests for blankness, and empty collections are considered blank). Secondly, the context is switched to be the comments collection, so that when we come to repeat the `<li>` tag, all we need to say is `repeat`.
 
 
@@ -547,18 +553,24 @@ We're switching the context on the `<if>` tag to be `this.comments`, which has t
 The attribute versions of `if`/`unless` and `repeat` support a useful shortcut for accessing attributes or methods of the implicit context. If you give a literal string attribute--that is, an attribute that does not start with `&`--this is interpretted as the name of a method on `this`. For example:
 
     <li repeat="comments"/>
-    
+{: .dryml}
+ 
 is equivalent to
 
     <li repeat="&this.comments"/>
+{: .dryml}
     
 Similarly
 
     <p if="sticky?">This post has been marked 'sticky'</p>
+{: .dryml}
+
 
 is equivalent to
 
     <p if="this.sticky?">This post has been marked 'sticky'</p>
+{: .dryml}
+
     
 It is a bit inconsistent that these shortcuts do not work with the tag versions of `<if>`, `<unless>` and `<repeat>`. This may be remedied in a future version of DRYML.
     
@@ -575,7 +587,8 @@ To help illustrate these, here's a very simple `<page>` tag:
         <div param="content"></div>
       </body>
     </def>
-    
+{: .dryml}
+
 We've assumed that `@this.to_s` will give us the name of the object that this page is presenting.
 
 
@@ -599,7 +612,9 @@ The parameters are:
 So, for example, suppose we want to add the name of the blog to the heading:
 
     <h1 class="heading">Welcome to my new blog -- The Hobo Blog</h1>
-    
+{: .dryml}
+
+
 To achieve that on one page, we could call the `<page>` tag like this:
     
     <page>
@@ -608,7 +623,8 @@ To achieve that on one page, we could call the `<page>` tag like this:
         ...
       </body>
     </page>
-    
+{: .dryml}
+
 Or we could go a step further and create a new page tag that added that suffix automatically. We could then use that new page tag for an entire section of our site:
 
     <def tag="blog-page">
@@ -617,6 +633,7 @@ Or we could go a step further and create a new page tag that added that suffix a
         <body: param></body>
       </page>
     </def>
+{: .dryml}
     
 (Note: we have explicitly made sure that the `<body:>` parameter is still available. There is a better way of achieving this using `merge-params` or `merge`, which are covered later.)
 
@@ -628,16 +645,19 @@ So far, we've seen how the parameter mechanism allows us to change the attribute
     <page>
       <heading: replace><h2>My Awesome Page</h2></heading:>
     </page>
+{: .dryml}
     
 And here's one with no heading at all:
 
     <page>
       <heading: replace/>
     </page>
+{: .dryml}
     
 There is a nice shorthand for the second case. For exaery parameter, your tag also supports a special `without` attribute. This is exactly equivalent to the previous example, but much more readable:
 
     <page without-heading/>
+{: .dryml}
     
 Note: to make things more consistent, `<heading: replace>` may become `<replace-heading:>` in the future.
     
@@ -650,6 +670,7 @@ Due to a limitation of the current DRYML implementation, you cannot use both `be
       <heading restore>
       ... after content ...
     </heading:>
+{: .dryml}
 
 
 # Still to write
