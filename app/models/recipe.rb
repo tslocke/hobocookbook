@@ -13,6 +13,8 @@ class Recipe < ActiveRecord::Base
   has_many :answers,   :dependent => :destroy
   has_many :questions, :through => :answers, :uniq => true
   
+  set_default_order "updated_at desc"
+  
   # has_many :taggings
   # has_many :tags, :through => :taggings
 
