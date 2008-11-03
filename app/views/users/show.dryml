@@ -10,17 +10,14 @@
      <heading:><Your with="&@user"/> Questions</heading:>
      <after-heading:><p>With answers</p></after-heading:>
      <more:>more</more:>
+     <collection:><card without-gravatar without-asks/></collection:>
    </preview-with-more>
 
-   <preview-with-more:questions.without_answers.recent >
+   <preview-with-more with="&this.questions.without_answers.recent(3)">
      <heading:><Your with="&@user"/> Questions</heading:>
      <after-heading:><p>Without answers</p></after-heading:>
      <more:>more</more:>
-   </preview-with-more>
-
-   <preview-with-more:answers.recent>
-     <heading:><Your with="&@user"/> Answers</heading:>
-     <more:>more</more:>
+     <collection:><card without-gravatar without-asks/></collection:>
    </preview-with-more>
  </aside:>
  
