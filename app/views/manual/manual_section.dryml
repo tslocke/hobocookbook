@@ -1,4 +1,4 @@
-<page title="Hobo Manual - #{@title}">
+<page title="Hobo Manual - #{@title}" without-account-nav>
   <body: class="manual"/>
   
   <aside-content:>

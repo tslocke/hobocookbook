@@ -1,4 +1,4 @@
-<page title="The Hobo Manual">
+<page title="The Hobo Manual" without-account-nav>
   <aside-content:>
     <manual-navigation/>
   </aside-content:>
