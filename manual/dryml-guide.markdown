@@ -274,7 +274,7 @@ You might notice that the `<page>` tag is now indistinguishable from a normal HT
 
 In addition to the most important goal behind DRYML - creating a template language that would encourage re-use in the view-layer, a secondary goal is for templates to be concise, elegant and readable. One aspect of DRYML that helps a lot in this regard is something called the *implicit context*.
 
-This feature was borne of a simple observation that pretty much every page in a web-app renders some kind of hierarchy of application objects. Think about a simple page in a blog - say, the permalink page for an individual post. The page as a whole can be considered a rendering of a BlogPost object. Then we have sections of the page that display different "pieces" of the the post -- the title, the date, the author's name, the body. Then we have the comments. The list of comments as a whole is also a "piece" of the BlogPost. Within that we have each of the individual comments, and the whole thing starts again: the comment title, date, author... This can carry on even further, for example some blogs are set-up so that you can comment on comments.
+This feature was born of a simple observation that pretty much every page in a web-app renders some kind of hierarchy of application objects. Think about a simple page in a blog - say, the permalink page for an individual post. The page as a whole can be considered a rendering of a BlogPost object. Then we have sections of the page that display different "pieces" of the the post -- the title, the date, the author's name, the body. Then we have the comments. The list of comments as a whole is also a "piece" of the BlogPost. Within that we have each of the individual comments, and the whole thing starts again: the comment title, date, author... This can carry on even further, for example some blogs are set-up so that you can comment on comments.
 
 This structure is incredibly common, perhaps even universal, as it seems to be intrinsically tied to the way we visually parse information. DRYML's implicit context takes advantage of this fact to make templates extremely concise while remaining readable and clear. The object that you are rendering in any part of the page is known as the *context*, and every tag has access to this object through the method `this`. The controller sets up the initial context, and the templates then only have to mention where the context needs to *change*.
 
@@ -673,19 +673,107 @@ Due to a limitation of the current DRYML implementation, you cannot use both `be
 {: .dryml}
 
 
+# Nested Parameters
+
+As we've discussed at the start of this guide, one of the main motivations for the creation of DRYML was to deliver a higher degree of *re-use* in the view layer. One of the great challenges of re-use is the constant tension it has with flexibility. The greater the need for flexibility, the harder it is to re-use existing code. This has a very direct effect on the *size* of things that we can successfully re-use. Take the humble hypertext link for example. A link is a link is a link -- there's only so much you could really want to change. It's not surprising then that long ago we stopped having to assemble links from fragments of HTML text. Rails has it's `link_to` helper, and Hobo Rapid has it's `<a>` tag. At the other extreme, reusing an entire photo gallery, or interactive callendar is extremely difficult. Again no surprise--these things have been built from scratch over and over again. Each time something slightly (or very) different is needed. A single, say, calendar component that is flexible enough to cover every eventuality would be so complicated that configuring it would be more effort that starting over.
+
+This tension between re-use and flexibility will probably never go away; life is just like that. As components get larger they will innevitably get either harder to work with or less flexible. What we can do though, through technologies like DRYML, is slow down the onset of these problems. By thinking about the fundamental challenges to re-use, we have tried to create a language in which, as components grow larger, simplicity and flexibility can be retained for longer.
+
+One of the most important features that DRYML brings to the re-use party is *nested parameters*. They are born of the following observations:
+
+ - As components get larger, they are not really single components at all, but compositions of many smaller components.
+ 
+ - Often, the customisation we wish to make is not to the "super-component" but to one of the sub-components.
+ 
+ - What is needed then, in a means to pass parameters and attributes, not just to the tag, but to the tag within the tag, or the tag within the tag within the tag, and so on.
+ 
+DRYML's nested parameter mechanism does exactly that. Now that we've been using DRYML for some time, it turns out that you don't use this feature very often. But when you do use it, it's the difference between sticking with your nice high-level components or throwing them away and rebuilding from scratch. A little use of nested parameters goes a long way.
+
+## An Example
+
+To illustrate the mechanism, we'll build up a small example using ideas that are familiar from Rapid. This is not a Rapid guide though, so we'll define these tags from scratch. First off, the `<card>` tag. This captures the very familiar idea that web pages often display collections of some kind of object as small "cards": comments, friends, discussion threads...
+    
+    <def tag="card">
+      <div class="card" merge-attrs>
+        <h3 param="heading"><%= h this.to_s %></h3>
+        <div param="body"></div>
+      </div>
+    </def>
+{: .dryml}
+
+We've defined a very simple card that uses the `to_s` method to give a default heading, and provides a `<body:>` parameter that is blank by default. Here's how we might use it:
+
+    <h2>Discussions</h2>
+    <ul>
+      <li repeat="@discussions">
+        <card>
+          <body:><%= this.posts.length %> posts</body:>
+        </card>
+      </li>
+    </ul>
+{: .dryml}
+
+As soon as we've got the concept of a card, we very often find ourselves wanting to render collections of cards like the one above. The obvious next step is to capture that idea as a re-usable tag:
+
+    <def tag="collection">
+      <h2 param="heading"></h2>
+      <ul>
+        <li repeat>
+          <card param>
+        </li>
+      </ul>
+    </def>
+{: .dryml}
+
+The collection has a straightforward `<heading:>` parameter, but notice that the `<card>` tag is also declared as a parameter. Whenever you add `param` to a tag that itself also has parameters, you give your "super-tag" (`<collection>` in this case) the ability to customise the "sub-tag" (`<card>` in this case) using *nested parameters*. Here's how we can get the same output as the previous example that did not use the `<collection>` tag:
+    
+    <collection>
+      <heading:>Discussions</heading>
+      <card:><body:><%= this.posts.length %> posts</body:></card:>
+    </collection>
+{: .dryml}
+
+This nesting works to any depth. To show this, if we defined an `<index-page>` tag that used `<collection>` (we'll skip the details of what exactly the page looks like):
+
+    <def tag="index-page">
+      <html>
+        <head> ... </head>
+        <body>
+          <h1 param="heading"></h1>
+          ... 
+          <collection param>
+          ...
+        </body>
+      </html>
+    </def>
+{: .dryml}
+    
+we can still access the card inside the collection inside the page:
+        
+    <index-page>
+      <heading:>Welcome to our forum</heading:>
+      <collection:>
+        <heading:>Discussions</heading>
+        <card:><body:><%= this.posts.length %> posts</body:></card:>
+      </collection:>
+    </index-page>
+{: .dryml}
+    
+Pay careful attention to the use of the trailing ':'. The definition of `<index-page>` contains a *call* the collection tag, written `<collection>` (no ':'). By contrast, the above call to `<index-page>` *customises* the call to the collection tag that is already present inside `<index-page>`, so we write `<collection:>` (with a ':'). Remember:
+
+ - Without ':' -- call a tag
+ - With ':' -- customise an existing call inside the definition
+ 
+
 # Still to write
- 
- - nested parameters
- 
- - extending tags and merging params/attributes
+  
+ - extending tags and merging params (cover `parameters` and `all_parameters`)
  
  - aliasing tags
  
  - polymorphic tags
  
  - wrapping - restore and param-content
- 
- - special local variables: `attributes`, `all_attributes`, `parameters` and `all_parameters`
  
  - Variables - set and set-scoped
  
