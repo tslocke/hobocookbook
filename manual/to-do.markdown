@@ -22,6 +22,8 @@ Note that this is just a set of reminders - it doesn't reflect the structure tha
  
  - Users and authentication
  
+ - Subsites
+ 
  - Migration generator
  
 Wow - that's a lot to do! Have I forgotten anything? (post on hobousers if I have)
