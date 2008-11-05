@@ -765,12 +765,153 @@ Pay careful attention to the use of the trailing ':'. The definition of `<index-
  - With ':' -- customise an existing call inside the definition
  
 
+# Customising and extending tags
+
+As we've seen, DRYML makes it easy to define tags that are highly customisable. By addings `param`s to the tags inside your definition, the caller can insert, replace and tweak to their heart's content. Sometimes, the changes you make to a tag's output are needed not once, but many times throughout the site. In other words, you want to define a new tag in terms of the old tag.
+
+
+## New tags from old
+
+By way of an example, let's bring back the card example:
+
+    <def tag="card">
+      <div class="card" merge-attrs>
+        <h3 param="heading"><%= h this.to_s %></h3>
+        <div param="body"></div>
+      </div>
+    </def>
+{: .dryml}
+
+Now let's say we want a new kind of card, one that has a link to the resource that it represents. Rather than redefine the whole thing from sratch, we can define the new card, say, "linked-card", like this:
+
+    <def tag="linked-card">
+      <card>
+        <heading: param><a href="&object_url this"><%= h this.to_s %></a></heading:>
+      </card>
+    </def>
+{: .dryml}
+
+That's all well and good but there are a couple of problems:
+
+ - The original card used `merge-attrs` so that we could add arbitrary HTML attributesto the final `<div>`. Our new card has lost that feature
+     
+ - Worse than that, the new card is in fact useless, as there's no way to pass it the body parameter
+ 
+Let's solve those problems in turn. First the attributes. 
+
+
+## `merge-attrs` again
+
+In fact `merge-attrs` works just the same on defined tags as it does on HTML tags that are output, so we can simply add it to the call to `<card>`, like this:
+
+    <def tag="linked-card">
+      <card merge-attrs>
+        <heading: param><a href="&object_url this"><%= h this.to_s %></a></heading:>
+      </card>
+    </def>
+{: .dryml}
+
+Now we can do things like `<linked-card class="emphasised">`, and the attribute will be passed from `<linked-card>`, to `<card>`, to the rendered `<div>`.
+  
+Now we'll fix the parameters, it's going to look somewhat similar...
+
+
+## `merge-params`
+
+We'll introduce `merge-params` the same way we introduced `merge-attrs` -- by showing how you would get by without it. The problem with our `<linked-card>` tag is that we've lost the `<body:>` parameter. We could bring it back like this:
+
+    <def tag="linked-card">
+      <card merge-attrs>
+        <heading: param><a href="&object_url this"><%= h this.to_s %></a></heading:>
+        <body: param/>
+      </card>
+    </def>
+{: .dryml}
+
+In other words, we use the `parma` declaration to give `<linked-card>` a `<body:>` parameter, which is forwarded to `<card>`. But what
+if `<card>` had several parameters? We would have to list them all out. And what if we add a new parameter to `<card>` later? We would have to remember to update `<linked-card>` and any other customised cards we had defined. 
+    
+Instead we use `merge-params`, much as we use `merge-attrs`:
+
+    <def tag="linked-card">
+      <card merge-attrs merge-params>
+        <heading: param><a href="&object_url this"><%= h this.to_s %></a></heading:>
+      </card>
+    </def>
+{: .dryml}
+
+You can read `merge-params` as: take any "extra" parameters passed to `<linked-card>` and forward them all to `<card>`. By "extra" parameters, we mean any that are not declared as parameteres (via the `param` attribute) inside the definition of `<linked-card>`.
+    
+There are two local variables available inside the tag definition that mirror the `attributes` and `all_attributes` variables described previously. `parameters` is a hash containing all the "extra" parameters (those that do not match a declared parameter name), and `all_parameters` that contains all the parameters. The values in these hashes are Ruby procs. One common use of `all_parameters`, is if you want to test if a certain parameter was passed or not:
+
+    <if test="&all_parameters[:body]">
+{: .dryml}
+
+## `merge`
+
+As it's very common to want both `merge-attrs` and `merge-params` on the same tag, there is a shorthand for this: `merge`. So the final, prefered definition of `<linked-card>` is:
+
+    <def tag="linked-card">
+      <card merge>
+        <heading: param><a href="&object_url this"><%= h this.to_s %></a></heading:>
+      </card>
+    </def>
+{: .dryml}
+
+## Extending a tag
+
+We've now seen how to easily create a new tag in terms of an existing tag. But what if we don't actually want a new tag, but rather we want to change the behaviour of an existing tag in some way, and keep the name the same. What we can't do is simply use the existing name in the definition:
+
+    <!-- DOESN'T WORK! -->
+    <def tag="card">
+      <card merge>
+        <heading: param><a href="&object_url this"><%= h this.to_s %></a></heading:>
+      </card>
+    </def>
+{: .dryml}
+
+
+All we've done there is created a nice stack-overflow when the card calls it self over and over. 
+
+Fortunately, DRYML has support for extending tags. Use `<extend>` instead of `<def>`:
+
+    <extend tag="card">
+      <old-card merge>
+        <heading: param><a href="&object_url this"><%= h this.to_s %></a></heading:>
+      </old-card>
+    </def>
+{: .dryml}
+
+The one thing to notice there is that the "old" version of `<card>`, i.e. the one that was active before you're extension, is available as `<old-card>`. That's about all there is to it.
+    
+Here's another exaple where we add a footer to every page in our application. It's very common to `<extend tag="page">` in your application.dryml, in order to make changes that should appear on every page:
+    
+    <extend tag="page">
+      <old-page merge>
+        <footer: param>
+          ... your custom footer here ...
+        </footer:>
+      </old-page>
+    </extend>
+{: .dryml}
+
+
+# Aliasing Tags
+
+Welcome to the shortest chapter of The DRYML Guide.
+
+If you want to create an alias of a tag, i.e. an identical tag with a different name:
+
+    <def tag="my-card" alias-of="card"/>
+    
+Note that's a self closing tag -- there is no body to the definition.
+    
+So... that's aliasing tags then...
+
+
+
 # Still to write
   
- - extending tags and merging params (cover `parameters` and `all_parameters`)
- 
- - aliasing tags
- 
  - polymorphic tags
  
  - wrapping - restore and param-content
