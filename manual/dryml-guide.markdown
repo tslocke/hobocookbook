@@ -57,7 +57,7 @@ In rare cases, you might use an ERB snippet to output one or more entire attribu
 
     <form <%= my_attributes %>>
     
-We're jumping ahead here, so just skip this if it does't make sense, but to do the equivalent in DRYML, you would need your attributes to be in a hash (rather than a string), and do:
+We're jumping ahead here, so just skip this if it doesn't make sense, but to do the equivalent in DRYML, you would need your attributes to be in a hash (rather than a string), and do:
 
     <form merge-attrs="&my_attributes">
     
@@ -185,7 +185,7 @@ Which we could call like this:
     </page>
 {.dryml}
 
-Note that when you name a parameter, DRYML automatically adds a css class of the same name to the output, so the two `<div>` tags above will be output as `<div class="content">` and `<div class="aside">` respectively.
+Note that when you name a parameter, DRYML automatically adds a CSS class of the same name to the output, so the two `<div>` tags above will be output as `<div class="content">` and `<div class="aside">` respectively.
     
 ## Default Parameter Content
 
@@ -354,8 +354,8 @@ The same template again, this time using `field`:
     </page>
 {.dryml}
 
-If you compare that example to the first one, you should notice that the `:` syntax is just a shorthand for the `field` attribute. i.e. `<view field="name">` and `<view:name>` are equivalent.
-    
+If you compare that example to the first one, you should notice that the `:` syntax is just a shorthand for the `field` attribute. i.e. `<view field="name">` and `<view:name>` are equivalent.
+
 # Tag attributes
 
 As we've seen, DRYML provides parameters as a mechanism for customising the markup that is output by a tag. Sometimes we want to provide other kinds of values to control the behaviour of a tag: URLs, filenames or even ruby values like hashes and arrays. For this situation, DRYML lets you define tag attributes.
@@ -367,14 +367,14 @@ As a simple example, say your application has a bunch of help files in `public/h
     </def>
 {: .dryml}
 
-`<def>` takes a special attribute `attrs`. Use this to declare a list (separated by commas) of attributes, much as you declare arguments to a method in Ruby. In this definition we contstruct the URL from the `base_url` helper and `file`, which is a local variable. You should think of `file` as an ordinary argument to a method. Just like arguments in Ruby, it becomes a local variable inside the tag definition. Notice the use of the Ruby string interpolation syntax (`#{...}`) inside that `href`. You can use that syntax in any attribute in DRYML.
+`<def>` takes a special attribute `attrs`. Use this to declare a list (separated by commas) of attributes, much as you declare arguments to a method in Ruby. In this definition we construct the URL from the `base_url` helper and `file`, which is a local variable. You should think of `file` as an ordinary argument to a method. Just like arguments in Ruby, it becomes a local variable inside the tag definition. Notice the use of the Ruby string interpolation syntax (`#{...}`) inside that `href`. You can use that syntax in any attribute in DRYML.
 
 The call to this tag would look like:
 
     <help-link file="intro">Introductory Help</help-link>
 {: .dryml}
 
-The regular XML-link arttribute syntax -- `file="intro"` -- will be pass a string value to the attribute. DRYML also allows you to pass any Ruby value. When the attribute value starts with `&`, the rest of the attribute is interpretted as a Ruby expression. For example you could use this syntax to pass `true` and `false` values:
+The regular XML-link attribute syntax -- `file="intro"` -- will be pass a string value to the attribute. DRYML also allows you to pass any Ruby value. When the attribute value starts with `&`, the rest of the attribute is interpreted as a Ruby expression. For example you could use this syntax to pass `true` and `false` values:
 
     <help-link file="intro" new-window="&true">Introductory Help</help-link>
     <help-link file="intro" new-window="&false">Introductory Help</help-link>
@@ -396,13 +396,13 @@ In the case of boolean values like the one used in the above example, there is a
 
 ## Flag attributes
 
-That `new-window` attribute shown in the previous section is simple switch - on or off. DRYML lets you ommit the value of the attribute, giving a flag-like syntax:
+That `new-window` attribute shown in the previous section is simple switch - on or off. DRYML lets you omit the value of the attribute, giving a flag-like syntax:
 
     <help-link file="intro" new-window>Introductory Help</help-link>
     <help-link file="intro">Introductory Help</help-link>
 {: .dryml}
 
-Ommitting the attribute value is equivalent to giving `"&true"` as the value. In the second exampe the attribute is ommitted entirely, meaning the value will be `nil` which is false in Ruby so it works as expected.
+Omitting the attribute value is equivalent to giving `"&true"` as the value. In the second example the attribute is omitted entirely, meaning the value will be `nil` which is false in Ruby so it works as expected.
 
 
 ## `attributes` and `all_attributes` locals
@@ -438,16 +438,16 @@ Now we can call the tag like this:
     Add formatting to your recipe using <markdown-help target="_blank">markdown</markdown-help>
 {: .dryml}
 
-OK, but maybe the caller wants to add a css class, or a javascript `onclick` attribute, or any one of a dozen potential HTML attributes. This approach is not going to scale. That's where `merge-attrs` comes in. As we've seen, any a
+OK, but maybe the caller wants to add a CSS class, or a javascript `onclick` attribute, or any one of a dozen potential HTML attributes. This approach is not going to scale. That's where `merge-attrs` comes in. As we've seen, any a
 
-As mentioned, DRYML keeps track of all the attributes that were passed to a tag, even if they were not declared in the `attrs` list of the tag definition. They are available in two hashes: `attributes` (that has only undeclared attributes) and `all_attributes` (that has all of them), but in normal usage you don't need to access those variable. To add all of the undelcared attribtues to a tag inside your definition, just add the `merge-attrs` attribute, like this:
+As mentioned, DRYML keeps track of all the attributes that were passed to a tag, even if they were not declared in the `attrs` list of the tag definition. They are available in two hashes: `attributes` (that has only undeclared attributes) and `all_attributes` (that has all of them), but in normal usage you don't need to access those variable. To add all of the undeclared attributes to a tag inside your definition, just add the `merge-attrs` attribute, like this:
 
     <def tag="markdown-help">
       <a href="http://daringfireball.net/projects/markdown/syntax" merge-attrs param="default"/>
     </def>
 {: .dryml}
 
-Note that the `merge` attribute is another way of merging attributes. Declaring `merge` is a shorthand for declaraing both `merge-attrs` and `merge-params` (which we'll cover later).
+Note that the `merge` attribute is another way of merging attributes. Declaring `merge` is a shorthand for declaring both `merge-attrs` and `merge-params` (which we'll cover later).
 
 # Repeated and optional content
 
@@ -482,9 +482,9 @@ is a test to see if there are any comments -- empty collections are considered b
 Can we skip unless? You get the picture, right?
 
 
-## Repitition, repitition, repitition, repitition, repitition
+## Repetition, repetition, repetition, repetition, repetition
 
-Some things need to be repeated. Some things, like the word 'repitition' in a sub-title, don't. And then they are. Life can be like that. It doesn't matter. For repition DRYML gives us the `<repeat>` tag (from the core tag library) and the `repeat` attribute.
+Some things need to be repeated. Some things, like the word 'repetition' in a sub-title, don't. And then they are. Life can be like that. It doesn't matter. For repetition DRYML gives us the `<repeat>` tag (from the core tag library) and the `repeat` attribute.
     
 The tag version:
     
@@ -545,12 +545,12 @@ If you don't specify the test of a conditional, or the collection to repeat over
     </if>
 {: .dryml}
 
-We're switching the context on the `<if>` tag to be `this.comments`, which has two effects. Firstly the comments collection is used as the test for the `if`, so the whole section including the heading will be ommitted if the collection is empty (remember that `if` tests for blankness, and empty collections are considered blank). Secondly, the context is switched to be the comments collection, so that when we come to repeat the `<li>` tag, all we need to say is `repeat`.
+We're switching the context on the `<if>` tag to be `this.comments`, which has two effects. Firstly the comments collection is used as the test for the `if`, so the whole section including the heading will be omitted if the collection is empty (remember that `if` tests for blankness, and empty collections are considered blank). Secondly, the context is switched to be the comments collection, so that when we come to repeat the `<li>` tag, all we need to say is `repeat`.
 
 
 ### One last shorthand - attributes of `this`
 
-The attribute versions of `if`/`unless` and `repeat` support a useful shortcut for accessing attributes or methods of the implicit context. If you give a literal string attribute--that is, an attribute that does not start with `&`--this is interpretted as the name of a method on `this`. For example:
+The attribute versions of `if`/`unless` and `repeat` support a useful shortcut for accessing attributes or methods of the implicit context. If you give a literal string attribute--that is, an attribute that does not start with `&`--this is interpreted as the name of a method on `this`. For example:
 
     <li repeat="comments"/>
 {: .dryml}
@@ -575,9 +575,9 @@ is equivalent to
 It is a bit inconsistent that these shortcuts do not work with the tag versions of `<if>`, `<unless>` and `<repeat>`. This may be remedied in a future version of DRYML.
     
 
-# Psuedo-parameters - `before`, `after`, `append`, `prepend`, and `replace`
+# Pseudo-parameters - `before`, `after`, `append`, `prepend`, and `replace`
 
-For every parameter you define in a tag, there are five "pseduo parameters" created as well. Four allow you to insert extra content without replacing existing content, and one lets you replace or remove a parameter entirely.
+For every parameter you define in a tag, there are five "pseudo parameters" created as well. Four allow you to insert extra content without replacing existing content, and one lets you replace or remove a parameter entirely.
 
 To help illustrate these, here's a very simple `<page>` tag:
     
@@ -594,11 +594,11 @@ We've assumed that `@this.to_s` will give us the name of the object that this pa
 
 ## Inserting extra content
 
-The outout of the heading would look something like:
+The output of the heading would look something like:
 
     <h1 class="heading">Welcome to my new blog</h1>
     
-Psuedo parameters give us the ability to insert extra context in four places, marked here as `(A)`, `(B)`, `(C)` and `(D)`:
+Pseudo parameters give us the ability to insert extra context in four places, marked here as `(A)`, `(B)`, `(C)` and `(D)`:
 
     (A)<h1 class="heading">(B)Welcome to my new blog(C)</h1>(D)
     
@@ -654,7 +654,7 @@ And here's one with no heading at all:
     </page>
 {: .dryml}
     
-There is a nice shorthand for the second case. For exaery parameter, your tag also supports a special `without` attribute. This is exactly equivalent to the previous example, but much more readable:
+There is a nice shorthand for the second case. For every parameter, your tag also supports a special `without` attribute. This is exactly equivalent to the previous example, but much more readable:
 
     <page without-heading/>
 {: .dryml}
@@ -675,9 +675,9 @@ Due to a limitation of the current DRYML implementation, you cannot use both `be
 
 # Nested Parameters
 
-As we've discussed at the start of this guide, one of the main motivations for the creation of DRYML was to deliver a higher degree of *re-use* in the view layer. One of the great challenges of re-use is the constant tension it has with flexibility. The greater the need for flexibility, the harder it is to re-use existing code. This has a very direct effect on the *size* of things that we can successfully re-use. Take the humble hypertext link for example. A link is a link is a link -- there's only so much you could really want to change. It's not surprising then that long ago we stopped having to assemble links from fragments of HTML text. Rails has it's `link_to` helper, and Hobo Rapid has it's `<a>` tag. At the other extreme, reusing an entire photo gallery, or interactive callendar is extremely difficult. Again no surprise--these things have been built from scratch over and over again. Each time something slightly (or very) different is needed. A single, say, calendar component that is flexible enough to cover every eventuality would be so complicated that configuring it would be more effort that starting over.
+As we've discussed at the start of this guide, one of the main motivations for the creation of DRYML was to deliver a higher degree of *re-use* in the view layer. One of the great challenges of re-use is the constant tension it has with flexibility. The greater the need for flexibility, the harder it is to re-use existing code. This has a very direct effect on the *size* of things that we can successfully re-use. Take the humble hypertext link for example. A link is a link is a link -- there's only so much you could really want to change. It's not surprising then that long ago we stopped having to assemble links from fragments of HTML text. Rails has it's `link_to` helper, and Hobo Rapid has it's `<a>` tag. At the other extreme, reusing an entire photo gallery, or interactive calendar is extremely difficult. Again no surprise--these things have been built from scratch over and over again. Each time something slightly (or very) different is needed. A single, say, calendar component that is flexible enough to cover every eventuality would be so complicated that configuring it would be more effort that starting over.
 
-This tension between re-use and flexibility will probably never go away; life is just like that. As components get larger they will innevitably get either harder to work with or less flexible. What we can do though, through technologies like DRYML, is slow down the onset of these problems. By thinking about the fundamental challenges to re-use, we have tried to create a language in which, as components grow larger, simplicity and flexibility can be retained for longer.
+This tension between re-use and flexibility will probably never go away; life is just like that. As components get larger they will inevitably get either harder to work with or less flexible. What we can do though, through technologies like DRYML, is slow down the onset of these problems. By thinking about the fundamental challenges to re-use, we have tried to create a language in which, as components grow larger, simplicity and flexibility can be retained for longer.
 
 One of the most important features that DRYML brings to the re-use party is *nested parameters*. They are born of the following observations:
 
@@ -767,7 +767,7 @@ Pay careful attention to the use of the trailing ':'. The definition of `<index-
 
 # Customising and extending tags
 
-As we've seen, DRYML makes it easy to define tags that are highly customisable. By addings `param`s to the tags inside your definition, the caller can insert, replace and tweak to their heart's content. Sometimes, the changes you make to a tag's output are needed not once, but many times throughout the site. In other words, you want to define a new tag in terms of the old tag.
+As we've seen, DRYML makes it easy to define tags that are highly customisable. By adding `param`s to the tags inside your definition, the caller can insert, replace and tweak to their heart's content. Sometimes, the changes you make to a tag's output are needed not once, but many times throughout the site. In other words, you want to define a new tag in terms of the old tag.
 
 
 ## New tags from old
@@ -782,7 +782,7 @@ By way of an example, let's bring back the card example:
     </def>
 {: .dryml}
 
-Now let's say we want a new kind of card, one that has a link to the resource that it represents. Rather than redefine the whole thing from sratch, we can define the new card, say, "linked-card", like this:
+Now let's say we want a new kind of card, one that has a link to the resource that it represents. Rather than redefine the whole thing from scratch, we can define the new card, say, "linked-card", like this:
 
     <def tag="linked-card">
       <card>
@@ -793,7 +793,7 @@ Now let's say we want a new kind of card, one that has a link to the resource th
 
 That's all well and good but there are a couple of problems:
 
- - The original card used `merge-attrs` so that we could add arbitrary HTML attributesto the final `<div>`. Our new card has lost that feature
+ - The original card used `merge-attrs` so that we could add arbitrary HTML attributes to the final `<div>`. Our new card has lost that feature
      
  - Worse than that, the new card is in fact useless, as there's no way to pass it the body parameter
  
@@ -840,7 +840,7 @@ Instead we use `merge-params`, much as we use `merge-attrs`:
     </def>
 {: .dryml}
 
-You can read `merge-params` as: take any "extra" parameters passed to `<linked-card>` and forward them all to `<card>`. By "extra" parameters, we mean any that are not declared as parameteres (via the `param` attribute) inside the definition of `<linked-card>`.
+You can read `merge-params` as: take any "extra" parameters passed to `<linked-card>` and forward them all to `<card>`. By "extra" parameters, we mean any that are not declared as parameters (via the `param` attribute) inside the definition of `<linked-card>`.
     
 There are two local variables available inside the tag definition that mirror the `attributes` and `all_attributes` variables described previously. `parameters` is a hash containing all the "extra" parameters (those that do not match a declared parameter name), and `all_parameters` that contains all the parameters. The values in these hashes are Ruby procs. One common use of `all_parameters`, is if you want to test if a certain parameter was passed or not:
 
@@ -849,7 +849,7 @@ There are two local variables available inside the tag definition that mirror th
 
 ## `merge`
 
-As it's very common to want both `merge-attrs` and `merge-params` on the same tag, there is a shorthand for this: `merge`. So the final, prefered definition of `<linked-card>` is:
+As it's very common to want both `merge-attrs` and `merge-params` on the same tag, there is a shorthand for this: `merge`. So the final, preferred definition of `<linked-card>` is:
 
     <def tag="linked-card">
       <card merge>
@@ -884,7 +884,7 @@ Fortunately, DRYML has support for extending tags. Use `<extend>` instead of `<d
 
 The one thing to notice there is that the "old" version of `<card>`, i.e. the one that was active before you're extension, is available as `<old-card>`. That's about all there is to it.
     
-Here's another exaple where we add a footer to every page in our application. It's very common to `<extend tag="page">` in your application.dryml, in order to make changes that should appear on every page:
+Here's another example where we add a footer to every page in our application. It's very common to `<extend tag="page">` in your application.dryml, in order to make changes that should appear on every page:
     
     <extend tag="page">
       <old-page merge>
@@ -903,7 +903,8 @@ Welcome to the shortest chapter of The DRYML Guide.
 If you want to create an alias of a tag, i.e. an identical tag with a different name:
 
     <def tag="my-card" alias-of="card"/>
-    
+{: .dryml}
+
 Note that's a self closing tag -- there is no body to the definition.
     
 So... that's aliasing tags then...
