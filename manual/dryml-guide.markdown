@@ -847,6 +847,13 @@ There are two local variables available inside the tag definition that mirror th
     <if test="&all_parameters[:body]">
 {: .dryml}
 
+In fact, `all_parameters` and `parameters` are not regular hashes, they are instances of a subclass of `Hash` -- `Hobo::Dryml::TagParameters`. This subclass allows parameters to be called as if they were methods on the hash object, e.g.:
+
+    parameters.default
+{: .ruby}
+
+That's not something you'll use often.
+
 ## `merge`
 
 As it's very common to want both `merge-attrs` and `merge-params` on the same tag, there is a shorthand for this: `merge`. So the final, preferred definition of `<linked-card>` is:
@@ -910,19 +917,218 @@ Note that's a self closing tag -- there is no body to the definition.
 So... that's aliasing tags then...
 
 
+# Polymorphic Tags
 
-# Still to write
-  
- - polymorphic tags
+DRYML allows you to define a whole collection of tags that share the same name, where each definition is appropriate for a particular type of object being rendered. When you call the tag, the type (i.e. class) of the context is used to determine which definition to call. These are called polymorphic tags.
+
+To illustrate how these work, lets bring back our simple `<card>` tag once more.
+    
+    <def tag="card" polymoprhic>
+      <div class="card" merge-attrs>
+        <h3 param="heading"><%= h this.to_s %></h3>
+        <div param="body"></div>
+      </div>
+    </def>
+{: .dryml}
+
+We've added the `polymorphic` attribute to the `<def>`. This tells DRYML that `<card>` can have many definitions, each for a paricular type. The definition we've given here is called the "base" definition or the "base card". The base definiion serves two purposes:
+    
+ - It is the fallback if we call `<card>` and no definition is found for the current type.
+    
+ - The type specific definition can use the base definition as a starting point to be further customised.
  
- - wrapping - restore and param-content
+To add a type-specific `<card>`, we use the `for` attribute on the `<def>`. For example, a card for a `Product`:
+    
+    <def tag="card" for="Product">
+      ...
+    </def>
+{: .dryml}
+    
+(Note: if the name in the `for` attribute starts with an upper case letter, is is taken to be a class name. Otherwise it is taken to be an abreviated name registered with HoboFields, e.g. `<def tag=="input" for="email_address">`)
+    
+For the product card, lets make the heading be a link to the product, and put the price of the product in the body area:
+
+    <def tag="card" for="Product">
+      <card merge>
+        <heading: param><a href="#{object_url this}"><%= h this.to_s %></a></heading:>
+        <body: param="price">$<%= this.price %></body:>
+      </card>
+    </def>
+{: .dryml}
+
+We call this a type-specific definition. Some points to notice:
+
+ - The call back to `<card>` is not a recursive loop, but a call to the base definition. 
+     
+ - We're using the normal technique for customising / extending an existing card. i.e. we're using `merge`.
+
+It is not required for the type-specific definition to call the base definition, it's just often convenient. In fact the base definition is not required. It is valid to omit the body when declaring the polymorphic tag:
+
+    <def tag="my-tag" polymorphic/>
+{: .dryml}
+
+
+## Type hierarchy
+
+If, for a given call, no type-specific definition is available for `this.class`, the search continues with `this.class.superclass` and so on up the superclass chain. If the search reaches either `ActiveRecord::Base` or `Object`, the base definition is used.
+
+
+## Specifying the type explicitly
+
+Sometimes it is useful to give the type explicitly for the call explicitly (i.e. to overide the use of `this.class`). The `for-type` attribute (on the call) provides this facility. For example, you might want to implement one type-specific definition in terms of another:
+
+    <def tag="card" for="SpecialProduct">
+      <card for-type="Product"><append-price:> (Today Only!)</append-price:></card>
+    </def>
+{: .dryml}
  
- - Variables - set and set-scoped
+     
+## Extending polymorphic tags
+
+Type specific definitions can be extended just like any other tag using the `<extend>` tag. For example, here we simply remove the price:
+    
+    <extend tag="card" for="Product">
+      <old-card merge without-price/>
+    </extend>
+{: .dryml}
+
+
+# Wrapping content
+
+DRYML provides two mechanism for wrapping existing content inside new tags.
+
+## Wrapping *inside* a parameter
+
+Once or twice in the previous example, we have extended our card definition, replacing the plain heading with a hyperlink heading. Here it is again:
+
+    <card><heading:><a href="#{object_url this}"><%= h this.to_s %></a></heading:>
+{: .dryml}
+
+There's a bit of repitition there -- `<%= h this.to_s %>` was already present in the original definition. All we really wanted to do was wrap the existing heading in an `<a>`. In this case there wasn't much mark-up to repeat, so it wasn't a big deal, but in other cases there might be much more.
+    
+We can't use `<prepend-heading:><a></prepend-heading:>` and `<append-heading:></a></append-heading:>` because that's not well formed markup (and is very messy besides). Instead, DRYML has a specific feature for this situation. The `<param-content>` tag is a special tag that brings back the default content for a parameter. Here's how it works:
+
+    <card><heading:><a href="#{object_url this}"><param-content for="heading"/></a></heading:>
+{: .dryml}
+
+That's the correct way to wrap *inside* the parameter, so in this case the output is:
+
+    <h3><a href="...">Fried Bananas</a></h3>
+    
+What if we wanted to wrap the *entire* parameter, including the `<h3>` tags?
+
+
+## Wrapping *outside* a parameter
+    
+For example, we might want to give the card a new 'header' section, that contained the heading, and the time the record was created, like this:
+    
+    <div class="header">
+      <h3>Fried Bananas</h3>
+      <p>Created: ....</p>
+    </div>
+{: .dryml}
+
+To use DRYML terminology, what we've done there is *replaced* the entire heading with some new content, and the new content happens to contain the original heading. So we replaced the heading, and then restored it again. Which in DRYML is written:
+
+    <card>
+      <heading: replace>
+        <div class="header">
+          <heading: restore/>
+          <p>Created: <%= this.created_at.to_s(:short) %></p>
+        </div>
+      </heading:>
+    </card>
+{: .dryml}
+    
+To summarise, to wrap content inside a parameter, use `<param-content/>`. To wrap an entire parameter, including the parameterised tag itself (the `<h3>` in our examples), use the `replace` and `restore` attributes.
+    
+
+# Local variables and scoped variables.
+
+DRYML provides two tags for setting variables: `<set>` and `<set-scoped>`.
+    
+## Setting local variables with `<set>`
+
+Sometimes it's useful to define a local variable inside a tempalte or a tag definition. It's worth avoiding if you can, as we don't really want our view-layer to contain lots of low-level code, but sometimes it's unnavoidable. As DRYML extends ERB, you can simply write:
+
+    <% total = price_of_fish * number_of_fish %>
+{: .dryml}
+
+For purely asthetic reasons, DRYML provides a tag that does the same thing:
+
+    <set total="&price_of_fish * number_of_fish"/>
+{: .dryml}
+
+Note that you can put as many attribute/value pairs as you like on the same `<set>` tag, but the order of evaluation is not defined.
+    
+## Scoped variables -- `<set-scoped>`
+
+Scoped variables (which is not a great name, I realise as I come to document them properly) are kind of like global variables with a limited lifespan. We all know the pitfalls of global variables, and DRYML's scoped-variables should indeed be used as sparingly as possible, but you can pull of some very useful tricks with them.
+
+The `<set-scoped>` tag is very much like `<set>` except you open it up and put DRYML inside it:
+    
+    <set-scoped xyz="&...">
+       ...
+    </set-scoped>
+    
+The value is avaiable as `scope.xyz` anywhere inside the tag *and in any tags that are called*. That's the difference between `<set>` and `<set-scoped>`. They are like *dynamic variables* from LISP. To repeat the point, they are like global variables that exist from the time the `<set-scope>` tag is evaluated, and for the duration of the evaluation of the body of the tag, and are then removed.
+    
+As an example of their use, let's define a simple tag for rendering navigation links. The output should be a list of `<a>` tags, and the `<a>` that reresents the "current" page should have a CSS class "current", so it can be highlighted in some way by the stylesheet. (In fact, the need to create a reusable tag like this is where the feature originally came from).
+
+On our pages, we'd like to simple call, say:
+
+    `<main-nav current="Home">`
+{: .dryml}
+
+And we'd like it to be easy to define our own `<main-nav>` in our applications:
+
+    <def tag="main-nav">
+      <navigation merge-attrs>
+        <nav-item href="...">Home</nav-item>
+        <nav-item href="...">News</nav-item>
+        <nav-item href="...">Offers</nav-item>
+      </navigation>
+    </def>
+{: .dryml}
+    
+Here's the definition of `<navigation>`.
+    
+    <def tag="navigation" attrs="current">
+      <set-scoped current-nav-item="current">
+        <ul merge-attrs param="default"/>
+      </set-scoped
+    </def>
+{: .dryml}
+
+All it does is set a scoped-variable to whatever was given as `current`, and outputs the body wrapped in a `<ul>`. Here's `<nav-item>`:
+
+    <def tag="nav-item">
+      <set body="&parameters.default"/>
+      <li class="#{'current' if scope.current_nav_item == body}"><a merge-attrs><%= body %></li>
+    </def>
+    
+The content inside the `<nav-item>` is compared to `scope.current_nav_item`. If they are the same, the "current" class is added. Also note the way `parameters.default` is evaluated and the result stored in the local variable `body`, in order to avoid evaluating the boy twice.
+
+### Nested scopes
+
+One of the strengths of scoped-variables, is that scopes can be nested, and where there are name clashes, the parent scope-variable is temporarily hidden, rather than overwritten. With a bit of tweaking, we could use this fact to extend our `<naviagation>` tag to support a sub-menu of links within a top level section. The sub-menu could also use `<navigation>` and `<nav-item>` and the two `scope.current_nav_item` variables would not conflict with each other.
+
+
+# To do
  
  - Taglibs
+
+ - `attrs_for`
  
  - Special Methods: `this_field`, `this_parent` (OTHERS?)
  
- - Current limitations and other gotchas
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
