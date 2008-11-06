@@ -190,6 +190,15 @@ body.manual .content-body h2 { margin-top: 40px;}
 body.manual .content-body h3 { font-style: italic;}
 
 
+/* === Maruku Contents === */
+
+.document-title { font-size: 30px; font-weight: bold; color: black; margin-bottom: 40px;}
+.contents-heading { font-size: 20px; font-weight: bold; color: black; margin: 20px 0;}
+.maruku_toc  {margin-left: 20px;}
+.maruku_toc li {list-style-type: decimal; margin-top: 15px;}
+.maruku_toc li li {list-style-type: lower-roman; margin-top: 5px;}
+.maruku_toc li li li {list-style-type: none;}
+
 /* === Code Highlighting === */
 
 pre {
