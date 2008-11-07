@@ -1181,8 +1181,8 @@ One of the strengths of scoped-variables, is that scopes can be nested, and wher
 
 DRYML provides the `<include>` to support the break-up of large numbers of tag definitions into separate "tag libraries", known as taglibs. There are a number of forms supported:
     
-    - `<include src="foo"/>` -- loads `foo.dryml` from the same directory as the current template or taglib.
-    - `<include src="path/to/foo"/>` -- loads `app/views/path/to/foo.dryml`
-    - `<include src="foo" plugin="path/to/plugin"/>` -- loads `vendor/plugins/path/to/plugin/taglibs/foo.dryml`
+ - `<include src="foo"/>` -- loads `foo.dryml` from the same directory as the current template or taglib.
+ - `<include src="path/to/foo"/>` -- loads `app/views/path/to/foo.dryml`
+ - `<include src="foo" plugin="path/to/plugin"/>` -- loads `vendor/plugins/path/to/plugin/taglibs/foo.dryml`
 
 When running in development mode, all of these libraries are automatically reloaded on every request.
