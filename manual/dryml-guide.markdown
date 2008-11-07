@@ -361,6 +361,19 @@ The same template again, this time using `field`:
 {.dryml}
 
 If you compare that example to the first one, you should notice that the `:` syntax is just a shorthand for the `field` attribute. i.e. `<view field="name">` and `<view:name>` are equivalent.
+    
+## `this_field` and `this_parent`
+
+When you use chnage the context using `field="my-field"` (or the `<tag:my-field>` shorthand), the previous context is available as `this_parent` (note: probably changing to `this_origin`), and the name of the field is available as `this_field`. If you set the context using `with="..."`, these values are not available. That means the following apparently identical tag calls, are not quite the same:
+
+    <my-tag with="&@post.title"/>
+    
+    <my-tag with="&@post" field="title"/>
+    
+If the tag requires `this_parent` and `this_field`, and in Rapid, for example, some do, then it must be called using the second style.
+
+When rendering a the Rapid libraries `<form>` tag, DRYML keeps track of even more metadata in order to add `name` attributes to form fields automatically. However, the mechanism by which this is achieved has not really settled down, and currently represents a blurring of the boundary between DRYML and Rapid. In the future, DRYML will provide hooks that let libraries like Rapid keep track of this metadata themselevs. In the meantime, this aspect of DRYML is not documented in this guide.
+{: .aside}
 
 # Tag attributes
 
@@ -454,6 +467,39 @@ As mentioned, DRYML keeps track of all the attributes that were passed to a tag,
 {: .dryml}
 
 Note that the `merge` attribute is another way of merging attributes. Declaring `merge` is a shorthand for declaring both `merge-attrs` and `merge-params` (which we'll cover later).
+
+## Merging selected attributes
+
+`merge-attrs` can be given a value - either a hash containing attribute names and values, or a list of attribute names (comma separated), to be merged from the `all_attributes` variable.
+
+Examples:
+
+    <a merge-attrs="href, name">
+    
+    <a merge-attrs="&my_attribute_hash">
+    
+A requirement that crops up from time to time, is to forward a tag all that attributes that it understands (i.e. the attributes from that tag's `attrs` list), and to forward the other attributes elsewhere. Say for example, we are declaring a tag that renders a section of content, with some navigation at the top. We want to be able to add CSS classes and so on to the main `<div>` that will be output, but the `<navigation>` tag also defines some special attributes, and these need to be forwarded to it.
+    
+To achieve this we take advantage of a helper method `attrs_for`. Given the name of a tag, it returns the list of attributes delcared by that tag.
+
+Here's the definition:
+
+    <def tag="section-with-nav">
+      <div class="section" merge-attrs="&attributes - attrs_for(:navigation)">
+        <navigation merge-attrs="&attributes & attrs_for(:navigation)"/>
+        <do param="default"/>
+      </div>
+    </def>
+    
+Note that:
+
+ - The expression `attributes - attrs_for(:navigation)` returns a hash of only those attributes from the `attributes` hash that are *not* declared by `<navigation>` (The `-` operator on `Hash` comes from HoboSupport)
+
+ - The expression `attributes & attrs_for(:navigation)` returns a hash of only those attributes from the `attributes` hash that *are* declared by `<navigation>` (The `&` operator on `Hash` comes from HoboSupport)
+     
+ - The `<do>` tag is a "do nothing" tag, defined by the core DRYML taglib, which is always included.
+    
+    
 
 # Repeated and optional content
 
@@ -871,6 +917,17 @@ As it's very common to want both `merge-attrs` and `merge-params` on the same ta
     </def>
 {: .dryml}
 
+## Merging selected parameters
+
+Just as with `merge-attrs`, `merge-params` can be given a value - either a hash containing the parameters you wish to merge, or a list of parameter names (comma separated), to be merged from the `all_parameters` variable.
+
+Examples:
+
+    <card merge-params="heading, body">
+    
+    <card merge-params="&my_parameter_hash">
+
+
 ## Extending a tag
 
 We've now seen how to easily create a new tag in terms of an existing tag. But what if we don't actually want a new tag, but rather we want to change the behaviour of an existing tag in some way, and keep the name the same. What we can't do is simply use the existing name in the definition:
@@ -1120,21 +1177,12 @@ The content inside the `<nav-item>` is compared to `scope.current_nav_item`. If 
 One of the strengths of scoped-variables, is that scopes can be nested, and where there are name clashes, the parent scope-variable is temporarily hidden, rather than overwritten. With a bit of tweaking, we could use this fact to extend our `<naviagation>` tag to support a sub-menu of links within a top level section. The sub-menu could also use `<navigation>` and `<nav-item>` and the two `scope.current_nav_item` variables would not conflict with each other.
 
 
-# To do
- 
- - Taglibs
+# Taglibs
 
- - `attrs_for`
- 
- - Special Methods: `this_field`, `this_parent` (OTHERS?)
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+DRYML provides the `<include>` to support the break-up of large numbers of tag definitions into separate "tag libraries", known as taglibs. There are a number of forms supported:
+    
+    - `<include src="foo"/>` -- loads `foo.dryml` from the same directory as the current template or taglib.
+    - `<include src="path/to/foo"/>` -- loads `app/views/path/to/foo.dryml`
+    - `<include src="foo" plugin="path/to/plugin"/>` -- loads `vendor/plugins/path/to/plugin/taglibs/foo.dryml`
+
+When running in development mode, all of these libraries are automatically reloaded on every request.
