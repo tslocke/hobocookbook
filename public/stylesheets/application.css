@@ -182,12 +182,14 @@ a.gravatar {display: block; border: 1px solid #ccc; background: #ccc; padding: 2
 .aside-content .navigation ul li a.undocumented {color: #B19640;}
 .aside-content ul ul li.current a {color: #FFC000;}
 
+/* === Manual Formatting === */
+
 body.manual .last-update {float:right; font-style: italic; font-size: 90%;}
 .content .aside { background:#EEEEEE;border:1px solid #BBB; margin:20px 0px; padding:10px; width:auto;}
 
 body.manual .content-body h1 { border-top: 1px dotted #999; margin-top: 80px; padding-top: 10px;}
 body.manual .content-body h2 { margin-top: 40px;}
-body.manual .content-body h3 { font-style: italic;}
+body.manual .content-body h3 { font-style: italic; margin-top: 30px;}
 
 
 /* === Maruku Contents === */
