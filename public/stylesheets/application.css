@@ -132,7 +132,7 @@ p.show-source {margin-bottom: 0;}
 .preview-with-more h3 {font-size:20px; margin-bottom: 20px;}
 
 
-textarea.recipe-body { margin-top: 20px; width: 100%; height: 500px;}
+textarea.recipe-body { margin-top: 20px; width: 100%; height: 500px; font-size:13px;}
 textarea.question-description, textarea.comment-body { width: 100%;}
 input.boolean { vertical-align: -15%;}
 
@@ -189,7 +189,7 @@ body.manual .last-update {float:right; font-style: italic; font-size: 90%;}
 
 body.manual .content-body h1 { border-top: 1px dotted #999; margin-top: 80px; padding-top: 10px;}
 body.manual .content-body h2 { margin-top: 40px;}
-body.manual .content-body h3 { font-style: italic; margin-top: 30px;}
+    body.manual .content-body h3 { font-style: italic; margin-top: 30px;}
 
 
 /* === Maruku Contents === */
