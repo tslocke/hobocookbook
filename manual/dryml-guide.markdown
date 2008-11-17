@@ -372,6 +372,15 @@ The same template again, this time using `field`:
 
 If you compare that example to the first one, you should notice that the `:` syntax is just a shorthand for the `field` attribute. i.e. `<view field="name">` and `<view:name>` are equivalent.
     
+## Field chains
+
+Sometimes you want to drill-down through several fields at a time. Both the `field` attribute and the ':' shorthand support this. For example:
+
+    <view:category.name/>
+    <view field="category.name"/>
+{.dryml}
+
+    
 ## `this_field` and `this_parent`
 
 When you use chnage the context using `field="my-field"` (or the `<tag:my-field>` shorthand), the previous context is available as `this_parent` (note: probably changing to `this_origin`), and the name of the field is available as `this_field`. If you set the context using `with="..."`, these values are not available. That means the following apparently identical tag calls, are not quite the same:
