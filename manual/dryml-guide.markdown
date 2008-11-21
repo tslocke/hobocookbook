@@ -711,6 +711,12 @@ Or we could go a step further and create a new page tag that added that suffix a
     
 (Note: we have explicitly made sure that the `<body:>` parameter is still available. There is a better way of achieving this using `merge-params` or `merge`, which are covered later.)
 
+## Support for append and prepend
+
+As we've seen, the `<append-...:>` and `<prepend-...:>` parameters insert content at the begining and end a tag's content. But, in the case of a defined tag, that may output all sorts of other tags, and may define many parameters itself, what exactly *is* the "tag's content"? In fact it is the `default` parameter. So `<append-...:>` and `<prepend-...:>` only work on tags that define a default parameter. 
+
+For this reason, you will often see tag definitions include a `default` parameter, even though is would be rare to use it directly. It is there so that append and prepend work as expected.
+
 
 ## Replacing a parameter entirely
 
