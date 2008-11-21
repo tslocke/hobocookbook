@@ -11,6 +11,6 @@ class QuestionsController < ApplicationController
   def index; end
   
   index_action :answered, :scope => :with_answers
-  index_action :open,    :scope => :without_answers
+  index_action :open,     :scope => :without_answers
 
 end
