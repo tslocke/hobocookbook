@@ -5,4 +5,14 @@
     Posted by <a:user/>. 
     <if test="&this.answers">This recipe answers <a:questions/></if>
   </heading:>
+  
+  <collection-heading:>User contributed notes</collection-heading:>
+  
+  <add-form-heading:>Add your own note</add-form-heading:>
+  
+  <before-form:>
+    <p>The notes are a place for users to contribute to the documention. If you have a question, bug report, feature request or a general
+    comment, please use the <a href="http://groups.google.com/group/hobousers">Hobo Users group</a>.</p>
+    
+  </before-form:>
 </show-page>
