@@ -15,5 +15,9 @@ class Guest < Hobo::Guest
   def can_view?(obj, field)
     true
   end
+  
+  def administrator?
+    false
+  end
 
 end
