@@ -85,7 +85,7 @@ Here's the code for the friendship mode (don't be put off by the `MagicMailer`, 
 
 Visually, the lifecycle can be represented as a graph, just as we would draw a finite state machine:
 
-![Friendship Lifecycle][123]
+![Friendship Lifecycle][/images/manual/friendship-lifecycle.png]
 
 Let's work through what we did there.
 
@@ -338,7 +338,7 @@ It is not required that a transition name is distinct from all the others. For e
 
 ## The `:available_to` option
 
-Both create and transition steps can be made accessible to certain users with the `:accessible_to` option. If this option is given, the step is considered 'publishable', and there will be automatic support for the step in both the controller and view layers.
+Both create and transition steps can be made accessible to certain users with the `:available_to` option. If this option is given, the step is considered 'publishable', and there will be automatic support for the step in both the controller and view layers.
 
 The rules for the `:available_to` option are as follows. Firstly, it can be one of three special values:
 
@@ -416,7 +416,7 @@ TO DO
 
 Short version:
 
-For every publishable (i.e. has an `:accessible_to` option) creator (e.g. 'request' ) you get two actions:
+For every publishable (i.e. has an `:available_to` option) creator (e.g. 'request' ) you get two actions:
 
  - `FriendshipsController#request` routed as `/friendships/request` for http GET
  
