@@ -189,8 +189,8 @@ body.manual .last-update {float:right; font-style: italic; font-size: 90%;}
 
 body.manual .content-body h1 { border-top: 1px dotted #999; margin-top: 80px; padding-top: 10px;}
 body.manual .content-body h2 { margin-top: 40px;}
-    body.manual .content-body h3 { font-style: italic; margin-top: 30px;}
-
+body.manual .content-body h3 { font-style: italic; margin-top: 30px;}
+body.manual .content-body img { display: block; margin:10px auto;}
 
 /* === Maruku Contents === */
 

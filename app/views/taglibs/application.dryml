@@ -245,3 +245,20 @@
     <nav-item repeat="&ManualController::TITLES" href="#{base_url}/manual/#{this_key}"><%= this %></nav-item>
   </navigation>
 </def>
+
+
+<def tag="user-notes">
+  <section param="user-notes">
+    <h3 param="collection-heading">User contributed notes</h3>
+    
+    <collection param/>
+
+    <section param="add-to-collection" if="&can_create?">
+      <h3 param="add-form-heading">Add your own note</h3>
+      <form with="&this.new" owner="recipe" method="post" without-cancel param>
+        <field-list: skip="recipe"/>
+        <submit: label="Add"/>
+      </form>
+    </section>
+  </section>
+</def>
