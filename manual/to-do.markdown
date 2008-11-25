@@ -12,8 +12,6 @@ Note that this is just a set of reminders - it doesn't reflect the structure tha
 
  - Miscelaneous model extensions
      
- - Lifecycles
-     
  - Controllers and routing
  
  - The Rapid tag library

@@ -278,6 +278,8 @@ The options are:
    - A string -- a Ruby expression, evaluated in the context of the record
    - A proc -- if the proc takes one argument it is called with the record, if it takes none it is `instance_eval`'d on the record
    
+   Note that the precondition is evaluated *before* any changes are made to the record using the parameters to the lifecycle step.
+   
  - `:new_key` -- generate a new lifecycle key for this record by setting the `key_timestamp` field to be the current time.
  
  - `:user_becomes` -- the name of an attribute (typically a `belongs_to` relationship) that will set to the `acting_user`.
@@ -401,40 +403,161 @@ Short version: validations have been extended so you can give the name of a life
 {.ruby}
 
 
+# Controller actions and routes
+
+As well as providing the lifecycle mechanism in the model, Hobo also supports the lifecycle in the controller layer, and provides an automatic user interface in the view layer. All of this can be fully customised of course. In this section we'll look at the controller layer features, including the routes that get generated.
+
+Lifecycle steps that include the `:avaiable_to` option are considered *publishable*. It is these that Hobo generates controller actions for. Any step that does not have the `:available_to` option can be thought of as 'internal'. Of course you can call those create steps and transitions from your own code, but Hobo will never do that for you.
+
+## `auto_actions`
+
+The lifecycle actions are added to your controller by the `auto_actions` directive. To get them you need to say one of:
+
+ - `auto_actions :all`
+ - `auto_actions :lifecycle` -- adds *only* the lifecycle actions
+ - `auto_actions :accept, :do_accept` (for example) -- as always, you can list the method names explicitly (the method names that relate to lifecycle actions are given below)
+ 
+You can also remove lifecycle actions with:
+
+ - `auto_actions ... :except => :lifecycle` -- don't create any lifecycle actions or routes
+ - `auto_actions ... :except => [:do_accept, ...]` -- don't create the listed lifecycle actions or routes
+
+
+## Create steps
+
+For each create step that is publishable, the model controller adds two actions. Going back to the friendship example, two actions will be created for the `request` step. Both of these actions will pass the `current_user` to the lifecycle, so access restrictions (the `:available_to` option) will be enforced, as will any preconditions (`:if` and `:unless`).
+
+### The create page action
+
+`FriendshipsController#request` will be routed as `/friendships/request` for GET requests.
+ 
+This action is intended to render a form for the create step. An object that provides metadata about the create step will be available in `@creator` (an instance of `Hobo::Lifecycles::Creator`).
+
+If you want to implement this action yourself, you can do so using the `creator_page_action` method:
+
+    def request
+      creator_page_action :request  
+    end
+    
+Following the pattern of all the action methods, you can pass a block in which you can customise the response by setting a flash message, rendering or redirecting. `do_creator_action` also takes a single option:
+
+ - `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.
+  
+### The 'do create' action
+  
+`FriendshipsController#do_request` will be routed as `/friendships/request` for POST requests.
+ 
+This action is where the form should POST to. It will run the create step, passing in parameters from the form. As with normal form submissions (i.e. create and update actions), the result will be an HTTP redirect, or the form will be re-rendered in the case of validation failures.
+
+Again you can implement this action yourself:
+
+    def do_request
+      do_creator_action :request
+    end
+{.ruby}
+
+You can give a block to customise the response, or pass the redirect option:
+
+ -  `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.
+    
+
+## Transitions
+
+As with create steps, for each publishable transition there are two actions. For both of these actions, if `parmas[:key]` is present, it will be set as the `provided_key` on the lifecycle, so transitions that are `:available_to => :key_holder` will work automatically.
+
+We'll take the friendship `accept` transition as an example.
+
+### The transition page
+
+`FriendshipsController#accept` will be routed as `/friendships/:id/accept` for GET requests.
+
+This action is intended to render a form for the transition. An object that provides metadata about the transition will be available in `@transition` (an instance of `Hobo::Lifecycles::Transition`).
+
+You can implement this action yourself using the `transition_page_action` method
+
+    def accept
+      transition_page_action :accept
+    end
+{.ruby}
+
+As usual, you can customise the response by passing a block. And you can pass the following option:
+
+ - `key` -- the key to set as the provided key, for transitions that are `:available_to => :key_holder`. Defaults to `params[:key]`
+ 
+### The 'do transition' action
+
+`FriendshipsController#do_accept` will be routed as `/friendships/:id/request` for POST requests.
+
+This action is where the form should POST to. It will run the transition, passing in parameters from the form. As with normal form submissions (i.e. create and update actions), the result will be an HTTP redirect, or the form will be re-rendered in the case of validation failures.
+
+You can implement this action yourself using the `do_transition_action` method:
+
+    def do_accept
+      do_transition_action :accept
+    end
+{.ruby}
+
+As usual, you can customise the response by passing a block. And you can pass the following options:
+
+ -  `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.
+ - `key` -- the key to set as the provided key, for transitions that are `:available_to => :key_holder`. Defaults to `params[:key]`
+
+
 # Secure keys
 
-TO DO
+Hobo's lifecycles also provide support for the "secure link" pattern. By "secure" we mean that on one other than the holder of the link can access the page or feature in question. This is achieved by including some kind of cryptographic key in the URL, which is typically sent in an email address. The two very common examples are:
 
-The `:new_key` option, and passing `:available_to => :key_holder` have both been mentioned above.
-
-The controller will automatically set `lifecycle.provided_key` from `params[:key]`.
-
-
-# Routes and controller actions
-
-TO DO
-
-Short version:
-
-For every publishable (i.e. has an `:available_to` option) creator (e.g. 'request' ) you get two actions:
-
- - `FriendshipsController#request` routed as `/friendships/request` for http GET
+ - Password reset -- following the link gives the ability to set a new password for a specific account. By using a secure link and emailing it to the account holders email address, only a person with access to that email account can chose the new password.
  
-   This action renders the a form to fill out 
+ - Email activation -- by following the link, the user has effectively proved that they have access to that email account. Many sites use this technique to verify that the email address you have given is one that you do in fact have access to.
  
- - `FriendshipsController#do_request` routed as `/friendships/request` for http POST
- 
-   This action is where the form POSTs to. It actually performs the create
- 
-For every publishable transition (e.g. 'accept' ) you get two actions:
+In fact the idea of a secure link is more general than that. It can be applied in any situation where you want a particular person to participate in a process, but that person does not have an account on the site. For example, in a CMS workflow application, you might want to email a particular person to ask them to verify that the content of an article is technically correct. Perhaps this is a one-off request so you don't want to trouble them with signing up. Your app could provide a page with "approve"/"reject" buttons, and access to that page could be protected using the secure link pattern. In this way, the person you email the secure link to, and no one else, would be able to accept or reject the article.
 
- - `FriendshipsController#accept` routed as `/friendships/:id/accept` for http GET
+Hobo's lifecycles provide support for the secure-link pattern with the following:
+
+ - A field added to the database called (by default) "`key_timestamp`". This is a date-time field, and is used to generate a key as follows:
  
-   This action renders the a form to fill out 
+        Digest::SHA1.hexdigest("#{id_of_record}-#{current_state}-#{key_timestamp}")
+        
+ - Both create and transition steps can be given the option `:new_key => true`. This causes the `key_timestamp` to be updated to `Time.now`.
  
- - `FriendshipsController#do_accept` routed as `/friendships/:id/request` for http POST
+ - The `:available_to => :key_holder` option (transitions only). Setting this means the transition is only allowed if the correct key has been provided, like this:
  
-   This action is where the form POSTs to. It actually performs the transition
+        record.lifecycle.provided_key = the_key
+        
+Hobo's "model controller" also has (very simple) support for the secure-link pattern. Prior to rendering the form for a transition, or accepting the form submission of a transition, it does (by default):
+
+    record.lifecycle.provided_key = params[:key]
+    
+## Implementing a lifecycle with a secure-link
+    
+Stringing this all together, we would typically implement the secure-link pattern as follows. We're assuming some knowledge of Rails mailers here, so you may need to read up on those.
+
+ - Create a mailer (`script/generate mailer`) which will be used to send the secure link.
+
+ - In your lifecycle definition, two steps will work together:
+ 
+    - A create or transition will initiate the process, by generating a new key, emailing the link, and putting the lifecycle in the correct state.
+    
+    - A transition from this state will be declared as `:available_to => :key_holder`, and will perform the protected action.
+
+ - Add `:new_key => true` to the create or transition step that initiates the process.
+ 
+ - On this same step, add a callback that uses the mailer to send the key to the appropriate user. The key is available as `lifecycle.key`. For example, the default Hobo user model has:
+ 
+        transition :request_password_reset, { :active => :active }, :new_key => true do
+          UserMailer.deliver_forgot_password(self, lifecycle.key)
+        end   
+             
+ - Add `:available_to => :key_holder` to the subsequent transition -- the one you want to make available only to recipients of the email.
+        
+ - The mailer should include a link in the email, and they key should be part of this link as a query parameter. Hobo creates a named route for each transition page, so there will be a URL helper available. For example, if the transition is on `User` and is called `reset_password`, the link in your mailer template should look something like:
+ 
+        <%= user_reset_password_url :host => @host, :id => @user, :key => @key %>
+        
+  (it's up to you to set @host, but you could use `Hobo::Controller.request_host`)
+ 
+That should be it.
 
 
 # Lifecycles in Rapid: pages, forms and buttons
