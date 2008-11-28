@@ -66,7 +66,7 @@ The user performing the action is available via `acting_user` method. This metho
 
 So for example, to specify that you must be logged in to create a record:
 
-    def creatable_by?
+    def create_permitted?
       acting_user.signed_up?
    end
 {.ruby}
@@ -78,14 +78,14 @@ It's also common to compare the `acting_user` with associations on your model, f
 
 You can assert that only the owner can make changes like this:
 
-    def updatable_by?
+    def update_permitted?
       owner == acting_user
     end
 {.ruby}
 
 There is a downside to that method -- the `owner` association will be fetched from the database. That's not really necessary, as the foreign key that we need has already been loaded. Fortunately Hobo adds a comparison method for every `belongs_to` that avoids this trip to the database:
 
-    def updatable_by?
+    def update_permitted?
       owner_is? acting_user
     end
 {.ruby}
@@ -102,7 +102,7 @@ Note that these methods are only available on attributes, not on associations. H
 
 For example, the following definition means that only signed up users can make changes, and the `status` attribute cannot be changed by anyone:
 
-    def upadte_permitted?
+    def update_permitted?
       acting_user.signed_up? && !status_changed?
     end
 {.ruby}
