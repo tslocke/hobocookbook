@@ -2,8 +2,9 @@ class ManualController < ApplicationController
   
   caches_page :index, :manual_section
   
-  TITLES = ActiveSupport::OrderedHash.new [['to-do',      "To Do List"],
-                                           ['dryml-guide',"The DRYML Guide"],
+  TITLES = ActiveSupport::OrderedHash.new [['to-do',       "To Do List"],
+                                           ['dryml-guide', "The DRYML Guide"],
+                                           ['permissions', "The Permission System"],
                                            ['lifecycles',  'Lifecycles']]
   
   def manual_section
