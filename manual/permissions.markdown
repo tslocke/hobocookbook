@@ -474,6 +474,7 @@ It may have occurred to you that there is some overlap between the permission sy
 In Rails code, it's not uncommon to see validations used for both of these reasons. For example, the UI may provide radio buttons to chose "Male" or "Female", and the model might state:
 
     validates_inclusion_of :gender, :in => %w(Male Female)
+{.ruby}
     
 In normal usage, no one will ever see the message that gets generated when this validation fails. Effectively it's being used as a permission. In a Hobo app it might be better to use the permission system for this example, but the declarative `validates_inclusion_of` is quite nice, so if you do use it we'll turn a blind eye.
 
