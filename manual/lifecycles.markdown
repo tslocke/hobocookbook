@@ -503,7 +503,7 @@ As usual, you can customise the response by passing a block. And you can pass th
  - `key` -- the key to set as the provided key, for transitions that are `:available_to => :key_holder`. Defaults to `params[:key]`
 
 
-# Secure keys
+# Keys and secure links 
 
 Hobo's lifecycles also provide support for the "secure link" pattern. By "secure" we mean that on one other than the holder of the link can access the page or feature in question. This is achieved by including some kind of cryptographic key in the URL, which is typically sent in an email address. The two very common examples are:
 
