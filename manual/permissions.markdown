@@ -217,7 +217,8 @@ Despite that difference edit permission and update permission are obviously very
     def edit_permitted?(attribute)
       ...
     end
-    
+{.ruby}
+
 often does not need to be implemented.
 
 ### Protected, read-only, and non-viewable attributes
@@ -316,7 +317,8 @@ As discussed, no special support is needed to police `belongs_to` associations, 
     def update_permitted?
       acting_user.administrator || !user_id_changed?
     end
-    
+{.ruby}
+
 Although that works fine, it feels a bit low level. We'd much rather say `user_changed?`, and in fact we can. For every `belongs_to` association, Hobo adds a `*_changed?` method, e.g. `user_changed?`. In addition to this, the attribute change helpers -- `only_changed?`, `none_changed?`, `any_changed?` and `all_changed?` -- all accept `belongs_to` association names along with regular field names.
 
 # The permissions API
@@ -495,7 +497,8 @@ That's it. `administrator?` is a feature of those three generators, but is not a
         def administrator?
           roles.include?(Role.administrator)
         end
-      
+{.ruby}
+
  - Get rid of that field, and of all calls to `administrator?` from your models' permission methods. Those are just stubs that you are
    expected to replace
 

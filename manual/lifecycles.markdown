@@ -157,14 +157,16 @@ Each transition declares:
  - which states it goes from and to, e.g. `accept` goes from `requested` to `active`:
 
         transition :accept, { :requested => :active }
-        
+{.ruby}
+
    Some of the transitions are to a pseudo state: `:destroy`. To move to this state is to destroy the record.
     
  - who has access to it. 
  
         :available_to => :requester
         :available_to => :requestee
-        
+{.ruby}
+ 
    In the create step the `:available_to` option was set to a class name, here it is set to a method (a `belongs_to` association) and to be
    allowed, the acting user must be the same user returned by this method. There are a variety ways that `:avilable_to` can be used, which
    will be discussed in detail later.
@@ -249,7 +251,7 @@ Each state can have an action associated with it:
 You can provide the `:default => true` option to have the database default for the state field be this state:
 
     state :requested, :default => true
-
+{.ruby}
 
 ## Defining creators
 
@@ -373,15 +375,17 @@ Some examples:
 Say a model has an owner:
 
     belongs_to :owner, :class_name => "User"
+{.ruby}
 
 You can just give the name of the relationship (since it is also a method) to restrict the transition to that user:
 
     :available_to => :owner
-    
+{.ruby}    
 Or a model might have a list of collaborators associated with it:
 
     has_many :collaborators, :class_name => "User"
-    
+{.ruby}
+
 Again it's easy to make the lifecycle step available to them only (since the `has_many` does respond to `:include?`):
 
     :available_to => :collaborators
@@ -438,7 +442,8 @@ If you want to implement this action yourself, you can do so using the `creator_
     def request
       creator_page_action :request  
     end
-    
+{.ruby}
+
 Following the pattern of all the action methods, you can pass a block in which you can customise the response by setting a flash message, rendering or redirecting. `do_creator_action` also takes a single option:
 
  - `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.
@@ -518,17 +523,20 @@ Hobo's lifecycles provide support for the secure-link pattern with the following
  - A field added to the database called (by default) "`key_timestamp`". This is a date-time field, and is used to generate a key as follows:
  
         Digest::SHA1.hexdigest("#{id_of_record}-#{current_state}-#{key_timestamp}")
-        
+{.ruby}
+
  - Both create and transition steps can be given the option `:new_key => true`. This causes the `key_timestamp` to be updated to `Time.now`.
  
  - The `:available_to => :key_holder` option (transitions only). Setting this means the transition is only allowed if the correct key has been provided, like this:
  
         record.lifecycle.provided_key = the_key
-        
+{.ruby}
+
 Hobo's "model controller" also has (very simple) support for the secure-link pattern. Prior to rendering the form for a transition, or accepting the form submission of a transition, it does (by default):
 
     record.lifecycle.provided_key = params[:key]
-    
+{.ruby}
+
 ## Implementing a lifecycle with a secure-link
     
 Stringing this all together, we would typically implement the secure-link pattern as follows. We're assuming some knowledge of Rails mailers here, so you may need to read up on those.
@@ -548,13 +556,15 @@ Stringing this all together, we would typically implement the secure-link patter
         transition :request_password_reset, { :active => :active }, :new_key => true do
           UserMailer.deliver_forgot_password(self, lifecycle.key)
         end   
-             
+{.ruby}
+
  - Add `:available_to => :key_holder` to the subsequent transition -- the one you want to make available only to recipients of the email.
         
  - The mailer should include a link in the email, and they key should be part of this link as a query parameter. Hobo creates a named route for each transition page, so there will be a URL helper available. For example, if the transition is on `User` and is called `reset_password`, the link in your mailer template should look something like:
  
         <%= user_reset_password_url :host => @host, :id => @user, :key => @key %>
-        
+{.ruby}
+
   (it's up to you to set @host, but you could use `Hobo::Controller.request_host`)
  
 That should be it.
