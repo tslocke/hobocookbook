@@ -780,7 +780,7 @@ Start by adding that markup to your project show page. Note the use of the `with
       <collection: replace>
         ...
       </collection>
-    </page>
+    </show-page>
 {: .dryml}
 
 You will now have a page with a sidebar, but of course you've also lost all the content that was on that page, because we've entirely overwritten the body of the `<content:>` parameter. DRYML provides the ability to recall the original parameter content with `<param-content for="content"/>`. Edit the page to look like this:
@@ -800,7 +800,7 @@ You will now have a page with a sidebar, but of course you've also lost all the 
       <collection: replace>
         ...
       </collection>
-    </page>
+    </show-page>
 {: .dryml}
 
 
@@ -822,7 +822,7 @@ First we need the controller side of the auto-complete. We're going to add an au
 
 	autocomplete :new_member_name do
 	  project = find_instance
-	  hobo_completions :username, User.without_owned_project(project).is_not(project.owner)
+	  hobo_completions :username, User.without_joined_project(project).is_not(project.owner)
 	end
 {: .ruby}
 
@@ -831,7 +831,7 @@ You can read this as: create an auto-complete action called '`new_member_name`' 
 Now for the form in projects/show.dryml. We'll use Hobo's ajax part mechanism to refresh the collection without reloading the page:
 
     ...
-    <aside>
+    <aside:>
       <h2>Project Members</h2>
       <collection:members part="members"/>
    
@@ -934,7 +934,7 @@ The current users show page could be improved a lot. For example, it doesn't giv
 
 # Appendix -- Styling the Application
 
-**NOTE: This section has not been updated for Hobo 0.8. It will mostly work but there might be some style glitches**
+**NOTE: This section is a bit out of date. It will mostly work but there might be some style glitches**
 
 The default Hobo theme “Clean” provides comprehensive but minimal styling for all of Hobo’s generic pages and tags. When styling your app you have a choice between creating your own theme from scratch or tweaking an existing theme to suit your needs. The Clean theme has been designed with this in mind, it can be adapted to look very different with only a small amount of effort. 
 
