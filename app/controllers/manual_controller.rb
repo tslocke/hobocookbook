@@ -18,7 +18,7 @@ class ManualController < ApplicationController
   private
   
   def last_update(filename)
-    date_s = `git log -1 manual/dryml-guide.markdown`.match(/^Date:\s*(.*)$/)[1]
+    date_s = `git log -1 #{filename}`.match(/^Date:\s*(.*)$/)[1]
     Date.parse(date_s)
   end
   
