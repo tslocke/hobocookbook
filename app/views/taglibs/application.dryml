@@ -82,9 +82,10 @@
 
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs>
-    <nav-item href="#{base_url}/manual">Manual</nav-item>
-    <nav-item with="&ApiTaglib"        >Taglibs</nav-item>
-    <nav-item with="&Recipe"           >Recipes</nav-item>
+    <nav-item href="#{base_url}/tutorials">Tutorials</nav-item>
+    <nav-item href="#{base_url}/manual"   >Manual</nav-item>
+    <nav-item with="&ApiTaglib"           >Taglibs</nav-item>
+    <nav-item with="&Recipe"              >Recipes</nav-item>
   </navigation>
 </def>
 
@@ -243,6 +244,14 @@
   <h2>Chapters</h2>
   <navigation current="@title">
     <nav-item repeat="&ManualController::TITLES" href="#{base_url}/manual/#{this_key}"><%= this %></nav-item>
+  </navigation>
+</def>
+
+
+<def tag="tutorials-navigation">
+  <h2>Tutorials</h2>
+  <navigation current="@title">
+    <nav-item repeat="&TutorialsController::TITLES" href="#{base_url}/tutorials/#{this_key}"><%= this %></nav-item>
   </navigation>
 </def>
 

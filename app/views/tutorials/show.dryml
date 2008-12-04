@@ -1,0 +1,15 @@
+<page title="Hobo Tutorials - #{@title}" without-account-nav>
+  <body: class="tutorial"/>
+  
+  <aside-content:>
+    <tutorials-navigation/>
+  </aside-content:>
+  
+  <content:>
+    <section class="content-body">
+      <div class="last-update">Last updated: <view with="&@last_update"/></div>
+      <view with="&@content"/>
+    </section>
+  </content:>
+    
+</page>

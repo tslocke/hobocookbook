@@ -1,0 +1,14 @@
+<page title="Hobo Tutorials" without-account-nav>
+  <aside-content:>
+    <tutorials-navigation/>
+  </aside-content:>
+  
+  <content:>
+    <section class="content-header">
+      <h2>Hobo Tutorials</h2>
+    
+      <p>&lt;-- look over there!</p>
+    </section>
+  </content:>
+    
+</page>
