@@ -27,19 +27,19 @@ class ApiTaglib < ActiveRecord::Base
 
   # --- Hobo Permissions --- #
 
-  def creatable_by?(creator)
-    creator.administrator?
+  def create_permitted?
+    acting_user.administrator?
   end
 
-  def updatable_by?(updater, updated)
-    updater.administrator?
+  def update_permitted?
+    acting_user.administrator?
   end
 
-  def deletable_by?(deleter)
-    deleter.administrator?
+  def destroy_permitted?
+    acting_user.administrator?
   end
 
-  def viewable_by?(viewer, field)
+  def view_permitted?(attribute)
     true
   end
 

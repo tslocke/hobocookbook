@@ -3,19 +3,19 @@ OwnedModel = classy_module do
   belongs_to :user, :creator => true
   
   
-  def creatable_by?(creator)
-    creator.signed_up? && user == creator
+  def create_permitted?
+    acting_user.signed_up? && user == acting_user
   end
 
-  def updatable_by?(updater, updated)
-    updater.administrator? || (updater == user && same_fields?(updated, :user))
+  def update_permitted?
+    acting_user.administrator? || (acting_user == user && !user_changed?)
   end
 
-  def deletable_by?(deleter)
-    deleter.administrator? || deleter == user
+  def destroy_permitted?
+    acting_user.administrator? || acting_user == user
   end
 
-  def viewable_by?(user, field)
+  def view_permitted?(attribute)
     true
   end
   

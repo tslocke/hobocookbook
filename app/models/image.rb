@@ -14,19 +14,19 @@ class Image < ActiveRecord::Base
 
   # --- Hobo Permissions --- #
 
-  def creatable_by?(user)
-    user.administrator?
+  def create_permitted?
+    acting_user.administrator?
   end
 
-  def updatable_by?(user, new)
-    user.administrator?
+  def update_permitted?
+    acting_user.administrator?
   end
 
-  def deletable_by?(user)
-    user.administrator?
+  def destroy_permitted?
+    acting_user.administrator?
   end
 
-  def viewable_by?(user, field)
+  def view_permitted?(attribute)
     true
   end
 
