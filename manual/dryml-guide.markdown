@@ -556,9 +556,9 @@ is a test to see if there are any comments -- empty collections are considered b
 Can we skip `<unless>`? It's like `<if>` with the nest negated. You get the picture, right?
 
 
-## Repetition, repetition, repetition, repetition, repetition
+## Repetition
 
-Some things need to be repeated. Some things, like the word 'repetition' in a sub-title, don't. And then they are. Life can be like that. It doesn't matter. For repetition DRYML gives us the `<repeat>` tag (from the core tag library) and the `repeat` attribute.
+For repeating sections of content DRYML has the `<repeat>` tag (from the core tag library) and the `repeat` attribute.
     
 The tag version:
     
@@ -647,6 +647,11 @@ is equivalent to
 
     
 It is a bit inconsistent that these shortcuts do not work with the tag versions of `<if>`, `<unless>` and `<repeat>`. This may be remedied in a future version of DRYML.
+  
+## Content tags only
+
+The attributes introduced in this section -- `repeat`, `if` and `unless` can only be used on content tags, i.e. static HTML tags and defined tags. They cannot be used on tags like `<def>`, `<extend>` and `<include>`.
+
     
 
 # Pseudo-parameters - `before`, `after`, `append`, `prepend`, and `replace`

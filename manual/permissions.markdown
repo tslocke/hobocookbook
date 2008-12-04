@@ -157,7 +157,7 @@ Note that you can include the names of `belongs_to` associations in your attribu
 
 Let's go through a few examples.
 
-You cannot create records faking the `owner` to be someone else, and `state` must be 'new':
+Here's a definition that says you cannot create records faking the `owner` to be someone else, and `state` must be 'new':
 
     def create_permitted?
       return false unless owner_is? acting_user
