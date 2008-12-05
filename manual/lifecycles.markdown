@@ -406,6 +406,8 @@ Short version: validations have been extended so you can give the name of a life
     validates_presence_of :notes, :on => :submit
 {.ruby}
 
+Also now supports `record.lifecycle.valid_for_foo?` where `foo` is a lifecycle transition.
+
 
 # Controller actions and routes
 
@@ -463,7 +465,7 @@ Again you can implement this action yourself:
 
 You can give a block to customise the response, or pass the redirect option:
 
- -  `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.
+ - `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.
     
 
 ## Transitions
@@ -487,7 +489,7 @@ You can implement this action yourself using the `transition_page_action` method
 
 As usual, you can customise the response by passing a block. And you can pass the following option:
 
- - `key` -- the key to set as the provided key, for transitions that are `:available_to => :key_holder`. Defaults to `params[:key]`
+ - `:key` -- the key to set as the provided key, for transitions that are `:available_to => :key_holder`. Defaults to `params[:key]`
  
 ### The 'do transition' action
 
@@ -504,8 +506,8 @@ You can implement this action yourself using the `do_transition_action` method:
 
 As usual, you can customise the response by passing a block. And you can pass the following options:
 
- -  `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.
- - `key` -- the key to set as the provided key, for transitions that are `:available_to => :key_holder`. Defaults to `params[:key]`
+ - `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.
+ - `:key` -- the key to set as the provided key, for transitions that are `:available_to => :key_holder`. Defaults to `params[:key]`
 
 
 # Keys and secure links 
@@ -568,6 +570,22 @@ Stringing this all together, we would typically implement the secure-link patter
   (it's up to you to set @host, but you could use `Hobo::Controller.request_host`)
  
 That should be it.
+
+
+## Testing active step.
+
+In some rare cases your code might need to know if a lifecycle step is currently in progress or not (e.g. in a callback or a validation). For this you can access either:
+
+    record.lifecycle.submit_in_progress.active_step.name
+{.ruby}
+
+Or, if you are interested in a particular step, it's easier to call:
+
+    record.lifecycle.submit_in_progress?
+{.ruby}
+
+Where `submit` can be any lifecycle step.
+
 
 
 # Lifecycles in Rapid: pages, forms and buttons
