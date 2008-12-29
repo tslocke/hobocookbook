@@ -284,7 +284,7 @@ The permissions system is not just for providing operations to some users but no
 
 Refresh the browser and you'll see that menu removed from the form automatically. 
 
-The `updatable_by?` method can take advantage of the "dirty tracking" features in ActiveRecord. If you're savvy with ActiveRecord you might notice something unusual there - those `*_changed?` methods are only available on primitive fields. Hobo's model extensions give you methods like that for `belongs_to` associations too.
+The `update_permitted?` method can take advantage of the "dirty tracking" features in ActiveRecord. If you're savvy with ActiveRecord you might notice something unusual there - those `*_changed?` methods are only available on primitive fields. Hobo's model extensions give you methods like that for `belongs_to` associations too.
 
 Now make a similar change to prevent tasks being moved from one story to another.
 
