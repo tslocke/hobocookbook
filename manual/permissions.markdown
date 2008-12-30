@@ -363,7 +363,13 @@ The instance (record) methods are:
    A regular `update_attributes` plus the permission check. If `new_record?` is true, checks for create permission, otherwise for update
    permission.
    
- - `record.user_view` - performa view permission check and raises `PermissionDeniedError` if it fails
+ - `record.user_view`
+  
+   Performs a view permission check and raises `PermissionDeniedError` if it fails
+ 
+ - `record.user_destroy` 
+ 
+   A regular `destroy` with a permission check first.
 
  
 ## Direct permission tests
