@@ -407,7 +407,7 @@ In addition to the methods described in this section, the permission system exte
 
 In order for a web method to be available to a particular user, a permission method must be defined (one permission method per web method). For example, if the web method is `send_reminder_email`, you would define the permission to call that in:
 
-    def send_reminder_email_call_permitted?
+    def send_reminder_email_permitted?
       ...
     end
 {.ruby}
