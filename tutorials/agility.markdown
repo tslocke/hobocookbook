@@ -622,22 +622,22 @@ We also need the other end of this association, in the User model:
 	has_many :projects, :class_name => "Project", :foreign_key => "owner_id"
 {: .ruby}
 	
-How should this effect the permissions? Certain operations on the project should probably be restricted to its owner:
+How should this effect the permissions? Certain operations on the project should probably be restricted to its owner. We'll use the `owner_id?` helper (that Hobo provides for every `belongs_to` relationship) as can save an extra DB hit:
 
 	def create_permitted?
-	  owner == acting_user
+	  owner_is? acting_user
 	end
 
   def update_permitted?
-	  acting_user.administrator? || (acting_user == owner && !owner_changed?)
+	  acting_user.administrator? || (owner_is?(acting_user) && !owner_changed?)
 	end
 
 	def destroy_permitted?
-	  acting_user.administrator? || acting_user == owner
+	  acting_user.administrator? || owner_is?(acting_user)
 	end
 {: .ruby}
 	
-One thing worth noting in the `creatable_by?` method. We assert that `owner == user`. This is very often found in conjunction with `:creator => true`. Together, these mean that the current user can create their own projects only, and the "Owner" form field will be automatically removed from the new project form.
+One thing worth noting in the `creatable_by?` method. We assert that `owner_is? user`. This is very often found in conjunction with `:creator => true`. Together, these mean that the current user can create their own projects only, and the "Owner" form field will be automatically removed from the new project form.
 
 Run the migration generator to see the effect on the app:
 
@@ -676,35 +676,39 @@ Next, add the associations to the model:
 	belongs_to :project
 	belongs_to :user
 {: .ruby}
+
+Run the migration generator to have the required foreign keys added to the database:
+
+    $ ./script/generate hobo_migration
 	
 Then permissions -- only the project owner (and admins) can manipulate these:
 
-	def create_permitted?
-	  acting_user.administrator? || acting_user == project.owner
-	end
+  	def create_permitted?
+  	  acting_user.administrator? || acting_user == project.owner
+  	end
 
-	def update_permitted?
-	  acting_user.administrator? || acting_user == project.owner
-	end
+  	def update_permitted?
+  	  acting_user.administrator? || acting_user == project.owner
+  	end
 
-	def destroy_permitted?
-	  acting_user.administrator? || acting_user == project.owner
-	end
+  	def destroy_permitted?
+  	  acting_user.administrator? || acting_user == project.owner
+  	end
 
-	def view_permitted?(attribute)
-	  true
-	end
+  	def view_permitted?(attribute)
+  	  true
+  	end
 {: .ruby}
 	
 Let's do the other ends of those two belongs-to associations. In the Project model:
 	
-	has_many :memberships, :class_name => "ProjectMembership", :dependent => :destroy
-	has_many :members, :through => :memberships, :source => :user
+  	has_many :memberships, :class_name => "ProjectMembership", :dependent => :destroy
+  	has_many :members, :through => :memberships, :source => :user
 {: .ruby}
 	
 And in the User model (remember that User already has an association called `projects` so we need a new name):
 
-	has_many :project_memberships, :dependent => :destroy
+  	has_many :project_memberships, :dependent => :destroy
   	has_many :joined_projects, :through => :project_memberships, :source => :project
 {: .ruby}
   
@@ -714,23 +718,23 @@ We can now define view permission on projects, stories and tasks according to pr
 
 In Project:
 
-	def view_permitted?(attribute)
-    acting_user.administrator? || acting_user == owner || acting_user.in?(members)
-	end
+  	def view_permitted?(attribute)
+      acting_user.administrator? || acting_user == owner || acting_user.in?(members)
+  	end
 {: .ruby}
   
 In Story:
 
-	def view_permitted?(attribute)
-	  project.viewable_by?(acting_user)
-	end
+  	def view_permitted?(attribute)
+  	  project.viewable_by?(acting_user)
+  	end
 {: .ruby}
 
 In Task:
 
-	def view_permitted?(attribute)
-	  story.viewable_by?(acting_user)
-	end
+  	def view_permitted?(attribute)
+  	  story.viewable_by?(acting_user)
+  	end
 {: .ruby}
 	
 Finally, now that not all projects are viewable by all users, the projects index page won't work too well. In addition, the top-level New Project page at `/projects/new` isn't suited to our purposes any more. It will fit better with Hobo's RESTful architecture to create projects for specific users, e.g. at `/users/12/projects/new`
@@ -746,73 +750,20 @@ Note that there won't be a link to that new-project page by default -- we'll add
 
 	
 ## The view layer
-	
-We need a UI to manage these memberships. We're going to do it all ajax-style on the project show page. First up, we'll add a side-bar to the projects/show page that lists the members of the projects. The Rapid library and the Clean theme work together to make these kinds of layout easy. The `<section-group>` tag is used whenever we want to lay out a group of `<section>` tags or `<aside>` tags. Here's the markup for a page with a simple aside layout:
 
-    <page>
-      <content:>
-        <section-group>
-          <section with-flash-messages>
-            Main content
-          </section>
-          <aside>
-            Aside content
-          </aside>
-        </section-group>
-      </content:>
-    </page>
-{: .dryml}
+We would like the list of project memberships to appear in a side-bar on the project show page, so the page will now display two collections: stories and memberships. We can tell rapid that these are the two collections we are interested in using Hobo's *view hints* mechanism. Edit the file `app/viewhints/project_hints.rb` to look like this:
 
-Start by adding that markup to your project show page. Note the use of the `with-flash-messasges` attribute to move the flash messages into the main section:
+    class ProjectHints < Hobo::ViewHints
 
-    <show-page>
-      <content:>
-        <section-group>
-          <section with-flash-messages>
-            Main content
-          </section>
-          <aside>
-            Aside content
-          </aside>
-        </section-group>
-      </content:>
-      
-      <collection: replace>
-        ...
-      </collection>
-    </show-page>
-{: .dryml}
+      children :stories, :memberships
 
-You will now have a page with a sidebar, but of course you've also lost all the content that was on that page, because we've entirely overwritten the body of the `<content:>` parameter. DRYML provides the ability to recall the original parameter content with `<param-content for="content"/>`. Edit the page to look like this:
+    end
+{.ruby}
 
-    <show-page>
-      <content:>
-        <section-group>
-          <section with-flash-messages>
-            <param-content for="content"/>
-          </section>
-          <aside>
-            Aside content
-          </aside>
-        </section-group>
-      </content:>
-      
-      <collection: replace>
-        ...
-      </collection>
-    </show-page>
-{: .dryml}
+It is very common for websites to present information in a hierarchy, and this `children` declaration tells Hobo about the hierarchy of your data. The order is significant: in this example `stories` is the 'main' child relationship, and `memberships` is secondary. The Rapid page generators use this information and place the `stories` collection in the main area of the page, and an aside section will be added for the `memberships`.
 
+Refresh any project page and you should see the collection, which will be empty of course, in a side-bar.
 
-You should now have the original page back with the sidebar added. We'll display the members of the project in the side-bar using the `<collection>` tag which we've seen before:
-
-	...
-	<aside>
-    <h3>Project Members</h3>
-	  <collection:members/>
-	</aside:>
-	...
-{: .dryml}
 	
 ## A form with auto-completion
 	
@@ -822,7 +773,7 @@ First we need the controller side of the auto-complete. We're going to add an au
 
 	autocomplete :new_member_name do
 	  project = find_instance
-	  hobo_completions :username, User.without_joined_project(project).is_not(project.owner)
+	  hobo_completions :name, User.without_joined_project(project).is_not(project.owner)
 	end
 {: .ruby}
 
