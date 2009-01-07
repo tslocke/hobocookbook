@@ -5,7 +5,8 @@ class ManualController < ApplicationController
   TITLES = ActiveSupport::OrderedHash.new [['to-do',       "To Do List"],
                                            ['dryml-guide', "The DRYML Guide"],
                                            ['permissions', "The Permission System"],
-                                           ['lifecycles',  'Lifecycles']]
+                                           ['lifecycles',  'Lifecycles'],
+                                           ['viewhints',   'View Hints']]
   
   def manual_section
     section      = params[:section].gsub('[^a-z_]', '')
