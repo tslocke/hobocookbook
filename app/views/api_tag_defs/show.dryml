@@ -36,7 +36,7 @@
 <show-page title="#{h this.short_def_line}" without-content-header>
 
   <aside-content:>
-    <api-navigation current="&this"/>
+    <% cache do %><api-navigation current="&this"/><% end %>
   </aside-content:>
   
   <content-body:>
