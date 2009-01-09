@@ -10,8 +10,6 @@ Note that this is just a set of reminders - it doesn't reflect the structure tha
 
  - Miscellaneous model extensions
      
- - Controllers and routing
- 
  - The Rapid tag library
  
  - Rich types
