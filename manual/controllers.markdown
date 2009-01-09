@@ -402,16 +402,144 @@ The `hobo_create`, `hobo_update` and `hobo_destroy` actions all perform a redire
  
 # Web Methods
 
-TO DO
+Web methods provide a simple mechanism for adding a side-effecting action to your controller, routed as an HTTP POST. In keeping with good Rails and Hobo style, a web method is a thin wrapper on top of a method on your model. In other words, a web-method is a way to publish an instance method from your model, via the web.
+
+## When to use web-methods
+
+When Rails made the shift to the RESTful style, DHH made the comment that REST was an aspiration rather than a law - sometimes we'll have to fall back on plain old "remote procedure calls". In other words, sometimes you need to provide a service that can't be expressed as a create, update or delete of a resource.
+
+Hobo provides two mechanism for supporting these situations. The first is [lifecycles](lifecycles). Whenever you need some operation that falls outside of the REST paradigm, the first thing you should ask yourself is: do I need to define a lifecycle here? Like REST, lifecycles provide a high-level structure, that, if it fits what you are trying to do, will make your app easier to understand and to change in the future. If the neither REST nor lifecycles are a good fit for what you are trying to do, web-methods provide a low-level way to add a service to your application.
+
+A note from Tom: Web methods pre-dated Lifecycles, and since the addition of lifecycles I have never used a web-method in any of my applications. Indeed, I can't even think of a good example for the manual -- the 'empty shopping cart' example here would be better done as a lifecycle. It's possible that good examples of the need for web-methods will be found, but it's also possible that we'll remove web-methods from Hobo altogether.
+
+## Usage
+
+To add a web method to your controller, use the `web_method` declaration. The simplest usage is:
+
+    class CartController < ApplicationController
+      ...
+      web_method :empty
+      ...
+    end
+{.ruby}
+
+This declaration does the following:
+
+ - Adds an `empty` action with the route `/carts/:id/empty` for HTTP POST requests
+ - Implements the action to: find the record using the passed ID,
+ - Check if the current user has permission by calling `@cart.method_callable_by?(:empty, current_user)` (see [Permissions](permissions))
+ - Call `@cart.empty`
+ 
+As long as `Cart#empty` and `Cart#empty_permitted?` are defined on your model, that's all there is to it. You can go ahead and add a form to your view (in this case, just a simple button) to invoke the web method. (TO DO: Link to the relevant part of the Rapid chapter)
+
+The default response, if the request was an ajax request, is to perform an ajax part update. For a non-ajax request, the default is to render a template with the same name as the web-method (in other words, the regular Rails default).
+
+
+### Publishing a different name
+
+If you want to make the web-visible name of the method different to the actual method name on the object, you can do so with the `:method` option:
+
+    web_method :empty, :method => :remove_all
+    
+This will create a web-method called `empty` that calls the `remove_all` method on your model.
+
+
+### Passing parameters or customising the response.
+
+The previous example used a web-method with no parameters, and did nothing special with the response. If you need to do either of these, you can do so by giving a block to `web_method`. When you provide a block, you are expected to call the method yourself. Hobo will find the record, check the current user has permission and leave the rest to you. For example:
+
+    web_method :increase_prices do
+      @category.increase_prices params[:by]
+      redirect_to this
+    end
+{.ruby}
+
+The block you provide should always call the method on your model. If it doesn't, nothing will go wrong, but this is a misuse of the web-method feature.
+
+
+### Full customisation
+
+To have complete control over the action, simply redefine the method yourself. In this case, Hobo is doing nothing except providing the route:
+
+    web_method :increase_prices
+    def increase_prices
+      ...
+    end
+{.ruby}
 
 
 # Autocompleters
 
-TO DO
+Hobo makes it easy to build auto-completing text fields in your user interface: the Rapid tag library provides support for the view-layer, and the model-controller provides an easy way to add the action that looks up the completions.
+
+The simplest form is just a single declaration:
+
+    class UsersController < ApplicationController
+      ...
+      autocomplete
+      ...
+    end
+{.ruby}
+
+Because Hobo allows you to specify which field of a model is the name (using `:name => true` in the model's field declaration block), you don't need to tell autocomplete which field to complete on. To specify a different field:
+
+    autocomplete :email_address
+{.ruby}    
+
+The `autocomplete` declaration will create an action named according to the field, e.g. `complete_email_address` routed as, in this case, `/users/complete_email_address` for GET requests.
+    
+
+## Options
+
+The autocomplete behaviour can be customised with the following options:
+
+ - `:field` -- specify a field to complete on. Defaults to the name (first argument) of the autocompleter.
+ - `:limit` -- maximum number of completions. Defaults to 10.
+ - `:param` -- name of the parameter in which to expect the users typing. Defaults to `:query`
+ - `:query_scope` -- a named scope used to do the database query. Change this to control things such as handling of multiple words, case sensitivity, etc. Defaults to `email_address_contains` (assuming the field is `email_address`). Note that this is one of Hobo's automatic scopes.
+
+
+## Further customisation
+
+The autocomplete action follows the same pattern for customisation as the regular actions. That is, the implementation given to you is a simple call to the underlying method that does the actual work, and you can call this underlying method directly. To illustrate, say, on a `UsersController` you declare `autocomplete :email_address`, the generated method looks like:
+
+    def complete_email_address
+      hobo_completions :email_address, User
+    end
+{.ruby}
+
+To gain extra control, you can call `hobo_completions` yourself by passing a block to `autocomplete`:
+
+    autocomplete :email_address do
+      hobo_completions ...
+    end
+{.ruby}
+
+The parameters to `hobo_completions` are:
+
+ - Name of the attribute
+ - A finder, i.e. a model class, association, or a scope.
+ - Options (the same as described above)
+
 
 # Drag and Drop Reordering
 
-TO DO
+The controller has the server-side support for drag-and-drop reordering of models that declare `acts_as_list`. If your model declares `acts_as_list` Hobo will add a `reorder` action routed as, e.g. for `TasksController`, `/tasks/reorder`.
+
+    def reorder
+      hobo_reorder
+    end
+{.ruby}
+
+This action expects an array of IDs in `params[:task_ordering]`, and will reorder the records in the order that the IDs are given.
+
+The action can be removed in the normal way, for example:
+
+    auto_actions :all, :except => :reorder
+{.ruby}
+
+The action will raise a `PermissionDeniedError` if the current user does not have permission to change the ordering.
+
 
 
 # Permission and Not Found errors
