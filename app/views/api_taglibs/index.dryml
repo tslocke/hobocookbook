@@ -11,7 +11,7 @@
     <section class="content-body">
       <collection with="&ApiTaglib.all">
         <h3><a><%= this.name.titleize %></a></h3>
-        <view:description/>
+        <view:short-description/>
         <tags-summary/>
       </collection>
     </section>    

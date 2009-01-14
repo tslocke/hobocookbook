@@ -16,6 +16,7 @@ class ApiTaglib < ActiveRecord::Base
 
   fields do
     name        :string
+    short_description :html
     description :html
     timestamps
   end

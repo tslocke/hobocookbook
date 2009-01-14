@@ -5,7 +5,7 @@ module ApiDocLoader
   class Taglib < Hobo::Dryml::DrymlDoc::Taglib
     
     def load_into_database
-      taglib = ApiTaglib.create :name => name, :description => comment_html
+      taglib = ApiTaglib.create :name => name, :short_description => comment_intro_html, :description => comment_rest_html
       tag_defs.*.load_into_database(taglib)
     end
     
