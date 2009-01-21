@@ -430,7 +430,7 @@ We could also add a column showing the number of tasks in a story. Change to `fi
 
 To get the search feature working, we need to update the controller side. Add a `show` method to `app/controllers/projects_controller.rb` like this:
 	
-	def	show
+	def show
 	  @project = find_instance
 	  @stories = 
 	    @project.stories.apply_scopes(:search    => [params[:search], :title],
