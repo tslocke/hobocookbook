@@ -8,4 +8,14 @@ class ApplicationController < ActionController::Base
   
   before_filter :login_required, :only => [:new, :edit]
 
+  private
+  
+  def last_update(filename)
+    Dir.chdir(RAILS_ROOT) do
+      date_s = `git log -1 #{filename}`.match(/^Date:\s*(.*)$/)._?[1]
+      date_s ? Date.parse(date_s) : ""
+    end
+  end
+    
+
 end
