@@ -5,7 +5,7 @@ class TutorialsController < ApplicationController
   TITLES = ActiveSupport::OrderedHash.new [['agility',       "Agility - a simple story manager"]]
   
   def show
-    tutorial     = params[:section].gsub(/[^a-z_\-]/, '')
+    tutorial     = params[:tutorial].gsub(/[^a-z_\-]/, '')
     filename     = "tutorials/#{tutorial}.markdown"
     @title       = TITLES[tutorial]
     @content     = HoboFields::MarkdownString.new(File.read("#{RAILS_ROOT}/#{filename}"))
