@@ -172,10 +172,9 @@ This gets routed to `/adverts/table`. As with `show_action`, if you want your ow
 Sometimes the implementations Hobo provide aren't what you want. They might be close, or they might be completely out. Not a problem - you can change things as needed.
 
 
-### A cautionary note concerning controller methods
+## A cautionary note concerning controller methods
 
 Always start by asking: should this go in the model? It's a very, very, very common mistake to put code in the controller that belongs in the model. Want to send an email in the `create` action? Don't! Send it from an `after_create` callback in the model. Want to check something about the current user before allowing a `destroy` to proceed? Use Hobo's [Permission System](permissions). 
-{:.aside}
 
 Typically, valid reasons to add custom controller code are things like:
 
