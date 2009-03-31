@@ -172,9 +172,10 @@ This gets routed to `/adverts/table`. As with `show_action`, if you want your ow
 Sometimes the implementations Hobo provide aren't what you want. They might be close, or they might be completely out. Not a problem - you can change things as needed.
 
 
-## A cautionary note
+### A cautionary note concerning controller methods
 
-Always start by asking: should this go in the model? It's a very, very, very common mistake to put code in the controller that belongs in the model. Want to send an email in the `create` action? Don't! Send it from an `after_create` callback in the model. Want to check something about the current user before allowing a `destroy` to proceed? Use Hobo's permission system. 
+Always start by asking: should this go in the model? It's a very, very, very common mistake to put code in the controller that belongs in the model. Want to send an email in the `create` action? Don't! Send it from an `after_create` callback in the model. Want to check something about the current user before allowing a `destroy` to proceed? Use Hobo's [Permission System](permissions). 
+{:.aside}
 
 Typically, valid reasons to add custom controller code are things like:
 
@@ -355,7 +356,7 @@ The response (assuming you didn't respond in the block) will handle
 
 `hobo_update` has the same behaviour as `hobo_create` except that the record is found rather than created. You can pass the record as the first argument if you want to find it yourself.
 
-The response is also essentially the same as `hobo_create`, with some extra smarts to support the in-place-editor from Sciptaculous.
+The response is also essentially the same as `hobo_create`, with some extra smarts to support the in-place-editor from Script.aculo.us.
 
 
 ## `hobo_destroy`
@@ -411,10 +412,12 @@ Web methods provide a simple mechanism for adding a side-effecting action to you
 
 When Rails made the shift to the RESTful style, DHH made the comment that REST was an aspiration rather than a law - sometimes we'll have to fall back on plain old "remote procedure calls". In other words, sometimes you need to provide a service that can't be expressed as creating, reading, updating, or deleting a resource.
 
-Hobo provides two mechanism for supporting these situations. The first is [Lifecycles](lifecycles). Whenever you need some operation that falls outside of the REST paradigm, the first thing you should ask yourself is: do I need to define a lifecycle here? Like REST, lifecycles provide a high-level structure, that, if it fits what you are trying to do, will make your app easier to understand and to change in the future. If the neither REST nor Lifecycles are a good fit for what you are trying to do, web methods provide a low-level way to add a service to your application.
+Hobo provides two mechanisms for supporting these situations. The first is [Lifecycles](lifecycles). Whenever you need some operation that falls outside of the REST paradigm, the first thing you should ask yourself is: do I need to define a lifecycle here? Like REST, lifecycles provide a high-level structure, that, if it fits what you are trying to do, will make your app easier to understand and to change in the future. If the neither REST nor Lifecycles are a good fit for what you are trying to do, web methods provide a low-level way to add a service to your application.
 
-A note from Tom: Web methods pre-dated Lifecycles, and since the addition of lifecycles I have never used a web method in any of my applications. Indeed, I can't even think of a good example for the manual -- the 'empty shopping cart' example here would be better done as a lifecycle. It's possible that good examples of the need for web methods will be found, but it's also possible that we'll remove web methods from Hobo altogether.
+### A cautionary note from Tom concerning web methods
+Web methods pre-dated Lifecycles, and since the addition of lifecycles I have never used a web method in any of my applications. Indeed, I can't even think of a good example for the manual -- the 'empty shopping cart' example presented below would be better done as a lifecycle. It's possible that good examples of the need for web methods will be found, but it's also possible that we'll remove web methods from Hobo altogether.
 {: .aside}
+
 ## Usage
 
 To add a web method to your controller, use the `web_method` declaration. The simplest usage is:
@@ -545,7 +548,7 @@ The action will raise a `PermissionDeniedError` if the current user does not hav
 
 
 
-# Permission and not found errors
+# Permission and not-found errors
 
 Any permission errors that happen are handled by the `permission_denied` controller method, which renders the DRYML tag `<permission-denied-page>` or just a text message if that doesn't exist.
 
