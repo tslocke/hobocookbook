@@ -13,7 +13,7 @@ Contents
 
 In this tutorial we'll be creating a simple "Agile Development" application -- _Agility_. The application tracks projects which consist of a number of user stories. Stories have a status (e.g. accepted, under development...) as well as a number of associated tasks. Tasks can be assigned to users, and each user can see a heads-up of all the tasks they've been assigned to on their home page.
 
-This is a bit of an in-at-the-deep-end tutorial -- we build the app the way you would assuming you had already got the hang of the way Hobo works. In the later stages new concepts start coming thick and fast. The goal here is to show you what's possible, and give you a flavour of Hobo-style application development, rather than to provide detailed background on how everything workds. Don't worry about it, it's fun! If you'd rather take things a bit slower, you might prefer the [POD tutorial](http://hobocentral.net/pod-tutorial).
+This is a bit of an in-at-the-deep-end tutorial -- we build the app the way you would assuming you had already got the hang of the way Hobo works. In the later stages new concepts start coming thick and fast. The goal here is to show you what's possible, and give you a flavour of Hobo-style application development, rather than to provide detailed background on how everything works. Don't worry about it, it's fun! If you'd rather take things a bit slower, you might prefer the [POD tutorial](http://hobocentral.net/pod-tutorial).
 
 
 # Part 1 -- Getting Started
@@ -39,7 +39,7 @@ Let's get started!
 
 ## Create the app
 
-The `hobo` command is like the Rails command, it will create a new blank Rails app that is set-up for Hobo. It's the equivalent of running the `rails` command, installing a few plugins and running a few generators. 
+The `hobo` command is like the Rails command, it will create a new blank Rails app that is set up for Hobo. It's the equivalent of running the `rails` command, installing a few plugins and running a few generators. 
 
     $ hobo agility
 
@@ -296,14 +296,14 @@ Although we have modelled the assignment of tasks to users, at the moment there 
     has_many :users, :through => :task_assignments, :accessible => true
 {.ruby}
 
-Without that declaration, the permission system was reporting that this association was not editable. Now that the association is "accessible", the permission system will check for create and destroy permission on the join model `TaskAssignments`. As long as the current user has those permissions, the task edit page should now include a nice javascript powered control for assigning users in the edit-task page.
+Without that declaration, the permission system was reporting that this association was not editable. Now that the association is "accessible", the permission system will check for create and destroy permission on the join model `TaskAssignment`. As long as the current user has those permissions, the task edit page should now include a nice javascript powered control for assigning users in the edit-task page.
 
 
 # Part 4 -- Customising views
 
 It's pretty surprising how far you can get without even touching the view layer. That's the way we like to work with Hobo - get the models and controllers right and the view will probably get close to what you want. From there you can override just those parts of the view that you need to.
 
-We do that using the DRYML template language which is part of Hobo. DRYML is tag based -- it allows you to define and use your own tags right alongside the regular HTML tags. Tags are like helpers, but a lot more powerful. DRYML is quite different to other tag-based template languages, thanks to features like the implicit context and nestable parameters. DRYML is also an extension of ERB so you can still use the ERB syntax you're familiar with from Rails. 
+We do that using the DRYML template language which is part of Hobo. DRYML is tag based -- it allows you to define and use your own tags right alongside the regular HTML tags. Tags are like helpers, but a lot more powerful. DRYML is quite unlike other tag-based template languages, thanks to features like the implicit context and nestable parameters. However, DRYML is also an extension of ERB so you can still use the ERB syntax you're familiar with from Rails. 
 
 DRYML is probably the single best part of Hobo. It's very good at high-level re-use because it allows you to make very focussed changes if a given piece of pre-packaged HTML is not *quite* what you want.
 
@@ -459,7 +459,7 @@ We're now going to work through some more easy but very valuable enhancements to
 
 Off we go.
 
-## Story status menu.
+## Story status menu
 
 We're going to do this in two stages - first a fixed menu that would require a source-code change if you ever need to alter the available statuses. We'll then remove that restriction by adding a StoryStatus model. We'll also see the migration generator in action again.
 
@@ -473,7 +473,7 @@ Job done. If you want the gory details, `enum_string` is a *type constructor*. I
 	>> Story.find(:first).status.class
 {: .ruby}
 
-The menu is working in the edit-story page now. It would be nice though if we had a ajaxified editor right on the story page. Edit `app/views/stories/show.dryml` to be:
+Now there is a status selector on the 'story/edit' page. It would be nice though if we had an ajaxified editor right on the story 'show' page. Edit `app/views/stories/show.dryml` to be:
 
 	<show-page>
 	  <field-list: tag="editor"/>
@@ -537,11 +537,16 @@ To make the filter look right, add this to `public/stylesheets/application.css`
     .show-page.project .filter {float: left;}
     .show-page.project .filter form, .show-page.project .filter form div {display: inline;}
 	
-If you try to use the filter, you'll see it adds a `status` parameter in the query string. We need to pick that up and do something useful with it in the controller. We can use the `apply_scopes` method again, which is already being used, so it's just a matter of adding one more keyword argument:
+If you try to use the filter widget, you'll see it adds a `status` parameter in the query string. We need to pick that up and do something useful with it in the Projects controller at `app/controllers/projects_controller.rb`. Happily, we can leverage the `apply_scopes` method we earlier used in the `show` method for searching and sorting to also handle filtering by adding a `:status_is` argument:
+	
+	def show
+	  @project = find_instance
+	  @stories = 
+	    @project.stories.apply_scopes(:search    => [params[:search], :title],
+	                                  :order_by  => parse_sort_param(:title, :status),
+	                                  :status_is => params[:status])
+	end 
 
-Needs support in the controller. Add this option to the `apply_scopes` call in `ProjectsController#show`:
-
-	:status_is => params[:status]
 {: .ruby}
 	
 Status filtering should now be working.
@@ -591,7 +596,7 @@ This is a good demonstration of DRYML's nested parameter feature. The `<edit-pag
 	
 # Markdown / Textile formatting of stories
 
-We'll wrap up this section with a really easy one. Hobo renders model fields based on their type. You can add your own custom types and there's bunch built it, including textile and markdown formatted strings.
+We'll wrap up this section with a really easy one. Hobo renders model fields based on their type. You can add your own custom types and there's a bunch built-in, including textile and markdown formatted strings.
 
 Location the `fields do ... end` section in the Story model, and change
 
@@ -606,9 +611,9 @@ To
 You may need to install the relevant ruby gem: either BlueCloth (markdown) or RedCloth (textile)
 
 
-# Part 6 -- Project Ownership
+# Part 6 -- Project ownership
 
-The next goal for Agility is to move to a full mutli-user application, where users can create their own projects and control who has access to them. Rather than make this change in one go, we'll start with a small change that doesn't do much by itself, but is a step in the right direction: making projects be owned by users.
+The next goal for Agility is to move to a full multi-user application, where users can create their own projects and control who has access to them. Rather than make this change in one go, we'll start with a small change that doesn't do much by itself, but is a step in the right direction: making projects be owned by users.
 
 Add the following to the Project model:
 
@@ -622,28 +627,28 @@ We also need the other end of this association, in the User model:
 	has_many :projects, :class_name => "Project", :foreign_key => "owner_id"
 {: .ruby}
 	
-How should this effect the permissions? Certain operations on the project should probably be restricted to its owner. We'll use the `owner_id?` helper (that Hobo provides for every `belongs_to` relationship) as can save an extra DB hit:
+How should this affect the permissions? Certain operations on the project should probably be restricted to its owner. We'll use the `owner_id?` helper (that Hobo provides for every `belongs_to` relationship) as it can save an extra database hit. So, edit these permission methods in the Project model:
 
-	def create_permitted?
-	  owner_is? acting_user
-	end
+    def create_permitted?
+      owner_is? acting_user
+    end
 
-  def update_permitted?
-	  acting_user.administrator? || (owner_is?(acting_user) && !owner_changed?)
-	end
+    def update_permitted?
+      acting_user.administrator? || (owner_is?(acting_user) && !owner_changed?)
+    end
 
-	def destroy_permitted?
-	  acting_user.administrator? || owner_is?(acting_user)
-	end
+    def destroy_permitted?
+      acting_user.administrator? || owner_is?(acting_user)
+    end
 {: .ruby}
 	
-One thing worth noting in the `creatable_by?` method. We assert that `owner_is? user`. This is very often found in conjunction with `:creator => true`. Together, these mean that the current user can create their own projects only, and the "Owner" form field will be automatically removed from the new project form.
+Note that in the `create_permitted?` method, we assert that `owner_is? acting_user`. This is very often found in conjunction with `:creator => true`. Together, these mean that the current user can create their own projects only, and the "Owner" form field will be automatically removed from the new project form.
 
 Run the migration generator to see the effect on the app:
 
     $ ./script/generate hobo_migration
     
-Finally lets add a handy list of "Your Projects" to the home page. Edit the content-body section of `app/views/front/index.dryml` to be:
+Finally, let's add a handy list of "Your Projects" to the home page. Edit the content-body section of `app/views/front/index.dryml` to be:
 
     <section class="content-body" if="&logged_in?">
       <h3>Your Projects</h3>
@@ -660,7 +665,7 @@ One thing you'll notice is that the project cards have a link to the project own
 
 # Part 7 -- Granting read access to others
 
-Now that we've got users owning their own projects, it seems wrong that any signed up user can view any project. On the other hand it wouldn't make any sense to hide the project from everyone. What we need is a way for the project owner to grant others access.
+Now that we've got users owning their own projects, it seems wrong that any signed-up user can view any project. On the other hand it wouldn't make any sense to hide the project from everyone. What we need is a way for the project owner to grant others access.
 
 We can model this with a ProjectMembership model that represents access for a specific user and project:
 
@@ -681,7 +686,7 @@ Run the migration generator to have the required foreign keys added to the datab
 
     $ ./script/generate hobo_migration
 	
-Then permissions -- only the project owner (and admins) can manipulate these:
+Then permissions -- only the project owner (and admins) can manipulate these project memberships:
 
   	def create_permitted?
   	  acting_user.administrator? || acting_user == project.owner
@@ -712,7 +717,7 @@ And in the User model (remember that User already has an association called `pro
   	has_many :joined_projects, :through => :project_memberships, :source => :project
 {: .ruby}
   
-Note that users now have two collections of projects: `projects` are the projects that users owns, and `joined_projects` are the projects they have joined as a member.
+Note that users now have two collections of projects: `projects` are the projects that users own, and `joined_projects` are the projects they have joined as members.
 
 We can now define view permission on projects, stories and tasks according to project membership.
 
@@ -743,7 +748,7 @@ So we'll modify the actions provided by the projects controller to:
 
     auto_actions :show, :edit, :update, :destroy
     
-    auto_actions_for :owner, [:new, :create]
+    auto_actions_for :owner, [ :new, :create ]
 {: .ruby}
 
 Note that there won't be a link to that new-project page by default -- we'll add one in the next section.
@@ -751,7 +756,7 @@ Note that there won't be a link to that new-project page by default -- we'll add
 	
 ## The view layer
 
-We would like the list of project memberships to appear in a side-bar on the project show page, so the page will now display two collections: stories and memberships. We can tell rapid that these are the two collections we are interested in using Hobo's *view hints* mechanism. Edit the file `app/viewhints/project_hints.rb` to look like this:
+We would like the list of project memberships to appear in a side-bar on the project show page, so the page will now display two collections: stories and memberships. We can tell Rapid that these are the two collections we are interested in using Hobo's [*View Hints*](/manual/viewhints). Edit the file `app/viewhints/project_hints.rb` to look like this:
 
     class ProjectHints < Hobo::ViewHints
 
@@ -760,16 +765,16 @@ We would like the list of project memberships to appear in a side-bar on the pro
     end
 {.ruby}
 
-It is very common for websites to present information in a hierarchy, and this `children` declaration tells Hobo about the hierarchy of your data. The order is significant: in this example `stories` is the 'main' child relationship, and `memberships` is secondary. The Rapid page generators use this information and place the `stories` collection in the main area of the page, and an aside section will be added for the `memberships`.
+It is very common for websites to present information in a hierarchy, and this `children` declaration tells Hobo about the hierarchy of your data. The order is significant; in this example `stories` is the 'main' child relationship, and `memberships` is secondary. The Rapid page generators use this information and place the `stories` collection in the main area of the page, and an aside section will be added for the `memberships`.
 
 Refresh any project page and you should see the collection, which will be empty of course, in a side-bar.
 
 	
 ## A form with auto-completion
 	
-Now we'll create the form to add a new person to the project. We'll set it up so that you can type the user's name, with autocompletion, in order to add someone to the project.
+Now we'll create the form to add a new person to the project. We'll set it up so that you can type the user's name, with auto-completion, in order to add someone to the project.
 
-First we need the controller side of the auto-complete. We're going to add an auto-completer to ProjectsController that will only complete the names of people that are not already members of the project. Hobo's automatic scopes come very handy. Add this declaration to `projects_controller.rb`:
+First we need the controller side of the auto-complete. We're going to add an auto-completer to ProjectsController that will only complete the names of people that are not already members of the project. Hobo's automatic scopes are very handy for this. Add this declaration to `projects_controller.rb`:
 
 	autocomplete :new_member_name do
 	  project = find_instance
@@ -777,9 +782,9 @@ First we need the controller side of the auto-complete. We're going to add an au
 	end
 {: .ruby}
 
-You can read this as: create an auto-complete action called '`new_member_name`' that finds users that are not already members of the project, and not the owner of the project and completes the `:username` field.
+You can read this as: create an auto-complete action called '`new_member_name`' that finds users that are not already members of the project, and not the owner of the project, and completes the `:username` field.
 
-Now for the form in projects/show.dryml. We'll use Hobo's ajax part mechanism to refresh the collection without reloading the page:
+Now for the form in `projects/show.dryml`. We'll use Hobo's ajax `part` mechanism to refresh the collection without reloading the page:
 
     ...
     <aside:>
@@ -806,17 +811,17 @@ Some things to note:
 
 ## Removing members
 
-The sidebar we just implemented has an obvious draw-back -- there's no way to remove members. In typical RESTful style, removing a member is achieved by deleting a membership. What we'd like is a delete button on each card that removes the membership. That means what we really want are *Membership* cards in the sidebar (at the moment they are User cards). Change:
+The sidebar we just implemented has an obvious draw-back -- there's no way to remove members. In typical RESTful style, removing a member is achieved by deleting a membership. What we'd like is a delete button on each card that removes the membership. That means what we really want are *Membership* cards in the sidebar (at the moment they are User cards). So, in `projects/show.dryml`, change:
 
     <collection:members part="members"/>
 {: .dryml}
     
-To:
+to:
 
     <collection:memberships part="members"/>
 {: .dryml}
     
-Problem -- the membership card doesn't display the users name. There are two ways we could fix this. We could either customise the global membership card using `<extend tag="card" for="Membership">` in `application.dryml`, or we could customise *this particular usage* of the membership card. Let's do the latter. Modify the `<collection:memberships>` as follows:
+We have a problem -- the membership card doesn't display the user's name. There are two ways we could fix this. We could either customise the global membership card using `<extend tag="card" for="Membership">` in `application.dryml`, or we could customise *this particular usage* of the membership card. Let's do the latter. Modify the `<collection:memberships>` as follows:
     
     <collection:memberships part="members">
       <card><heading:><a:user/></heading:></card>
@@ -838,28 +843,27 @@ There's just a couple of things to do to round this part of the tutorial off. Fi
     </section>
 {: .dryml}
 
-Notice how we set the context on the entire section to be the current user (`with="&current_user"`). That makes the mark-up inside the section much more compact and easy to read.
+Notice how we set the context on the entire section to be the current user (`with="&current_user"`). That makes the markup inside the section much more compact and easy to read.
 
 
 # Part 8 -- Granting write access to others
 
-It's not enough just to allow others to view your projects, you need to allow some people to make changes to. The goal of this part of the tutorial is to add a checkbox "Contributor" next to each person in the side-bar.
+It's not enough just to allow others to view your projects, you need to allow some people to make changes, too. The goal of this part of the tutorial is to add a "Contributor" checkbox next to each person in the side-bar.
 
-The steps are:
-
- - Add a boolean field "contributor" to the ProjectMembership model
- - Modify the permissions of stories and tasks so that users with this field set to true on their project membership can make changes
- - Use the `<editor>` tag to create an ajax editor for that field in the ProjectMembership card.
+Implementing this is left as an exercise for the reader. The steps are:
+1. Add a boolean `contributor` field to the `ProjectMembership` model.
+2. Modify the permissions of stories and tasks so that users with `contributor=true` on their project membership have update permission for the project.
+3. Use the `<editor>` tag to create an ajax editor for the `contributor` field in the ProjectMembership card.
 	
 That's all the hints we're going to give you for this one -- good luck!
 
-Oh OK one more hint, here's some associations that might be handy in the Project model:
+Ok, one more hint, here's some associations that might be handy in the Project model:
 
 	has_many :contributor_memberships, :class_name => "ProjectMembership", :scope => :contributor
 	has_many :contributors, :through => :contributor_memberships, :source => :user
 {: .ruby}	
 
-And a helper method that might come in handy from your permission methods:
+And a helper method that might come in handy when implementing your permission methods:
 
 	def accepts_changes_from?(user)
 	  user.administrator? || user == owner || user.in?(contributors)
@@ -867,12 +871,11 @@ And a helper method that might come in handy from your permission methods:
 {: .ruby}
 
 
-# Part 9 -- Ideas for extending the app.
-
+# Part 9 -- Ideas for extending the application
 
 ## Milestones
 
-A pretty obvious addition is to have project milestones, and be able to associate stories with milestones.
+A pretty obvious addition is to have project milestones, and to be able to associate stories with milestones.
 
 ## Add comments to stories
 
@@ -880,36 +883,34 @@ It's always useful to be able to have a discussion around things, and a trail of
 
 ## Better users/show page
 
-The current users show page could be improved a lot. For example, it doesn't give any indication of the different projects that stories belong to. What else would be useful on this page?
+The current `users/show` page could be improved a lot. For example, it doesn't give any indication of the different projects that stories belong to. What else would be useful on this page?
 
 
 # Appendix -- Styling the Application
 
 **NOTE: This section is a bit out of date. It will mostly work but there might be some style glitches**
 
-The default Hobo theme “Clean” provides comprehensive but minimal styling for all of Hobo’s generic pages and tags. When styling your app you have a choice between creating your own theme from scratch or tweaking an existing theme to suit your needs. The Clean theme has been designed with this in mind, it can be adapted to look very different with only a small amount of effort. 
+The default Hobo theme “Clean” provides comprehensive but minimal styling for all of Hobo’s generic pages and tags. When styling your app you have a choice between creating your own theme from scratch or tweaking an existing theme to suit your needs. The Clean theme has been designed with this in mind; it can be adapted to look very different with only a small amount of effort. 
 
-In this section we will adapt our existing theme to create a new look for our app. We will make our changes in `public/stylesheets/application.css` which is initially empty. This stylesheet is applied after our theme stylesheet so we can override the theme's styles here instead of editing the theme stylesheet directly. This approach means that we can upgrade the theme in the future with minimal effort, although it also means that our stylesheets will be bigger than they could be, so the approach is better suited to small and medium sized projects. For larger projects it might be better to create a new theme, perhaps based on an existing one, or do away with themes altogether and do all the styling in the application stylesheet.
+In this section we will adapt our existing theme to create a new look for our app. We will make our changes in `public/stylesheets/application.css`, which is initially empty. This stylesheet is applied after our theme stylesheet so we can override the theme's styles here instead of editing the theme stylesheet directly. This approach means that we can upgrade the theme in the future with minimal effort, although it also means that our stylesheets will be bigger than they could be, so the approach is better suited to small and medium sized projects. For larger projects it might be better to create a new theme, perhaps based on an existing one, or do away with themes altogether and do all the styling in the `application.css` stylesheet.
 
-In order to override our existing theme styles we need to know about the styles that are being applied. For this we can look at the existing theme file in `public/hobothemes/clean/stylesheets/clean.css`. Another good source for this information is Firebug in Firefox where we can examine the various page elements to discover what styling is being applied.
+In order to override our existing theme styles we need to know about the styles that are being applied. For this we can look at the existing theme file in `public/hobothemes/clean/stylesheets/clean.css`. Another good source for this information is by using [Firebug](http://www.firebug.com) in Firefox where we can examine the various page elements to discover what styling is being applied.
 
-Hobo's tags add various CSS classes to the output elements to help with styling. These are typically the name of the tag that was used to generate the output and the name of the model or field in context. A few examples of this are:
+Hobo's tags add various CSS classes to the output elements to help with styling. These are typically the name of the tag that was used to generate the output and the name of the model or field corresponding to `this` context. For example:
 
 An index page for "Project" adds the following classes to `<body>`:
 `<body class="index-page project">`
 
 A show page for "Project" adds the following classes to `<body>`:
-`<body class="show-page project">` on /projects/1
+`<body class="show-page project">` on `/projects/1`
 
-The `<view>` tag when applied to a "Project" name will output:
+The `<view>` tag applied to a "Project" name will output:
 `<span class="view project-name">My Project</span>`
 
-The `<card>` tag when applied to a "Project" will output:
+The `<card>` tag applied to a "Project" will output:
 `<div class="card project linkable">`
   
-With these classes it becomes very easy to style specific elements on the page.
-
-For example:
+With these classes it becomes very easy to style specific elements on the page. For example:
 
 `.card.project` - Style all "project" cards
 `.index-page .card.project` - Style "project" cards on index pages
@@ -917,7 +918,7 @@ For example:
 
 We'll now add some styling to `public/stylesheets/application.css` to make our Agility app look a bit different.
 
-The first thing we'll do is switch from a "boxed in" look to an horizontally open style. To do this we'll use a background image to draw a horizontal top banner across the whole page and change the page background colour to white. 
+The first thing we'll do is switch from a "boxed in" look to an horizontally open style. To do this we'll use a background image to draw a horizontal top banner across the whole page and change the page background colour to white: 
 
     html, body {
     	background-image: url(/images/header.png);
@@ -926,13 +927,13 @@ The first thing we'll do is switch from a "boxed in" look to an horizontally ope
     	background-color: white;
     }
 
-Next we'll make the page a bit wider by default, make the header taller.
+Next we'll make the page a bit wider and make the header taller:
 
     body {width: 860px; background: none;}
 
     .page-header {height: 176px; padding: 0; margin-top: 0;}
 
-Next we'll want to position the contents of the page header differently since we've increase it's height. We'll start by increasing the size and padding on the application name.
+Next we'll want to position the contents of the page header differently since we've increased its height. We'll start by increasing the size and padding on the application name:
 
     .page-header h1 {
     	margin: 0; padding: 50px 30px 0;
@@ -940,7 +941,7 @@ Next we'll want to position the contents of the page header differently since we
     	text-transform: lowercase;
     }
 
-Next we'll move the main navigation bar to the top right of the page and change the way it looks.
+Next we'll move the main navigation bar to the top right of the page and change the way it looks:
 
     .page-header .main-nav {
     	position: absolute; top: 0; right: 0;
@@ -955,7 +956,7 @@ Next we'll move the main navigation bar to the top right of the page and change 
     	background-color: #AD163D;
     }
 
-Next we need to reposition the account navigation and search bar. We'll also need to reposition our development-mode user changer.
+Next we need to reposition the account navigation and search bar. We'll also need to reposition our development-mode user changer:
 
     .account-nav {
     	position: absolute; top: 70px; right: 15px;
@@ -968,7 +969,7 @@ Next we need to reposition the account navigation and search bar. We'll also nee
     }
     select.dev-user-changer {top: 100px; left: auto; right: 15px; height: auto;}
 
-Now that we've finished the page header we want to customise the content section of the page.
+Now that we've finished the page header we want to customise the content section of the page:
 
     .page-content {background: none;}
     .content-header, .content-body {margin: 0 25px 15px;}
@@ -991,7 +992,7 @@ Now that we've finished the page header we want to customise the content section
     .card {border: none; background: #f2f2f2;}
     a, a:hover, .card a, .card a:hover {background: none; color: #1D7D39;}
 
-Finally we'll customise the look of the aside section which is used on the project show page.
+Finally we'll customise the look of the aside section which is used on the project show page:
 
     .aside {padding: 20px; margin: 40px 25px 0 0;}
     .aside-content h2, .aside-content h3 {border-bottom: 1px solid #ccc; margin-top: 0;}
