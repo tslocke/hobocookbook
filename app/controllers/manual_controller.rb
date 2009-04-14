@@ -10,7 +10,7 @@ class ManualController < ApplicationController
                                            ['viewhints',    'View Hints']]
   
   def manual_section
-    section      = params[:section].gsub('[^a-z_]', '')
+    section      = params[:section].gsub(/[^a-z_\-]/, '')
     filename     = "manual/#{section}.markdown"
     @title       = TITLES[section]
     @content     = HoboFields::MarkdownString.new(File.read("#{RAILS_ROOT}/#{filename}"))

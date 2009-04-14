@@ -304,7 +304,7 @@ Next we'll define a tag for making a link to the current context. We'll assume t
     <def tag="l"><a href="#{url_for this}" param="default"/></def>
 {.dryml}
 
-Note that by putting that `<a>` tag in our definition, normal HTML `<a>` tags won't work anymore. We'll see how to fix that in a later section. Now let's use these tags in a page template. We'll stick with the comfortingly boring blog post example. In order to set the initial context, our controller action would need to do something like this:
+Now let's use these tags in a page template. We'll stick with the comfortingly boring blog post example. In order to set the initial context, our controller action would need to do something like this:
 
     def show
       @this = @blog_post = BlogPost.find(params[:id])
