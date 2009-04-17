@@ -83,6 +83,7 @@
 
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs>
+    <nav-item href="#{base_url}/gitorials">Gitorials</nav-item>
     <nav-item href="#{base_url}/tutorials">Tutorials</nav-item>
     <nav-item href="#{base_url}/manual"   >Manual</nav-item>
     <nav-item with="&ApiTaglib"           >Taglibs</nav-item>
@@ -253,6 +254,13 @@
   <h2>Tutorials</h2>
   <navigation current="@title">
     <nav-item repeat="&TutorialsController::TITLES" href="#{base_url}/tutorials/#{this_key}"><%= this %></nav-item>
+  </navigation>
+</def>
+
+<def tag="gitorials-navigation">
+  <h2>Gitorials</h2>
+  <navigation current="@title">
+    <nav-item repeat="&GitorialsController::TITLES" href="#{base_url}/gitorials/#{this_key}"><%= this %></nav-item>
   </navigation>
 </def>
 
