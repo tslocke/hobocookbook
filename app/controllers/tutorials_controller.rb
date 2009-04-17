@@ -2,7 +2,13 @@ class TutorialsController < ApplicationController
   
   caches_page :index, :show
   
-  TITLES = ActiveSupport::OrderedHash.new [['agility',       "Agility - a simple story manager"]]
+  TITLES = begin
+             titles = ActiveSupport::OrderedHash.new
+             [['agility',       "Agility - a simple story manager"]].each do |title, desc|
+               titles[title]=desc
+             end
+             titles
+           end
   
   def show
     tutorial     = params[:tutorial].gsub(/[^a-z_\-]/, '')
