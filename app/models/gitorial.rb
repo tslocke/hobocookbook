@@ -1,19 +1,18 @@
 class Gitorial
-  # initialize with `git log -p --reverse`, `.git/refs/tags`
-  def initialize(gitlogp, commit_link_base="http://github.com/bryanlarsen/agility-gitorial/commit/", tags_dir=nil)
+  # initialize with `git log -p --reverse`, `.git/packed-refs`
+  def initialize(gitlogp, commit_link_base="http://github.com/bryanlarsen/agility-gitorial/commit/", tag_refs="")
     @gitlogp=gitlogp
     @commit_link_base=commit_link_base
-    @tags_dir=tags_dir
+    @tag_refs=tag_refs
   end
 
   def tags
     @tags ||= begin
                 tags = Hash.new { |hash, key| hash[key]=key.slice(0,6) }
-                if ! @tags_dir.nil?
-                  Dir[@tags_dir+"/*"].each do |fn|
-                    tags[File.read(fn).strip]=File.basename(fn)
-                  end
-                end
+                @tag_refs.slice(1..-1).each {|ref|
+                  refs = ref.split
+                  tags[refs[0]] = File.basename(refs[1])
+                }
                 tags
               end
   end
