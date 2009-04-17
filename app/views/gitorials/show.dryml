@@ -1,0 +1,15 @@
+<page title="Hobo Gitorials - #{@title}" without-account-nav>
+  <body: class="gitorial"/>
+  
+  <aside-content:>
+    <gitorials-navigation/>
+  </aside-content:>
+  
+  <content:>
+    <section class="content-body">
+      <div class="last-update">Last updated: <view with="&@last_update"/></div>
+      <view with="&@content"/>
+    </section>
+  </content:>
+    
+</page>
