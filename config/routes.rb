@@ -9,6 +9,9 @@ ActionController::Routing::Routes.draw do |map|
   map.tutorials 'tutorials',           :controller => 'tutorials', :action => 'index'
   map.tutorial  'tutorials/:tutorial', :controller => 'tutorials', :action => 'show'
 
+  map.gitorials 'gitorials',           :controller => 'gitorials', :action => 'index'
+  map.gitorial  'gitorials/:gitorial', :controller => 'gitorials', :action => 'show'
+
   Hobo.add_routes(map)
 
 end
