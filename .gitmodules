@@ -1,9 +1,9 @@
-[submodule "vendor/plugins/hobo"]
-	path = vendor/plugins/hobo
-	url = git://github.com/tablatom/hobo.git
 [submodule "vendor/plugins/paperclip_with_hobo"]
 	path = vendor/plugins/paperclip_with_hobo
 	url = git://github.com/tablatom/paperclip_with_hobo.git
 [submodule "vendor/plugins/paperclip"]
 	path = vendor/plugins/paperclip
 	url = git://github.com/thoughtbot/paperclip.git
+[submodule "vendor/plugins/hobo"]
+	path = vendor/plugins/hobo
+	url = git://github.com/bryanlarsen/hobo.git
