@@ -16,6 +16,7 @@
       <javascript name="code_highlighter"/>
       <javascript name="highlighters/ruby"/>
       <javascript name="highlighters/dryml"/>
+      <javascript name="highlighters/diff"/>
     </append-scripts:>
     
     <header: replace>
