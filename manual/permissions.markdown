@@ -183,7 +183,8 @@ A typical destroy permission might be that administrators can delete anything, b
     def destroy_permitted?
       acting_user.administrator? || owner_is?(acting_user)
     end
-    
+{.ruby}
+
 ### View permission and `never_show`
 
 As you may have noticed when we introduced the permissions above, the `view_permitted` method differs from the other three basic permissions in that it takes a single parameter:
