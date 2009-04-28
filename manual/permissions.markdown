@@ -68,7 +68,7 @@ So for example, to specify that you must be logged in to create a record:
 
     def create_permitted?
       acting_user.signed_up?
-   end
+    end
 {.ruby}
 
 It's also common to compare the `acting_user` with associations on your model, for example, say your model has an owner:
@@ -184,6 +184,7 @@ A typical destroy permission might be that administrators can delete anything, b
     def destroy_permitted?
       acting_user.administrator? || owner_is?(acting_user)
     end
+{.ruby}
     
 ### View permission and `never_show`
 
