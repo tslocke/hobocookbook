@@ -17,8 +17,8 @@ In the REST style, which is popular with Rails coders, we view our objects a bit
 
 This works great for many situations, but some objects are *not* best thought of as documents that we create and edit. In particular, applications often contain objects that model some kind of *process*. A good example is *friendship* in a social app. Here's a description of how friendship might work:
 
- * Any user can **request** friendship with another user
- * The other user can **accept** or **reject** (or perhaps **ignore**) the request.
+ * Any user can **invite** friendship with another user
+ * The other user can **accept** or **reject** (or perhaps **ignore**) the invite.
  * The friendship is only **active** once it's been accepted
  * An active friendship can be **cancelled** by either user.
 
@@ -43,38 +43,38 @@ Here's the code for the friendship mode (don't be put off by the `MagicMailer`, 
 
       hobo_model
 
-      # The 'sender' of the request
-      belongs_to :requester, :class_name => "User"
+      # The 'sender' of the invite
+      belongs_to :invitor, :class_name => "User"
 
-      # The 'recipient' of the request
-      belongs_to :requestee, :class_name => "User"
+      # The 'recipient' of the invite
+      belongs_to :invitee, :class_name => "User"
 
       lifecycle do
 
-        state :requested, :active, :ignored
+        state :invited, :active, :ignored
 
-        create :request, :params => [ :requestee ], :become => :requested,
+        create :invite, :params => [ :invitee ], :become => :invited,
                          :available_to => "User",
-                         :user_becomes => :requester do
-          MagicMailer.send requestee, "#{requester.name} wants to be friends with you"
+                         :user_becomes => :invitor do
+          MagicMailer.send invitee, "#{invitor.name} wants to be friends with you"
         end
 
-        transition :accept, { :requested => :active }, :available_to => :requestee do
-          MagicMailer.send requester, "#{requestee.name} is now your friend :-)"
+        transition :accept, { :invited => :active }, :available_to => :invitee do
+          MagicMailer.send invitor, "#{invitee.name} is now your friend :-)"
         end
 
-        transition :reject, { :requested => :destroy }, :available_to => :requestee do
-          MagicMailer.send requester, "#{requestee.name} blew you out :-("
+        transition :reject, { :invited => :destroy }, :available_to => :invitee do
+          MagicMailer.send invitor, "#{invitee.name} blew you out :-("
         end
 
-        transition :ignore, { :requested => :ignored }, :available_to => :requestee
+        transition :ignore, { :invited => :ignored }, :available_to => :invitee
 
-        transition :retract, { :requested => :destroy }, :available_to => :requester do
-          MagicMailer.send requestee, "#{requester.name} reconsidered"
+        transition :retract, { :invited => :destroy }, :available_to => :invitor do
+          MagicMailer.send invitee, "#{invitor.name} reconsidered"
         end
 
-        transition :cancel, { :active => :destroy }, :available_to => [ :requester, :requestee ] do
-          to = acting_user == requester ? requestee : requester
+        transition :cancel, { :active => :destroy }, :available_to => [ :invitor, :invitee ] do
+          to = acting_user == invitor ? invitee : invitor
           MagicMailer.send to, "#{acting_user.name} cancelled your friendship"
         end
 
@@ -95,32 +95,32 @@ The `Friendship` model will also have a field called `state` declared. The migra
 
 The lifecycle has three states:
 
-    state :requested, :active, :ignored
+    state :invited, :active, :ignored
 {.ruby}
 
 There is one 'creator' -- this is a starting point for the lifecycle:
 
-    create :request, :params => [ :requestee ], :become => :requested,
+    create :invite, :params => [ :invitee ], :become => :invited,
                      :available_to => "User",
-                     :user_becomes => :requester do
-       MagicMailer.send requestee, "#{requester.name} wants to be friends with you"
+                     :user_becomes => :invitor do
+       MagicMailer.send invitee, "#{invitor.name} wants to be friends with you"
      end
 {.ruby}
 
 That declaration specifies that:
 
- - The name of the creator is `request`. It will be available as a method `Friendship::Lifecycle.request(user, attributes)`. Calling the method will instantiate the record, setting attributes from the hash that is passed in
+ - The name of the creator is `invite`. It will be available as a method `Friendship::Lifecycle.invite(user, attributes)`. Calling the method will instantiate the record, setting attributes from the hash that is passed in
  
  - The `:params` option specifies which attributes can be set by this create step:
  
-        :params => [ :requestee ]
+        :params => [ :invitee ]
 {.ruby}
  
-   any other key in the `attributes` hash passed to `request` will be ignored.
+   any other key in the `attributes` hash passed to `invite` will be ignored.
  
- - The lifecycle state after this create step will be `requested`:
+ - The lifecycle state after this create step will be `invited`:
 
-        :become => :requested,
+        :become => :invited,
 {.ruby}
         
  - To have access to this create step, the acting user must be an instance of `User` (i.e. not a guest):
@@ -128,15 +128,15 @@ That declaration specifies that:
         :available_to => "User"
 {.ruby}
         
- - After the create step, the `requester` association of the `Friendship` will be set to the acting user:
+ - After the create step, the `invitor` association of the `Friendship` will be set to the acting user:
  
-       :user_becomes => :requester
+       :user_becomes => :invitor
 {.ruby}
        
  - After the create step has completed (and the database updated), the block is executed:
 
         do
-          MagicMailer.send requestee, "#{requester.name} wants to be friends with you"
+          MagicMailer.send invitee, "#{invitor.name} wants to be friends with you"
         end
 {.ruby}
 
@@ -154,17 +154,17 @@ lifecycle class), e.g. `my_fiendship.lifecycle.accept!(user, attributes)`. Calli
  
 Each transition declares:
 
- - which states it goes from and to, e.g. `accept` goes from `requested` to `active`:
+ - which states it goes from and to, e.g. `accept` goes from `invited` to `active`:
 
-        transition :accept, { :requested => :active }
+        transition :accept, { :invited => :active }
 {.ruby}
 
    Some of the transitions are to a pseudo state: `:destroy`. To move to this state is to destroy the record.
     
  - who has access to it. 
  
-        :available_to => :requester
-        :available_to => :requestee
+        :available_to => :invitor
+        :available_to => :invitee
 {.ruby}
  
    In the create step the `:available_to` option was set to a class name, here it is set to a method (a `belongs_to` association) and to be
@@ -244,13 +244,13 @@ You can call `state` many times, or pass several state names to the same call.
 Each state can have an action associated with it:
 
     state :active do
-      MagicMailer.send [requestee, requester], "Congratulations, you are now friends"
+      MagicMailer.send [invitee, invitor], "Congratulations, you are now friends"
     end
 {.ruby}
 
 You can provide the `:default => true` option to have the database default for the state field be this state:
 
-    state :requested, :default => true
+    state :invited, :default => true
 {.ruby}
 
 ## Defining creators
@@ -431,18 +431,18 @@ You can also remove lifecycle actions with:
 
 ## Create steps
 
-For each create step that is publishable, the model controller adds two actions. Going back to the friendship example, two actions will be created for the `request` step. Both of these actions will pass the `current_user` to the lifecycle, so access restrictions (the `:available_to` option) will be enforced, as will any preconditions (`:if` and `:unless`).
+For each create step that is publishable, the model controller adds two actions. Going back to the friendship example, two actions will be created for the `invite` step. Both of these actions will pass the `current_user` to the lifecycle, so access restrictions (the `:available_to` option) will be enforced, as will any preconditions (`:if` and `:unless`).
 
 ### The create page action
 
-`FriendshipsController#request` will be routed as `/friendships/request` for GET requests.
+`FriendshipsController#invite` will be routed as `/friendships/invite` for GET requests.
  
 This action is intended to render a form for the create step. An object that provides metadata about the create step will be available in `@creator` (an instance of `Hobo::Lifecycles::Creator`).
 
 If you want to implement this action yourself, you can do so using the `creator_page_action` method:
 
-    def request
-      creator_page_action :request  
+    def invite
+      creator_page_action :invite  
     end
 {.ruby}
 
@@ -452,14 +452,14 @@ Following the pattern of all the action methods, you can pass a block in which y
   
 ### The 'do create' action
   
-`FriendshipsController#do_request` will be routed as `/friendships/request` for POST requests.
+`FriendshipsController#do_invite` will be routed as `/friendships/invite` for POST requests.
  
 This action is where the form should POST to. It will run the create step, passing in parameters from the form. As with normal form submissions (i.e. create and update actions), the result will be an HTTP redirect, or the form will be re-rendered in the case of validation failures.
 
 Again you can implement this action yourself:
 
-    def do_request
-      do_creator_action :request
+    def do_invite
+      do_creator_action :invite
     end
 {.ruby}
 
@@ -493,7 +493,7 @@ As usual, you can customise the response by passing a block. And you can pass th
  
 ### The 'do transition' action
 
-`FriendshipsController#do_accept` will be routed as `/friendships/:id/request` for POST requests.
+`FriendshipsController#do_accept` will be routed as `/friendships/:id/accept` for POST requests.
 
 This action is where the form should POST to. It will run the transition, passing in parameters from the form. As with normal form submissions (i.e. create and update actions), the result will be an HTTP redirect, or the form will be re-rendered in the case of validation failures.
 
