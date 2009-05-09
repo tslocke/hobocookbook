@@ -522,7 +522,29 @@ Note that:
  - The expression `attributes & attrs_for(:navigation)` returns a hash of only those attributes from the `attributes` hash that *are* declared by `<navigation>` (The `&` operator on `Hash` comes from HoboSupport)
      
  - The `<do>` tag is a "do nothing" tag, defined by the core DRYML taglib, which is always included.
-    
+
+## The class attribute
+
+If you have the following definition:
+
+    <def tag="foo">
+      <div id="foo" class="bar" merge-attrs />
+    </def>
+{.dryml}
+
+and the user invokes it with:
+
+    <foo id="baz" class="bop" />
+{.dryml}
+
+The following content will result:
+
+    <foo id="baz" class="bar bop" />
+
+The `class` attribute receives special behaviour when merging.  All
+other attributes are overridden with the user specified values.  The
+`class` attribute takes on the values from both the tag definition and
+invocation.
 
 # Repeated and optional content
 
@@ -1245,6 +1267,88 @@ Load `app/views/path/to/foo.dryml`
     
 Load `vendor/plugins/path/to/plugin/taglibs/foo.dryml`
 
-When running in development mode, all of these libraries are automatically reloaded on every request.
+When running in development mode, all of these libraries are
+automatically reloaded on every request.
+
+# Divergences from XML and HTML
+
+## Self-closing tags
+
+In DRYML, `<foo:/>` and `<foo:></foo:>` have two slightly different
+meanings.
+
+The second form replaces the parameter's default inner content with the
+specified content: nothing in this case.
+
+The first form uses the parameters default inner content unchanged.
+
+This is very useful if you wish to add an attribute to a parameter but
+leave the inner content unchanged.  In this example:
+
+    <def tag="bar">
+      <div class="container" merge-attrs>
+        <p class="content" param>
+          Hello
+        </p>
+      </div>
+    <def>
+
+    <bar><foo: class="my-foo"/></bar>
+{.dryml}
+
+gives
+
+    <div class="container">
+      <p class="content my-foo">
+        Hello
+      </p>
+    </div>
+{.dryml}
+
+If you used
+
+    <bar><foo: class="my-foo"></foo:></bar>
+{.dryml}
+
+You would get
+
+    <div class="container">
+      <p class="content my-foo"></p>
+    </div>
+{.dryml}
+    
+## Colons in tag names
+
+In XML, colons are valid inside tag and attribute names.   However
+they are reserved for "experiments for namespaces".   So it's possible
+that we may be non-compliant with the not-yet-existent XML 2.0.
+
+## Close tag shortcuts
+
+In DRYML, you're allowed to close tags with everything preceding the
+colon:
+
+    <view:name> Hello </view>
+{.dryml}
+
+XML requires the full tag to be specified:
+
+    <view:name> Hello </view:name>
+{.dryml}
+
+## Null end tags
+
+Self-closing tags are [technically
+illegal](http://www.w3.org/TR/html401/intro/sgmltut.html#h-3.2.1) in
+HTML.  So `<br />` is technically not valid HTML.  However, browsers
+do parse it as you expect.  It is valid XHTML, though.
+
+However, browsers only do this for _empty_ elements.  So tags such as
+`<script>` and `<a>` require a separate closing tag in HTML.  This
+behaviour has surprised many people.   `<script src="foobar.js" />` is
+not recognized in many web browsers for this reason.  You must use
+`<script src="foorbar.js"></script>` in HTML instead.
+
+DRYML follows the XML conventions.  `<a/>` is valid DRYML.
 
 That's all folks!
