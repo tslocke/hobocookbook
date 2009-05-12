@@ -6,18 +6,12 @@ Note that this is just a set of reminders - it doesn't reflect the structure tha
 
  - Multi-model forms
 
- - Automatic named scopes
-
  - Miscellaneous model extensions
      
  - The Rapid tag library
- 
- - Rich types
  
  - Users and authentication
  
  - Subsites
  
- - Migration generator
- 
-Wow - that's a lot to do! Have I forgotten anything? (post on hobousers if I have)
+Have I forgotten anything? (post on [hobousers](http://groups.google.com/group/hobousers/) if I have)

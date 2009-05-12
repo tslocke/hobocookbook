@@ -1,0 +1,1 @@
+../../vendor/plugins/hobo/hobosupport/test/hobosupport/enumerable.rdoctest

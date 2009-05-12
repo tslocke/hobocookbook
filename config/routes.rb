@@ -5,12 +5,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.manual         'manual',          :controller => 'manual', :action => 'index'
   map.manual_section 'manual/:section', :controller => 'manual', :action => 'manual_section'
+  map.manual_section 'manual/:section/:subsection', :controller => 'manual', :action => 'manual_subsection'
 
   map.tutorials 'tutorials',           :controller => 'tutorials', :action => 'index'
   map.tutorial  'tutorials/:tutorial', :controller => 'tutorials', :action => 'show'
-
-  map.gitorials 'gitorials',           :controller => 'gitorials', :action => 'index'
-  map.gitorial  'gitorials/:gitorial', :controller => 'gitorials', :action => 'show'
 
   Hobo.add_routes(map)
 
