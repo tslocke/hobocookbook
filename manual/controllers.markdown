@@ -209,7 +209,7 @@ The simplest way to customise an action is to write it yourself. Say your advert
   
 In other words you don't need to do anything different than you would in a normal Rails action. Hobo will look for either `@advert` (for actions which expect an ID) or `@adverts` (for index actions) as the initial context for a DRYML page.
   
-(Note: In the above example, we've asked for the default `index` action and then overwrote it it. It might have been neater to say "`auto_actions :all, :except => :index`" but it really doesn't matter.)
+(Note: In the above example, we've asked for the default `index` action and then overwrote it. It might have been neater to say "`auto_actions :all, :except => :index`" but it really doesn't matter.)
 
 
 ## Customising Hobo's implementation
