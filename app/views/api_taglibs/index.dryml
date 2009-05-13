@@ -1,7 +1,7 @@
 <index-page>
 
   <aside-content:>
-    <api-navigation with="nothing"/>
+    <api-navigation with="&this[0].library" />
   </aside-content:>
   
   <content:>

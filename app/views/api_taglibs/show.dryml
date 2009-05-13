@@ -1,7 +1,7 @@
 <show-page title="#{this.name.titleize}">
 
   <aside-content:>
-    <api-navigation current="&this"/>
+    <api-navigation current="&this" with="&this.library"/>
   </aside-content:>
   
   <content:>

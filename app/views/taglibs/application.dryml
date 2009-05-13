@@ -229,9 +229,9 @@
 <def tag="tag-def-link"><a class="#{'undocumented' unless this.documented?}"><view:short-def-line/></a></def>
 
 <def tag="api-navigation" attrs="current">
-  <h2><a with="&ApiTaglib">Tag Libraries</a></h2>
+  <h2><a href="#{base_url}/plugins/#{this}"><%= this.titleize %></a></h2>
   <navigation current="&current.name.titleize if current.is_a?(ApiTaglib)">
-    <repeat with="&ApiTaglib.all unless this.try.member_class == ApiTaglib">
+    <repeat with="&ApiTaglib.library_is(this).order_by(:name)">
       <nav-item><%= this.name.titleize %></nav-item>
       <ul if="&current == this || current.try.taglib_is?(this)">
         <li class="#{'current' if this == current}" repeat="tags.no_for_type"><tag-def-link/></li>
@@ -241,28 +241,14 @@
 </def>
 
 
-<def tag="manual-navigation">
-  <h2>Chapters</h2>
-  <navigation current="@title">
-    <nav-item repeat="&ManualController::TITLES" href="#{base_url}/manual/#{this_key}"><%= this %></nav-item>
+<def tag="left-navigation" attrs="current, title, url">
+  <h2><a href="&url"><%= title %></a></h2>
+  <navigation current="&current">
+    <repeat>
+      <nav-item href="#{url}/#{this_key}"><%= this %></nav-item>
+    </repeat>
   </navigation>
 </def>
-
-
-<def tag="tutorials-navigation">
-  <h2>Tutorials</h2>
-  <navigation current="@title">
-    <nav-item repeat="&TutorialsController::TITLES" href="#{base_url}/tutorials/#{this_key}"><%= this %></nav-item>
-  </navigation>
-</def>
-
-<def tag="gitorials-navigation">
-  <h2>Gitorials</h2>
-  <navigation current="@title">
-    <nav-item repeat="&GitorialsController::TITLES" href="#{base_url}/gitorials/#{this_key}"><%= this %></nav-item>
-  </navigation>
-</def>
-
 
 <def tag="user-notes">
   <section param="user-notes">

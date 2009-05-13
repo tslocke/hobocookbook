@@ -2,7 +2,7 @@
   <body: class="manual"/>
   
   <aside-content:>
-    <manual-navigation/>
+    <left-navigation with="&ManualController::TITLES" title="Manual" url="#{base_url}/manual" current="&@title" />
   </aside-content:>
   
   <content:>
