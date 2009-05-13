@@ -19,3 +19,6 @@
 [submodule "taglibs/hobo-jquery"]
 	path = taglibs/hobo-jquery
 	url = git://github.com/bryanlarsen/hobo-jquery.git
+[submodule "public/patches/agility"]
+	path = public/patches/agility
+	url = git://github.com/bryanlarsen/agility-gitorial-patches
