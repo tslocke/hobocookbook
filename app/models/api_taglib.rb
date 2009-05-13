@@ -18,6 +18,7 @@ class ApiTaglib < ActiveRecord::Base
     name        :string
     short_description :html
     description :html
+    library     :string
     timestamps
   end
 

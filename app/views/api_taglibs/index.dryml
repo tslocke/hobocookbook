@@ -9,7 +9,7 @@
       <h2>DRYML Taglibs Reference</h2>
     </section>
     <section class="content-body">
-      <collection with="&ApiTaglib.all">
+      <collection>
         <h3><a><%= this.name.titleize %></a></h3>
         <view:short-description/>
         <tags-summary/>

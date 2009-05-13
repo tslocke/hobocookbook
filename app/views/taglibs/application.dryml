@@ -83,6 +83,7 @@
 
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs>
+    <nav-item href="#{base_url}/plugins"  >Plugins</nav-item>
     <nav-item href="#{base_url}/tutorials">Tutorials</nav-item>
     <nav-item href="#{base_url}/manual"   >Manual</nav-item>
     <nav-item with="&ApiTaglib"           >Taglibs</nav-item>

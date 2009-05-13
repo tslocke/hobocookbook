@@ -10,3 +10,12 @@
 [submodule "gitorials/agility"]
 	path = gitorials/agility
 	url = git://github.com/bryanlarsen/agility-gitorial.git
+[submodule "taglibs/hoboyui"]
+	path = taglibs/hoboyui
+	url = git://github.com/tablatom/hoboyui.git
+[submodule "taglibs/hobo-contrib"]
+	path = taglibs/hobo-contrib
+	url = git://github.com/bryanlarsen/hobo-contrib.git
+[submodule "taglibs/hobo-jquery"]
+	path = taglibs/hobo-jquery
+	url = git://github.com/bryanlarsen/hobo-jquery.git
