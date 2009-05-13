@@ -6,4 +6,4 @@ vendor/plugins/footnotes-edge
 tmtags
 app/views/taglibs/auto
 public/img/*
-gitorials/*.markdown
+gitorials/agility.markdown
