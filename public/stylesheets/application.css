@@ -3,7 +3,7 @@ html, body {
 	color: #444;
 	font: 14px "Helvetica Neue", "Helvetica", Arial, sans-serif; line-height: 21px;
 }
-body, .login-page {
+body, .login-page, .forgot-password-page {
 	width: 100%; margin: 0;
 }
 p {margin: 14px 0;}
