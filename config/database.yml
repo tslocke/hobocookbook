@@ -9,9 +9,6 @@ test:
   timeout: 5000
 
 production:
-#  adapter: mysql
-#  database: hobocookbook_production
-#  encoding: utf8
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql
+  database: hobocookbook_production
   encoding: utf8
