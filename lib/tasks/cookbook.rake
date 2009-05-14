@@ -22,4 +22,9 @@ namespace :cookbook do
       sh "cd #{sub} && git fetch origin && git merge origin/master"
     }
   end
+
+  desc "do all update tasks"
+  task :update => [:environment, :pull_all, :load_api_docs, :rebuild_agility] do
+    true
+  end
 end
