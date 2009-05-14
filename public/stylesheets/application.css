@@ -271,4 +271,25 @@ code span.paramdec {
 	color: #990300; font-weight: bold;
 }
 
+pre.diff code span.file {
+     color: #000080;
+}
+
+pre.diff code span.add {
+     color: #00A000;
+}
+
+pre.diff code span.remove {
+     color: #A00000;
+}
+
+pre.diff code span.line_number {
+     color: #800080;
+}
+
+p.commit {
+    font-style: italic;
+    font-size: 75%;
+}
+
 .command-options td, .command-options th {padding: 3px 20px 3px 0;}

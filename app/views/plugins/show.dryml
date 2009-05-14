@@ -2,13 +2,19 @@
   <body: class="tutorial"/>
   
   <aside-content:>
-    <left-navigation with="&TutorialsController::TITLES" title="Tutorials" url="#{base_url}/tutorials" current="&@title" />
+    <left-navigation with="&PluginsController::TITLES" title="Third Party Plugins" url="#{base_url}/plugins" current="&@title" />
   </aside-content:>
   
   <content:>
     <section class="content-body">
       <div class="last-update">Last updated: <view with="&@last_update"/></div>
       <view with="&@content"/>
+      <h1>API documentation</h1>
+      <ul>
+        <repeat with="&@libs">
+          <li> <a href="#{base_url}/api_taglibs/#{this.name}"> <%= h this.name %> </a> </li>
+        </repeat>
+      </ul>
     </section>
   </content:>
     

@@ -1,6 +1,6 @@
 <page title="Hobo Tutorials" without-account-nav>
   <aside-content:>
-    <tutorials-navigation/>
+    <left-navigation with="&TutorialsController::TITLES" title="Tutorials" url="#{base_url}/tutorials" current="&@title" />
   </aside-content:>
   
   <content:>
