@@ -66,7 +66,7 @@ a.view-source {
 .page-header .navigation.main-nav li.current a {color: white;}
 .page-header .navigation.main-nav a:hover {background: none;}
 select.dev-user-changer {left: auto; right: 0; top: 0;}
-.page-header .account-nav {top: auto; bottom: 0; right: 0; margin-right: 45px; font-size: 12px;}
+.page-header .account-nav {padding-top: 61px; bottom: 0; right: 0; margin-right: 45px; font-size: 12px; clear:right;}
 .page-header .account-nav a, .page-header .account-nav a:hover {color: #888; font-weight: normal;}
 
 
