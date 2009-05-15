@@ -13,6 +13,7 @@ namespace :vlad do
     run "touch #{current_release}/tmp/restart.txt"
   end
 
+  desc 'run hobo:generate_taglibs'
   remote_task :generate_taglibs do
     run "cd #{current_release}; RAILS_ENV=production rake hobo:generate_taglibs"
   end
