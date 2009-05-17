@@ -22,4 +22,16 @@ namespace :vlad do
   remote_task :update_cookbook do
     run "cd #{current_release}; RAILS_ENV=production rake cookbook:load_api_docs"
   end
+
+  desc 'update secret in config/environment.rb'
+  remote_task :update_secret do
+    secret=`dd if=/dev/urandom bs=64 count=1`.unpack("Q8").map {|i| i.to_s(16)}.join("")
+    run "cd #{current_release}/config; sed -i.bak -e's/REPLACE_ME_WITH_A_REAL_SECRET/#{secret}/' environment.rb"
+  end
+
+  remote_task :update, :roles => :app do
+    Rake::Task["vlad:update_secret"].invoke
+    Rake::Task["vlad:update_taglibs"].invoke
+  end
+
 end
