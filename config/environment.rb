@@ -49,7 +49,7 @@ Rails::Initializer.run do |config|
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
     :session_key => '_hobocookbook_session',
-    :secret      => '79320baa02d63b8c7695407b14849db077b3d6157f54c6c754e275de91435b2802c23f5081258c2149839475cebf22c6e9cd253307f091bf4dd945c02c02b5c5'
+    :secret      => 'REPLACE_ME_WITH_A_REAL_SECRET'
   }
 
   # Use the database for sessions instead of the cookie-based default,
