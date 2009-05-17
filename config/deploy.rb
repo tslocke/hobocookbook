@@ -31,7 +31,7 @@ namespace :vlad do
 
   remote_task :update, :roles => :app do
     Rake::Task["vlad:update_secret"].invoke
-    Rake::Task["vlad:update_taglibs"].invoke
+    Rake::Task["vlad:generate_taglibs"].invoke
   end
 
 end
