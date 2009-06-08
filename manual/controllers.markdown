@@ -394,14 +394,45 @@ The `hobo_create`, `hobo_update` and `hobo_destroy` actions all set reasonable f
 
 # Automatic redirection
 
-The `hobo_create`, `hobo_update` and `hobo_destroy` actions all perform a redirect on success. The destination of this redirect is determined by calling the `destination_after_submit` method. Here's how it works:
+The `hobo_create`, `hobo_create_for`, `hobo_update` and `hobo_destroy` actions all perform a redirect on success. 
+
+## Block Response
+
+If you supply a block to the `hobo_*` action, no redirection is done so that it may be performed by the block:
+
+    def update
+      hobo_update do 
+        redirect_to my_special_place if valid?
+      end
+    end
+{.ruby}
+
+## the :redirect parameter
+
+If you supply a block to the `hobo_*` action, you must redirect or render all potential formats.  But what if you want to supply a redirect for HTML requests, but let Hobo handle AJAX requests?  In this case you can supply the `:redirect` option to `hobo_*`:
+
+   def update
+     hobo_update :redirect => my_special_place
+   end
+{.ruby}
+
+`:redirect` is only used for valid HTML requests.
+
+The `:redirect:` option may be one of:
+
+ - Symbol: redirects to that action using the current controller and model.  (Must be a show action).
+ - Hash or String: `redirect_to` is used.
+ - Array: `object_url` is used.
+
+## Automatic redirects
+
+If neither a response block nor `:redirect` are passed to `hobo_*`, the destination of this redirect is determined by calling the `destination_after_submit` method. Here's how it works:
 
  - If the parameter "`after_submit`" is present, go to that URL (See the `<after-submit>` tag in Rapid for an easy way to provide this parameter), or
  - Go to the record's `show` page if there is one, or
  - Go to the show page of the object's `owner` if there is one (For example, this might take you to the blog post after editing a comment), or
  - Go to the index page for this model if there is one, or
- - Give up trying to be clever and go to the home-page (the root URL, or override by implementing `home_page` in ApplicationController)
- 
+ - Give up trying to be clever and go to the home-page (the root URL, or override by implementing `home_page` in ApplicationController) 
  
 # Web methods
 
