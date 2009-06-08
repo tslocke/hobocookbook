@@ -448,7 +448,7 @@ If you want to implement this action yourself, you can do so using the `creator_
 
 Following the pattern of all the action methods, you can pass a block in which you can customise the response by setting a flash message, rendering or redirecting. `do_creator_action` also takes a single option:
 
- - `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.
+ - `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.  Passing a String or a Hash will pass your arguments straight to `redirect_to`.
   
 ### The 'do create' action
   
@@ -465,7 +465,7 @@ Again you can implement this action yourself:
 
 You can give a block to customise the response, or pass the redirect option:
 
- - `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.
+ - `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.  Passing a String or a Hash will pass your arguments straight to `redirect_to`.
     
 
 ## Transitions
