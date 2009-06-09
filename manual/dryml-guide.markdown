@@ -385,16 +385,39 @@ Sometimes you want to drill down through several fields at a time. Both the `fie
     
 ## `this_field` and `this_parent`
 
-When you change the context using `field="my-field"` (or the `<tag:my-field>` shorthand), the previous context is available as `this_parent` (note: probably changing to `this_origin`), and the name of the field is available as `this_field`. If you set the context using `with="..."`, these values are not available. That means the following apparently identical tag calls are not quite the same:
+When you change the context using `field="my-field"` (or the `<tag:my-field>` shorthand), the previous context is available as `this_parent`, and the name of the field is available as `this_field`. If you set the context using `with="..."`, these values are not available. That means the following apparently identical tag calls are not quite the same:
 
     <my-tag with="&@post.title"/>
     
     <my-tag with="&@post" field="title"/>
     
-If the tag requires `this_parent` and `this_field`, and in Rapid, for example, some do, then it must be called using the second style.
+If the tag requires `this_parent` and `this_field`, and in Rapid, for
+example, some do, then it must be called using the second style.
 
-When rendering the Rapid library's `<form>` tag, DRYML keeps track of even more metadata in order to add `name` attributes to form fields automatically. However, the mechanism by which this is achieved has not really settled down, and currently represents a blurring of the boundary between DRYML and Rapid. In the future, DRYML will provide hooks that let libraries like Rapid keep track of this metadata themselves. In the meantime, this aspect of DRYML is not documented in this guide.
-{: .aside}
+## Numeric field indices
+
+If your current context is a collection, you can use the field
+attribute to change the context to a single item.
+
+    <my-tag field="7" />
+
+    <% i=97 %>
+    <my-tag field="&i" />
+
+The `<repeat>` tag sets `this_field` to the current index into the
+collection.
+
+    <repeat:foos>
+      <td><%= this_field %></td>
+      <td><view /></td>
+    </repeat>
+
+## Forms
+
+When rendering the Rapid library's `<form>` tag, DRYML keeps track of
+even more metadata in order to add `name` attributes to form fields
+automatically.  This mechanism does not work if you set the context
+using `with=`.  
 
 # Tag attributes
 
