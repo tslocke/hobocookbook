@@ -253,6 +253,8 @@ You can provide the `:default => true` option to have the database default for t
     state :invited, :default => true
 {.ruby}
 
+This will take effect the next time you generate and apply a hobo_migration.
+
 ## Defining creators
 
 A creator is the starting point for a lifecycle. They provide a way for the record to be created (in addition to the regular `new` and `create` methods). Each creator becomes a method on the lifecycle class. The definition looks like:
