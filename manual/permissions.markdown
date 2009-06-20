@@ -3,8 +3,7 @@ Hobo Permission System
 
 ---
 
-IMPORTANT NOTE: The permission system has been completely re-written for Hobo 0.8.4 and the API is different. This document describes the *new* permission system. At the time of writing, this new permission system is only available from the git repo on github, in the `new_permissions` branch.
-
+IMPORTANT NOTE: The permission system has been completely re-written for Hobo 0.8.4 and the API is different. This document describes the *new* permission system.
 ---
 
 This chapter of the Hobo manual describes the permission system. The permission system is an extension to active record that allows you to define which actions on your models are permitted by which users. Hobo's controllers and DRYML tag libraries use this information to automatically customise their behaviour according to your definitions.
