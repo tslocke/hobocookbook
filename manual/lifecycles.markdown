@@ -219,11 +219,17 @@ Any model that has such a declaration will gain the following features:
         my_friendship.lifecycle.reject!(user)
 {.ruby}
 
-The `lifecyle` declaration can take two options:
+The `lifecyle` declaration can take three options:
 
  - `:state_field` - the name of the database field (a string field) to store the current state in. Default '`state`'
  
- - `:key_timestamp_field` - the name of the database field (a datetime field) to store a timestamp for transitions that require a key (discussed later). Set to `false` if you don't want this field. Default '`key_timestamp`'.
+ - `:key_timestamp_field` - the name of the database field (a datetime
+   field) to store a timestamp for transitions that require a key
+   (discussed later). Set to `false` if you don't want this
+   field. Default '`key_timestamp`'.
+
+ - `:key_timeout` - keys will expire after this amount of time.
+   Default `999.years`.
  
 Note that both of these fields are declared `never_show` and `attr_protected`.
 
