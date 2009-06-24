@@ -5,7 +5,10 @@ class TutorialsController < ApplicationController
   TITLES = begin
              titles = ActiveSupport::OrderedHash.new
              [['two-minutes',    "Thingybob - the two minute Hobo app"],
-              ['agility',       "Agility - a simple story manager"]].each do |title, desc|
+              ['agility',       "Agility - a simple story manager"],
+              ['gitorial',      "Agility sidebar - using git"],
+              ['hobo-as-plugin', "Agility sidebar - using Hobo as a plugin"]
+             ].each do |title, desc|
                titles[title]=desc
              end
              titles

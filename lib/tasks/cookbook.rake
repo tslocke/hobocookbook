@@ -7,13 +7,12 @@ namespace :cookbook do
   desc "Rebuild agility.markdown"
   task :rebuild_agility => :environment do
     #    GitorialsController::TITLES.each do |dir, desc|
-    dir = 'agility'    
-    gitlogp = `cd #{RAILS_ROOT}/gitorials/#{dir}; git pack-refs --all ; git log --unified=5 --reverse gitorial-001^..HEAD`
-    refs = File.read("#{RAILS_ROOT}/gitorials/#{dir}/.git/packed-refs")
-    gitorial = Gitorial.new(gitlogp, "http://github.com/bryanlarsen/agility-gitorial/commit/", "/patches/agility", refs)
-    f=open("#{RAILS_ROOT}/gitorials/#{dir}.markdown", "w")
-    f.write(gitorial.to_s)
-    f.close
+    Gitorial.new("#{RAILS_ROOT}/gitorials/agility", "http://github.com/bryanlarsen/agility-gitorial/commit/", "/patches/agility").process.each do |filename, markdown|
+      next if markdown==""
+      f=open("#{RAILS_ROOT}/gitorials/#{filename}", "w")
+      f.write(markdown)
+      f.close
+    end
   end
 
   desc "git pull all plugins/submodules (except for non-Hobo project)"
