@@ -122,15 +122,15 @@ It's common to want actions beyond the basic REST defaults. In Rails a controlle
 
 Suppose we want a normal view and a "detailed" view of our advert. In REST terms we want a new 'show' action called 'detail'. We can add this like this:
 
-  class AdvertsController < ActiveRecord::Base
+    class AdvertsController < ActiveRecord::Base
   
-    hobo_model_controller
+      hobo_model_controller
   
-    auto_actions :all
+      auto_actions :all
   
-    show_action :detail
+      show_action :detail
   
-  end
+    end
 {.ruby}
   
 This action will be routed to `/adverts/:id/detail`. Hobo will provide a default implementation. You can override this simply by defining the method yourself:
@@ -153,15 +153,15 @@ Or, as a shorthand for the same, give a block to `show_action`:
 
 In the same way, we might want an alternative listing (index) of our adverts. Perhaps one that gives a tabular view of the adverts:
   
-  class AdvertsController < ActiveRecord::Base
+    class AdvertsController < ActiveRecord::Base
+
+      hobo_model_controller
   
-    hobo_model_controller
+      auto_actions :all
   
-    auto_actions :all
+      index_action :table
   
-    index_action :table
-  
-  end
+    end
 {.ruby}
   
 This gets routed to `/adverts/table`. As with `show_action`, if you want your own implementation, you can either define the method as normal, or pass a block to `index_action`.
@@ -194,17 +194,17 @@ A lot has been written about this elsewhere, so there's no need to repeat it all
 
 The simplest way to customise an action is to write it yourself. Say your advert has a boolean field `published` and you only want published adverts to appear on the index page. Using one of Hobo's automatic scopes, you could write:
 
-  class AdvertsController < ActiveRecord::Base
+    class AdvertsController < ActiveRecord::Base
   
-    hobo_model_controller
+      hobo_model_controller
   
-    auto_actions :all
+      auto_actions :all
   
-    def index
-      @adverts = Advert.published.all
+      def index
+        @adverts = Advert.published.all
+      end
+  
     end
-  
-  end
 {.ruby}
   
 In other words you don't need to do anything different than you would in a normal Rails action. Hobo will look for either `@advert` (for actions which expect an ID) or `@adverts` (for index actions) as the initial context for a DRYML page.
@@ -411,9 +411,9 @@ If you supply a block to the `hobo_*` action, no redirection is done so that it 
 
 If you supply a block to the `hobo_*` action, you must redirect or render all potential formats.  But what if you want to supply a redirect for HTML requests, but let Hobo handle AJAX requests?  In this case you can supply the `:redirect` option to `hobo_*`:
 
-   def update
-     hobo_update :redirect => my_special_place
-   end
+    def update
+      hobo_update :redirect => my_special_place
+    end
 {.ruby}
 
 `:redirect` is only used for valid HTML requests.
