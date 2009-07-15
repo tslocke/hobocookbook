@@ -421,7 +421,7 @@ Also now supports `record.lifecycle.valid_for_foo?` where `foo` is a lifecycle t
 
 As well as providing the lifecycle mechanism in the model, Hobo also supports the lifecycle in the controller layer, and provides an automatic user interface in the view layer. All of this can be fully customised of course. In this section we'll look at the controller layer features, including the routes that get generated.
 
-Lifecycle steps that include the `:avaiable_to` option are considered *publishable*. It is these that Hobo generates controller actions for. Any step that does not have the `:available_to` option can be thought of as 'internal'. Of course you can call those create steps and transitions from your own code, but Hobo will never do that for you.
+Lifecycle steps that include the `:available_to` option are considered *publishable*. It is these that Hobo generates controller actions for. Any step that does not have the `:available_to` option can be thought of as 'internal'. Of course you can call those create steps and transitions from your own code, but Hobo will never do that for you.
 
 ## `auto_actions`
 
