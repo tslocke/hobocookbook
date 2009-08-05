@@ -168,7 +168,7 @@ Each transition declares:
 {.ruby}
  
    In the create step the `:available_to` option was set to a class name, here it is set to a method (a `belongs_to` association) and to be
-   allowed, the acting user must be the same user returned by this method. There are a variety ways that `:avilable_to` can be used, which
+   allowed, the acting user must be the same user returned by this method. There are a variety ways that `:available_to` can be used, which
    will be discussed in detail later.
    
  - a callback (the block). This is called after the transition completes. Notice that in the block for the `cancel`
@@ -362,7 +362,7 @@ The rules for the `:available_to` option are as follows. Firstly, it can be one 
  - :self -- (transitions only) the `acting_user` and the record the transition is called on must be one and the same. Only makes sense
      for user models of course.
      
-If `:avilable_to` is not one of those, it is an indication of some code to run (just like the `:if` option for example):
+If `:available_to` is not one of those, it is an indication of some code to run (just like the `:if` option for example):
 
   - A symbol -- the name of a method to call
    
