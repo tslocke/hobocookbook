@@ -14,4 +14,6 @@ Note that this is just a set of reminders - it doesn't reflect the structure tha
  
  - Subsites
  
+ - Hobo's Ajax mechanism
+ 
 Have I forgotten anything? (post on [hobousers](http://groups.google.com/group/hobousers/) if I have)
