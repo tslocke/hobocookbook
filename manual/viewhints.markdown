@@ -106,22 +106,22 @@ Many web applications arrange the information they present in a hierarchy. By de
 
 At present, the `children` declaration only influences Rapid's show-page -- it governs the display of collections of `<card>` tags embedded in the show-page. If you declare a single child collection, e.g.:
   
-  class UserHints < Hobo::ViewHints
+    class UserHints < Hobo::ViewHints
   
-    children :recipes
+      children :recipes
     
-  end
+    end
 {.ruby}
   
 The a collection of the user's recipes will be added to the main content of `users/show`. 
 
 You can declare additional child relationships. The order is significant, with the first in the list being the "primary collection". For example:
 
-  class UserHints < Hobo::ViewHints
+    class UserHints < Hobo::ViewHints
   
-    children :recipes, :questions, :answers
+      children :recipes, :questions, :answers
     
-  end
+    end
 {.ruby}
 
 With this declaration, the user's show-page will be given an aside section (sidebar), in which cards for the `questions` and `answers` collections are displayed.
