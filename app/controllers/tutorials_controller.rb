@@ -2,13 +2,23 @@ class TutorialsController < ApplicationController
   
   caches_page :index, :show
   
-  TITLES = ActiveSupport::OrderedHash.new [['agility',       "Agility - a simple story manager"]]
+  TITLES = begin
+             titles = ActiveSupport::OrderedHash.new
+             [['two-minutes',    "Thingybob - the two minute Hobo app"],
+              ['agility',       "Agility - a simple story manager"],
+              ['gitorial',      "Agility sidebar - using git"],
+              ['hobo-as-plugin', "Agility sidebar - using Hobo as a plugin"]
+             ].each do |title, desc|
+               titles[title]=desc
+             end
+             titles
+           end
   
   def show
     tutorial     = params[:tutorial].gsub(/[^a-z_\-]/, '')
-    filename     = "tutorials/#{tutorial}.markdown"
+    filename     = "#{RAILS_ROOT}/gitorials/#{tutorial}.markdown"
     @title       = TITLES[tutorial]
-    @content     = HoboFields::MarkdownString.new(File.read("#{RAILS_ROOT}/#{filename}"))
+    @content     = HoboFields::MarkdownString.new(File.read(filename))
     @last_update = last_update filename
   end
 

@@ -1,11 +1,12 @@
 module ApiDocLoader
   
   TAGLIB_HOME = "#{RAILS_ROOT}/vendor/plugins/hobo/hobo/taglibs"
+  PLUGINS_HOME = "#{RAILS_ROOT}/taglibs"
   
   class Taglib < Hobo::Dryml::DrymlDoc::Taglib
     
-    def load_into_database
-      taglib = ApiTaglib.create :name => name, :short_description => comment_intro_html, :description => comment_rest_html
+    def load_into_database(library)
+      taglib = ApiTaglib.create :name => name, :short_description => comment_intro_html, :description => comment_rest_html, :library => library
       tag_defs.*.load_into_database(taglib)
     end
     
@@ -40,8 +41,14 @@ module ApiDocLoader
   def self.load
     clear
     taglibs = Hobo::Dryml::DrymlDoc.load_taglibs TAGLIB_HOME, ApiDocLoader::Taglib
-    taglibs.*.load_into_database
-    taglibs
+    taglibs.*.load_into_database("rapid")
+
+    Dir["#{PLUGINS_HOME}/*"].each {|plugin_dir|
+      plugin = File.basename(plugin_dir)
+      Dir["#{plugin_dir}/taglibs/*.dryml"].map {|filename|
+        ApiDocLoader::Taglib.new("#{plugin_dir}/taglibs", filename).load_into_database(plugin)
+      }
+    }
     
     ApiTagDef.destroy_all("tag not in (#{all_tags.*.inspect.join(', ')})")
   end

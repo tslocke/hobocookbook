@@ -8,8 +8,7 @@
     <header class="content-header">
       <h2>Welcome to the Hobo Cookbook!</h2>
       <section class="welcome-message">
-        <p>A place to publish, browse, search and request recipes - short how-to guides for using the Hobo framework for
-        Rails.</p>
+        <p>A place to publish, browse, search and request recipes - short how-to guides for using the Hobo framework for Rails.  If you can't find a recipe here, try searching the <a href="http://groups.google.com/group/hobousers">mailing list</a>.</p>
       </section>
     </header>
 

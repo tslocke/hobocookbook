@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -49,7 +49,7 @@ Rails::Initializer.run do |config|
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
     :session_key => '_hobocookbook_session',
-    :secret      => '79320baa02d63b8c7695407b14849db077b3d6157f54c6c754e275de91435b2802c23f5081258c2149839475cebf22c6e9cd253307f091bf4dd945c02c02b5c5'
+    :secret      => 'REPLACE_ME_WITH_A_REAL_SECRET'
   }
 
   # Use the database for sessions instead of the cookie-based default,

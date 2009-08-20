@@ -3,7 +3,7 @@ html, body {
 	color: #444;
 	font: 14px "Helvetica Neue", "Helvetica", Arial, sans-serif; line-height: 21px;
 }
-body, .login-page {
+body, .login-page, .forgot-password-page {
 	width: 100%; margin: 0;
 }
 p {margin: 14px 0;}
@@ -66,7 +66,7 @@ a.view-source {
 .page-header .navigation.main-nav li.current a {color: white;}
 .page-header .navigation.main-nav a:hover {background: none;}
 select.dev-user-changer {left: auto; right: 0; top: 0;}
-.page-header .account-nav {top: auto; bottom: 0; right: 0; margin-right: 45px; font-size: 12px;}
+.page-header .account-nav {padding-top: 61px; bottom: 0; right: 0; margin-right: 45px; font-size: 12px; clear:right;}
 .page-header .account-nav a, .page-header .account-nav a:hover {color: #888; font-weight: normal;}
 
 
@@ -269,6 +269,27 @@ pre.dryml code span.string {
 }
 code span.paramdec {
 	color: #990300; font-weight: bold;
+}
+
+pre.diff code span.file {
+     color: #000080;
+}
+
+pre.diff code span.add {
+     color: #00A000;
+}
+
+pre.diff code span.remove {
+     color: #A00000;
+}
+
+pre.diff code span.line_number {
+     color: #800080;
+}
+
+p.commit {
+    font-style: italic;
+    font-size: 75%;
 }
 
 .command-options td, .command-options th {padding: 3px 20px 3px 0;}

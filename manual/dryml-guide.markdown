@@ -385,16 +385,39 @@ Sometimes you want to drill down through several fields at a time. Both the `fie
     
 ## `this_field` and `this_parent`
 
-When you change the context using `field="my-field"` (or the `<tag:my-field>` shorthand), the previous context is available as `this_parent` (note: probably changing to `this_origin`), and the name of the field is available as `this_field`. If you set the context using `with="..."`, these values are not available. That means the following apparently identical tag calls are not quite the same:
+When you change the context using `field="my-field"` (or the `<tag:my-field>` shorthand), the previous context is available as `this_parent`, and the name of the field is available as `this_field`. If you set the context using `with="..."`, these values are not available. That means the following apparently identical tag calls are not quite the same:
 
     <my-tag with="&@post.title"/>
     
     <my-tag with="&@post" field="title"/>
     
-If the tag requires `this_parent` and `this_field`, and in Rapid, for example, some do, then it must be called using the second style.
+If the tag requires `this_parent` and `this_field`, and in Rapid, for
+example, some do, then it must be called using the second style.
 
-When rendering the Rapid library's `<form>` tag, DRYML keeps track of even more metadata in order to add `name` attributes to form fields automatically. However, the mechanism by which this is achieved has not really settled down, and currently represents a blurring of the boundary between DRYML and Rapid. In the future, DRYML will provide hooks that let libraries like Rapid keep track of this metadata themselves. In the meantime, this aspect of DRYML is not documented in this guide.
-{: .aside}
+## Numeric field indices
+
+If your current context is a collection, you can use the field
+attribute to change the context to a single item.
+
+    <my-tag field="7" />
+
+    <% i=97 %>
+    <my-tag field="&i" />
+
+The `<repeat>` tag sets `this_field` to the current index into the
+collection.
+
+    <repeat:foos>
+      <td><%= this_field %></td>
+      <td><view /></td>
+    </repeat>
+
+## Forms
+
+When rendering the Rapid library's `<form>` tag, DRYML keeps track of
+even more metadata in order to add `name` attributes to form fields
+automatically.  This mechanism does not work if you set the context
+using `with=`.  
 
 # Tag attributes
 
@@ -522,7 +545,29 @@ Note that:
  - The expression `attributes & attrs_for(:navigation)` returns a hash of only those attributes from the `attributes` hash that *are* declared by `<navigation>` (The `&` operator on `Hash` comes from HoboSupport)
      
  - The `<do>` tag is a "do nothing" tag, defined by the core DRYML taglib, which is always included.
-    
+
+## The class attribute
+
+If you have the following definition:
+
+    <def tag="foo">
+      <div id="foo" class="bar" merge-attrs />
+    </def>
+{.dryml}
+
+and the user invokes it with:
+
+    <foo id="baz" class="bop" />
+{.dryml}
+
+The following content will result:
+
+    <foo id="baz" class="bar bop" />
+
+The `class` attribute receives special behaviour when merging.  All
+other attributes are overridden with the user specified values.  The
+`class` attribute takes on the values from both the tag definition and
+invocation.
 
 # Repeated and optional content
 
@@ -1245,6 +1290,88 @@ Load `app/views/path/to/foo.dryml`
     
 Load `vendor/plugins/path/to/plugin/taglibs/foo.dryml`
 
-When running in development mode, all of these libraries are automatically reloaded on every request.
+When running in development mode, all of these libraries are
+automatically reloaded on every request.
+
+# Divergences from XML and HTML
+
+## Self-closing tags
+
+In DRYML, `<foo:/>` and `<foo:></foo:>` have two slightly different
+meanings.
+
+The second form replaces the parameter's default inner content with the
+specified content: nothing in this case.
+
+The first form uses the parameters default inner content unchanged.
+
+This is very useful if you wish to add an attribute to a parameter but
+leave the inner content unchanged.  In this example:
+
+    <def tag="bar">
+      <div class="container" merge-attrs>
+        <p class="content" param>
+          Hello
+        </p>
+      </div>
+    <def>
+
+    <bar><foo: class="my-foo"/></bar>
+{.dryml}
+
+gives
+
+    <div class="container">
+      <p class="content my-foo">
+        Hello
+      </p>
+    </div>
+{.dryml}
+
+If you used
+
+    <bar><foo: class="my-foo"></foo:></bar>
+{.dryml}
+
+You would get
+
+    <div class="container">
+      <p class="content my-foo"></p>
+    </div>
+{.dryml}
+    
+## Colons in tag names
+
+In XML, colons are valid inside tag and attribute names.   However
+they are reserved for "experiments for namespaces".   So it's possible
+that we may be non-compliant with the not-yet-existent XML 2.0.
+
+## Close tag shortcuts
+
+In DRYML, you're allowed to close tags with everything preceding the
+colon:
+
+    <view:name> Hello </view>
+{.dryml}
+
+XML requires the full tag to be specified:
+
+    <view:name> Hello </view:name>
+{.dryml}
+
+## Null end tags
+
+Self-closing tags are [technically
+illegal](http://www.w3.org/TR/html401/intro/sgmltut.html#h-3.2.1) in
+HTML.  So `<br />` is technically not valid HTML.  However, browsers
+do parse it as you expect.  It is valid XHTML, though.
+
+However, browsers only do this for _empty_ elements.  So tags such as
+`<script>` and `<a>` require a separate closing tag in HTML.  This
+behaviour has surprised many people.   `<script src="foobar.js" />` is
+not recognized in many web browsers for this reason.  You must use
+`<script src="foorbar.js"></script>` in HTML instead.
+
+DRYML follows the XML conventions.  `<a/>` is valid DRYML.
 
 That's all folks!
