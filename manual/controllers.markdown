@@ -411,9 +411,9 @@ If you supply a block to the `hobo_*` action, no redirection is done so that it 
 
 If you supply a block to the `hobo_*` action, you must redirect or render all potential formats.  But what if you want to supply a redirect for HTML requests, but let Hobo handle AJAX requests?  In this case you can supply the `:redirect` option to `hobo_*`:
 
-   def update
-     hobo_update :redirect => my_special_place
-   end
+    def update
+      hobo_update :redirect => my_special_place
+    end
 {.ruby}
 
 `:redirect` is only used for valid HTML requests.
@@ -421,7 +421,7 @@ If you supply a block to the `hobo_*` action, you must redirect or render all po
 The `:redirect:` option may be one of:
 
  - Symbol: redirects to that action using the current controller and model.  (Must be a show action).
- - Hash or String: `redirect_to` is used.
+ - Hash or String: [redirect\to from Rails](http://api.rubyonrails.org/classes/ActionController/Base.html) is used.
  - Array: `object_url` is used.
 
 ## Automatic redirects
