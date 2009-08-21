@@ -51,5 +51,5 @@ Now that we've fixed config/environment.rb, we can run `hobo` again, and it will
 The hobo command sets up the Rakefile to use the gem.   Let's fix it so that it works with the plugin by removing the `require 'hobo/tasks/rails'` line.
 
 
-gitorial-008: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/2ce0f1f58c57fa2931ab550a63697c13d85f8c52), [download 08-hobo-as-plugin-sidebar.patch](/patches/agility/08-hobo-as-plugin-sidebar.patch)
+gitorial-008: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/05ebccd19ddbaf3a1cc834a58b8006957c209e27), [download 08-hobo-as-plugin-sidebar.patch](/patches/agility/08-hobo-as-plugin-sidebar.patch)
 {: .commit}
