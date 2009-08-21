@@ -1,7 +1,7 @@
 set :application, "cookbook"
 set :domain, "cookbook-staging.hobocentral.net"
 set :deploy_to, "/home/newcookbook"
-set :repository, "git://github.com/bryanlarsen/hobocookbook"
+set :repository, "git://github.com/tablatom/hobocookbook"
 set :revision, "origin/master"
 
 set :user, "cookbook"
