@@ -29,7 +29,14 @@ namespace :vlad do
     run "cd #{current_release}/config; sed -i.bak -e's/REPLACE_ME_WITH_A_REAL_SECRET/#{secret}/' environment.rb"
   end
 
+  desc 'save version'
+  remote_task :save_version do
+    run "cd #{scm_path}/repo; git rev-parse HEAD > #{current_release}/git-version"
+    run "echo #{scm_path}/repo > #{current_release}/git-path"
+  end
+
   remote_task :update, :roles => :app do
+    Rake::Task["vlad:save_version"].invoke
     Rake::Task["vlad:update_secret"].invoke
     Rake::Task["vlad:generate_taglibs"].invoke
   end
