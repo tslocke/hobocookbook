@@ -1,4 +1,4 @@
-<index-page>
+<index-page without-account-nav>
 
   <aside-content:>
     <api-navigation with="&this[0].library" />

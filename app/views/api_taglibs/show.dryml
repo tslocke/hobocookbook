@@ -1,4 +1,4 @@
-<show-page title="#{this.name.titleize}">
+<show-page title="#{this.name.titleize}" without-account-nav>
 
   <aside-content:>
     <api-navigation current="&this" with="&this.library"/>
