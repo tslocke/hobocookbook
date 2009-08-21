@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     Dir.chdir(File.open("#{RAILS_ROOT}/git-path").read.chomp) do
       head = File.open("#{RAILS_ROOT}/git-version").read.chomp
       commit = `git rev-list #{head} #{filename} | head -n 1`      
-      date_s = `git show --pretty=tformat:%cD #{commit} | head -n 1`
+      date_s = `git show --pretty=format:%cD #{commit} | head -n 1`
       date_s ? Date.parse(date_s) : ""
     end
   end
