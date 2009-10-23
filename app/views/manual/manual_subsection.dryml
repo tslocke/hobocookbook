@@ -1,1 +1,15 @@
-manual_section.dryml
+<page title="Hobo Manual - #{@title}" without-account-nav>
+  <body: class="manual"/>
+  
+  <aside-content:>
+    <left-navigation with="&ManualController::TITLES" title="Manual" url="#{base_url}/manual" current="&@title" subtitles="&@subtitles" current-subtitle="&@current_subtitle"/>
+  </aside-content:>
+  
+  <content:>
+    <section class="content-body">
+      <div class="last-update">Last updated: <view with="&@last_update"/></div>
+      <view with="&@content"/>
+    </section>
+  </content:>
+    
+</page>

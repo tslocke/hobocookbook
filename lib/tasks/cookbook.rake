@@ -15,6 +15,19 @@ namespace :cookbook do
     end
   end
 
+  desc "Rebuild generator documentation"
+  task :rebuild_generator_docs => :environment do
+    ManualController::SUBTITLES['generators'].each do |gen, title|
+      raw = `#{RAILS_ROOT}/script/generate #{gen} --help`
+      out = "Generators -- #{title.gsub('_', '\_')}\n{: .document-title}\n\n" +
+        raw.gsub(/^(\w(\w|\s)*):(.*)/) {|s| "\n## #{$1}\n\n    #{$3}\n"}.
+        gsub("/work/hobocookbook", ".")
+      open("#{RAILS_ROOT}/manual/generators/#{gen}.markdown", "w") do |f|
+        f.write(out)
+      end
+    end
+  end
+
   desc "git pull all plugins/submodules (except for non-Hobo project)"
   task :pull_all => :environment do
     ['vendor/plugins/paperclip_with_hobo', 'vendor/plugins/hobo', 'public/patches/agility', 'taglibs/hoboyui', 'taglibs/hobo-contrib', 'taglibs/hobo-jquery'].each {|sub|
@@ -24,7 +37,7 @@ namespace :cookbook do
   end
 
   desc "do all update tasks"
-  task :update => [:environment, :pull_all, :load_api_docs, :rebuild_agility] do
+  task :update => [:environment, :pull_all, :load_api_docs, :rebuild_agility, :rebuild_generator_docs] do
     true
   end
 end

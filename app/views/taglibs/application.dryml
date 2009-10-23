@@ -246,11 +246,19 @@
 </def>
 
 
-<def tag="left-navigation" attrs="current, title, url">
+<def tag="left-navigation" attrs="current, title, subtitles, current-subtitle, url">
   <h2><a href="&url"><%= title %></a></h2>
   <navigation current="&current">
     <repeat>
       <nav-item href="#{url}/#{this_key}"><%= this %></nav-item>
+      <ul if="&current == this">
+        <% current_title = this_key -%>
+        <repeat with="&subtitles">
+          <li class="#{'current' if this==current_subtitle}">
+            <a href="#{url}/#{current_title}/#{this_key}"><%= this %></a>
+          </li>
+        </repeat>
+      </ul>
     </repeat>
   </navigation>
 </def>
