@@ -20,6 +20,7 @@ class ManualController < ApplicationController
                                      ['hobosupport',  'Hobo Support'],
                                      ['hobofields',   'Hobo Fields'],
                                      ['generators',   'Generators'],
+                                     ['i18n',         'Internationalization'],
                                     ])
 
   SUBTITLES = {
@@ -47,7 +48,7 @@ class ManualController < ApplicationController
   }
 
   def manual_section
-    section      = params[:section].gsub(/[^a-z_\-]/, '')
+    section      = params[:section].gsub(/[^a-z0-9_\-]/, '')
     filename     = "manual/#{section}.markdown"
     @title       = TITLES[section]
     @subtitles   = SUBTITLES[section]
@@ -56,8 +57,8 @@ class ManualController < ApplicationController
   end
 
   def manual_subsection
-    section      = params[:section].gsub(/[^a-z_\-]/, '')
-    subsection   = params[:subsection].gsub(/[^a-z_\-]/, '')
+    section      = params[:section].gsub(/[^a-z0-9_\-]/, '')
+    subsection   = params[:subsection].gsub(/[^a-z0-9_\-]/, '')
     filename     = "manual/#{section}/#{subsection}.markdown"
     @title       = TITLES[section]
     @subtitles   = SUBTITLES[section]

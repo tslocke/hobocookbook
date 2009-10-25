@@ -531,8 +531,14 @@ The autocomplete behaviour can be customised with the following options:
 
  - `:field` -- specify a field to complete on. Defaults to the name (first argument) of the autocompleter.
  - `:limit` -- maximum number of completions. Defaults to 10.
- - `:param` -- name of the parameter in which to expect the user's input. Defaults to `:query`
- - `:query_scope` -- a named scope used to do the database query. Change this to control things such as handling of multiple words, case sensitivity, etc. For our example this would be `email_address_contains`. Note that this is one of Hobo's automatic scopes.
+ - `:param` -- name of the parameter in which to expect the user's
+ - input. Defaults to `:query`
+ - `:query_scope` -- a named scope used to do the database
+   query. Change this to control things such as handling of multiple
+   words, case sensitivity, etc. For our example this would be
+   `:email_address_contains`. Note that this is one of Hobo's
+   automatic scopes.  Instead of a single named scope, you may instead
+   pass a list of named scopes.
 
 
 ## Further customisation
@@ -557,6 +563,9 @@ The parameters to `hobo_completions` are:
  - A finder, i.e. a model class, association, or a scope.
  - Options (the same as described above)
 
+You can see an example of autocompleter customization in a
+[recipe](http://cookbook.hobocentral.net/recipes/36-using-a-name-one-one-a)
+and in the [manual for name-one](http://cookbook.hobocentral.net/api_tag_defs/name-one).
 
 # Drag and drop reordering
 
