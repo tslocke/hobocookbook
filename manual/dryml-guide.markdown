@@ -860,7 +860,7 @@ This example (specifically, the collection created in the `<li repeat="@discussi
 The `<collection>` tag has a straightforward `<heading:>` parameter, but notice that the `<card>` tag is also declared as a parameter. Whenever you add `param` to a tag that itself also has parameters, you give your "super-tag" (`<collection>` in this case) the ability to customise the "sub-tag" (`<card>` in this case) using *nested parameters*. Here's how we can use the nested parameters in the `<collection>` tag to get the same output as the `<li repeat="@discussions">` section in the previous example:
     
     <collection>
-      <heading:>Discussions</heading>
+      <heading:>Discussions</heading:>
       <card:><body:><%= this.posts.length %> posts</body:></card:>
     </collection>
 {.dryml}
@@ -885,7 +885,7 @@ we can still access the card inside the collection inside the page:
     <index-page>
       <heading:>Welcome to our forum</heading:>
       <collection:>
-        <heading:>Discussions</heading>
+        <heading:>Discussions</heading:>
         <card:><body:><%= this.posts.length %> posts</body:></card:>
       </collection:>
     </index-page>
