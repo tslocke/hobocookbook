@@ -424,7 +424,7 @@ Often we would like to initialise some aspect of our model based on who the `act
 
     belongs_to :owner, :class_name => "User"
     
-    after_user_new { |r| r.owner = acting_user }
+    after_user_new { |r| r.owner = r.acting_user }
 {.ruby}
 
 Note that `after_user_new` fires on both `user_new` and `user_create.`
@@ -439,7 +439,7 @@ Other situations can be more complex, and the `:creator => true` shorthand may n
     class Event 
       belongs_to :group
       
-      after_user_new { |event| event.group = acting_user.group }
+      after_user_new { |event| event.group = event.acting_user.group }
     end
 {.ruby}
 
@@ -455,7 +455,7 @@ This definition says that a user can only create an event in their own group.
 
 When we combine the two...
 
-    after_user_new { |event| event.group = acting_user.group }
+    after_user_new { |event| event.group = event.acting_user.group }
 
     def create_permitted?
       acting_user.group == group
