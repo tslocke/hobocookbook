@@ -4,9 +4,6 @@
 [submodule "vendor/plugins/paperclip"]
 	path = vendor/plugins/paperclip
 	url = git://github.com/thoughtbot/paperclip.git
-[submodule "vendor/plugins/hobo"]
-	path = vendor/plugins/hobo
-	url = git://github.com/tablatom/hobo.git
 [submodule "gitorials/agility"]
 	path = gitorials/agility
 	url = git://github.com/bryanlarsen/agility-gitorial.git
@@ -22,3 +19,6 @@
 [submodule "public/patches/agility"]
 	path = public/patches/agility
 	url = git://github.com/bryanlarsen/agility-gitorial-patches
+[submodule "vendor/plugins/hobo"]
+	path = vendor/plugins/hobo
+	url = git://github.com/tablatom/hobo.git
