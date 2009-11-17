@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090512210544) do
+ActiveRecord::Schema.define(:version => 20091029175503) do
 
   create_table "answers", :force => true do |t|
     t.datetime "created_at"
@@ -71,7 +71,8 @@ ActiveRecord::Schema.define(:version => 20090512210544) do
     t.integer  "recipe_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
-    t.string   "image_file_size"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "questions", :force => true do |t|
