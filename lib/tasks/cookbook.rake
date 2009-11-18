@@ -22,6 +22,7 @@ namespace :cookbook do
       out = "Generators -- #{title.gsub('_', '\_')}\n{: .document-title}\n\n" +
         raw.gsub(/^(\w(\w|\s)*):(.*)/) {|s| "\n## #{$1}\n\n    #{$3}\n"}.
         gsub("/work/hobocookbook", ".")
+      Dir.mkdir("#{RAILS_ROOT}/manual/generators") rescue nil
       open("#{RAILS_ROOT}/manual/generators/#{gen}.markdown", "w") do |f|
         f.write(out)
       end
