@@ -21,6 +21,7 @@ namespace :vlad do
   desc 'reload api tags'
   remote_task :update_cookbook do
     run "cd #{current_release}; RAILS_ENV=production rake cookbook:load_api_docs"
+    run "cd #{current_release}; RAILS_ENV=production rake cookbook:rebuild_generator_docs"
   end
 
   desc 'update secret in config/environment.rb'
@@ -38,6 +39,7 @@ namespace :vlad do
   remote_task :update, :roles => :app do
     Rake::Task["vlad:save_version"].invoke
     Rake::Task["vlad:update_secret"].invoke
+    Rake::Task["vlad:update_cookbook"].invoke
     Rake::Task["vlad:generate_taglibs"].invoke
   end
 
