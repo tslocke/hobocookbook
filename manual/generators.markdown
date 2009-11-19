@@ -20,6 +20,24 @@ For instance:
  * [hobofield\_model](/manual/generators/hobofield_model) &mdash; generates a HoboFields based model
  * [hobo\_migration](/manual/generators/hobo_migration) &mdash; generates a migrations.
 
-[hobofield\_model](/manual/generators/hobofield_model) does not require the Hobo gem.  If you are using the full Hobo system, [hobo\_model](/manual/generators/hobo_model) is probably more appropriate.
+## Comments
 
-There is more low-level documentation for Hobo migrations available in the [Hobo Fields: Migration Generator](http://localhost:3000/manual/hobofields/migration_generator) documentation.
+[hobofield\_model](hobofield_model) does not require the Hobo gem.  If you are using the full Hobo system, [hobo\_model](generators/hobo_model) is probably more appropriate.
+
+There is more low-level documentation for Hobo migrations available in the [Hobo Fields: Migration Generator](hobofields/migration_generator) documentation.
+
+The `hobo` executable runs the `rails` executable and then the following generators.
+
+    ruby script/generate hobo --add-gem --add-routes
+    ruby script/generate hobo_rapid --import-tags #{invite_only}
+    ruby script/generate hobo_user_model #{user_model} #{invite_only}
+    ruby script/generate hobo_user_controller #{user_model} #{invite_only}
+    ruby script/generate hobo_front_controller front --delete-index --add-routes #{invite_only}
+
+The `rake hobo:run_standard_generators` task runs:
+
+      ruby script/generate hobo --add-routes && \
+      ruby script/generate hobo_rapid --import-tags && \
+      ruby script/generate hobo_user_model user && \
+      ruby script/generate hobo_user_controller user && \
+      ruby script/generate hobo_front_controller front --delete-index --add-routes
