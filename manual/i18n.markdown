@@ -30,7 +30,7 @@ Usage:
 The translation key uses the ht method - as the above usage sample shows. Which brings us to the next section.
  
 
-### Ruby-helper: ht(key, options={})
+### Helper: ht(key, options={})
 
 A wrapper around I18n.translate, which adds some conventions for easier translation of hobo content
 
@@ -65,6 +65,13 @@ All standard translations are scoped with hobo (see below). If you want specific
 </pre>
 For more samples search the code for ht() or &lt;ht&gt;&lt;/ht&gt; sections.
 
+### Calling the helper from elsewhere
+
+`ht` is added as an instance method to hobo controllers, so it is
+available in controllers and views.   To access the translation
+functions from elsewhere use `Hobo::Translations.ht`.   Including the
+Hobo::Translations module into your class will give you `ht` as a
+local instance method.
 
 ### View-hints
 This system will look up the view-hints directly from the keys you add (i.e. in `app.*.yml`). Sample section from a typical `app.en.yml` file:
@@ -82,8 +89,14 @@ This system will look up the view-hints directly from the keys you add (i.e. in 
 
  2. In addition to this you probably also have a rails.&lt;locale&gt;.yml file to handle Rails-i18n keys (check Sven Fuchs [rails-i18n-repository](http://github.com/svenfuchs/rails-i18n/tree/master/rails/locale/) for your locales). 
 
- 3. Finally - you should have an app.&lt;locale&gt;.yml files where you keep your customizations. You might have other locale-files and you may also use other conventions. It's all up to you. 
+ 3. Finally - you should have an app.&lt;locale&gt;.yml files where
+ you keep your customizations. You might have other locale-files and
+ you may also use other conventions. It's all up to you. 
 
+### Translation Help
+
+If you set HOBO_SHOW_LOCALE_KEYS in your environment, the translator
+will display all locale keys
 
 ### Locale tools
   * harvester (TO-DO)
