@@ -12,7 +12,7 @@ Note that this is just a set of reminders - it doesn't reflect the structure tha
  
  - Users and authentication
  
- - Subsites
+ - Subsites  (but there is a [tutorial](/tutorials/subsite))
  
  - Hobo's Ajax mechanism
  

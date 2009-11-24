@@ -100,7 +100,7 @@ summary of the row.
 ## Creating a controller for the hobofied model:
 
 I'm going to create an Admin::Event controller for my event model.
-This file goes in app/controllers/admin/events_controller.rb:
+This file goes in `app/controllers/admin/events_controller.rb`:
 
     class Admin::EventsController < Admin::AdminSiteController
       hobo_model_controller Event
