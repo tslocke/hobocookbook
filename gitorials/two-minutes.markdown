@@ -15,11 +15,17 @@ If not, OK this might run to three minutes :o). Update gem like this
 
      $ gem update --system
 
-If you haven’t already, you need to add the github gem server (for will-paginate)
+Check to see if you have gemcutter in your gem sources list:
 
-     $  gem sources -a http://gems.github.com
+    $ gem sources
 
-First install Hobo:
+If [gemcutter.org](http://gemcutter.org) is not in the list, you need
+to add the gemcutter gem server (for will_paginate)
+
+     $ gem install gemcutter
+     $ gem tumble
+
+Now we're ready to start the meat of the tutorial.  First install Hobo:
 
 	$ gem install hobo
 	
