@@ -19,7 +19,7 @@ textarea.optional-markdown {width: 99%;}
 }
 
 .page-aside {
-	float: left; width: 228px; padding: 0 30px; color: white; background: none; position: relative;
+	float: left; width: 228px; padding: 0 30px; color: white; background: none; position: relative; z-index: 40;
 }
 .page-header,.content {
 	margin-left: 288px; margin-top: 0;
