@@ -96,7 +96,8 @@ This system will look up the view-hints directly from the keys you add (i.e. in 
 ### Translation Help
 
 If you set HOBO_SHOW_LOCALE_KEYS in your environment, the translator
-will display all locale keys
+will display all locale keys.  If you set HOBO_VERBOSE_TRANSLATIONS,
+translations will appear in the log.
 
 ### Locale tools
   * harvester (TO-DO)
