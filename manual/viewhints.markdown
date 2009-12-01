@@ -69,21 +69,19 @@ To declare a custom model name:
     end
 {.ruby}
 
+If your model name does not pluralize properly, you can also set
+
+    model_name_plural "Indices"
+
 A better mechanism for setting the model name is to use
 translations.  For example, you can add this to your
 config/locales/en.yml:
 
     en:
       blog_posts:
-        modeL_name: "Post"
+        model_name: "Post"
 
 Translations will take priority over anything set in ViewHints.
-
-NOTE: At the time of writing, support for the `model_name` declaration
-in Hobo Rapid is partial. The underlying class name may still be used
-in places.  If you find any places where the class name is used,
-please open a bug.
-
 
 ## Field names
 
