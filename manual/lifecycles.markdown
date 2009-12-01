@@ -302,7 +302,7 @@ The block given to `create` provides a callback which will be called after the r
 
 ## Defining transitions
 
-A transition is an arc in the graph of the finite state machine -- an operation that takes the lifecycle from one state to another (or, potentially, back to the same state.). Each transition becomes a method on the lifecycle object (with `!` appended). The definition looks like: 
+A transition is an arc in the graph of the finite state machine -- an operation that takes the lifecycle from one state to another (or, potentially, back to the same state.). The definition looks like: 
 
     transition name, { from => to }, options do ... end
 {.ruby}
@@ -340,8 +340,18 @@ The options are:
  - `:available_to` -- Specifies who is allowed access to the transition. This check is in addition to the precondition (`:if` or
    `:unless`). There are a variety of ways to provide the `:available_to` option, discussed later on.
 
-The block given to `transition` provides a callback which will be called after the record has been updated. You can give a block with a single argument, in which case it will be passed the record, or with no arguments in which case it will be `instance_eval`'d on the record.
+The block given to `transition` provides a callback which will be
+called after the record has been updated. You can give a block with a
+single argument, in which case it will be passed the record, or with
+no arguments in which case it will be `instance_eval`'d on the record.
 
+Each transition becomes a method on the lifecycle object (with `!`
+appended).  The first parameter to the method is the user and the
+second optional parameter is a hash of the params defined in :params.
+
+An example call:
+
+    bar.lifecycle.foo!(user, :baz => "bat" )
 
 ### Repeated transition names
 

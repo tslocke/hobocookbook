@@ -3,6 +3,11 @@
 i18n support for Hobo was contributed by soey, and maintained by
 Spiralis.  Thanks!
 
+## Rails i18n
+
+Hobo internationalization is an extension of Rails
+Internationalization.  To get started, set up 
+[Rails Internationalization](http://guides.rubyonrails.org/i18n.html).
 
 ## Main Features
 
@@ -74,10 +79,14 @@ Hobo::Translations module into your class will give you `ht` as a
 local instance method.
 
 ### View-hints
+
 This system will look up the view-hints directly from the keys you add (i.e. in `app.*.yml`). Sample section from a typical `app.en.yml` file:
 <pre>
 |en:
 |  users:
+|    model_name: User
+|    name: Name
+|    email_address: Email Address
 |    hints:
 |      name: "This is the name shown to the users in the application. It should contain the user's full name."
 |      email_address: "The email-address here is used as a user-id as well as a means of communicating with the user via email. Make sure the user has allowed mail from the host of this application." 

@@ -69,7 +69,20 @@ To declare a custom model name:
     end
 {.ruby}
 
-NOTE: At the time of writing, support for the `model_name` declaration in Hobo Rapid is partial. The underlying class name may still be used in places.
+A better mechanism for setting the model name is to use
+translations.  For example, you can add this to your
+config/locales/en.yml:
+
+    en:
+      blog_posts:
+        modeL_name: "Post"
+
+Translations will take priority over anything set in ViewHints.
+
+NOTE: At the time of writing, support for the `model_name` declaration
+in Hobo Rapid is partial. The underlying class name may still be used
+in places.  If you find any places where the class name is used,
+please open a bug.
 
 
 ## Field names
@@ -83,8 +96,15 @@ To declare one or more custom field names:
     end
 {.ruby}
 
-If you give an empty string as the name, the Rapid form generators will arrange the form appropriately, with no label for that field.
+If you give an empty string as the name, the Rapid form generators
+will arrange the form appropriately, with no label for that field.
 
+Translations can also be used to set the field names:
+
+    en:
+      users:
+        username: "Name"
+        details: "Profile"
 
 ## Field help
 
@@ -97,8 +117,15 @@ To declare help text for one or more fields:
     end
 {.ruby}
 
-Rapid will include the help text next to each field in the forms that it generates.
+Rapid will include the help text next to each field in the forms that
+it generates.
 
+Translations can also be used to add field help:
+
+    en:
+      answers:
+        hints:
+          recipe: "Enter keywords from the name of a recipe"
 
 ## Child relationships
 
@@ -111,6 +138,21 @@ At present, the `children` declaration only influences Rapid's show-page -- it g
       children :recipes
     
     end
+
+## Parent relationships
+
+Defining a child relationship also defines a parent relationship on
+the first child.  If this is not sufficient or correct, you may
+explicitly define the parent relationship:
+
+    class RecipeHints < Hobo::ViewHints
+      parent :user
+    end
+
+To remove the automatic relationship, you can pass nil:
+
+    parent nil
+
 {.ruby}
   
 The a collection of the user's recipes will be added to the main content of `users/show`. 
