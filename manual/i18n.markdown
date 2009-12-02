@@ -104,8 +104,8 @@ This system will look up the view-hints directly from the keys you add (i.e. in 
 
 ### Translation Help
 
-If you set HOBO_SHOW_LOCALE_KEYS in your environment, the translator
-will display all locale keys.  If you set HOBO_VERBOSE_TRANSLATIONS,
+If you set `HOBO_SHOW_LOCALE_KEYS` in your environment, the translator
+will display all locale keys.  If you set `HOBO_VERBOSE_TRANSLATIONS`,
 translations will appear in the log.
 
 ### Locale tools
@@ -115,7 +115,7 @@ Typical locale key-harvesters will fail in Hobo projects. They normally search t
 
   * translation (TO-DO)
 
-Changing the locale-files by hand is the only way at the moment. However. It shouldn't be too difficult to add a hobo-web-interface for the keys, with focus on the app.*.yml files. It should be possible to show keys in english plus at least one other language at the same time. Next to this, statistics should be available, also showing the interpolation-names used when called. 
+Changing the locale-files by hand is the only way at the moment. However. It shouldn't be too difficult to add a hobo-web-interface for the keys, with focus on the app.\*.yml files. It should be possible to show keys in english plus at least one other language at the same time. Next to this, statistics should be available, also showing the interpolation-names used when called. 
 
 
 ## Issues
