@@ -6,26 +6,7 @@ You need at least version 2.2 of Rails:
 
      $ rails -v
 
-Before we get to Hobo, it’s highly recommended to be on the latest
-version of gem – 1.2
-
-     $ gem -v
-
-If not, OK this might run to three minutes :o). Update gem like this
-
-     $ gem update --system
-
-Check to see if you have gemcutter in your gem sources list:
-
-    $ gem sources
-
-If [gemcutter.org](http://gemcutter.org) is not in the list, you need
-to add the gemcutter gem server (for will_paginate)
-
-     $ gem install gemcutter
-     $ gem tumble
-
-Now we're ready to start the meat of the tutorial.  First install Hobo:
+First install Hobo:
 
 	$ gem install hobo
 	
