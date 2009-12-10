@@ -4,4 +4,6 @@ class AnswerHints < Hobo::ViewHints
   
   field_help  :recipe => "Enter keywords from the name of a recipe"
 
+  children :answers
+
 end

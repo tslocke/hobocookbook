@@ -1,5 +1,5 @@
 class RecipeHints < Hobo::ViewHints
 
-  children :comments
+  children :comments, :images
 
 end
