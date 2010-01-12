@@ -1,5 +1,3 @@
-require 'optional_markdown'
-
 class Comment < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
