@@ -1,6 +1,6 @@
 class ManualController < ApplicationController
   
-  caches_page :index, :manual_section, :manual_subsection
+  caches_page :manual_section, :manual_subsection
 
   def self.create_ordered_hash(llist)
     hash = ActiveSupport::OrderedHash.new
@@ -10,15 +10,20 @@ class ManualController < ApplicationController
     hash
   end
   
-  TITLES = self.create_ordered_hash([['to-do',        "To Do List"],
-                                     ['dryml-guide',  "The DRYML Guide"],
-                                     ['permissions',  "The Permission System"],
-                                     ['controllers',  "Controllers and Routing"],
-                                     ['lifecycles',   'Lifecycles'],
-                                     ['viewhints',    'View Hints'],
-                                     ['scopes',       'Automatic Named Scopes'],
+  TITLES = self.create_ordered_hash([# ['to-do',        "To Do List"],
+                                     ['toc',          "Table of Contents"],
+                                     ['download',     "Download and Install"],
                                      ['hobosupport',  'Hobo Support'],
                                      ['hobofields',   'Hobo Fields'],
+                                     ['scopes',       'Automatic Named Scopes'],
+                                     ['permissions',  "The Permission System"],
+                                     ['multi_model_forms', 'Accessible Associations'],
+                                     ['model',       'Miscellaneous Model Extensions'],
+                                     ['controllers',  "Controllers and Routing"],
+                                     ['dryml-guide',  "The DRYML Guide"],
+                                     ['ajax',         'Ajax in Hobo'],
+                                     ['lifecycles',   'Lifecycles'],
+                                     ['viewhints',    'View Hints'],
                                      ['generators',   'Generators'],
                                      ['i18n',         'Internationalization'],
                                     ])
@@ -65,6 +70,10 @@ class ManualController < ApplicationController
     @current_subtitle    = SUBTITLES[section][subsection]
     @content     = HoboFields::MarkdownString.new(File.read("#{RAILS_ROOT}/#{filename}"))
     @last_update = last_update filename
+  end
+
+  def index
+    redirect_to :action => "manual_section", :section => "toc"
   end
 
 end
