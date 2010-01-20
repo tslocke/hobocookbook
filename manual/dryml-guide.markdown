@@ -1036,8 +1036,12 @@ Fortunately, DRYML has support for extending tags. Use `<extend>` instead of `<d
     </extend>
 {.dryml}
 
-The one thing to notice there is that the "old" version of `<card>`, i.e. the one that was active before you're extension, is available as `<old-card>`. That's about all there is to it.
-    
+The one thing to notice there is that the "old" version of `<card>`,
+i.e. the one that was active before you're extension, is available as
+`<old-card>`. That's about all there is to it.  `<old-card>` is only
+available inside of `<extend>` -- if you need it elsewhere you can
+alias the old card *before* you extend it.  (See the next chapter).
+
 Here's another example where we add a footer to every page in our application. It's very common to `<extend tag="page">` in your application.dryml, in order to make changes that should appear on every page:
     
     <extend tag="page">
