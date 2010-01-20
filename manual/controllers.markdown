@@ -318,6 +318,10 @@ Any of the standard ActiveRecord find options you pass are forwarded to the find
 
 Turn pagination on or off by passing true/false to the `:paginate` option. If not specified Hobo will guess based on the value of `request.format`. It's normally on, but won't be for things like XML and CSV. When pagination is on, any other options to `hobo_index` are forwarded to the `paginate` method from will-paginate, so you can pass things like `:page` and `:per_page`. If you don't specify `:page` it defaults to `params[:page]` or if that's not given, the first page.
 
+### Scope 
+
+The finder may be filtered via a scope in a fashion similar to [how an
+association is scoped](/manual/scopes#scoping_associations).
 
 ## `hobo_show`
 
