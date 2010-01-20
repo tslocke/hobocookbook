@@ -21,6 +21,7 @@
       <javascript name="highlighters/ruby"/>
       <javascript name="highlighters/dryml"/>
       <javascript name="highlighters/diff"/>
+      <javascript name="flowplayer-3.1.4.min.js"/>
     </append-scripts:>
     
     <header: replace>

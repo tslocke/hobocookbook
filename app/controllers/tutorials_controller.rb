@@ -5,7 +5,8 @@ class TutorialsController < ApplicationController
   TITLES = begin
              titles = ActiveSupport::OrderedHash.new
              [['two-minutes',    "Thingybob - the two minute Hobo app"],
-              ['agility',        "Agility - a simple story manager"],
+              ['screencast',     "Screencast"],
+              ['agility',        "Agility - demonstrates all Hobo features"],
               ['gitorial',       "Agility sidebar - using git"],
               ['hobo-as-plugin', "Agility sidebar - using Hobo as a plugin"],
               ['subsite',        "An admin subsite on a generic Rails app"]
