@@ -35,6 +35,10 @@ which actions on your model are permitted by which users.
 [Active Record](http://ar.rubyonrails.org/) extension that allows
 nested models in forms.
 
+[**Users and Authentication**](/manual/users_and_authentication)
+documents the Hobo user model: how to use it, what it provides and how
+to use Hobo without it.
+
 [**Miscellaneous Model Extensions**](/manual/model) document the rest of
 Hobo's extensions to [Active Record](http://ar.rubyonrails.org/).
 

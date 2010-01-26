@@ -18,6 +18,7 @@ class ManualController < ApplicationController
                                      ['scopes',       'Automatic Named Scopes'],
                                      ['permissions',  "The Permission System"],
                                      ['multi_model_forms', 'Accessible Associations'],
+                                     ['users_and_authentication', 'Users and Authentication'],
                                      ['model',       'Miscellaneous Model Extensions'],
                                      ['controllers',  "Controllers and Routing"],
                                      ['dryml-guide',  "The DRYML Guide"],
