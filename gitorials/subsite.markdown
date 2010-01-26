@@ -111,6 +111,16 @@ At this stage you should be able to run your application.  If you
 browse to "/admin/events", you can create, remove, update and destroy
 any events you have permission to access.
 
+## Modifying the views
+
+If you need to modify the views for your subsite, you may create
+subdirectories in `app/views/admin`.  For example,
+`app/views/admin/foos/show.dryml` is the show view for the foos
+controller.
+
+`app/views/taglibs/admin_site.dryml` is the equivalent of
+application.dryml for your subsite.
+
 ## Updating your User model
 
 At this stage you have created an administrator interface, and could
