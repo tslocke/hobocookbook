@@ -1343,10 +1343,10 @@ gitorial-038: [view on github](http://github.com/bryanlarsen/agility-gitorial/co
 
 Run your modified migration:
 
-    $ rake:db_migrate
+    $ rake db:migrate
 
 
-gitorial-039: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/274e73c9db86e6f2c83e85ff705144bfd743960c), [download 39-story-status-model-migration-run.patch](/patches/agility/39-story-status-model-migration-run.patch)
+gitorial-039: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/89f12361891e6dc35f70e25407bb2914aad828b8), [download 39-story-status-model-migration-run.patch](/patches/agility/39-story-status-model-migration-run.patch)
 {: .commit}
 
 
@@ -1361,7 +1361,7 @@ Rapid's `<table-plus>` is giving us some nice searching and sorting features on 
 First we'll add the filter control to the header of the table-plus. Rapid provides a `<filter-menu>` tag which is just what we need. We want to add it to the header section, before the stuff that's already there. In DRYML, you can prepend or append content to any named parameter. `<table-plus>` has a `header:` parameter, so we can use `<prepend-header:>`, like this:
 
 
-gitorial-040: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/abb4be7d943eaed3dd8635e8a9184ab09abc48d9), [download 40-filtering-stories-by-status-dryml.patch](/patches/agility/40-filtering-stories-by-status-dryml.patch)
+gitorial-040: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/f62b83ff757e7e6fabf37ecaba5553ce1ced9841), [download 40-filtering-stories-by-status-dryml.patch](/patches/agility/40-filtering-stories-by-status-dryml.patch)
 {: .commit}
 
 
@@ -1380,7 +1380,7 @@ To make the filter look right, add this to `public/stylesheets/application.css`
 
 
 
-gitorial-041: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/5a79e4ed2e6de3e2678f244befb0fb180999f628), [download 41-filtering-stories-by-status-css.patch](/patches/agility/41-filtering-stories-by-status-css.patch)
+gitorial-041: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/dfe99061a5241ac4a3d9a7ee18e450e531349606), [download 41-filtering-stories-by-status-css.patch](/patches/agility/41-filtering-stories-by-status-css.patch)
 {: .commit}
 
 
@@ -1411,7 +1411,7 @@ Status filtering should now be working.
 (To do: explain the scope being used there)
 
 
-gitorial-042: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/cf720064c6419d4dab4adc1329e181b32fa52f62), [download 42-filtering-stories-by-status-controller.patch](/patches/agility/42-filtering-stories-by-status-controller.patch)
+gitorial-042: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/411c612e04b9989c88edb8ad06976e7ea121b40c), [download 42-filtering-stories-by-status-controller.patch](/patches/agility/42-filtering-stories-by-status-controller.patch)
 {: .commit}
 
 
@@ -1430,7 +1430,7 @@ or
     $ git submodule add git://github.com/rails/acts_as_list.git vendor/plugins/acts_as_list
 
 
-gitorial-043: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/67df08e1f8252597292754a72520384e965a0c5e), [download 43-install-acts-as-list.patch](/patches/agility/43-install-acts-as-list.patch)
+gitorial-043: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/c5a1525a24490f0113461d39157d50412b2e7e95), [download 43-install-acts-as-list.patch](/patches/agility/43-install-acts-as-list.patch)
 {: .commit}
 
 
@@ -1473,7 +1473,7 @@ Now two changes to our models:
 
 
 
-gitorial-044: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/8c1137b033ce9f5a0e28530ef0ad12869583e732), [download 44-acts-as-list-model-changes.patch](/patches/agility/44-acts-as-list-model-changes.patch)
+gitorial-044: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/1be1d892072532f4cd3e6299c69c415f375ad7d3), [download 44-acts-as-list-model-changes.patch](/patches/agility/44-acts-as-list-model-changes.patch)
 {: .commit}
 
 
@@ -1489,7 +1489,7 @@ run it and you'll get the new position column on Task.
 And that's it!
 
 
-gitorial-045: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/c2db657f408bbe8c67f760219e1afe67781482a1), [download 45-acts-as-list-migrate.patch](/patches/agility/45-acts-as-list-migrate.patch)
+gitorial-045: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/38d0d523387ab772f2f56d0b29c48b778a2ea5e1), [download 45-acts-as-list-migrate.patch](/patches/agility/45-acts-as-list-migrate.patch)
 {: .commit}
 
 
@@ -1519,7 +1519,7 @@ In `application.dryml` add:
 
 
 
-gitorial-046: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/42cd69205ac8792b100073ab08a957c5b2eaeb05), [download 46-remove-position-from-task-form.patch](/patches/agility/46-remove-position-from-task-form.patch)
+gitorial-046: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/43d094f4f678c40870acfca219b7d64c5f66d7b5), [download 46-remove-position-from-task-form.patch](/patches/agility/46-remove-position-from-task-form.patch)
 {: .commit}
 
 
@@ -1543,7 +1543,7 @@ On the task edit page you might also have noticed that Rapid didn't manage to fi
 This is a good demonstration of DRYML's nested parameter feature. The `<edit-page>` makes it's form available as a parameter, and the form provides a `<cancel:>` parameter. We can drill down from the edit-page to the form and then to the cancel link to pass in a custom attribute. You can do this to any depth.
 
 
-gitorial-047: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/422c49dda591be0cf1116efed48fda617805276e), [download 47-fix-task-form-cancel.patch](/patches/agility/47-fix-task-form-cancel.patch)
+gitorial-047: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/c8d50842451f9d8b1244a4b591e43a7cdb7e86d4), [download 47-fix-task-form-cancel.patch](/patches/agility/47-fix-task-form-cancel.patch)
 {: .commit}
 
 
@@ -1576,7 +1576,7 @@ Location the `fields do ... end` section in the Story model, and change
 
 
 
-gitorial-048: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/363ee4e4db920e95806560361a21fc868cbe7640), [download 48-markdown-formatting-of-stories.patch](/patches/agility/48-markdown-formatting-of-stories.patch)
+gitorial-048: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/85290a63c47d840ac66a60c8e8fb5643f09c3e07), [download 48-markdown-formatting-of-stories.patch](/patches/agility/48-markdown-formatting-of-stories.patch)
 {: .commit}
 
 
@@ -1605,7 +1605,7 @@ You may need to install the relevant ruby gem: either BlueCloth (markdown) or Re
 
 
 
-gitorial-049: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/d49d3b34bb4259466dfdcecaadb129df3942d4fd), [download 49-add-bluecloth-gem.patch](/patches/agility/49-add-bluecloth-gem.patch)
+gitorial-049: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/a6efcdc9187d149c81d2935e383403b435f48985), [download 49-add-bluecloth-gem.patch](/patches/agility/49-add-bluecloth-gem.patch)
 {: .commit}
 
 
@@ -1640,7 +1640,7 @@ Add the following to the Project model:
 There's a Hobo extension there: `:creator => true` tells Hobo that when creating one of these things, the `owner` association should be automatically set up to be the user doing the create.
 
 
-gitorial-050: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/f548dc15c802cf11226d927ace3e905ee5bde900), [download 50-project-belongs-to-user.patch](/patches/agility/50-project-belongs-to-user.patch)
+gitorial-050: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/070f7882e85fac252c53ea44a9966ccc2490dae0), [download 50-project-belongs-to-user.patch](/patches/agility/50-project-belongs-to-user.patch)
 {: .commit}
 
 
@@ -1668,7 +1668,7 @@ We also need the other end of this association, in the User model:
 
 
 
-gitorial-051: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/33d24664b985338a4a71bae366f1b57a02be031c), [download 51-users-have-many-projects.patch](/patches/agility/51-users-have-many-projects.patch)
+gitorial-051: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/5198e427a145cce40432df7083cabaae213cf602), [download 51-users-have-many-projects.patch](/patches/agility/51-users-have-many-projects.patch)
 {: .commit}
 
 
@@ -1709,7 +1709,7 @@ How should this affect the permissions? Certain operations on the project should
 Note that in the `create_permitted?` method, we assert that `owner_is? acting_user`. This is very often found in conjunction with `:creator => true`. Together, these mean that the current user can create their own projects only, and the "Owner" form field will be automatically removed from the new project form.
 
 
-gitorial-052: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/8e8d124e6c92d41913f2da01481771518b568151), [download 52-project-permissions.patch](/patches/agility/52-project-permissions.patch)
+gitorial-052: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/ced35778452ea2375424725f2806633482aa2200), [download 52-project-permissions.patch](/patches/agility/52-project-permissions.patch)
 {: .commit}
 
 
@@ -1801,7 +1801,7 @@ set their permission to check their containing project:
 
 
 
-gitorial-053: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/06e82fd34c19d28da765f01fa67c10f8f7982c27), [download 53-task-assignment-permissions.patch](/patches/agility/53-task-assignment-permissions.patch)
+gitorial-053: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/1418c0cd9b02583b938158ad6467d027413f3d20), [download 53-task-assignment-permissions.patch](/patches/agility/53-task-assignment-permissions.patch)
 {: .commit}
 
 
@@ -1814,7 +1814,7 @@ Run the migration generator to see the effect on the app:
     $ ./script/generate hobo_migration
 
 
-gitorial-054: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/7b2a29eb4130481111ad77eefd8a4b9fd8f5e209), [download 54-project-ownership-migration.patch](/patches/agility/54-project-ownership-migration.patch)
+gitorial-054: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/7ea86a289424fe582bf0fdd06c9078d03637c463), [download 54-project-ownership-migration.patch](/patches/agility/54-project-ownership-migration.patch)
 {: .commit}
 
 
@@ -1844,7 +1844,7 @@ Finally, let's add a handy list of "Your Projects" to the home page. Edit the co
 
 
 
-gitorial-055: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/bd5021d62439337123b3fc6dc2dc8da5238bc32a), [download 55-add-your-projects-to-front.patch](/patches/agility/55-add-your-projects-to-front.patch)
+gitorial-055: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/0f9791308b8fc07dbc8846d7dd3eb2087d7736b3), [download 55-add-your-projects-to-front.patch](/patches/agility/55-add-your-projects-to-front.patch)
 {: .commit}
 
 
@@ -1872,7 +1872,7 @@ One thing you'll notice is that the project cards have a link to the project own
 
 
 
-gitorial-056: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/b1eea7245a6c0ed76df404225ca2c50aead8a155), [download 56-project-cards-without-creator-link.patch](/patches/agility/56-project-cards-without-creator-link.patch)
+gitorial-056: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/f3cfd077ff36a7f4c388b38a658011dc9b00a71e), [download 56-project-cards-without-creator-link.patch](/patches/agility/56-project-cards-without-creator-link.patch)
 {: .commit}
 
 
@@ -1889,7 +1889,7 @@ We can model this with a ProjectMembership model that represents access for a sp
     $ ./script/generate hobo_model_resource project_membership
 
 
-gitorial-057: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/95cad5493af02405ec52bf741fc42e867ce0ac33), [download 57-generate-project-membership.patch](/patches/agility/57-generate-project-membership.patch)
+gitorial-057: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/e1b068d2e64fde495971d9afd0947bf90a72cccd), [download 57-generate-project-membership.patch](/patches/agility/57-generate-project-membership.patch)
 {: .commit}
 
 
@@ -1914,7 +1914,7 @@ First remove the actions we don't need on the `ProjectMembershipsController`:
 
 
 
-gitorial-058: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/4c292c75397e5853dd62551f442a19668864b19f), [download 58-project-memberships-tweak-auto-actions.patch](/patches/agility/58-project-memberships-tweak-auto-actions.patch)
+gitorial-058: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/cb317be837628847cd665862776e865fc83581aa), [download 58-project-memberships-tweak-auto-actions.patch](/patches/agility/58-project-memberships-tweak-auto-actions.patch)
 {: .commit}
 
 
@@ -1943,7 +1943,7 @@ Next, add the associations to the model:
 
 
 
-gitorial-059: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/3701d77545489ba3a890e1bdcd1cc5272869e46f), [download 59-project-memberships-add-associations-to-model.patch](/patches/agility/59-project-memberships-add-associations-to-model.patch)
+gitorial-059: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/b9588217d735e6f2ab2139e39118700813f4eda2), [download 59-project-memberships-add-associations-to-model.patch](/patches/agility/59-project-memberships-add-associations-to-model.patch)
 {: .commit}
 
 
@@ -1957,7 +1957,7 @@ the database:
     $ ./script/generate hobo_migration
 
 
-gitorial-060: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/d7ceb0c71f17deddb49a9a20c17af7af743c5ae5), [download 60-migrate-project-memberships.patch](/patches/agility/60-migrate-project-memberships.patch)
+gitorial-060: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/abe9392d11e67247fe4c39b36431710c3a013189), [download 60-migrate-project-memberships.patch](/patches/agility/60-migrate-project-memberships.patch)
 {: .commit}
 
 
@@ -1968,7 +1968,7 @@ gitorial-060: [view on github](http://github.com/bryanlarsen/agility-gitorial/co
 Then permissions -- only the project owner (and admins) can manipulate these project memberships:
 
 
-gitorial-061: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/645ef7726d6090f444b1ebef232d0ce2c2d94949), [download 61-project-memberships-permissions.patch](/patches/agility/61-project-memberships-permissions.patch)
+gitorial-061: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/85762cbf991138790d2a0d79dca6a755e0ad71a3), [download 61-project-memberships-permissions.patch](/patches/agility/61-project-memberships-permissions.patch)
 {: .commit}
 
 
@@ -1997,7 +1997,7 @@ Let's do the other ends of those two belongs-to associations. In the Project mod
 
 
 
-gitorial-062: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/a9272ca42daba35526b2a858ae69ad123bf728e4), [download 62-project-has-many-members.patch](/patches/agility/62-project-has-many-members.patch)
+gitorial-062: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/dae9769db7c773914b68acff3ffebe2c9784d7f3), [download 62-project-has-many-members.patch](/patches/agility/62-project-has-many-members.patch)
 {: .commit}
 
 
@@ -2026,7 +2026,7 @@ And in the User model (remember that User already has an association called `pro
 
 
 
-gitorial-063: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/65e3050f9474eb3a34edea0e60f5fe79fd7641b9), [download 63-user-has-many-joined-projects.patch](/patches/agility/63-user-has-many-joined-projects.patch)
+gitorial-063: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/8a7e058eb624f71096d241da38122ffb43f91eb3), [download 63-user-has-many-joined-projects.patch](/patches/agility/63-user-has-many-joined-projects.patch)
 {: .commit}
 
 
@@ -2079,7 +2079,7 @@ We can now define view permission on projects, stories and tasks according to pr
 
 
 
-gitorial-064: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/ef98c7e63d93488fea3ea3da6b9aa3797e08477f), [download 64-view-permission-based-on-project-membership.patch](/patches/agility/64-view-permission-based-on-project-membership.patch)
+gitorial-064: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/dc64cb7852f3d25488df480f7b5dedf04b2cde33), [download 64-view-permission-based-on-project-membership.patch](/patches/agility/64-view-permission-based-on-project-membership.patch)
 {: .commit}
 
 
@@ -2113,7 +2113,7 @@ So we'll modify the actions provided by the projects controller to:
 Note that there won't be a link to that new-project page by default -- we'll add one in the next section.
 
 
-gitorial-065: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/499797438663c948e1130e0a9c16b741fbc09c1d), [download 65-update-project-actions.patch](/patches/agility/65-update-project-actions.patch)
+gitorial-065: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/a706e99b828b3292b542212efe24c8e2add91779), [download 65-update-project-actions.patch](/patches/agility/65-update-project-actions.patch)
 {: .commit}
 
 
@@ -2145,7 +2145,7 @@ It is very common for websites to present information in a hierarchy, and this `
 Refresh any project page and you should see the collection, which will be empty of course, in a side-bar.
 
 
-gitorial-066: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/49b4b2589203eac1fb421e3f3d31ce20e3738487), [download 66-move-membership-to-sidebar.patch](/patches/agility/66-move-membership-to-sidebar.patch)
+gitorial-066: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/2548bfd391f79a83889fae634b58f4b767a99c3d), [download 66-move-membership-to-sidebar.patch](/patches/agility/66-move-membership-to-sidebar.patch)
 {: .commit}
 
 
@@ -2178,7 +2178,7 @@ First we need the controller side of the auto-complete. Add this declaration to 
 
 
 
-gitorial-067: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/31127a810018ca6af81111a079d5dc13df2cbc05), [download 67-auto-completion-controller.patch](/patches/agility/67-auto-completion-controller.patch)
+gitorial-067: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/71a6fb9e0d1d9306266e7b3f139d7e09e190ff25), [download 67-auto-completion-controller.patch](/patches/agility/67-auto-completion-controller.patch)
 {: .commit}
 
 
@@ -2222,7 +2222,7 @@ Some things to note:
  - The `<name-one>` tag creates an input field for the user association with auto-completion.
 
 
-gitorial-068: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/1cbd282dadb029b166562229cb2725cb6fa2a923), [download 68-auto-completion-form.patch](/patches/agility/68-auto-completion-form.patch)
+gitorial-068: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/79f12cd917c9bbf0b20611bdbcc9b6874b37f8d0), [download 68-auto-completion-form.patch](/patches/agility/68-auto-completion-form.patch)
 {: .commit}
 
 
@@ -2253,7 +2253,7 @@ The sidebar we just implemented has an obvious draw-back -- there's no way to re
 
 
 
-gitorial-069: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/8b29c8aea5acb04f4be51848761a5524e135e14e), [download 69-removing-members.patch](/patches/agility/69-removing-members.patch)
+gitorial-069: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/91e071d69967e1a1356e71e41ecd56c8b4998e7f), [download 69-removing-members.patch](/patches/agility/69-removing-members.patch)
 {: .commit}
 
 
@@ -2284,7 +2284,7 @@ We have a problem -- the membership card doesn't display the user's name. There 
 
 
 
-gitorial-070: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/5a1139e0f02695adb50a7fd5a0d87c11af2b94a2), [download 70-removing-members-2.patch](/patches/agility/70-removing-members-2.patch)
+gitorial-070: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/fe4a5a155c8246d0af871e66fe75941196973deb), [download 70-removing-members-2.patch](/patches/agility/70-removing-members-2.patch)
 {: .commit}
 
 
@@ -2324,7 +2324,7 @@ There's just a couple of things to do to round this part of the tutorial off. Fi
 Notice how we set the context on the entire section to be the current user (`with="&current_user"`). That makes the markup inside the section much more compact and easy to read.
 
 
-gitorial-071: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/1cd83fe99949cdf59a185870862b9f8277e81509), [download 71-fix-front-page.patch](/patches/agility/71-fix-front-page.patch)
+gitorial-071: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/9f5a81eb1210809f2ead5c443938842d26dc2132), [download 71-fix-front-page.patch](/patches/agility/71-fix-front-page.patch)
 {: .commit}
 
 
@@ -2356,7 +2356,7 @@ And a helper method that might come in handy when implementing your permission m
 {: .ruby}
 
 
-gitorial-072: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/fff832e7fb6cf144506cc4b7d665fffa350800db), [download 72-granting-write-access-to-others.patch](/patches/agility/72-granting-write-access-to-others.patch)
+gitorial-072: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/0da008edd1c084867ae3fd8d092446ff47baa7b0), [download 72-granting-write-access-to-others.patch](/patches/agility/72-granting-write-access-to-others.patch)
 {: .commit}
 
 
@@ -2457,7 +2457,7 @@ conventions, so completely custom views can be used without defining
 custom controllers and models or vice versa.
 
 
-gitorial-073: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/83a15cf81da0c4ac9cd7ce04d2be61474760c67a), [download 73-breaking-out-of-the-box.patch](/patches/agility/73-breaking-out-of-the-box.patch)
+gitorial-073: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/a3580d0eb98c0de8ac732fd2a5a838790daaa730), [download 73-breaking-out-of-the-box.patch](/patches/agility/73-breaking-out-of-the-box.patch)
 {: .commit}
 
 
@@ -2474,7 +2474,7 @@ We've forked selenium-on-rails to add a couple of helper functions.  Install our
     $ git submodule add git://github.com/bryanlarsen/selenium-on-rails.git vendor/plugins/selenium-on-rails
 
 
-gitorial-074: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/c97ed1c23665a9ab821d0867e90a85f4ac1e57cc), [download 74-install-selenium.patch](/patches/agility/74-install-selenium.patch)
+gitorial-074: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/2323f39b177ff30d77c219cd0f4d0019a735cea6), [download 74-install-selenium.patch](/patches/agility/74-install-selenium.patch)
 {: .commit}
 
 
@@ -2485,7 +2485,7 @@ gitorial-074: [view on github](http://github.com/bryanlarsen/agility-gitorial/co
 To configure selenium-on-rails, move `vendor/plugins/selenium-on-rails/test/fixtures/config.yml` to `config/selenium.yml` and edit the file appropriately.
 
 
-gitorial-075: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/6d775860bfd6e03853d0f53294a52f58bd4948eb), [download 75-configure-selenium.patch](/patches/agility/75-configure-selenium.patch)
+gitorial-075: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/d1766f725c7f4ea76ccd5a7cc8af5d488d6d87ef), [download 75-configure-selenium.patch](/patches/agility/75-configure-selenium.patch)
 {: .commit}
 
 
@@ -2506,7 +2506,7 @@ blank file for each model with the exception of `story_status`:
     $ touch task_assignments.yml tasks.yml users.yml
 
 
-gitorial-076: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/0572c3547b501d5dcb3ba8d70736ddc1f5f2402e), [download 76-setup-fixtures.patch](/patches/agility/76-setup-fixtures.patch)
+gitorial-076: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/7244c24664d0d1881029be17610d629c4d2a4b01), [download 76-setup-fixtures.patch](/patches/agility/76-setup-fixtures.patch)
 {: .commit}
 
 
@@ -2530,7 +2530,7 @@ add a couple to our fixture:
 
 
 
-gitorial-077: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/9e28d845d8a8fb0c7b5848e62f055785d40fbbe4), [download 77-story-status-fixture.patch](/patches/agility/77-story-status-fixture.patch)
+gitorial-077: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/bc07a237ba1d8608d3f64d5a2127bd51f4089a58), [download 77-story-status-fixture.patch](/patches/agility/77-story-status-fixture.patch)
 {: .commit}
 
 
@@ -2548,7 +2548,7 @@ We'll first create a file that we can include from our tests to load the fixture
 
 
 
-gitorial-078: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/0e7c7bbd74c22d2483f12545a02c2acf747291ab), [download 78-setup-fixture-set-rsel.patch](/patches/agility/78-setup-fixture-set-rsel.patch)
+gitorial-078: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/896adff684840d89b5b3cc7f1fef04d5a3e7d39b), [download 78-setup-fixture-set-rsel.patch](/patches/agility/78-setup-fixture-set-rsel.patch)
 {: .commit}
 
 
@@ -2583,7 +2583,7 @@ After you've finished, tweak it so that it looks something like this:
 
 
 
-gitorial-079: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/750a1bb71e4901c4ef8706eeab98db01bddaf85a), [download 79-record-a-test.patch](/patches/agility/79-record-a-test.patch)
+gitorial-079: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/0fc0b4a24d0d371c4bb22a820d55ada131917f2c), [download 79-record-a-test.patch](/patches/agility/79-record-a-test.patch)
 {: .commit}
 
 
@@ -2605,7 +2605,7 @@ If you've done everything correctly, you should eventually see:
     1 tests passed, 0 tests failed
 
 
-gitorial-080: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/a90d11ebe3c1875ef4549478796fc7125beee9f7), [download 80-run-the-test.patch](/patches/agility/80-run-the-test.patch)
+gitorial-080: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/f9027b20508c8de5fa797ed56917474d13936ad1), [download 80-run-the-test.patch](/patches/agility/80-run-the-test.patch)
 {: .commit}
 
 
@@ -2616,7 +2616,7 @@ gitorial-080: [view on github](http://github.com/bryanlarsen/agility-gitorial/co
 Now go ahead and fill out your test.
 
 
-gitorial-081: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/a8dc7fc299963b2bc4c035309f728f14b780a8c0), [download 81-fill-out-test.patch](/patches/agility/81-fill-out-test.patch)
+gitorial-081: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/ddd662165428797eb088d967547f2ed15c567142), [download 81-fill-out-test.patch](/patches/agility/81-fill-out-test.patch)
 {: .commit}
 
 
@@ -2657,7 +2657,7 @@ The first tweak changes the default locale to French.  Normally you want to set 
 The second tweak sets the `HOBO_VERSBOSE_TRANSLATIONS` flag.  This causes the Hobo translater to log whenever it does a translation.   This lets you determine the translation keys that it is looking up.
 
 
-gitorial-082: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/16cb426861be54d138279c6028d7bb68433acce0), [download 82-translating.patch](/patches/agility/82-translating.patch)
+gitorial-082: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/5f37e683fa153491771ce8c4eaa26e02909a516f), [download 82-translating.patch](/patches/agility/82-translating.patch)
 {: .commit}
 
 
@@ -2688,7 +2688,7 @@ For example, to translate one of the strings on the front page:
 
 
 
-gitorial-083: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/f642a8dec3c443f60ef5d616cee1c9b538d37247), [download 83-add-translation-keys.patch](/patches/agility/83-add-translation-keys.patch)
+gitorial-083: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/3d07aa28ec0171f3cf82302b1cbe0dad42a4a5af), [download 83-add-translation-keys.patch](/patches/agility/83-add-translation-keys.patch)
 {: .commit}
 
 
@@ -2715,7 +2715,7 @@ Translations appear in the `config/locales` directory.  We'll create a `fr.yml` 
 
 
 
-gitorial-084: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/9cc22015bc953f1c0b00946cc34427ba0b81b337), [download 84-fr-yml.patch](/patches/agility/84-fr-yml.patch)
+gitorial-084: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/970911885ee8124af709cdd4760fcd6852d7f8fc), [download 84-fr-yml.patch](/patches/agility/84-fr-yml.patch)
 {: .commit}
 
 
@@ -2849,5 +2849,5 @@ Finally we'll customise the look of the aside section which is used on the proje
     .aside {padding: 20px; margin: 40px 25px 0 0;}
     .aside-content h2, .aside-content h3 {border-bottom: 1px solid #ccc; margin-top: 0;}
 
-gitorial-085: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/f2a8f166f3c9491d1ec75e66a7f6e52adc644c29), [download 85-rest-of-tutorial.patch](/patches/agility/85-rest-of-tutorial.patch)
+gitorial-085: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/703c83f45b447b5d00fc50233cca0a9ed3f8c34d), [download 85-rest-of-tutorial.patch](/patches/agility/85-rest-of-tutorial.patch)
 {: .commit}
