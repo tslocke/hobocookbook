@@ -488,7 +488,7 @@ You can give a block to customise the response, or pass the redirect option:
 
 ## Transitions
 
-As with create steps, for each publishable transition there are two actions. For both of these actions, if `parmas[:key]` is present, it will be set as the `provided_key` on the lifecycle, so transitions that are `:available_to => :key_holder` will work automatically.
+As with create steps, for each publishable transition there are two actions. For both of these actions, if `params[:key]` is present, it will be set as the `provided_key` on the lifecycle, so transitions that are `:available_to => :key_holder` will work automatically.
 
 We'll take the friendship `accept` transition as an example.
 
