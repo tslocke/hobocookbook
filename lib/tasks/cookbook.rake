@@ -31,9 +31,10 @@ namespace :cookbook do
 
   desc "git pull all plugins/submodules (except for non-Hobo project)"
   task :pull_all => :environment do
-    ['vendor/plugins/paperclip_with_hobo', 'vendor/plugins/hobo', 'public/patches/agility', 'taglibs/hoboyui', 'taglibs/hobo-contrib', 'taglibs/hobo-jquery'].each {|sub|
+    ['vendor/plugins/paperclip_with_hobo', 'public/patches/agility', 'taglibs/hoboyui', 'taglibs/hobo-contrib', 'taglibs/hobo-jquery'].each {|sub|
       sh "cd #{sub} && git fetch origin && git checkout origin/master"
     }
+    sh "cd vendor/plugins/hobo && git fetch origin && git checkout origin/1-0-stable"
     sh "rm -rf gitorials/agility ; git submodule update gitorials/agility ; cd gitorials/agility && git checkout -f origin/master"
   end
 
