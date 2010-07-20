@@ -297,8 +297,22 @@ The options are:
  - `:available_to` -- Specifies who is allowed access to the creator. This check is in addition to the precondition (`:if` or `:unless`).
    There are a variety of ways to provide the `:available_to` option, discussed later on
 
-The block given to `create` provides a callback which will be called after the record has been created. You can give a block with a single argument, in which case it will be passed the record, or with no arguments in which case it will be `instance_eval`'d on the record.
+The block given to `create` provides a callback which will be called
+after the record has been created. You can give a block with a single
+argument, in which case it will be passed the record, or with no
+arguments in which case it will be `instance_eval`'d on the record.
 
+Once you have defined a creator action for your model, you will
+probably want to use it instead of the standard `new` method on your
+model.  For example:
+
+    new_friendship = Friendship::Lifecycle.my_creator(user, :param1 => "foo")
+    new_friendship.save!
+
+The first parameter of the creator is the user that is used for
+permission checks via the `:available_to` option.  The second
+parameter is a hash where the keys should correspond to the attribute
+names listed in the `:params` option.
 
 ## Defining transitions
 
