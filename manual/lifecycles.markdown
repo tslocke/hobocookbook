@@ -349,6 +349,8 @@ The options are:
    
  - `:new_key` -- generate a new lifecycle key for this record by setting the `key_timestamp` field to be the current time.
  
+ - `:keep_key` -- (new in v1.0.3).  Normally, the lifecycle key is cleared on a transition to prevent replay vulnerabilities.   If this option is set, the key is not cleared
+
  - `:user_becomes` -- the name of an attribute (typically a `belongs_to` relationship) that will set to the `acting_user`.
  
  - `:available_to` -- Specifies who is allowed access to the transition. This check is in addition to the precondition (`:if` or
