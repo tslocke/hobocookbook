@@ -22,3 +22,6 @@
 [submodule "vendor/plugins/hobo"]
 	path = vendor/plugins/hobo
 	url = git://github.com/tablatom/hobo.git
+[submodule "taglibs/imaginary-dryml"]
+	path = taglibs/imaginary-dryml
+	url = https://github.com/imaginary-cloud/Imaginary-DRYML.git
