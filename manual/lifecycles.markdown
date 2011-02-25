@@ -546,7 +546,7 @@ As usual, you can customise the response by passing a block. And you can pass th
 
 ## Subsite routes
 
-By default, Hobo generates the routes of your transition pointing to the front controller. If you want it to point the route
+By default, Hobo generates the routes of your transition through the front subsite. If you want it to point the route
 of any creator/transition action to a different subsite, you can pass the :subsite option (e.g.: :subsite => 'any_subsite')
 
 

@@ -3,7 +3,7 @@ View Hints
 
 This API is used internally in Hobo, for example in the Rapid tag library, to create a user interface according to your declarations. That's really all there is to it.
 
-It's important to note that the view-hints mechanism is entirely optional, and may not be appropriate for all applications (especially larger applications). Everything you can do with view-hints can be done with much more flexibility by defining DRYML tags and page templates. What view-hints give you, is a way to achieve common UI customisations very quickly and easily.
+It's important to note that the view-hints mechanism is entirely optional, and may not be appropriate for all applications (especially larger applications). Everything you can do with view-hints can be done with much more flexibility by defining DRYML tags and page templates. What view-hints give you is a way to achieve common UI customisations very quickly and easily.
 
 ## Child relationships
 
@@ -74,11 +74,16 @@ The following view helpers are defined to simplify access to view-hints informat
 
 ## Legacy Hints
 
-Hobo >= 1.3.* generators do not generates view hints files anymore, because their functionalities have been just moved elsewhere. If you used any old version of Hobo you might be interested in reading this section, if you are new to Hobo, just skip it.
+Hobo >= 1.3.* generators do not generate view hints files anymore.  Their functionality has been  moved elsewhere. If you used any old version of Hobo you might be interested in reading this section, if you are new to Hobo, just skip it.
 
 ## Renaming
 
-The old view hints renaming has been moved into the locale files. That happens because keeping module and attribute names hardcoded in strings was i18n hostile. Locales files have been introduced to support rails i18n and have their own conventions, and they are perfect and already woking for english to english translations too. Hobo just uses that already implemented tool, following the already established conventions.
+The old view hints renaming has been moved into the locale files. That
+happens because keeping module and attribute names hardcoded in
+strings was i18n hostile. Locale files have been introduced to support
+rails i18n and have their own conventions, and work well for english
+to english translations too. Hobo just uses that already implemented
+tool following the already established conventions.
 
 Here is the uncommented default config/locale/app.en.yml file
 
@@ -146,15 +151,25 @@ You can rename models and attributes by changing or adding key/values in the spe
 
 Just be careful: don't mess up the indentation!
 
-Notice: the key/values inside the first attributes: group is used as the default for all the models
+Note that the key/values inside the first `attributes:` group are used as the default for all models.
 
 ## Hints
 
-The ViewHints.children and theViewHints.inline_booleans methods have been moved in the model, but they are used in the exactly same way they were used before.
+The ViewHints.children and theViewHints.inline_booleans methods have been moved into the model, but they are used in the exactly same way they were used before.
 
-The view_hints are now a subclass of Hobo::Model::ViewHints instead of Hobo::ViewHints. You can access the view_hints class by accessing the Model.view_hints method, so for example User.view_hints.children will return the children of the User model. Same thing with parent, parent_defined, sortable? and paginate? which are the survived methods in the view hint class.
+The view_hints are now a subclass of Hobo::Model::ViewHints instead of
+Hobo::ViewHints. You can access the view_hints class by accessing the
+Model.view_hints method, so for example User.view_hints.children will
+return the children of the User model. The same applies to the parent,
+parent_defined, sortable? and paginate? methods which remain in the
+view hint class.
 
-If for any reason you want to use viwhints in the traditional way, or if you want to use old view hint files, you must either change the base class for each file to  Hobo::Model::ViewHints, OR you can also add Hobo::ViewHints =  Hobo::Model::ViewHints in any initializer file or appended to application.rb without the need to change the base class.
+If for any reason you want to use viwhints in the traditional way, or
+if you want to use old view hint files, you must either change the
+base class for each file to Hobo::Model::ViewHints, OR you can also
+add Hobo::ViewHints = Hobo::Model::ViewHints in any initializer file
+or appended to application.rb without the need to change the base
+class.
 
 ## Deprecated methods
 
@@ -163,5 +178,5 @@ If for any reason you want to use viwhints in the traditional way, or if you wan
 - field_name
 - field_names
 
-When called they raise an error, explaining the reason.
+When called they raise an error with an explanation.
 
