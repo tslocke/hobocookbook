@@ -1,65 +1,134 @@
 # i18n (Internationalization) Support for Hobo
 
-i18n support for Hobo was contributed by soey, and maintained by
-Spiralis.  Thanks!
+I18n support for Hobo has been completely refactoried in the 1.3 version. Hobo is a full internationalized framework. It supports 6 languges (at the moment of this writing), but adding a language is just a matter of adding 2 translated yml files, so the number of supported languages will hopefully grow fast.
 
-## Rails i18n
+The i18n hobo support is the standard rails support with just a little improvement (see the :ht method), so you have to look at the [Rails Internationalization](http://edgeguides.rubyonrails.org/i18n.html) guide for details. This document assumes that you are confortable with the i18n concepts and focuses only on the hobo specific details.
 
-Hobo internationalization is an extension of Rails
-Internationalization.  To get started, set up 
-[Rails Internationalization](http://guides.rubyonrails.org/i18n.html).
+NOTICE: The i18n technique may/should be used also by english only applications, in order to rename specific models, attributes, and/or any other standard string outputted from the framework.
 
-## Main Features
+## i18n files
 
-The i18n support is granted via a translation tag `<ht>` for hobo's
-dryml-files which actually use the `ht()` helper method
-`(lib/hobo/hobo_helper.rb)`.  `ht()` uses the Rails 2.2+ I18n translate
-methods internally.
+The i18n generator generates 2 files for each chosen supported language into the config/locales dir:
 
-### View-code (dryml): &lt;ht&gt;&lt;/ht&gt;
+- hobo.&lt;locale&gt;.yml
+- app.&lt;locale&gt;.yml
 
-Usage:
+NOTICE: Splitting the strings into 2 files is not mandatory, it just makes common sense. You could put everything in one file or split it in a lot of files and everything will work anyway, because all the files in the config/locales dir get merged in one single big i18n structure.
 
-    <ht key="foo.bar"/> 
-    # -> ht("foo.bar", :default=>:"hobo.bar")
-    
-    <ht key="foo.bar">Fallback</ht> 
-    # -> ht("foo.bar", :default=>[:"hobo.bar", "Fallback"])
+### hobo.&lt;locale&gt;.yml
 
- * The main idea of the translate tag is to replace the wrapped content with the translated string identified by the key. By using the content of the key as a default value its possible to leave the templates mostly as they are. Just wrap the strings that shall be translated with the `<ht>` tag.
+The hobo.&lt;locale&gt;.yml files contain all the strings that the hobo framework uses. The developers seldom need to change anything in that files, anyway, they are editable if for any reason the developer would need to change any hobo internal string.
 
- * If you don't provide a translation file/keys everything should keep as is.
+NOTICE: hobo would work also WITHOUT the hobo.&lt;locale&gt;.yml file, since all the calls pointing to those strings have the same hard-coded default value of the strings in the file.
 
- * If you provide the matching keys, the inner content will be replaced by the translated string.
+### app.&lt;locale&gt;.yml
 
-The translation key uses the ht method - as the above usage sample shows. Which brings us to the next section.
- 
+The app.&lt;locale&gt;.yml files initially contain just a few strings (related to the new generated app) and are the files that the developer is supposed to use in order to add the specific key/values for his application and for each specific language.
 
-### Helper: ht(key, options={})
+The app.&lt;locale&gt;.yml file is supposed to contain a few conventionals keys:
 
-A wrapper around I18n.translate, which adds some conventions for easier translation of hobo content
+    - activerecord:
+      canonical i18n rails key: contains all the activerecord stuff
+      - models:
+        canonical i18n rails key: under this key are stored the pluralized model names
+      - attributes:
+        canonical i18n rails key: under this key are stored the pluralized model names
+      - attribute_help:
+        hobo key: under this key are stored all the attributes, virtual attributes and association.
+        (in practice every method of the record can have its key here)
+    - tags:
+      hobo key: contains all the special strings of the tags that use i18n like: count, you, your, filter-menu, …
 
- 1. Assumes the *first* part of the key to be a *model* name (e.g.: *users*.index.title -> *user*)
+## I18n friendly tags
 
- 2. Tries to translate the *model* by lookup for: (e.g.: *user*-> activerecord.models.*user*). The key shown in this sample is as you can see the same as RoR i18n uses.
+In hobo >= 1.3.* all the i18n hostile code has been removed. As the result a few tags have changed internally and accept more attributes, or deprecate others; a few have been deprecated in favour of a few other i18n specific tags that have been added and used in auto generated taglibs. Here is the overview: for details please refer to the documentation of the specific tag.
 
- 3. If 1. and 2. fails then a fallback replaces the first part of the key with "hobo" and uses the translated *model* name as an additional attribute. This allows us to have default translations for hobo where models or translations are yet not provided (e.g.: hobo.index.title = "{{model}} Index") 
+### I18n_rapid tags
 
-We assume that we have nothing custom in the locale file, but we do have the hobo-i18n standard key, `hobo.index.title: "{{model}} Index"` in there.
+These tags are implemented by the i18n_rapid.dryml taglib.
 
-Here's what happens when we try to do the following ht()-lookup:
+- t
+- ht
+- model-name-human
+- human-attribute-name
+- human-collection-name
 
-       ht("users.index.title", :default=>"Index of Users")
- 
- 1. ht will try to find the users.index.title key in the locale-yml-file. 
+### Changed DRYML tags from previous versions
 
- 2. Since it will yield no hits it will set model=>"user", 
+Quite a lot of tags have been transparently internationalized, i.e. the strings they use are automatically translated in the current locale language, but since their use have not changed, they are not reported here.
 
- 3. It will then replace the first part of the key from "**users**.index.title" to "**hobo**.index.title".
+- view
+  - Date
+  - Time
+  - ActiveSupport::TimeWithZone
+  - Numeric
+  - Boolean
+- count
+- you
+- your
+- select-menu (wrapper around the 'select' tag and 'options_for_select' helper)
+- filter-menu ('select' menu intended to act as a filter for index pages
 
- 4. It will then run a new i18n-translation attempt at the "hobo.index.title" key, and will pass on the model=>"user" for interpolation in the result.
+### Deprecated/Renamed tags
+
+Theese tags have been deprecated because they were not compilant with i18n or they have been just renamed in a more appropriate way.
+
+- collection-name (deprecated: use 'human-collection-name')
+- preview-with-more (renamed: use 'collection-preview' instead)
+
+## I18n Tags and Helpers
+
+There are 2 translation helpers usable as tags as well: the 't' and 'ht' tags.
+
+The main idea of the translate tags is to replace the wrapped content with the translated string identified by the key. By using the content of the key as a default value its possible to leave the templates mostly as they are. Just wrap the strings that shall be translated with the tag.
+
+### translate / t
+
+Rails introduces the rails :translate (t) helper, which is internally used by hobo in any translation.
+Besides, hobo patches it in order to fix a XSS potential security breach of the original Rails helper.
+You can use it in your views as you would do for the original Rails helper or you can use it as a DRYML tag:
+
+    # used as an helper
+    <%= t :key=>'any.string', :default=>'A string'  %>
+
+    # used as a tag
+    <t key="any.string">A String</ht>
+    #=> "A string" # if "any.string" is not found
+    #=> "Translated string" # with the below en.yml file
+
+    === en.yml ===
+    en:
+      any:
+        string: Translated string
+
+### hobo_translate / ht
+
+Wrapper around the Rails :translate helper with hobo added features. This is a specific Hobo translation helper that is mostly used internally: it can be used as a regular helper or as a dryml tag.
+
+#### Hobo Added Features
+
+The first part of the key must be a model name (e.g.: user.index.title -> user). This method will add a "model" interpolation variable set to the translated and pluralized Model.model_name.human. Besides, it will add a default 'hobo.' fallback, (e.g.: hobo.index.title) at the beginning of the fallback chain.
+
+You can also pass any other :translate option like for example :count.
+
+Example:
+
+    # used as an helper
+    <%= ht :key=>'user.index.title', :default=>'Index'  %>
+
+    # used as a tag
+    <ht key="user.index.title">Index</ht>
+    #=> "Index" # if "user.index.title" or "hobo.index.title" is not found
+    #=> "User Index" # with the below en.yml file
+
+    === en.yml ===
+    en:
+      hobo:
+        index:
+          title: %{model} Index
 
 All standard translations are scoped with hobo (see below). If you want specific translations for specific models, just copy/add another scope with the name of the model. For example you can have a specific heading for a "customer" index page by giving the following translation key:
+
 <pre>
 |...
 |  customer:
@@ -68,60 +137,16 @@ All standard translations are scoped with hobo (see below). If you want specific
 |        heading: "My special customer index heading"
 |...
 </pre>
+
 For more samples search the code for ht() or &lt;ht&gt;&lt;/ht&gt; sections.
 
-### Calling the helper from elsewhere
+### Debugging i18n: config.show_translation_keys
 
-`ht` is added as an instance method to hobo controllers, so it is
-available in controllers and views.   To access the translation
-functions from elsewhere use `Hobo::Translations.ht`.   Including the
-Hobo::Translations module into your class will give you `ht` as a
-local instance method.
+When the config.show\_translation\_key is true it will show a label before each translated string, reporting the translation key used. The label is dryml friendly, i.e. does not contain any <span> tags (which are nicely styleable but mess everything up when inserted in the wrong place).
 
-### View-hints
+It is omnipresent: it will just appear everywhere there is a key lookup, even in select-menu, so it is a real support for translation, debugging and overriding.
 
-This system will look up the view-hints directly from the keys you add (i.e. in `app.*.yml`). Sample section from a typical `app.en.yml` file:
-<pre>
-|en:
-|  users:
-|    model_name: User
-|    name: Name
-|    email_address: Email Address
-|    hints:
-|      name: "This is the name shown to the users in the application. It should contain the user's full name."
-|      email_address: "The email-address here is used as a user-id as well as a means of communicating with the user via email. Make sure the user has allowed mail from the host of this application." 
-</pre>
-
-### Locale files [http://github.com/Spiralis/hobo-i18n-locales](http://github.com/Spiralis/hobo-i18n-locales)
-
- 1. A separate git-repository has been set up to contain the locale-files for different languages. There is a specific hobo.&lt;locale&gt;.yml for each locale. These are standard hobo keys. 
-
- 2. In addition to this you probably also have a rails.&lt;locale&gt;.yml file to handle Rails-i18n keys (check Sven Fuchs [rails-i18n-repository](http://github.com/svenfuchs/rails-i18n/tree/master/rails/locale/) for your locales). 
-
- 3. Finally - you should have an app.&lt;locale&gt;.yml files where
- you keep your customizations. You might have other locale-files and
- you may also use other conventions. It's all up to you. 
-
-### Translation Help
-
-If you set `HOBO_SHOW_LOCALE_KEYS` in your environment, the translator
-will display all locale keys.  If you set `HOBO_VERBOSE_TRANSLATIONS`,
-translations will appear in the log.
-
-### Locale tools
-  * harvester (TO-DO)
-
-Typical locale key-harvesters will fail in Hobo projects. They normally search through the files looking for constant keys. Hobo-translation-keys however, often need to be  evaluated run-time. Instead the harvester should be built into the ht method. The harvester would each time a translation-lookup is done check the key for existence (and log the passed interpolation values). Some heuristics could be applied on the key itself to better understand where the key should be saved. If not to be saved in the hobo.&lt;locale&gt;.yml-file then it will add it to the app.&lt;current-locale&gt;.yml-file. 
-
-  * translation (TO-DO)
-
-Changing the locale-files by hand is the only way at the moment. However. It shouldn't be too difficult to add a hobo-web-interface for the keys, with focus on the app.\*.yml files. It should be possible to show keys in english plus at least one other language at the same time. Next to this, statistics should be available, also showing the interpolation-names used when called. 
+It also shows how to override any hobo default strings for a specific model, (for example titles or heading for pages) since it shows both the called key and the fallback for each key passed to the ht method.
 
 
-## Issues
 
- - There are more conventions added by rails. Mainly the [lazy lookup/automatic skin scoping](http://guides.rubyonrails.org/i18n.html) (section 4.1.4). This would lead to other scoping conventions. Maybe this should be considered later.
-
- - Automatic inflections are no real use. (Just stay with the english defaults in most cases ;)) or use specific translation keys.
-
- - No tests yet

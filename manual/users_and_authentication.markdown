@@ -64,7 +64,7 @@ different users.   This is very uncommon, but it is possible to have
 ## Guest
 
 If there is no current user, `acting_user` and `current_user` are set
-to an instance of the Hobo::Guest object.  This is not an ActiveRecord
+to an instance of the Hob::Model::Guest object.  This is not an ActiveRecord
 object, it does not get stored in the database.  This object has the
 following functions defined:
 
@@ -270,7 +270,7 @@ functionality of `hobo_model`.
 
 ## Guest functions
 
-Hobo::Guest implements a valid user model, so the functions it defines
+Hob::Model::Guest implements a valid user model, so the functions it defines
 should also be defined in your user model.  These functions are
 `to_s`, `guest?`, `signed_up?` and `login`.
 

@@ -1,4 +1,4 @@
-# Adding an Administration subsite to an existing Rails application
+# Adding an Administration subsite to an existing Rails 3 application
 
 This tutorial will show how you can create an administrative subsite
 for an existing Rails application.   This will allow the administrator
@@ -22,36 +22,35 @@ Let's add a Hobo dependency to it.
 
     $ gem install hobo
 
-Inside the initializer block in config/environment.rb add:
+Inside the Gemfile add:
 
-    config.gem 'hobo'
+    gem 'hobo'
 
 It might be a good idea to run your application and confirm that
-everything still works.  If you run into [Bug
-508](https://hobo.lighthouseapp.com/projects/8324-hobo/tickets/508-hobo-plugin-must-run-without-any-hobo-models),
-you need a later version of Hobo.
+everything still works.
 
 Now might also be a good time to make sure you have your source code
 backed up, preferably in an SCM tool like git or subversion.  We're
-going to be running some generators, which may overwrite some of your
-existing files.  (They probably won't -- the most likely is
-public/stylesheets/application.css).
+going to be running some generators: they will ask you before eventually
+overwriting some existing file, but just in case you make any mistake.
+
+Notice: When you run in a conflict with an existing file you can see the diffs
+by typing 'd'. Check also the other options.
 
 ## Run the Hobo generators
 
 Now we'll ask Hobo to copy it's shared files into your application.
-These are mostly javascript, css and dryml files.  It also adds a hook
-into your existing `config/routes.rb`.
+These are mostly javascript, css and dryml files
 
-    $ ruby script/generate hobo --add-routes
-    $ ruby script/generate hobo_rapid
+    $ hobo g assets
+    $ hobo g rapid
 
 Now let's create our admin subsite:
 
-    $ ruby script/generate hobo_subsite --make-front-site admin
-    $ ruby script/generate hobo_front_controller admin::front --add-routes
+    $ hobo g subsite admin --make-front-site
+    $ hobo g front_controller admin::front --add-routes
 
-Note that if you use `hobo_admin_site` rather than `hobo_subsite`, the
+Note that if you use `admin_subsite` rather than `subsite`, the
 subsite will be limited to the administrator.  For this to work, you
 will need to complete the section labelled "Updating your User Model",
 below.
@@ -133,11 +132,10 @@ authentication system.
 
 If you don't currently have a User model, type:
 
-    $ ruby script/generate hobo_user_model User
-    $ ruby script/generate hobo_user_controller User
-    $ ruby script/generate hobo_migration
+    $ hobo g user_resource User
+    $ hobo g migration
 
-The last generator will ask you for a generator name, and then ask if you wish to run the migration immediately.  Enter "m" to tell it to do so.
+The last generator will ask if you wish to run the migration immediately.  Enter "m" to tell it to do so.
 
 The following pages will now be available:
 
