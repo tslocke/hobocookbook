@@ -132,9 +132,9 @@ If set, fixtures are generated.
 
 Interactively set by: `Type your preferred fixture replacement or <enter> for no replacement:`.
 
-This option is passed to the Rails3 generator.  You must have the
-desired fixture replacement installed before choosing it here.  One list
-of available replacements is on
+This option is passed to the Rails3 generator.  If you do not have the
+chosen fixture replacement installed bundler will attempt to install
+it.  One list of available replacements is on
 (ruby-toolbox.com)[http://ruby-toolbox.com/categories/testing_frameworks.html],
 but there are probably others available.
 

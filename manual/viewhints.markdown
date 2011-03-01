@@ -74,7 +74,11 @@ The following view helpers are defined to simplify access to view-hints informat
 
 ## Legacy Hints
 
-Hobo >= 1.3.* generators do not generate view hints files anymore.  Their functionality has been  moved elsewhere. If you used any old version of Hobo you might be interested in reading this section, if you are new to Hobo, just skip it.
+Hobo >= 1.3.* generators do not generate view hints files anymore.
+Their functionality has been moved elsewhere, but some backwards
+compatibility has been maintained.  If you used any old version of
+Hobo you might be interested in reading this section, if you are new
+to Hobo, just skip it.
 
 ## Renaming
 
@@ -163,13 +167,6 @@ Model.view_hints method, so for example User.view_hints.children will
 return the children of the User model. The same applies to the parent,
 parent_defined, sortable? and paginate? methods which remain in the
 view hint class.
-
-If for any reason you want to use viwhints in the traditional way, or
-if you want to use old view hint files, you must either change the
-base class for each file to Hobo::Model::ViewHints, OR you can also
-add Hobo::ViewHints = Hobo::Model::ViewHints in any initializer file
-or appended to application.rb without the need to change the base
-class.
 
 ## Deprecated methods
 
