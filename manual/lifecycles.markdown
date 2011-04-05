@@ -33,9 +33,9 @@ REST vs. lifecycles is not an either/or choice. Some models will support both st
 
 Everyone loves an example, so here is one. We'll stick with the friendship idea. If you want to try this out, create a blank app and add a model:
 
-    $ hobo friends
+    $ hobo new friends
     $ cd friends
-    $ ./script/generate hobo_model friendship
+    $ hobo generate model friendship
 
 Here's the code for the friendship mode (don't be put off by the `MagicMailer`, that's just a made-up class to illustrate a common use of the callback actions -- sending emails):
 
