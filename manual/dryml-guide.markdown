@@ -80,6 +80,12 @@ To achieve that in DRYML, you could put the angle brackets in the snippet too:
 
     <%= "<#{my_tag_name}>" %> ... <%= "</#{my_tag_name}>" %>
 {.dryml}
+
+Or you could use the `<call-tag>` or `<wrap>` DRYML tags to compose
+your snippet:
+
+    <call-tag tag="&my_tag_name"> ... </call-tag>
+{.dryml}
     
 ## Where are the layouts?
 
@@ -1379,3 +1385,4 @@ not recognized in many web browsers for this reason.  You must use
 DRYML follows the XML conventions.  `<a/>` is valid DRYML.
 
 That's all folks!
+
