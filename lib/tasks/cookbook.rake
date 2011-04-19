@@ -7,7 +7,7 @@ namespace :cookbook do
   desc "Rebuild agility.markdown"
   task :rebuild_agility => :environment do
     #    GitorialsController::TITLES.each do |dir, desc|
-    Gitorial.new("#{RAILS_ROOT}/gitorials/agility", "http://github.com/bryanlarsen/agility-gitorial/commit/", "/patches/agility").process.each do |filename, markdown|
+    Gitorial.new("#{RAILS_ROOT}/gitorials/agility", "http://github.com/Hobo/agility-gitorial/commit/", "/patches/agility").process.each do |filename, markdown|
       next if markdown==""
       f=open("#{RAILS_ROOT}/gitorials/#{filename}", "w")
       f.write(markdown)

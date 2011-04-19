@@ -39,13 +39,6 @@ github](http://github.com/bryanlarsen/agility-gitorial/tree/master):
     $ git clone git://github.com/bryanlarsen/agility-gitorial.git
     $ cd agility-gitorial
 
-The next step is to checkout the included submodules (Hobo,
-acts-as-list).  How git handles submodules is a little bit
-idiosyncratic -- we'll check them out now even though you don't need
-them until later in the tutorial.
-
-    $ git submodule update --init
-
 Now rewind the tutorial to the beginning, and create your own branch
 to record your changes.
 
@@ -54,7 +47,8 @@ to record your changes.
 
 You'll notice that the first command gives you a warning, recommending
 that you also run the second command.  You should also notice that
-we're starting at step four -- this includes the ".gitignore" file and the initial run of the hobo command.
+we're starting at step four -- this includes the ".gitignore" file and
+the initial run of the hobo command.
 
 Start the tutorial, and follow along.
 
@@ -122,5 +116,5 @@ repository again and manually move any changes you have made from your
 old clone to the new one.
 
 
-gitorial-002: [view on github](http://github.com/bryanlarsen/agility-gitorial/commit/d20dadd19efc46ff1d4c44c0f444bdb8d9923d61), [download 02-gitorial-sidebar.patch](/patches/agility/02-gitorial-sidebar.patch)
+gitorial-005: [view on github](http://github.com/Hobo/agility-gitorial/commit/9eda3fd2e36824592227ee4be86445a9da5e7f03), [download 05-gitorial-sidebar.patch](/patches/agility/05-gitorial-sidebar.patch)
 {: .commit}
