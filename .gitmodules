@@ -19,3 +19,9 @@
 [submodule "taglibs/imaginary-dryml"]
 	path = taglibs/imaginary-dryml
 	url = git://github.com/imaginary-cloud/Imaginary-DRYML.git
+[submodule "gitorials/agility"]
+	path = gitorials/agility
+	url = git://github.com/Hobo/agility-gitorial.git
+[submodule "public/patches/agility"]
+	path = public/patches/agility
+	url = git://github.com/Hobo/agility-gitorial-patches.git
