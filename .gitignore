@@ -6,5 +6,4 @@ vendor/plugins/footnotes-edge
 tmtags
 app/views/taglibs/auto
 public/img/*
-manual/generators/*.markdown
-
+rails3app

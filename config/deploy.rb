@@ -21,7 +21,7 @@ namespace :vlad do
   desc 'reload api tags'
   remote_task :update_cookbook do
     run "cd #{current_release}; RAILS_ENV=production rake cookbook:load_api_docs"
-    run "cd #{current_release}; RAILS_ENV=production rake cookbook:rebuild_generator_docs"
+#    run "cd #{current_release}; RAILS_ENV=production rake cookbook:rebuild_generator_docs"
   end
 
   desc 'update secret in config/environment.rb'
