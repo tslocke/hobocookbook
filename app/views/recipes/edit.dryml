@@ -9,6 +9,9 @@
     <yui-scripts version="2.6.0" scripts="yuiloader/yuiloader-min, event/event-min, connection/connection-min"/>
     <javascript name="uploader"/>
   </append-scripts:>
+  <after-heading:>
+    <help>Use <markdown-help>markdown syntax</markdown-help></help>
+  </after-heading:> 
 
   <aside-content:>
     <h3>Images</h3>
