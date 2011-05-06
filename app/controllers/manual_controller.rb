@@ -39,18 +39,25 @@ class ManualController < ApplicationController
                                                ['metaid',            'Metaid'],
                                                ['methodphitamine',   'Methodphitamine'],
                                                ['module',            'Module']]),
-    'generators' => self.create_ordered_hash([['hobo',                  'hobo'],
-                                              ['hobo_rapid',            'hobo_rapid'],
-                                              ['hobo_model',            'hobo_model'],
-                                              ['hobo_model_controller', 'hobo_model_controller'],
-                                              ['hobo_model_resource',   'hobo_model_resource'],
-                                              ['hobo_front_controller', 'hobo_front_controller'],
-                                              ['hobo_user_model',       'hobo_user_model'],
-                                              ['hobo_user_controller',  'hobo_user_controller'],
-                                              ['hobo_subsite',          'hobo_subsite'],
-                                              ['hobo_admin_site',       'hobo_admin_site'],
-                                              ['hobofield_model',       'hobofield_model'],
-                                              ['hobo_migration',        'hobo_migration']])
+    'generators' => self.create_ordered_hash([['admin_subsite',      'admin_subsite'],
+                                              ['assets',             'assets'],
+                                              ['controller',         'controller'],
+                                              ['front_controller',   'front_controller'],
+                                              ['i18n',               'i18n'],
+                                              ['migration',          'migration'],
+                                              ['model',              'model'],
+                                              ['rapid',              'rapid'],
+                                              ['resource',           'resource'],
+                                              ['routes',             'routes'],
+                                              ['setup_wizard',       'setup_wizard'],
+                                              ['subsite',            'subsite'],
+                                              ['subsite_taglib',     'subsite_taglib'],
+                                              ['test_framework',     'test_framework'],
+                                              ['user_controller',    'user_controller'],
+                                              ['user_mailer',        'user_mailer'],
+                                              ['user_model',         'user_model'],
+                                              ['user_resource',      'user_resource']])
+
   }
 
   def manual_section

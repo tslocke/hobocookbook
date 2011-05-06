@@ -18,7 +18,7 @@ namespace :cookbook do
   desc "Rebuild generator documentation"
   task :rebuild_generator_docs => :environment do
     ManualController::SUBTITLES['generators'].each do |gen, title|
-      raw = `#{RAILS_ROOT}/script/generate #{gen} --help`
+      raw = `cd rails3app; rvm 1.9.2 exec rails g hobo:#{gen} --help`
       out = "Generators -- #{title.gsub('_', '\_')}\n{: .document-title}\n\n" +
         raw.gsub(/^(\w(\w|\s)*):(.*)/) {|s| "\n## #{$1}\n\n    #{$3}\n"}.
         gsub("#{RAILS_ROOT}", ".")
