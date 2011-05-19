@@ -32,4 +32,6 @@ Generators -- subsite\_taglib
 
     
 
-    Create hobo files for subsite_taglib generator.
+    This generator is used to generate
+    app/views/taglibs/<subsite_name>_site.dryml, and is used by the
+    subsite and admin_site generators.  Do not use directly.

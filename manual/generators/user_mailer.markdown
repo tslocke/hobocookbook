@@ -33,4 +33,4 @@ Generators -- user\_mailer
 
     
 
-    Create hobo files for user_mailer generator.
+    This generator is used by the user_resource generator to generate user_mailer.rb.

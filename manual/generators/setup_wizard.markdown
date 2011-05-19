@@ -29,8 +29,11 @@ Generators -- setup\_wizard
                                                        # Default: true
       [--front-controller-name=FRONT_CONTROLLER_NAME]  # Front Controller Name
                                                        # Default: front
+      [--add-admin-subsite]                            # Add an Admin Subsite
       [--admin-subsite-name=ADMIN_SUBSITE_NAME]        # Admin Subsite Name
                                                        # Default: admin
+      [--make-front-site]                              # Rename application.dryml to front_site.dryml
+                                                       # Default: true
       [--private-site]                                 # Make the site unaccessible to non-members
       [--migration-generate]                           # Generate migration only
       [--migration-migrate]                            # Generate migration and migrate

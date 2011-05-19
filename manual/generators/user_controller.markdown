@@ -29,8 +29,9 @@ Generators -- user\_controller
   -s, [--skip]     # Skip files that already exist
 
 
-## Description
+## USAGE
 
     
 
-    Create hobo files for user_controller generator.
+    This generator is used by the user_resource generator to generate
+    app/controllers/users_controller.rb

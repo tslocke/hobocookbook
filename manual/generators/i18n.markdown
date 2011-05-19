@@ -23,4 +23,5 @@ Generators -- i18n
 
     
 
-    Create hobo files for i18n generator.
+
+    Copies the locale files for the specified locales.

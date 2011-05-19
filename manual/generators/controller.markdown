@@ -32,4 +32,5 @@ Generators -- controller
 
     
 
-    Create hobo files for controller generator.
+
+    Creates a Hobo model controller.   Called from the Hobo `resource` generator.
