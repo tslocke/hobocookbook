@@ -22,7 +22,7 @@ namespace :vlad do
 
   desc 'reload api tags'
   remote_task :update_cookbook do
-#    run " cd #{current_release}; RAILS_ENV=production #{rake_cmd} cookbook:load_api_docs"
+    run " cd #{current_release}; RAILS_ENV=production #{rake_cmd} cookbook:load_api_docs"
 #    run " cd #{current_release}; RAILS_ENV=production #{rake_cmd} cookbook:rebuild_generator_docs"
   end
 
