@@ -20,7 +20,7 @@ namespace :vlad do
 
   desc 'reload api tags'
   remote_task :update_cookbook do
-    run "cd #{current_release}; RAILS_ENV=production rake cookbook:load_api_docs"
+#    run "cd #{current_release}; RAILS_ENV=production rake cookbook:load_api_docs"
 #    run "cd #{current_release}; RAILS_ENV=production rake cookbook:rebuild_generator_docs"
   end
 
@@ -36,7 +36,12 @@ namespace :vlad do
     run "echo #{scm_path}/repo > #{current_release}/git-path"
   end
 
+  remote_task :copy_config_files, :roles => :app do
+    run "cp #{shared_path}/config/* #{current_release}/config/"
+  end
+
   remote_task :update, :roles => :app do
+    Rake::Task["vlad:copy_config_files"].invoke
     Rake::Task["vlad:save_version"].invoke
     Rake::Task["vlad:update_secret"].invoke
     Rake::Task["vlad:update_cookbook"].invoke
