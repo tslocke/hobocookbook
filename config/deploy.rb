@@ -15,13 +15,13 @@ namespace :vlad do
 
   desc 'run hobo:generate_taglibs'
   remote_task :generate_taglibs do
-    run "cd #{current_release}; RAILS_ENV=production rake hobo:generate_taglibs"
+    run " source /usr/local/rvm/scripts/rvm; cd #{current_release}; RAILS_ENV=production rake hobo:generate_taglibs"
   end
 
   desc 'reload api tags'
   remote_task :update_cookbook do
-#    run "cd #{current_release}; RAILS_ENV=production rake cookbook:load_api_docs"
-#    run "cd #{current_release}; RAILS_ENV=production rake cookbook:rebuild_generator_docs"
+#    run " source /usr/local/rvm/scripts/rvm; cd #{current_release}; RAILS_ENV=production rake cookbook:load_api_docs"
+#    run " source /usr/local/rvm/scripts/rvm; cd #{current_release}; RAILS_ENV=production rake cookbook:rebuild_generator_docs"
   end
 
   desc 'update secret in config/environment.rb'
