@@ -1,11 +1,11 @@
-set :application, "cookbook"
-set :domain,      "cookbook-staging.hobocentral.net"
-set :deploy_to,   "/home/newcookbook"
+set :application, "hobocookbook3"
+set :domain,      "vbox"
+set :deploy_to,   "/srv/hobocookbook3"
 set :repository,  "git://github.com/tablatom/hobocookbook"
-set :revision,    "origin/master"
+set :revision,    "origin/rails3"
 
-set :user, "cookbook"
-set :domain, "#{user}@cookbook-staging.hobocentral.net"
+set :user, "blarsen"
+set :domain, "#{user}@vbox"
 
 namespace :vlad do
   desc 'Restart Passenger'
