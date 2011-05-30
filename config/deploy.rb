@@ -2,7 +2,7 @@ set :application, "hobocookbook3"
 set :domain,      "vbox"
 set :deploy_to,   "/srv/hobocookbook3"
 set :repository,  "git://github.com/tablatom/hobocookbook"
-set :revision,    "origin/rails3"
+set :revision,    "origin/hobo13doc"
 
 set :user, "blarsen"
 set :domain, "#{user}@vbox"
