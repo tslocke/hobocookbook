@@ -1,11 +1,11 @@
 set :application, "hobocookbook3"
-set :domain,      "vbox"
+set :domain,      "li285-250.members.linode.com"
 set :deploy_to,   "/srv/hobocookbook3"
 set :repository,  "git://github.com/tablatom/hobocookbook"
 set :revision,    "origin/hobo13doc"
 
 set :user, "blarsen"
-set :domain, "#{user}@vbox"
+set :domain, "#{user}@li285-250.members.linode.com"
 
 set :rake_cmd, "/usr/local/rvm/bin/cookbook_rake"
 
