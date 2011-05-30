@@ -1,0 +1,1 @@
+../../vendor/hobo13/hobo_fields/test/interactive_primary_key.rdoctest

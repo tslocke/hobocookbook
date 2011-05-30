@@ -33,9 +33,8 @@ class ManualController < ApplicationController
     'hobo_fields' => self.create_ordered_hash([['rich_types',         'Rich Types'],
                                                ['api',                'API'],
                                                ['migration_generator','Migration Generator'],
-                                               #new content applicable?
-                                               ['generators',         'Generators'],
-                                               ['interactive_primary_key', 'Interactive Primary Key'],
+#                                               ['generators',         'Generators'],
+#                                               ['interactive_primary_key', 'Interactive Primary Key'],
                                                ['migration_generator_comments', 'Migration Generator Comments']
                                              ]),
     'hobo_support' => self.create_ordered_hash([['chronic',           'Chronic'],
