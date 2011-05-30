@@ -1,1 +1,1 @@
-../vendor/plugins/hobo/hobo/doctest/multi_model_forms.rdoctest
+../vendor/hobo13/hobo/doctests/hobo/multi_model_forms.rdoctest

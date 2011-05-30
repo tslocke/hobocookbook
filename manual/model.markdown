@@ -1,1 +1,1 @@
-../vendor/plugins/hobo/hobo/doctest/model.rdoctest
+../vendor/hobo13/hobo/doctests/hobo/model.rdoctest

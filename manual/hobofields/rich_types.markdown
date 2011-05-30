@@ -1,1 +1,1 @@
-../../vendor/plugins/hobo/hobofields/test/rich_types.rdoctest
+../../vendor/hobo13/hobo_fields/test/rich_types.rdoctest

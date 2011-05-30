@@ -1,1 +1,0 @@
-../../vendor/plugins/hobo/hobofields/test/hobofields.rdoctest

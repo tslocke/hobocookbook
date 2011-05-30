@@ -1,1 +1,1 @@
-../vendor/plugins/hobo/hobo/doctest/scopes.rdoctest
+../vendor/hobo13/hobo/doctests/hobo/scopes.rdoctest

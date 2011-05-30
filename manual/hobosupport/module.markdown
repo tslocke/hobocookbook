@@ -1,1 +1,0 @@
-../../vendor/plugins/hobo/hobosupport/test/hobosupport/module.rdoctest
