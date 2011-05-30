@@ -25,3 +25,6 @@
 [submodule "public/patches/agility"]
 	path = public/patches/agility
 	url = git://github.com/Hobo/agility-gitorial-patches.git
+[submodule "vendor/hobo13"]
+	path = vendor/hobo13
+	url = git://github.com/tablatom/hobo.git

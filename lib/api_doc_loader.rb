@@ -1,6 +1,7 @@
 module ApiDocLoader
   
-  TAGLIB_HOME = "#{RAILS_ROOT}/vendor/plugins/hobo/hobo/taglibs"
+#  TAGLIB_HOME = "#{RAILS_ROOT}/vendor/plugins/hobo/hobo/taglibs"
+  TAGLIB_HOME = "#{RAILS_ROOT}/vendor/hobo13/hobo/lib/hobo/rapid/taglibs"
   PLUGINS_HOME = "#{RAILS_ROOT}/taglibs"
   
   class Taglib < Hobo::Dryml::DrymlDoc::Taglib
