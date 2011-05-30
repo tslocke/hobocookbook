@@ -7,6 +7,8 @@ set :revision,    "origin/hobo13doc"
 set :user, "blarsen"
 set :domain, "#{user}@vbox"
 
+set :rake_cmd, "/usr/local/rvm/bin/cookbook_rake"
+
 namespace :vlad do
   desc 'Restart Passenger'
   remote_task :start_app, :roles => :app do
@@ -15,13 +17,13 @@ namespace :vlad do
 
   desc 'run hobo:generate_taglibs'
   remote_task :generate_taglibs do
-    run " source /usr/local/rvm/scripts/rvm; cd #{current_release}; RAILS_ENV=production rake hobo:generate_taglibs"
+    run " cd #{current_release}; RAILS_ENV=production #{rake_cmd} hobo:generate_taglibs"
   end
 
   desc 'reload api tags'
   remote_task :update_cookbook do
-#    run " source /usr/local/rvm/scripts/rvm; cd #{current_release}; RAILS_ENV=production rake cookbook:load_api_docs"
-#    run " source /usr/local/rvm/scripts/rvm; cd #{current_release}; RAILS_ENV=production rake cookbook:rebuild_generator_docs"
+#    run " cd #{current_release}; RAILS_ENV=production #{rake_cmd} cookbook:load_api_docs"
+#    run " cd #{current_release}; RAILS_ENV=production #{rake_cmd} cookbook:rebuild_generator_docs"
   end
 
   desc 'update secret in config/environment.rb'
