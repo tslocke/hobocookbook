@@ -1,13 +1,14 @@
-set :application, "hobocookbook3"
-set :domain,      "li285-250.members.linode.com"
-set :deploy_to,   "/srv/hobocookbook3"
+set :application, "cookbook"
+set :domain,      "cookbook-staging.hobocentral.net"
+# set :domain,      "li285-250.members.linode.com"
+set :deploy_to,   "/home/cookbook3"
 set :repository,  "git://github.com/tablatom/hobocookbook"
 set :revision,    "origin/hobo13doc"
 
 set :user, "blarsen"
-set :domain, "#{user}@li285-250.members.linode.com"
+set :domain, "#{user}@cookbook-staging.hobocentral.net"
 
-set :rake_cmd, "/usr/local/rvm/bin/cookbook_rake"
+# set :rake_cmd, "/usr/local/rvm/bin/cookbook_rake"
 
 namespace :vlad do
   desc 'Restart Passenger'
