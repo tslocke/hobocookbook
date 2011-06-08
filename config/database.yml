@@ -3,6 +3,11 @@ development:
     database: hobocookbook_development
     encoding: utf8
     
+taglibs_development:
+    adapter: mysql
+    database: hobocookbook_development
+    encoding: utf8
+
 test:
   adapter: sqlite3
   database: db/test.sqlite3
@@ -12,3 +17,8 @@ production:
   adapter: mysql
   database: hobocookbook_production
   encoding: utf8
+
+taglibs_production:
+    adapter: mysql
+    database: taglibs_production
+    encoding: utf8
