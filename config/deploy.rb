@@ -5,7 +5,7 @@ set :deploy_to,   "/home/cookbook3"
 set :repository,  "git://github.com/tablatom/hobocookbook"
 set :revision,    "origin/hobo13doc"
 
-set :user, "blarsen"
+set :user, "cookbook"
 set :domain, "#{user}@cookbook-staging.hobocentral.net"
 
 # set :rake_cmd, "/usr/local/rvm/bin/cookbook_rake"
