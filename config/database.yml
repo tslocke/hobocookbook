@@ -1,12 +1,18 @@
 development:
-    adapter: mysql
-    database: hobocookbook_development
-    encoding: utf8
-    
+  adapter: sqlite3
+  database: db/development.sqlite3
+  timeout: 5000
+#    adapter: mysql
+#    database: hobocookbook_development
+#    encoding: utf8
+
 taglibs_development:
-    adapter: mysql
-    database: hobocookbook_development
-    encoding: utf8
+  adapter: sqlite3
+  database: db/development.sqlite3
+  timeout: 5000
+#    adapter: mysql
+#    database: hobocookbook_development
+#    encoding: utf8
 
 test:
   adapter: sqlite3

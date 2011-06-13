@@ -1,5 +1,5 @@
 class ManualController < ApplicationController
-  
+
   caches_page :manual_section, :manual_subsection
 
   def self.create_ordered_hash(llist)
@@ -9,7 +9,7 @@ class ManualController < ApplicationController
     end
     hash
   end
-  
+
   TITLES = self.create_ordered_hash([# ['to-do',        "To Do List"],
                                      ['toc',          "Table of Contents"],
                                      ['download',     "Download and Install"],
@@ -72,7 +72,7 @@ class ManualController < ApplicationController
     filename     = "manual/#{section}.markdown"
     @title       = TITLES[section]
     @subtitles   = SUBTITLES[section]
-    @content     = HoboFields::MarkdownString.new(File.read("#{RAILS_ROOT}/#{filename}"))
+    @content     = HoboFields::Types::MarkdownString.new(File.read("#{RAILS_ROOT}/#{filename}"))
     @last_update = last_update filename
   end
 
@@ -83,7 +83,7 @@ class ManualController < ApplicationController
     @title       = TITLES[section]
     @subtitles   = SUBTITLES[section]
     @current_subtitle    = SUBTITLES[section][subsection]
-    @content     = HoboFields::MarkdownString.new(File.read("#{RAILS_ROOT}/#{filename}"))
+    @content     = HoboFields::Types::MarkdownString.new(File.read("#{RAILS_ROOT}/#{filename}"))
     @last_update = last_update filename
   end
 
@@ -92,3 +92,4 @@ class ManualController < ApplicationController
   end
 
 end
+

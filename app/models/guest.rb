@@ -1,4 +1,4 @@
-class Guest < Hobo::Guest
+class Guest < Hobo::Model::Guest
 
   def can_update?(obj, field)
     false

@@ -13,11 +13,11 @@ Generators -- test\_framework
 
     
 
-  -t, [--test-framework=TEST_FRAMEWORK]            # Use a specific test framework
-                                                   # Default: test_unit
       [--fixtures]                                 # Add the fixture option to the test framework
                                                    # Default: true
       [--fixture-replacement=FIXTURE_REPLACEMENT]  # Use a specific fixture replacement
+  -t, [--test-framework=TEST_FRAMEWORK]            # Use a specific test framework
+                                                   # Default: test_unit
       [--update]                                   # Run bundle update to install the missing gems
 
 
@@ -25,10 +25,10 @@ Generators -- test\_framework
 
     
 
-  -f, [--force]    # Overwrite files that already exist
+  -s, [--skip]     # Skip files that already exist
   -p, [--pretend]  # Run but do not make any changes
   -q, [--quiet]    # Supress status output
-  -s, [--skip]     # Skip files that already exist
+  -f, [--force]    # Overwrite files that already exist
 
 
 ## Description

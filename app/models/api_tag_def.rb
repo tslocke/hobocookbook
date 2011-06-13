@@ -31,7 +31,9 @@ class ApiTagDef < ActiveRecord::Base
   has_many   :comments, :class_name => "ApiTagComment", :dependent => :destroy
   
   named_scope :no_for_type, :conditions => "for_type is null"
-  
+
+  children :comments
+
   def def_line
     "<#{extension? ? 'extend' : 'def'} tag='#{tag}'#{' polymorphic' if polymorphic?}#{' for=\'' + for_type + '\'' if for_type}>"
   end

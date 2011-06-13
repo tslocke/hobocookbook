@@ -13,8 +13,8 @@ Generators -- user\_mailer
 
     
 
-  -i, [--invite-only]          # Add features for an invite only website
       [--activation-email]     # Send an email to activate the account
+  -i, [--invite-only]          # Add features for an invite only website
   -t, [--test-framework=NAME]  # Test framework to be invoked
                                # Default: test_unit
 
@@ -23,14 +23,14 @@ Generators -- user\_mailer
 
     
 
-  -f, [--force]    # Overwrite files that already exist
+  -s, [--skip]     # Skip files that already exist
   -p, [--pretend]  # Run but do not make any changes
   -q, [--quiet]    # Supress status output
-  -s, [--skip]     # Skip files that already exist
+  -f, [--force]    # Overwrite files that already exist
 
 
 ## Description
 
     
 
-    This generator is used by the user_resource generator to generate user_mailer.rb.
+    Create hobo files for user_mailer generator.

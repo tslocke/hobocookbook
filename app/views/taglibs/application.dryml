@@ -35,7 +35,7 @@
       </aside>
       <header class="page-header" param>
         <main-nav param/>
-        <account-nav if="&login_url(Hobo::User.default_user_model)" param/>
+        <account-nav if="&login_url(Hobo::Model::UserBase.default_user_model)" param/>
       </header>
     </header:>
     

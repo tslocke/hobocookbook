@@ -13,25 +13,23 @@ Generators -- subsite\_taglib
 
     
 
-  -i, [--invite-only]                            # Add features for an invite only website
       [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
                                                  # Default: user
+  -i, [--invite-only]                            # Add features for an invite only website
 
 
 ## Runtime options
 
     
 
-  -f, [--force]    # Overwrite files that already exist
+  -s, [--skip]     # Skip files that already exist
   -p, [--pretend]  # Run but do not make any changes
   -q, [--quiet]    # Supress status output
-  -s, [--skip]     # Skip files that already exist
+  -f, [--force]    # Overwrite files that already exist
 
 
 ## Description
 
     
 
-    This generator is used to generate
-    app/views/taglibs/<subsite_name>_site.dryml, and is used by the
-    subsite and admin_site generators.  Do not use directly.
+    Create hobo files for subsite_taglib generator.

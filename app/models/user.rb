@@ -11,9 +11,10 @@ class User < ActiveRecord::Base
 
   # This gives admin rights to the first sign-up.
   # Just remove it if you don't want that
-  before_create { |user| user.administrator = true if count == 0 }
+  before_create { |user| user.administrator = true if user.class.count == 0 }
   
-  
+  children :recipes, :questions, :answers
+
   # --- Signup lifecycle --- #
 
   lifecycle do

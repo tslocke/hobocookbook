@@ -1,4 +1,4 @@
-class HoboFields::MarkdownString < HoboFields::RawMarkdownString
+class HoboFields::Types::MarkdownString < HoboFields::Types::RawMarkdownString
 
   def to_html(xmldoctype = true)
     return "" if blank?
@@ -19,12 +19,12 @@ class HoboFields::MarkdownString < HoboFields::RawMarkdownString
   
 end
 
-class OptionalMarkdown < HoboFields::Text
+class OptionalMarkdown < HoboFields::Types::Text
 
   HoboFields.register_type(:optional_markdown, self)
 
   def to_html_from_markdown
-    HoboFields::MarkdownString.new(self).to_html
+    HoboFields::Types::MarkdownString.new(self).to_html
   end
 
 end
