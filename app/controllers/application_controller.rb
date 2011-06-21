@@ -9,11 +9,12 @@ class ApplicationController < ActionController::Base
   private
 
   def last_update(filename)
-    Dir.chdir(File.open("#{RAILS_ROOT}/git-path").read.chomp) do
-      head = File.open("#{RAILS_ROOT}/git-version").read.chomp
+    Dir.chdir(File.open("#{Rails.root}/git-path").read.chomp) do
+      head = File.open("#{Rails.root}/git-version").read.chomp
       commit = `git rev-list #{head} #{filename} | head -n 1`
       date_s = `git show --pretty=format:%cD #{commit} | head -n 1`
       date_s ? Date.parse(date_s) : ""
     end
   end
 end
+

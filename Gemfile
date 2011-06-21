@@ -32,7 +32,21 @@ gem 'yard'
 # group :development, :test do
 #   gem 'webrat'
 # end
+group :development do
+  # set to 0.43 due to problem with .45 see https://github.com/rails/rails/pull/1671
+  # gem 'ruby-debug'
+  # gem 'ruby-debug-ide'
+  # gem 'linecache', '0.43'
+end
 
-gem 'maruku'
+gem "maruku"
 
-gem "hobo", "1.3.0.RC"
+#temp workaround for hash_secret issue see https://groups.google.com/forum/#!topic/hobousers/dS4VT_lyVIY
+#gem "paperclip", "~> 2.3"
+gem 'paperclip', :git => "git://github.com/jeanmartin/paperclip.git", :branch => "master"
+#required by paperclip
+gem "cocaine"
+
+gem "hobo", "1.3.0.RC1", :git => "git://github.com/tablatom/hobo.git", :branch => "rails3"
+
+

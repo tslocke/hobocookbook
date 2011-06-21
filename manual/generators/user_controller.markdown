@@ -13,11 +13,11 @@ Generators -- user\_controller
 
     
 
+  -i, [--invite-only]          # Add features for an invite only website
       [--helpers]              # Generates helper files
                                # Default: true
   -t, [--test-framework=NAME]  # Test framework to be invoked
                                # Default: test_unit
-  -i, [--invite-only]          # Add features for an invite only website
 
 
 ## Runtime options
@@ -30,8 +30,9 @@ Generators -- user\_controller
   -f, [--force]    # Overwrite files that already exist
 
 
-## Description
+## USAGE
 
     
 
-    Create hobo files for user_controller generator.
+    This generator is used by the user_resource generator to generate
+    app/controllers/users_controller.rb

@@ -1,4 +1,4 @@
-# NOTE- Tagging is not implemnted 
+# NOTE- Tagging is not implemnted
 
 class Tag < ActiveRecord::Base
 
@@ -11,9 +11,10 @@ class Tag < ActiveRecord::Base
 
   has_many :taggings
   has_many :recipes, :through => :taggings
-  
-  named_scope :popular, :limit => "20" # To Do!
 
+  #named_scope :popular, :limit => "20" # To Do!
+
+  scope :popular, limit(20)
 
   # --- Hobo Permissions --- #
 
@@ -34,3 +35,4 @@ class Tag < ActiveRecord::Base
   end
 
 end
+

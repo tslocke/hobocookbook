@@ -13,12 +13,12 @@ Generators -- test\_framework
 
     
 
+      [--fixture-replacement=FIXTURE_REPLACEMENT]  # Use a specific fixture replacement
+      [--update]                                   # Run bundle update to install the missing gems
       [--fixtures]                                 # Add the fixture option to the test framework
                                                    # Default: true
-      [--fixture-replacement=FIXTURE_REPLACEMENT]  # Use a specific fixture replacement
   -t, [--test-framework=TEST_FRAMEWORK]            # Use a specific test framework
                                                    # Default: test_unit
-      [--update]                                   # Run bundle update to install the missing gems
 
 
 ## Runtime options

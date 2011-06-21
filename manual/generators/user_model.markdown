@@ -13,11 +13,11 @@ Generators -- user\_model
 
     
 
-      [--admin-subsite-name=ADMIN_SUBSITE_NAME]  # Admin Subsite Name
-                                                 # Default: admin
+      [--timestamps]                             # Indicates when to generate timestamps
   -i, [--invite-only]                            # Add features for an invite only website
       [--activation-email]                       # Send an email to activate the account
-      [--timestamps]                             # Indicates when to generate timestamps
+      [--admin-subsite-name=ADMIN_SUBSITE_NAME]  # Admin Subsite Name
+                                                 # Default: admin
 
 
 ## Runtime options
@@ -34,18 +34,7 @@ Generators -- user\_model
 
     
 
-    The model generator creates stubs for a new user model.
 
-    The generator takes a model name as its argument.  The
-    model name may be given in CamelCase or under_score and
-    should not be suffixed with 'Model'.
+    This generator is used by the user_resource generator to generate a
+    user model file into app/models.
 
-    The generator creates a model class in app/models, invokes
-    the hobo:user_mailer andgenerator the test framework.
-
-
-## Examples
-
-    
-
-    $ rails generate hobo:user_model User

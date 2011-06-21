@@ -13,17 +13,22 @@ Generators -- setup\_wizard
 
     
 
-      [--gitignore-auto-generated-files]               # Add the auto-generated files to .gitignore
-                                                       # Default: true
       [--admin-subsite-name=ADMIN_SUBSITE_NAME]        # Admin Subsite Name
                                                        # Default: admin
-      [--dryml-only-templates]                         # The application uses only dryml templates
+      [--gitignore-auto-generated-files]               # Add the auto-generated files to .gitignore
+                                                       # Default: true
+      [--make-front-site]                              # Rename application.dryml to front_site.dryml
+                                                       # Default: true
+      [--main-title]                                   # Shows the main title
+                                                       # Default: true
       [--private-site]                                 # Make the site unaccessible to non-members
       [--fixture-replacement=FIXTURE_REPLACEMENT]      # Use a specific fixture replacement
       [--default-locale=DEFAULT_LOCALE]                # Sets the default locale
-      [--migration-generate]                           # Generate migration only
-      [--main-title]                                   # Shows the main title
+      [--wizard]                                       # Ask instead using options
                                                        # Default: true
+      [--migration-generate]                           # Generate migration only
+      [--front-controller-name=FRONT_CONTROLLER_NAME]  # Front Controller Name
+                                                       # Default: front
       [--user-resource-name=USER_RESOURCE_NAME]        # User Resource Name
                                                        # Default: user
       [--locales=one two three]                        # Choose the locales
@@ -32,16 +37,14 @@ Generators -- setup\_wizard
                                                        # Default: true
       [--fixtures]                                     # Add the fixture option to the test framework
                                                        # Default: true
-      [--wizard]                                       # Ask instead using options
-                                                       # Default: true
+      [--add-admin-subsite]                            # Add an Admin Subsite
+      [--update]                                       # Run bundle update to install the missing gems
   -t, [--test-framework=TEST_FRAMEWORK]                # Use a specific test framework
                                                        # Default: test_unit
       [--activation-email]                             # Send an email to activate the account
+      [--dryml-only-templates]                         # The application uses only dryml templates
       [--git-repo]                                     # Create the git repository with the initial commit
-      [--update]                                       # Run bundle update to install the missing gems
   -i, [--invite-only]                                  # Add features for an invite only website
-      [--front-controller-name=FRONT_CONTROLLER_NAME]  # Front Controller Name
-                                                       # Default: front
 
 
 ## Runtime options

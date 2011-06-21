@@ -16,7 +16,7 @@ class HoboFields::Types::MarkdownString < HoboFields::Types::RawMarkdownString
     end
     HoboFields::SanitizeHtml.sanitize(s)
   end
-  
+
 end
 
 class OptionalMarkdown < HoboFields::Types::Text
@@ -28,3 +28,4 @@ class OptionalMarkdown < HoboFields::Types::Text
   end
 
 end
+

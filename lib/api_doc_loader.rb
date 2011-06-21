@@ -1,7 +1,8 @@
 module ApiDocLoader
 
 #  TAGLIB_HOME = "#{RAILS_ROOT}/vendor/plugins/hobo/hobo/taglibs"
-  TAGLIB_HOME = "#{Rails.root}/vendor/hobo13/hobo/lib/hobo/rapid/taglibs"
+#  TAGLIB_HOME = "#{Rails.root}/vendor/hobo13/hobo/lib/hobo/rapid/taglibs"
+  TAGLIB_HOME = "#{Hobo.root}/lib/hobo/rapid/taglibs"
   PLUGINS_HOME = "#{Rails.root}/taglibs"
 
   class Taglib < Dryml::DrymlDoc::Taglib
@@ -18,7 +19,8 @@ module ApiDocLoader
 
     def load_into_database(owner)
       return if no_doc?
-
+      #debugger
+#      puts "owner: #{owner} name: #{name} for_type: #{for_type}"
       t = ApiTagDef.find_or_create_by_tag_and_for_type(name, for_type)
       t.taglib = owner
       t.attributes = { :tag => name, :extension => extension?, :polymorphic => polymorphic?,

@@ -23,4 +23,7 @@ Generators -- assets
 
     
 
-    Create hobo files for assets generator.
+
+    This generator copies the files `application.dryml`,
+    `application.css`, `dryml-support.js`,
+    `config/initializers/dryml_taglibs.rb`, `app/models/guest.rb`.

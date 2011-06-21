@@ -13,10 +13,10 @@ Generators -- user\_mailer
 
     
 
-      [--activation-email]     # Send an email to activate the account
   -i, [--invite-only]          # Add features for an invite only website
   -t, [--test-framework=NAME]  # Test framework to be invoked
                                # Default: test_unit
+      [--activation-email]     # Send an email to activate the account
 
 
 ## Runtime options
@@ -33,4 +33,4 @@ Generators -- user\_mailer
 
     
 
-    Create hobo files for user_mailer generator.
+    This generator is used by the user_resource generator to generate user_mailer.rb.
