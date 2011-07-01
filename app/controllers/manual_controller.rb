@@ -73,7 +73,7 @@ class ManualController < ApplicationController
     @subtitles   = SUBTITLES[section]
     @content     = HoboFields::Types::MarkdownString.new(File.read("#{Rails.root}/#{filename}"))
     @last_update = last_update filename
-
+    # render 'manual_section.dryml'
   end
 
   def manual_subsection
@@ -85,6 +85,7 @@ class ManualController < ApplicationController
     @current_subtitle    = SUBTITLES[section][subsection]
     @content     = HoboFields::Types::MarkdownString.new(File.read("#{Rails.root}/#{filename}"))
     @last_update = last_update filename
+    render :manual_subsection
   end
 
   def index

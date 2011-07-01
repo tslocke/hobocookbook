@@ -22,10 +22,10 @@ Hobocookbook::Application.routes.draw do
   delete 'questions/:id(.:format)' => 'questions#destroy', :as => 'destroy_question', :constraints => { :id => %r([^/.?]+) }
 
   # Owner routes for controller "questions"
+  get 'recipes/:recipe_id/questions(.:format)' => 'questions#index_for_recipe', :as => 'questions_for_recipe'
   get 'users/:user_id/questions(.:format)' => 'questions#index_for_user', :as => 'questions_for_user'
   get 'users/:user_id/questions/new(.:format)' => 'questions#new_for_user', :as => 'new_question_for_user'
   post 'users/:user_id/questions(.:format)' => 'questions#create_for_user', :as => 'create_question_for_user'
-  get 'recipes/:recipe_id/questions(.:format)' => 'questions#index_for_recipe', :as => 'questions_for_recipe'
 
 
   # Resource routes for controller "api_tag_defs"

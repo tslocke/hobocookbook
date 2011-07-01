@@ -62,7 +62,7 @@
     images = this_parent._?.images
     defs = images.map { |img| "[#{img.id}]: #{img.image.url}" }.join("\n") if images
     md = "#{this}\n\n#{defs}"
-    Maruku.new(md).to_html
+    Maruku.new(md).to_html.html_safe
   rescue => e
     "[Uh oh - looks like there was a problem with this markdown]"
   end
@@ -70,7 +70,7 @@
 
 <def tag="view" for="optional_markdown"><%=
   if this_parent.markdown?
-    this.to_html_from_markdown
+    this.to_html_from_markdown.html_safe
   else
     this.to_html
   end
