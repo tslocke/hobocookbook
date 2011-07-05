@@ -1,0 +1,916 @@
+Script started on Mon 20 Jun 2011 08:25:10 AM EDT
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ rails server
+=> Booting WEBrick
+=> Rails 3.0.8 application starting in development on http://0.0.0.0:3000
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+[2011-06-20 08:25:29] INFO  WEBrick 1.3.1
+[2011-06-20 08:25:29] INFO  ruby 1.8.7 (2011-02-18) [i686-linux]
+[2011-06-20 08:25:34] INFO  WEBrick::HTTPServer#start: pid=2409 port=3000
+
+
+Started GET "/" for 127.0.0.1 at Mon Jun 20 08:25:51 -0400 2011
+  Processing by FrontController#index as HTML
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/dryml-1.3.0.RC/taglibs/core.dryml in 0.06s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid_core.dryml in 0.28s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid_support.dryml in 0.02s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid_document_tags.dryml in 0.16s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid_pages.dryml in 0.28s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid_editing.dryml in 0.08s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid_forms.dryml in 0.63s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid_navigation.dryml in 0.17s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid_plus.dryml in 0.23s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid_generics.dryml in 0.04s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid_lifecycles.dryml in 0.02s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid_summary.dryml in 0.24s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid_user_pages.dryml in 0.42s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid_i18n.dryml in 0.02s
+  DRYML: Compiled /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/hobo-1.3.0.RC/lib/hobo/rapid/taglibs/rapid.dryml in 2.74s
+  DRYML: Compiled app/views/taglibs/auto/rapid/cards.dryml in 0.26s
+  DRYML: Compiled app/views/taglibs/auto/rapid/pages.dryml in 2.65s
+  DRYML: Compiled app/views/taglibs/auto/rapid/forms.dryml in 0.26s
+  DRYML: Compiled vendor/plugins/paperclip_with_hobo/taglibs/paperclip.dryml in 0.01s
+  DRYML: Compiled app/views/taglibs/themes/clean/clean.dryml in 0.02s
+  DRYML: Compiled app/views/taglibs/application.dryml in 6.50s
+  DRYML: Compiled app/views/front/index.dryml in 6.71s
+  [1m[35mUser Load (1.0ms)[0m  SELECT "users".* FROM "users" LIMIT 30
+Creating scope :recent. Overwriting existing method Recipe.recent.
+  [1m[36mRecipe Load (0.4ms)[0m  [1mSELECT "recipes".* FROM "recipes" ORDER BY recipes.created_at DESC LIMIT 6[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE ("comments".recipe_id = 1)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM "recipes"[0m
+Creating scope :recent. Overwriting existing method Question.recent.
+  [1m[35mQuestion Load (0.3ms)[0m  SELECT "questions".* FROM "questions" ORDER BY questions.created_at DESC LIMIT 6
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY (select created_at from recipes where recipes.user_id = users.id order by created_at limit 1) LIMIT 6[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM "recipes" WHERE ("recipes".user_id = 1) LIMIT 6
+  [1m[36mRecipe Load (0.4ms)[0m  [1mSELECT "recipes".* FROM "recipes" WHERE ("recipes".user_id = 1) ORDER BY recipes.created_at DESC LIMIT 6[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM "recipes" WHERE ("recipes".user_id = 1)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "recipes" WHERE ("recipes".user_id = 1)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "users"
+Rendered front/index.dryml (7458.7ms)
+Completed 200 OK in 7478ms (Views: 7457.9ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/javascripts/hobo-rapid.js" for 127.0.0.1 at Mon Jun 20 08:25:59 -0400 2011
+
+
+Started GET "/javascripts/hobo-rapid.js" for 127.0.0.1 at Mon Jun 20 08:25:59 -0400 2011
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (3.0ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (2.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+
+ActionController::RoutingError (No route matches "/javascripts/hobo-rapid.js"):
+  
+
+Rendered /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/actionpack-3.0.8/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.4ms)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Started GET "/" for 127.0.0.1 at Mon Jun 20 08:31:10 -0400 2011
+  [1m[35mSQL (1.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (1.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  Processing by FrontController#index as HTML
+  DRYML: Compiled app/views/taglibs/auto/rapid/pages.dryml in 2.81s
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 30[0m
+Creating scope :recent. Overwriting existing method Recipe.recent.
+  [1m[35mRecipe Load (0.4ms)[0m  SELECT "recipes".* FROM "recipes" ORDER BY recipes.created_at DESC LIMIT 6
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM "comments" WHERE ("comments".recipe_id = 1)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "recipes"[0m
+Creating scope :recent. Overwriting existing method Question.recent.
+  [1m[35mQuestion Load (0.3ms)[0m  SELECT "questions".* FROM "questions" ORDER BY questions.created_at DESC LIMIT 6
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY (select created_at from recipes where recipes.user_id = users.id order by created_at limit 1) LIMIT 6[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM "recipes" WHERE ("recipes".user_id = 1) LIMIT 6
+  [1m[36mRecipe Load (0.3ms)[0m  [1mSELECT "recipes".* FROM "recipes" WHERE ("recipes".user_id = 1) ORDER BY recipes.created_at DESC LIMIT 6[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM "recipes" WHERE ("recipes".user_id = 1)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "recipes" WHERE ("recipes".user_id = 1)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "users"
+Rendered front/index.dryml (3632.5ms)
+Completed 200 OK in 3641ms (Views: 3631.6ms | ActiveRecord: 11.6ms)
+
+
+Started GET "/search?query=test" for 127.0.0.1 at Mon Jun 20 08:31:21 -0400 2011
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  Processing by FrontController#search as JS
+  Parameters: {"query"=>"test"}
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM "questions" WHERE ((description LIKE '%test%'))
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "recipes" WHERE ((name LIKE '%test%' or body LIKE '%test%'))[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "api_taglibs" WHERE ((name LIKE '%test%' or description LIKE '%test%'))
+  [1m[36mSQL (63.3ms)[0m  [1mSELECT COUNT(*) FROM "api_tag_defs" WHERE ((description LIKE '%test%'))[0m
+  [1m[35mRecipe Load (0.5ms)[0m  SELECT "recipes".* FROM "recipes" WHERE ((name LIKE '%test%' or body LIKE '%test%'))
+  [1m[36mApiTagDef Load (1.8ms)[0m  [1mSELECT "api_tag_defs".* FROM "api_tag_defs" WHERE ((description LIKE '%test%'))[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE ("comments".recipe_id = 1)[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) FROM "api_tag_comments" WHERE ("api_tag_comments".api_tag_def_id = 166)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM "api_tag_comments" WHERE ("api_tag_comments".api_tag_def_id = 182)[0m
+Rendered text template (0.0ms)
+Completed 200 OK in 790ms (Views: 15.4ms | ActiveRecord: 74.9ms)
+
+
+Started GET "/manual" for 127.0.0.1 at Mon Jun 20 08:31:34 -0400 2011
+  [1m[35mSQL (1.0ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (1.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  Processing by ManualController#index as HTML
+Redirected to http://localhost:3000/manual/toc
+Completed 302 Found in 7ms
+/home/bsleys/hobocookbook/app/controllers/manual_controller.rb:77
+@last_update = last_update filename
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) 
+(rdb:304) c
+sh: Syntax error: "|" unexpected
+
+
+Started GET "/manual/toc" for 127.0.0.1 at Mon Jun 20 08:31:35 -0400 2011
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  Processing by ManualController#manual_section as HTML
+  Parameters: {"section"=>"toc"}
+Completed 500 Internal Server Error in 26196ms
+
+TypeError (can't convert nil into Array):
+  
+
+Rendered /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/actionpack-3.0.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.9ms)
+Rendered /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/actionpack-3.0.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (16.1ms)
+Rendered /home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/actionpack-3.0.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (47.0ms)
+^C[2011-06-20 08:41:25] INFO  going to shutdown ...
+[2011-06-20 08:41:25] INFO  WEBrick::HTTPServer#start done.
+Exiting
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ cd vendor/plugins/[K[Ks/paperclip
+]0;bsleys@bob-laptop: ~/hobocookbook/vendor/plugins/paperclip[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook/vendor/plugins/paperclip[00m$ git status
+# [31mNot currently on any branch.[m
+nothing to commit (working directory clean)
+]0;bsleys@bob-laptop: ~/hobocookbook/vendor/plugins/paperclip[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook/vendor/plugins/paperclip[00m$ si[K[Kgit update
+git: 'update' is not a git command. See 'git --help'.
+
+Did you mean this?
+	update-ref
+]0;bsleys@bob-laptop: ~/hobocookbook/vendor/plugins/paperclip[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook/vendor/plugins/paperclip[00m$ gitk
+]0;bsleys@bob-laptop: ~/hobocookbook/vendor/plugins/paperclip[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook/vendor/plugins/paperclip[00m$ sp[K[Ksudo spt[K[K[Kapt-get install  giggle
+[sudo] password for bsleys: 
+Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
+Reading state information... 0%Reading state information... 0%Reading state information... Done
+The following package was automatically installed and is no longer required:
+  libreadline5
+Use 'apt-get autoremove' to remove them.
+The following NEW packages will be installed:
+  giggle
+0 upgraded, 1 newly installed, 0 to remove and 14 not upgraded.
+Need to get 233 kB of archives.
+After this operation, 1,130 kB of additional disk space will be used.
+0% [Working]            Get:1 http://us.archive.ubuntu.com/ubuntu/ natty/universe giggle i386 0.5-1.1 [233 kB]
+            0% [1 giggle 0 B/233 kB 0%]                           15% [1 giggle 35.9 kB/233 kB 15%]                                 45% [1 giggle 107 kB/233 kB 45%]                                100% [Working]              Fetched 233 kB in 1s (134 kB/s)
+Selecting previously deselected package giggle.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 170766 files and directories currently installed.)
+Unpacking giggle (from .../giggle_0.5-1.1_i386.deb) ...
+Processing triggers for bamfdaemon ...
+Rebuilding /usr/share/applications/bamf.index...
+Processing triggers for desktop-file-utils ...
+Processing triggers for python-gmenu ...
+Rebuilding /usr/share/applications/desktop.en_US.utf8.cache...
+Processing triggers for hicolor-icon-theme ...
+Processing triggers for man-db ...
+Processing triggers for python-support ...
+Setting up giggle (0.5-1.1) ...
+]0;bsleys@bob-laptop: ~/hobocookbook/vendor/plugins/paperclip[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook/vendor/plugins/paperclip[00m$ cd ...[K
+]0;bsleys@bob-laptop: ~/hobocookbook/vendor/plugins[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook/vendor/plugins[00m$ cd ..
+]0;bsleys@bob-laptop: ~/hobocookbook/vendor[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook/vendor[00m$ cd ..
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ giggle
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ git-gui
+git-gui: command not found
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ git-gui[1Pggle[1Pcd ..sudo apt-get install giggle[K[K[K[K[K[Kgoit[K[K[Kit-
+git-all           git-cola          git-doc           git-gui
+git-annex         git-core          git-dpm           git-load-dirs
+git-arch          git-cvs           git-el            git-man
+git-buildpackage  git-daemon-run    git-email         git-svn
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ sudo apt-get install git-gui
+E: Could not get lock /var/lib/dpkg/lock - open (11: Resource temporarily unavailable)
+E: Unable to lock the administration directory (/var/lib/dpkg/), is another process using it?
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ git submodule status
+ ad18580f9501eaee09bc8eb34d69187a77096e01 gitorials/agility (gitorial-082)
+ 08732ddbbbaa91e14962df2693c138c3fdef07fa public/patches/agility (heads/master)
+ eddc0e539c57017a340cc1858ff17daf130c5817 taglibs/hobo-contrib (heads/master)
+ 4d85b5297c71fb9bf0c63275b4888bda88b69855 taglibs/hobo-jquery (remotes/origin/rails3)
+ d6ff001c18912a0b5ac1472c81a53ec18a69e9c9 taglibs/hoboyui (heads/master)
+ d37a712d35d1a8b68d5bb6f28d422b855f7dd953 taglibs/imaginary-dryml (heads/master)
+No submodule mapping found in .gitmodules for path 'vendor/hobo'
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ git submodule update
+No submodule mapping found in .gitmodules for path 'vendor/hobo'
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ git rm--cached vendor/hobo[1@ 
+rm 'vendor/hobo'
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ git submodule status
+ ad18580f9501eaee09bc8eb34d69187a77096e01 gitorials/agility (gitorial-082)
+ 08732ddbbbaa91e14962df2693c138c3fdef07fa public/patches/agility (heads/master)
+ eddc0e539c57017a340cc1858ff17daf130c5817 taglibs/hobo-contrib (heads/master)
+ 4d85b5297c71fb9bf0c63275b4888bda88b69855 taglibs/hobo-jquery (remotes/origin/rails3)
+ d6ff001c18912a0b5ac1472c81a53ec18a69e9c9 taglibs/hoboyui (heads/master)
+ d37a712d35d1a8b68d5bb6f28d422b855f7dd953 taglibs/imaginary-dryml (heads/master)
+-2c604814478baad1557e95a335ee1da0ce9d3b05 vendor/hobo13
+ f301de524bfa029a23765d9780805b2c809d5b04 vendor/plugins/paperclip (v2.1.4-7-gf301de5)
+ 509686d0ac349b806d9ffad7bbe1450fdc47b4c1 vendor/plugins/paperclip_with_hobo (heads/master)
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ git submodule statusrm --cached vendor/hobo[C[K[K[K[Khobo13
+rm 'vendor/hobo13'
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ git rm --cached vendor/hobo13[9Psubmodule status
+ ad18580f9501eaee09bc8eb34d69187a77096e01 gitorials/agility (gitorial-082)
+ 08732ddbbbaa91e14962df2693c138c3fdef07fa public/patches/agility (heads/master)
+ eddc0e539c57017a340cc1858ff17daf130c5817 taglibs/hobo-contrib (heads/master)
+ 4d85b5297c71fb9bf0c63275b4888bda88b69855 taglibs/hobo-jquery (remotes/origin/rails3)
+ d6ff001c18912a0b5ac1472c81a53ec18a69e9c9 taglibs/hoboyui (heads/master)
+ d37a712d35d1a8b68d5bb6f28d422b855f7dd953 taglibs/imaginary-dryml (heads/master)
+ f301de524bfa029a23765d9780805b2c809d5b04 vendor/plugins/paperclip (v2.1.4-7-gf301de5)
+ 509686d0ac349b806d9ffad7bbe1450fdc47b4c1 vendor/plugins/paperclip_with_hobo (heads/master)
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ git submodule statusrm --cached vendor/hobo13[9Psubmodule statusrm --cached vendor/hobo[7Psubmodule update
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ git submodule updatestatus
+ ad18580f9501eaee09bc8eb34d69187a77096e01 gitorials/agility (gitorial-082)
+ 08732ddbbbaa91e14962df2693c138c3fdef07fa public/patches/agility (heads/master)
+ eddc0e539c57017a340cc1858ff17daf130c5817 taglibs/hobo-contrib (heads/master)
+ 4d85b5297c71fb9bf0c63275b4888bda88b69855 taglibs/hobo-jquery (remotes/origin/rails3)
+ d6ff001c18912a0b5ac1472c81a53ec18a69e9c9 taglibs/hoboyui (heads/master)
+ d37a712d35d1a8b68d5bb6f28d422b855f7dd953 taglibs/imaginary-dryml (heads/master)
+ f301de524bfa029a23765d9780805b2c809d5b04 vendor/plugins/paperclip (v2.1.4-7-gf301de5)
+ 509686d0ac349b806d9ffad7bbe1450fdc47b4c1 vendor/plugins/paperclip_with_hobo (heads/master)
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ git submodule foreach git pull
+Entering 'gitorials/agility'
+You are not currently on a branch, so I cannot use any
+'branch.<branchname>.merge' in your configuration file.
+Please specify which remote branch you want to use on the command
+line and try again (e.g. 'git pull <repository> <refspec>').
+See git-pull(1) for details.
+Stopping at 'gitorials/agility'; script returned non-zero status.
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ git submodule foreach git pull origin master
+Entering 'gitorials/agility'
+From git://github.com/Hobo/agility-gitorial
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+Entering 'public/patches/agility'
+From git://github.com/Hobo/agility-gitorial-patches
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+Entering 'taglibs/hobo-contrib'
+From git://github.com/bryanlarsen/hobo-contrib
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+Entering 'taglibs/hobo-jquery'
+From git://github.com/bryanlarsen/hobo-jquery
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+Entering 'taglibs/hoboyui'
+From git://github.com/tablatom/hoboyui
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+Entering 'taglibs/imaginary-dryml'
+From git://github.com/imaginary-cloud/Imaginary-DRYML
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+Entering 'vendor/plugins/paperclip'
+remote: Counting objects: 151, done.[K
+remote: Compressing objects:   1% (1/80)   [Kremote: Compressing objects:   2% (2/80)   [Kremote: Compressing objects:   3% (3/80)   [Kremote: Compressing objects:   5% (4/80)   [Kremote: Compressing objects:   6% (5/80)   [Kremote: Compressing objects:   7% (6/80)   [Kremote: Compressing objects:   8% (7/80)   [Kremote: Compressing objects:  10% (8/80)   [Kremote: Compressing objects:  11% (9/80)   [Kremote: Compressing objects:  12% (10/80)   [Kremote: Compressing objects:  13% (11/80)   [Kremote: Compressing objects:  15% (12/80)   [Kremote: Compressing objects:  16% (13/80)   [Kremote: Compressing objects:  17% (14/80)   [Kremote: Compressing objects:  18% (15/80)   [Kremote: Compressing objects:  20% (16/80)   [Kremote: Compressing objects:  21% (17/80)   [Kremote: Compressing objects:  22% (18/80)   [Kremote: Compressing objects:  23% (19/80)   [Kremote: Compressing objects:  25% (20/80)   [Kremote: Compressing objects:  26% (21/80)   [Kremote: Compressing objects:  27% (22/80)   [Kremote: Compressing objects:  28% (23/80)   [Kremote: Compressing objects:  30% (24/80)   [Kremote: Compressing objects:  31% (25/80)   [Kremote: Compressing objects:  32% (26/80)   [Kremote: Compressing objects:  33% (27/80)   [Kremote: Compressing objects:  35% (28/80)   [Kremote: Compressing objects:  36% (29/80)   [Kremote: Compressing objects:  37% (30/80)   [Kremote: Compressing objects:  38% (31/80)   [Kremote: Compressing objects:  40% (32/80)   [Kremote: Compressing objects:  41% (33/80)   [Kremote: Compressing objects:  42% (34/80)   [Kremote: Compressing objects:  43% (35/80)   [Kremote: Compressing objects:  45% (36/80)   [Kremote: Compressing objects:  46% (37/80)   [Kremote: Compressing objects:  47% (38/80)   [Kremote: Compressing objects:  48% (39/80)   [Kremote: Compressing objects:  50% (40/80)   [Kremote: Compressing objects:  51% (41/80)   [Kremote: Compressing objects:  52% (42/80)   [Kremote: Compressing objects:  53% (43/80)   [Kremote: Compressing objects:  55% (44/80)   [Kremote: Compressing objects:  56% (45/80)   [Kremote: Compressing objects:  57% (46/80)   [Kremote: Compressing objects:  58% (47/80)   [Kremote: Compressing objects:  60% (48/80)   [Kremote: Compressing objects:  61% (49/80)   [Kremote: Compressing objects:  62% (50/80)   [Kremote: Compressing objects:  63% (51/80)   [Kremote: Compressing objects:  65% (52/80)   [Kremote: Compressing objects:  66% (53/80)   [Kremote: Compressing objects:  67% (54/80)   [Kremote: Compressing objects:  68% (55/80)   [Kremote: Compressing objects:  70% (56/80)   [Kremote: Compressing objects:  71% (57/80)   [Kremote: Compressing objects:  72% (58/80)   [Kremote: Compressing objects:  73% (59/80)   [Kremote: Compressing objects:  75% (60/80)   [Kremote: Compressing objects:  76% (61/80)   [Kremote: Compressing objects:  77% (62/80)   [Kremote: Compressing objects:  78% (63/80)   [Kremote: Compressing objects:  80% (64/80)   [Kremote: Compressing objects:  81% (65/80)   [Kremote: Compressing objects:  82% (66/80)   [Kremote: Compressing objects:  83% (67/80)   [Kremote: Compressing objects:  85% (68/80)   [Kremote: Compressing objects:  86% (69/80)   [Kremote: Compressing objects:  87% (70/80)   [Kremote: Compressing objects:  88% (71/80)   [Kremote: Compressing objects:  90% (72/80)   [Kremote: Compressing objects:  91% (73/80)   [Kremote: Compressing objects:  92% (74/80)   [Kremote: Compressing objects:  93% (75/80)   [Kremote: Compressing objects:  95% (76/80)   [Kremote: Compressing objects:  96% (77/80)   [Kremote: Compressing objects:  97% (78/80)   [Kremote: Compressing objects:  98% (79/80)   [Kremote: Compressing objects: 100% (80/80)   [Kremote: Compressing objects: 100% (80/80), done.[K
+Receiving objects:   0% (1/111)   Receiving objects:   1% (2/111)   Receiving objects:   2% (3/111)   Receiving objects:   3% (4/111)   Receiving objects:   4% (5/111)   Receiving objects:   5% (6/111)   Receiving objects:   6% (7/111)   Receiving objects:   7% (8/111)   Receiving objects:   8% (9/111)   Receiving objects:   9% (10/111)   Receiving objects:  10% (12/111)   Receiving objects:  11% (13/111)   Receiving objects:  12% (14/111)   Receiving objects:  13% (15/111)   Receiving objects:  14% (16/111)   Receiving objects:  15% (17/111)   Receiving objects:  16% (18/111)   Receiving objects:  17% (19/111)   Receiving objects:  18% (20/111)   Receiving objects:  19% (22/111)   Receiving objects:  20% (23/111)   Receiving objects:  21% (24/111)   Receiving objects:  22% (25/111)   Receiving objects:  23% (26/111)   Receiving objects:  24% (27/111)   Receiving objects:  25% (28/111)   Receiving objects:  26% (29/111)   Receiving objects:  27% (30/111)   Receiving objects:  28% (32/111)   Receiving objects:  29% (33/111)   Receiving objects:  30% (34/111)   Receiving objects:  31% (35/111)   Receiving objects:  32% (36/111)   Receiving objects:  33% (37/111)   Receiving objects:  34% (38/111)   Receiving objects:  35% (39/111)   Receiving objects:  36% (40/111)   Receiving objects:  37% (42/111)   Receiving objects:  38% (43/111)   Receiving objects:  39% (44/111)   Receiving objects:  40% (45/111)   Receiving objects:  41% (46/111)   Receiving objects:  42% (47/111)   remote: Total 111 (delta 82), reused 58 (delta 29)[K
+Receiving objects:  43% (48/111)   Receiving objects:  44% (49/111)   Receiving objects:  45% (50/111)   Receiving objects:  46% (52/111)   Receiving objects:  47% (53/111)   Receiving objects:  48% (54/111)   Receiving objects:  49% (55/111)   Receiving objects:  50% (56/111)   Receiving objects:  51% (57/111)   Receiving objects:  52% (58/111)   Receiving objects:  53% (59/111)   Receiving objects:  54% (60/111)   Receiving objects:  55% (62/111)   Receiving objects:  56% (63/111)   Receiving objects:  57% (64/111)   Receiving objects:  58% (65/111)   Receiving objects:  59% (66/111)   Receiving objects:  60% (67/111)   Receiving objects:  61% (68/111)   Receiving objects:  62% (69/111)   Receiving objects:  63% (70/111)   Receiving objects:  64% (72/111)   Receiving objects:  65% (73/111)   Receiving objects:  66% (74/111)   Receiving objects:  67% (75/111)   Receiving objects:  68% (76/111)   Receiving objects:  69% (77/111)   Receiving objects:  70% (78/111)   Receiving objects:  71% (79/111)   Receiving objects:  72% (80/111)   Receiving objects:  73% (82/111)   Receiving objects:  74% (83/111)   Receiving objects:  75% (84/111)   Receiving objects:  76% (85/111)   Receiving objects:  77% (86/111)   Receiving objects:  78% (87/111)   Receiving objects:  79% (88/111)   Receiving objects:  80% (89/111)   Receiving objects:  81% (90/111)   Receiving objects:  82% (92/111)   Receiving objects:  83% (93/111)   Receiving objects:  84% (94/111)   Receiving objects:  85% (95/111)   Receiving objects:  86% (96/111)   Receiving objects:  87% (97/111)   Receiving objects:  88% (98/111)   Receiving objects:  89% (99/111)   Receiving objects:  90% (100/111)   Receiving objects:  91% (102/111)   Receiving objects:  92% (103/111)   Receiving objects:  93% (104/111)   Receiving objects:  94% (105/111)   Receiving objects:  95% (106/111)   Receiving objects:  96% (107/111)   Receiving objects:  97% (108/111)   Receiving objects:  98% (109/111)   Receiving objects:  99% (110/111)   Receiving objects: 100% (111/111)   Receiving objects: 100% (111/111), 21.56 KiB, done.
+Resolving deltas:   0% (0/82)   Resolving deltas:   1% (1/82)   Resolving deltas:  17% (14/82)   Resolving deltas:  19% (16/82)   Resolving deltas:  45% (37/82)   Resolving deltas:  47% (39/82)   Resolving deltas:  52% (43/82)   Resolving deltas:  62% (51/82)   Resolving deltas:  63% (52/82)   Resolving deltas:  65% (54/82)   Resolving deltas:  69% (57/82)   Resolving deltas:  70% (58/82)   Resolving deltas:  71% (59/82)   Resolving deltas:  74% (61/82)   Resolving deltas:  85% (70/82)   Resolving deltas:  86% (71/82)   Resolving deltas:  87% (72/82)   Resolving deltas:  89% (73/82)   Resolving deltas:  90% (74/82)   Resolving deltas:  95% (78/82)   Resolving deltas:  96% (79/82)   Resolving deltas:  97% (80/82)   Resolving deltas:  98% (81/82)   Resolving deltas: 100% (82/82)   Resolving deltas: 100% (82/82), completed with 20 local objects.
+From git://github.com/thoughtbot/paperclip
+ * branch            master     -> FETCH_HEAD
+Updating f301de5..26ef20e
+Fast-forward
+ .gitignore                                         |   10 [32m+[m[31m-[m
+ Appraisals                                         |   11 [32m+[m
+ Gemfile                                            |   12 [32m+[m
+ Gemfile.lock                                       |   75 [32m++[m
+ README.md                                          |  246 [32m+++++++[m
+ README.rdoc                                        |   59 [31m--[m
+ Rakefile                                           |   74 [32m+[m[31m--[m
+ cucumber/paperclip_steps.rb                        |    6 [32m+[m
+ features/basic.feature                             |   17 [32m+[m
+ features/s3.feature                                |   27 [32m+[m
+ features/step_definitions/html_steps.rb            |   14 [32m+[m
+ features/step_definitions/rails_steps.rb           |   90 [32m+++[m
+ features/step_definitions/s3_steps.rb              |    9 [32m+[m
+ features/step_definitions/web_steps.rb             |  227 [32m++++++[m
+ features/support/env.rb                            |    3 [32m+[m
+ features/support/paths.rb                          |   35 [32m+[m
+ features/support/rails.rb                          |    5 [32m+[m
+ features/support/s3.rb                             |   25 [32m+[m
+ gemfiles/rails2.gemfile                            |   15 [32m+[m
+ gemfiles/rails2.gemfile.lock                       |   67 [32m++[m
+ gemfiles/rails3.gemfile                            |   15 [32m+[m
+ gemfiles/rails3.gemfile.lock                       |  108 [32m+++[m
+ gemfiles/rails3_1.gemfile                          |   15 [32m+[m
+ gemfiles/rails3_1.gemfile.lock                     |  123 [32m++++[m
+ generators/paperclip/USAGE                         |    4 [32m+[m[31m-[m
+ generators/paperclip/paperclip_generator.rb        |   16 [32m+[m[31m-[m
+ init.rb                                            |    3 [32m+[m
+ lib/generators/paperclip/USAGE                     |    8 [32m+[m
+ lib/generators/paperclip/paperclip_generator.rb    |   31 [32m+[m
+ .../paperclip/templates/paperclip_migration.rb.erb |   19 [32m+[m
+ lib/paperclip.rb                                   |  337 [32m+++++++[m[31m---[m
+ lib/paperclip/attachment.rb                        |  433 [32m+++++++[m[31m-----[m
+ lib/paperclip/callback_compatability.rb            |   61 [32m++[m
+ lib/paperclip/geometry.rb                          |   24 [32m+[m[31m-[m
+ lib/paperclip/interpolations.rb                    |  130 [32m++++[m
+ lib/paperclip/iostream.rb                          |   42 [32m+[m[31m-[m
+ lib/paperclip/matchers.rb                          |   33 [32m+[m
+ .../matchers/have_attached_file_matcher.rb         |   57 [32m++[m
+ .../validate_attachment_content_type_matcher.rb    |   75 [32m++[m
+ .../validate_attachment_presence_matcher.rb        |   54 [32m++[m
+ .../matchers/validate_attachment_size_matcher.rb   |   95 [32m+++[m
+ lib/paperclip/processor.rb                         |   58 [32m++[m
+ lib/paperclip/railtie.rb                           |   24 [32m+[m
+ lib/paperclip/storage.rb                           |  210 [32m+[m[31m------[m
+ lib/paperclip/storage/filesystem.rb                |   73 [32m++[m
+ lib/paperclip/storage/fog.rb                       |  129 [32m++++[m
+ lib/paperclip/storage/s3.rb                        |  199 [32m++++++[m
+ lib/paperclip/style.rb                             |   91 [32m+++[m
+ lib/paperclip/thumbnail.rb                         |   97 [32m++[m[31m--[m
+ lib/paperclip/upfile.rb                            |   27 [32m+[m[31m-[m
+ lib/paperclip/version.rb                           |    3 [32m+[m
+ lib/tasks/paperclip.rake                           |   77 [32m++[m
+ paperclip.gemspec                                  |   35 [32m+[m
+ shoulda_macros/paperclip.rb                        |  136 [32m+++[m[31m-[m
+ tasks/paperclip_tasks.rake                         |   79 [31m---[m
+ test/attachment_test.rb                            |  737 [32m+++++++++++++++++[m[31m---[m
+ test/database.yml                                  |    1 [31m-[m
+ test/fixtures/animated.gif                         |  Bin [31m0[m -> [32m8238[m bytes
+ test/fixtures/s3.yml                               |    8 [32m+[m
+ test/fixtures/twopage.pdf                          |  Bin [31m0[m -> [32m8775[m bytes
+ test/fixtures/uppercase.PNG                        |  Bin [31m0[m -> [32m4456[m bytes
+ test/fog_test.rb                                   |  127 [32m++++[m
+ test/geometry_test.rb                              |   66 [32m++[m[31m-[m
+ test/helper.rb                                     |  125 [32m+++[m[31m-[m
+ test/integration_test.rb                           |  309 [32m+++++++[m[31m--[m
+ test/interpolations_test.rb                        |  150 [32m++++[m
+ test/iostream_test.rb                              |   77 [32m++[m[31m-[m
+ test/matchers/have_attached_file_matcher_test.rb   |   24 [32m+[m
+ ...alidate_attachment_content_type_matcher_test.rb |   47 [32m++[m
+ .../validate_attachment_presence_matcher_test.rb   |   26 [32m+[m
+ .../validate_attachment_size_matcher_test.rb       |   51 [32m++[m
+ test/paperclip_test.rb                             |  244 [32m+++++[m[31m--[m
+ test/processor_test.rb                             |   10 [32m+[m
+ test/storage_test.rb                               |  384 [32m+++++++++[m[31m-[m
+ test/style_test.rb                                 |  163 [32m+++++[m
+ test/thumbnail_test.rb                             |  219 [32m+++++[m[31m-[m
+ test/upfile_test.rb                                |   37 [32m+[m
+ 77 files changed, 5622 insertions(+), 1131 deletions(-)
+ create mode 100644 Appraisals
+ create mode 100644 Gemfile
+ create mode 100644 Gemfile.lock
+ create mode 100644 README.md
+ delete mode 100644 README.rdoc
+ create mode 100644 cucumber/paperclip_steps.rb
+ create mode 100644 features/basic.feature
+ create mode 100644 features/s3.feature
+ create mode 100644 features/step_definitions/html_steps.rb
+ create mode 100644 features/step_definitions/rails_steps.rb
+ create mode 100644 features/step_definitions/s3_steps.rb
+ create mode 100644 features/step_definitions/web_steps.rb
+ create mode 100644 features/support/env.rb
+ create mode 100644 features/support/paths.rb
+ create mode 100644 features/support/rails.rb
+ create mode 100644 features/support/s3.rb
+ create mode 100644 gemfiles/rails2.gemfile
+ create mode 100644 gemfiles/rails2.gemfile.lock
+ create mode 100644 gemfiles/rails3.gemfile
+ create mode 100644 gemfiles/rails3.gemfile.lock
+ create mode 100644 gemfiles/rails3_1.gemfile
+ create mode 100644 gemfiles/rails3_1.gemfile.lock
+ create mode 100644 lib/generators/paperclip/USAGE
+ create mode 100644 lib/generators/paperclip/paperclip_generator.rb
+ create mode 100644 lib/generators/paperclip/templates/paperclip_migration.rb.erb
+ create mode 100644 lib/paperclip/callback_compatability.rb
+ create mode 100644 lib/paperclip/interpolations.rb
+ create mode 100644 lib/paperclip/matchers.rb
+ create mode 100644 lib/paperclip/matchers/have_attached_file_matcher.rb
+ create mode 100644 lib/paperclip/matchers/validate_attachment_content_type_matcher.rb
+ create mode 100644 lib/paperclip/matchers/validate_attachment_presence_matcher.rb
+ create mode 100644 lib/paperclip/matchers/validate_attachment_size_matcher.rb
+ create mode 100644 lib/paperclip/processor.rb
+ create mode 100644 lib/paperclip/railtie.rb
+ create mode 100644 lib/paperclip/storage/filesystem.rb
+ create mode 100644 lib/paperclip/storage/fog.rb
+ create mode 100644 lib/paperclip/storage/s3.rb
+ create mode 100644 lib/paperclip/style.rb
+ create mode 100644 lib/paperclip/version.rb
+ create mode 100644 lib/tasks/paperclip.rake
+ create mode 100644 paperclip.gemspec
+ delete mode 100644 tasks/paperclip_tasks.rake
+ create mode 100644 test/fixtures/animated.gif
+ create mode 100644 test/fixtures/s3.yml
+ create mode 100644 test/fixtures/twopage.pdf
+ create mode 100644 test/fixtures/uppercase.PNG
+ create mode 100644 test/fog_test.rb
+ create mode 100644 test/interpolations_test.rb
+ create mode 100644 test/matchers/have_attached_file_matcher_test.rb
+ create mode 100644 test/matchers/validate_attachment_content_type_matcher_test.rb
+ create mode 100644 test/matchers/validate_attachment_presence_matcher_test.rb
+ create mode 100644 test/matchers/validate_attachment_size_matcher_test.rb
+ create mode 100644 test/processor_test.rb
+ create mode 100644 test/style_test.rb
+ create mode 100644 test/upfile_test.rb
+Entering 'vendor/plugins/paperclip_with_hobo'
+From git://github.com/tablatom/paperclip_with_hobo
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ git submodule status
+ ad18580f9501eaee09bc8eb34d69187a77096e01 gitorials/agility (gitorial-082)
+ 08732ddbbbaa91e14962df2693c138c3fdef07fa public/patches/agility (heads/master)
+ eddc0e539c57017a340cc1858ff17daf130c5817 taglibs/hobo-contrib (heads/master)
+ 4d85b5297c71fb9bf0c63275b4888bda88b69855 taglibs/hobo-jquery (remotes/origin/rails3)
+ d6ff001c18912a0b5ac1472c81a53ec18a69e9c9 taglibs/hoboyui (heads/master)
+ d37a712d35d1a8b68d5bb6f28d422b855f7dd953 taglibs/imaginary-dryml (heads/master)
++26ef20e192f8ff7ed3ed4f9e16b2b1e8782e7ff6 vendor/plugins/paperclip (v2.3.10-49-g26ef20e)
+ 509686d0ac349b806d9ffad7bbe1450fdc47b4c1 vendor/plugins/paperclip_with_hobo (heads/master)
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ hobo[K[K[K[Krake -T
+(in /home/bsleys/hobocookbook)
+rake about                            # List versions of all Rails framewor...
+rake cookbook:load_api_docs           # Load the api by parsing the taglibs...
+rake cookbook:pull_all                # git pull all plugins/submodules (ex...
+rake cookbook:rebuild_agility         # Rebuild agility.markdown
+rake cookbook:rebuild_generator_docs  # Rebuild generator documentation
+rake cookbook:update                  # do all update tasks
+rake db:create                        # Create the database from config/dat...
+rake db:drop                          # Drops the database for the current ...
+rake db:fixtures:load                 # Load fixtures into the current envi...
+rake db:migrate                       # Migrate the database (options: VERS...
+rake db:migrate:status                # Display status of migrations
+rake db:rollback                      # Rolls the schema back to the previo...
+rake db:schema:dump                   # Create a db/schema.rb file that can...
+rake db:schema:load                   # Load a schema.rb file into the data...
+rake db:seed                          # Load the seed data from db/seeds.rb
+rake db:setup                         # Create the database, load the schem...
+rake db:structure:dump                # Dump the database structure to an S...
+rake db:version                       # Retrieves the current schema versio...
+rake doc:app                          # Generate docs for the app -- also a...
+rake log:clear                        # Truncates all *.log files in log/ t...
+rake middleware                       # Prints out your Rack middleware stack
+rake notes                            # Enumerate all annotations (use note...
+rake notes:custom                     # Enumerate a custom annotation, spec...
+rake paperclip:clean                  # Cleans out invalid attachments.
+rake paperclip:refresh                # Refreshes both metadata and thumbna...
+rake paperclip:refresh:metadata       # Regenerates content_type/size metad...
+rake paperclip:refresh:thumbnails     # Regenerates thumbnails for a given ...
+rake rails:template                   # Applies the template supplied by LO...
+rake rails:update                     # Update both configs and public/java...
+rake routes                           # Print out all defined routes in mat...
+rake secret                           # Generate a cryptographically secure...
+rake stats                            # Report code statistics (KLOCs, etc)...
+rake test                             # Runs test:units, test:functionals, ...
+rake test:recent                      # Run tests for recenttest:prepare / ...
+rake test:uncommitted                 # Run tests for uncommittedtest:prepa...
+rake time:zones:all                   # Displays all time zones, also avail...
+rake tmp:clear                        # Clear session, cache, and socket fi...
+rake tmp:create                       # Creates tmp directories for session...
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ rake cookbook:load_api_docs
+(in /home/bsleys/hobocookbook)
+rake aborted!
+no such file to load -- cocaine
+
+(See full trace by running task with --trace)
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ rake cookbook:load_api_docs --trace
+(in /home/bsleys/hobocookbook)
+** Invoke cookbook:load_api_docs (first_time)
+** Invoke environment (first_time)
+** Execute environment
+rake aborted!
+no such file to load -- cocaine
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:596:in `new_constants_in'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/hobocookbook/vendor/plugins/paperclip/lib/paperclip.rb:43
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:596:in `new_constants_in'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/hobocookbook/vendor/plugins/paperclip/lib/paperclip/railtie.rb:1
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:596:in `new_constants_in'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/hobocookbook/vendor/plugins/paperclip/lib/paperclip.rb:42
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:596:in `new_constants_in'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/hobocookbook/vendor/plugins/paperclip/init.rb:1
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/plugin.rb:81
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/initializable.rb:25:in `instance_exec'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/initializable.rb:25:in `run'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/initializable.rb:50:in `run_initializers'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/initializable.rb:49:in `each'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/initializable.rb:49:in `run_initializers'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/application.rb:134:in `initialize!'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/application.rb:77:in `send'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/application.rb:77:in `method_missing'
+/home/bsleys/hobocookbook/config/environment.rb:6
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:596:in `new_constants_in'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/application.rb:103:in `require_environment!'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/application.rb:218:in `initialize_tasks'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:636:in `call'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:636:in `execute'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:631:in `each'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:631:in `execute'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:597:in `invoke_with_call_chain'
+/home/bsleys/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:590:in `invoke_with_call_chain'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:607:in `invoke_prerequisites'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:604:in `each'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:604:in `invoke_prerequisites'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:596:in `invoke_with_call_chain'
+/home/bsleys/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:590:in `invoke_with_call_chain'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:583:in `invoke'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2051:in `invoke_task'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2029:in `top_level'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2029:in `each'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2029:in `top_level'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2068:in `standard_exception_handling'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2023:in `top_level'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2001:in `run'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2068:in `standard_exception_handling'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:1998:in `run'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/bin/rake:31
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/bin/rake:19:in `load'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/bin/rake:19
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ [K]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ rake cookbook:load_api_docs --trace
+(in /home/bsleys/hobocookbook)
+** Invoke cookbook:load_api_docs (first_time)
+** Invoke environment (first_time)
+** Execute environment
+rake aborted!
+no such file to load -- cocaine
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:596:in `new_constants_in'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/hobocookbook/vendor/plugins/paperclip/lib/paperclip.rb:43
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:596:in `new_constants_in'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/hobocookbook/vendor/plugins/paperclip/lib/paperclip/railtie.rb:1
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:596:in `new_constants_in'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/hobocookbook/vendor/plugins/paperclip/lib/paperclip.rb:42
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:596:in `new_constants_in'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/hobocookbook/vendor/plugins/paperclip/init.rb:1
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/plugin.rb:81
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/initializable.rb:25:in `instance_exec'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/initializable.rb:25:in `run'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/initializable.rb:50:in `run_initializers'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/initializable.rb:49:in `each'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/initializable.rb:49:in `run_initializers'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/application.rb:134:in `initialize!'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/application.rb:77:in `send'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/application.rb:77:in `method_missing'
+/home/bsleys/hobocookbook/config/environment.rb:6
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:596:in `new_constants_in'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:225:in `load_dependency'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/activesupport-3.0.8/lib/active_support/dependencies.rb:239:in `require'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/application.rb:103:in `require_environment!'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/railties-3.0.8/lib/rails/application.rb:218:in `initialize_tasks'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:636:in `call'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:636:in `execute'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:631:in `each'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:631:in `execute'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:597:in `invoke_with_call_chain'
+/home/bsleys/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:590:in `invoke_with_call_chain'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:607:in `invoke_prerequisites'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:604:in `each'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:604:in `invoke_prerequisites'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:596:in `invoke_with_call_chain'
+/home/bsleys/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:590:in `invoke_with_call_chain'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:583:in `invoke'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2051:in `invoke_task'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2029:in `top_level'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2029:in `each'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2029:in `top_level'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2068:in `standard_exception_handling'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2023:in `top_level'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2001:in `run'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:2068:in `standard_exception_handling'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/lib/rake.rb:1998:in `run'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/gems/rake-0.8.7/bin/rake:31
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/bin/rake:19:in `load'
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/bin/rake:19
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ bundle update
+Fetching source index for http://rubygems.org/
+Using rake (0.8.7) 
+Using abstract (1.0.0) 
+Using activesupport (3.0.8) 
+Using builder (2.1.2) 
+Using i18n (0.5.0) 
+Using activemodel (3.0.8) 
+Using erubis (2.6.6) 
+Using rack (1.2.3) 
+Using rack-mount (0.6.14) 
+Using rack-test (0.5.7) 
+Using tzinfo (0.3.28) 
+Using actionpack (3.0.8) 
+Using mime-types (1.16) 
+Using polyglot (0.3.1) 
+Using treetop (1.4.9) 
+Using mail (2.2.19) 
+Using actionmailer (3.0.8) 
+Using arel (2.0.10) 
+Using activerecord (3.0.8) 
+Using activeresource (3.0.8) 
+Using bundler (1.0.15) 
+Using columnize (0.3.3) 
+Using thor (0.14.6) 
+Using railties (3.0.8) 
+Using rails (3.0.8) 
+Using hobo_support (1.3.0.RC) 
+Using dryml (1.3.0.RC) 
+Using hobo_fields (1.3.0.RC) 
+Using will_paginate (3.0.pre2) 
+Using hobo (1.3.0.RC) 
+Using linecache (0.43) 
+Using syntax (1.0.0) 
+Using maruku (0.6.0) 
+Using mysql (2.8.1) 
+Using ruby-debug-base (0.10.4) 
+Using ruby-debug (0.10.4) 
+Using sqlite3 (1.3.3) 
+Using yard (0.7.2) 
+[32mYour bundle is updated! Use `bundle show [gemname]` to see where a bundled gem is installed.[0m
+]0;bsleys@bob-laptop: ~/hobocookbook[01;32mbsleys@bob-laptop[00m:[01;34m~/hobocookbook[00m$ bundle update[Kexit
+
+Script done on Mon 20 Jun 2011 09:34:46 AM EDT

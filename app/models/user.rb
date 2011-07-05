@@ -11,9 +11,10 @@ class User < ActiveRecord::Base
 
   # This gives admin rights to the first sign-up.
   # Just remove it if you don't want that
-  before_create { |user| user.administrator = true if count == 0 }
-  
-  
+  before_create { |user| user.administrator = true if user.class.count == 0 }
+
+  children :recipes, :questions, :answers
+
   # --- Signup lifecycle --- #
 
   lifecycle do
@@ -30,19 +31,19 @@ class User < ActiveRecord::Base
 
     transition :reset_password, { :active => :active }, :available_to => :key_holder,
                :params => [ :password, :password_confirmation ]
-               
+
 
   end
-  
-  
+
+
   has_many :recipes
   has_many :questions
   has_many :answers
   has_many :comments
-  
-  named_scope :recently_active, :order => "(select created_at from recipes where recipes.user_id = users.id order by created_at limit 1)",
-                                :limit => 6
-  
+
+  #named_scope :recently_active, :order => "(select created_at from recipes where recipes.user_id = users.id order by created_at limit 1)",
+  #                              :limit => 6
+  scope :recently_active,  order("(select created_at from recipes where recipes.user_id = users.id order by created_at limit 1)").limit(6)
 
   # --- Hobo Permissions --- #
 
@@ -65,3 +66,4 @@ class User < ActiveRecord::Base
   end
 
 end
+

@@ -1,0 +1,15 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  activerecord:
+    attributes:
+      answer:
+        body:
+        recipe: Enter keywords from the name of a recipe
+      api_tag_comment:
+        body:
+
+    attribute_help:
+      answer:
+        recipe: Enter keywords from the name of a recipe
