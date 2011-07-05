@@ -19,7 +19,7 @@ class TutorialsController < ApplicationController
     tutorial     = params[:tutorial].gsub(/[^a-z_\-]/, '')
     filename     = "gitorials/#{tutorial}.markdown"
     @title       = TITLES[tutorial]
-    @content     = HoboFields::MarkdownString.new(File.read("#{RAILS_ROOT}/#{filename}"))
+    @content     = HoboFields::Types::MarkdownString.new(File.read("#{RAILS_ROOT}/#{filename}"))
     @last_update = last_update filename
   end
 

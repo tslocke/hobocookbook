@@ -33,10 +33,10 @@ REST vs. lifecycles is not an either/or choice. Some models will support both st
 
 Everyone loves an example, so here is one. We'll stick with the friendship idea. If you want to try this out, create a blank app and add a model:
 
-    $ hobo new friends
+    $ hobo friends
     $ cd friends
-    $ hobo generate model friendship
-
+    $ ./script/generate hobo_model friendship
+    
 Here's the code for the friendship mode (don't be put off by the `MagicMailer`, that's just a made-up class to illustrate a common use of the callback actions -- sending emails):
 
     class Friendship < ActiveRecord::Base
@@ -110,29 +110,29 @@ There is one 'creator' -- this is a starting point for the lifecycle:
 That declaration specifies that:
 
  - The name of the creator is `invite`. It will be available as a method `Friendship::Lifecycle.invite(user, attributes)`. Calling the method will instantiate the record, setting attributes from the hash that is passed in
-
+ 
  - The `:params` option specifies which attributes can be set by this create step:
-
+ 
         :params => [ :invitee ]
 {.ruby}
-
+ 
    any other key in the `attributes` hash passed to `invite` will be ignored.
-
+ 
  - The lifecycle state after this create step will be `invited`:
 
         :become => :invited,
 {.ruby}
-
+        
  - To have access to this create step, the acting user must be an instance of `User` (i.e. not a guest):
-
+ 
         :available_to => "User"
 {.ruby}
-
+        
  - After the create step, the `invitor` association of the `Friendship` will be set to the acting user:
-
+ 
        :user_becomes => :invitor
 {.ruby}
-
+       
  - After the create step has completed (and the database updated), the block is executed:
 
         do
@@ -144,14 +144,14 @@ There are five transitions declared: accept, reject, ignore, retract, cancel. Th
 lifecycle class), e.g. `my_fiendship.lifecycle.accept!(user, attributes)`. Calling that method will:
 
  - Check if the transition is allowed
-
+ 
  - If it is, update the record with the passed in attributes. The attributes that can change are declared in a `:params` option, as we saw
    with the creator. None of the friendship transitions declare any `:params`, so no attributes will change, and
-
+   
  - change the `state` field to the new state, then
-
+ 
  - save the record, as long as validations pass.
-
+ 
 Each transition declares:
 
  - which states it goes from and to, e.g. `accept` goes from `invited` to `active`:
@@ -160,20 +160,20 @@ Each transition declares:
 {.ruby}
 
    Some of the transitions are to a pseudo state: `:destroy`. To move to this state is to destroy the record.
-
- - who has access to it.
-
+    
+ - who has access to it. 
+ 
         :available_to => :invitor
         :available_to => :invitee
 {.ruby}
-
+ 
    In the create step the `:available_to` option was set to a class name, here it is set to a method (a `belongs_to` association) and to be
    allowed, the acting user must be the same user returned by this method. There are a variety ways that `:available_to` can be used, which
    will be discussed in detail later.
-
+   
  - a callback (the block). This is called after the transition completes. Notice that in the block for the `cancel`
    transition we're accessing `acting_user`, which is a reference to the user performing the transition.
-
+   
 Hopefully that worked example has clarified what lifecycles are all about. We'll move on and look at the details now.
 
 
@@ -184,11 +184,11 @@ Before getting into the API we'll recap some of the key concepts very briefly.
 As mentioned in the introduction, the lifecycle is essentially a finite state machine. It consists of:
 
  - One or more *states*. Each has a name, and the current state is stored in a simple string field in the record. If you like to think of a finite state machine as a graph, these are the nodes.
-
+ 
  - Zero or more *creators*. Each has a name, and they define actions that can start the lifecycle, setting the state to be some start-state.
-
+ 
  - Zero or more *transitions*. Each has a name, and they define actions that can change the state. Again, thinking in terms of a graph, these are the arcs between the nodes.
-
+ 
 The creators and the transitions are together known as the *steps* of the lifecycle.
 
 There are a variety of ways to limit which users are allowed to perform which steps, and there are ways to attach custom actions (e.g. send an email) both to steps and to states.
@@ -199,22 +199,22 @@ There are a variety of ways to limit which users are allowed to perform which st
 Any Hobo model can be given a lifecycle like this:
 
     class Friendship < ActiveRecord::Base
-
+    
       hobo_model
-
+      
       lifecycle do
         ... define lifecyle steps and states ...
       end
-
+      
     end
 {.ruby}
 
 Any model that has such a declaration will gain the following features:
 
  - The lifecycle definition becomes a class called `Lifecycle` which is nested inside the model class (e.g. `Friendship::Lifecycle`) and is a subclass of `Hobo::Lifecycles::Lifecycle`. The class has methods for each of the creators.
-
+ 
  - Every instance of the model will have an instance of this class available from the `#lifecycle` method. The instance has methods for each of the transitions:
-
+ 
         my_friendship.lifecycle.class # => Friendship::Lifecycle
         my_friendship.lifecycle.reject!(user)
 {.ruby}
@@ -222,7 +222,7 @@ Any model that has such a declaration will gain the following features:
 The `lifecyle` declaration can take three options:
 
  - `:state_field` - the name of the database field (a string field) to store the current state in. Default '`state`'
-
+ 
  - `:key_timestamp_field` - the name of the database field (a datetime
    field) to store a timestamp for transitions that require a key
    (discussed later). Set to `false` if you don't want this
@@ -230,7 +230,7 @@ The `lifecyle` declaration can take three options:
 
  - `:key_timeout` - keys will expire after this amount of time.
    Default `999.years`.
-
+ 
 Note that both of these fields are declared `never_show` and `attr_protected`.
 
 Within the `lifecycle do ... end` a simple DSL is in effect. Using this we can add states and steps to the lifecycle.
@@ -273,27 +273,27 @@ The name is a symbol. It should be a valid ruby name that does not conflict with
 The options are:
 
  - `:params` - an array of attribute names that are parameters of this create step. These attributes can be set when the creator runs.
-
+ 
  - `:become` - the state to enter after running this creator. This does not have to be static but can depend on runtime state. Provide one
    of:
-
+ 
    - A symbol -- the name of the state
    - A proc -- if the proc takes one argument it is called with the record, if it takes none it is `instance_eval`'d on the record. Should
      return the name of the state
    - A string -- evaluated as a Ruby expression with in the context of the record
-
+   
  - `:if` and `:unless` -- a precondition on the creator. Pass either:
-
+ 
    - A symbol -- the name of a method to be called on the record
    - A string -- a Ruby expression, evaluated in the context of the record
    - A proc -- if the proc takes one argument it is called with the record, if it takes none it is `instance_eval`'d on the record
-
+   
    Note that the precondition is evaluated *before* any changes are made to the record using the parameters to the lifecycle step.
-
+   
  - `:new_key` -- generate a new lifecycle key for this record by setting the `key_timestamp` field to be the current time.
-
+ 
  - `:user_becomes` -- the name of an attribute (typically a `belongs_to` relationship) that will set to the `acting_user`.
-
+ 
  - `:available_to` -- Specifies who is allowed access to the creator. This check is in addition to the precondition (`:if` or `:unless`).
    There are a variety of ways to provide the `:available_to` option, discussed later on
 
@@ -316,7 +316,7 @@ names listed in the `:params` option.
 
 ## Defining transitions
 
-A transition is an arc in the graph of the finite state machine -- an operation that takes the lifecycle from one state to another (or, potentially, back to the same state.). The definition looks like:
+A transition is an arc in the graph of the finite state machine -- an operation that takes the lifecycle from one state to another (or, potentially, back to the same state.). The definition looks like: 
 
     transition name, { from => to }, options do ... end
 {.ruby}
@@ -329,7 +329,7 @@ The second argument is a hash with a single item:
 {.ruby}
 
  (We chose this syntax for the API just because the `=>` is quite nice to indicate a transition)
-
+ 
 This transition can only be fired in the state or states given as `from`, which can be either a symbol or an array of symbols. On completion of this transition, the record will be in the state give as `to` which can be one of:
 
  - A symbol -- the name of the state
@@ -340,19 +340,19 @@ This transition can only be fired in the state or states given as `from`, which 
 The options are:
 
  - `:params` - an array of attribute names that are parameters of this transition. These attributes can be set when the transition runs.
-
+    
  - `:if` and `:unless` -- a precondition on the transition. Pass either:
-
+ 
    - A symbol -- the name of a method to be called on the record
    - A string -- a Ruby expression, evaluated in the context of the record
    - A proc -- if the proc takes one argument it is called with the record, if it takes none it is `instance_eval`'d on the record
-
+   
  - `:new_key` -- generate a new lifecycle key for this record by setting the `key_timestamp` field to be the current time.
-
+ 
  - `:keep_key` -- (new in v1.0.3).  Normally, the lifecycle key is cleared on a transition to prevent replay vulnerabilities.   If this option is set, the key is not cleared
 
  - `:user_becomes` -- the name of an attribute (typically a `belongs_to` relationship) that will set to the `acting_user`.
-
+ 
  - `:available_to` -- Specifies who is allowed access to the transition. This check is in addition to the precondition (`:if` or
    `:unless`). There are a variety of ways to provide the `:available_to` option, discussed later on.
 
@@ -387,23 +387,23 @@ The rules for the `:available_to` option are as follows. Firstly, it can be one 
 
  - :self -- (transitions only) the `acting_user` and the record the transition is called on must be one and the same. Only makes sense
      for user models of course.
-
+     
 If `:available_to` is not one of those, it is an indication of some code to run (just like the `:if` option for example):
 
   - A symbol -- the name of a method to call
-
+   
   - A string -- a ruby expression which is evaluated in the context of the record
-
+  
   - A proc -- if the proc takes one argument it is called with the record, if it takes none it is `instance_eval`'d on the record
-
+  
 The value returned is then used to determine if the `acting_user` has access or not. The value is expected to be:
 
  - A class -- access is granted if the `acting_user` is a `kind_of?` that class.
 
- - A collection -- if the value responds to `:include?`, access is granted if `include?(acting_user)` is true. e.g.
-
+ - A collection -- if the value responds to `:include?`, access is granted if `include?(acting_user)` is true. e.g. 
+ 
  - A record -- if the value is neither a class or a collection, access is granted if the value *is* the `acting_user`
-
+ 
 Some examples:
 
 Say a model has an owner:
@@ -414,7 +414,7 @@ Say a model has an owner:
 You can just give the name of the relationship (since it is also a method) to restrict the transition to that user:
 
     :available_to => :owner
-{.ruby}
+{.ruby}    
 Or a model might have a list of collaborators associated with it:
 
     has_many :collaborators, :class_name => "User"
@@ -424,13 +424,13 @@ Again it's easy to make the lifecycle step available to them only (since the `ha
 
     :available_to => :collaborators
 {.ruby}
-
+    
 If you were building more sophisticated role based permissions, you could make sure you role object responds to `:include?` and then say,
 for example:
 
     :available_to => "Roles.editor"
 {.ruby}
-
+ 
 # Validations
 
 TO DO
@@ -456,7 +456,7 @@ The lifecycle actions are added to your controller by the `auto_actions` directi
  - `auto_actions :all`
  - `auto_actions :lifecycle` -- adds *only* the lifecycle actions
  - `auto_actions :accept, :do_accept` (for example) -- as always, you can list the method names explicitly (the method names that relate to lifecycle actions are given below)
-
+ 
 You can also remove lifecycle actions with:
 
  - `auto_actions ... :except => :lifecycle` -- don't create any lifecycle actions or routes
@@ -470,24 +470,24 @@ For each create step that is publishable, the model controller adds two actions.
 ### The create page action
 
 `FriendshipsController#invite` will be routed as `/friendships/invite` for GET requests.
-
+ 
 This action is intended to render a form for the create step. An object that provides metadata about the create step will be available in `@creator` (an instance of `Hobo::Lifecycles::Creator`).
 
 If you want to implement this action yourself, you can do so using the `creator_page_action` method:
 
     def invite
-      creator_page_action :invite
+      creator_page_action :invite  
     end
 {.ruby}
 
 Following the pattern of all the action methods, you can pass a block in which you can customise the response by setting a flash message, rendering or redirecting. `do_creator_action` also takes a single option:
 
  - `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.  Passing a String or a Hash will pass your arguments straight to `redirect_to`.
-
+  
 ### The 'do create' action
-
+  
 `FriendshipsController#do_invite` will be routed as `/friendships/invite` for POST requests.
-
+ 
 This action is where the form should POST to. It will run the create step, passing in parameters from the form. As with normal form submissions (i.e. create and update actions), the result will be an HTTP redirect, or the form will be re-rendered in the case of validation failures.
 
 Again you can implement this action yourself:
@@ -500,7 +500,7 @@ Again you can implement this action yourself:
 You can give a block to customise the response, or pass the redirect option:
 
  - `:redirect` -- change where to redirect to on a successful submission. Pass a symbol to redirect to that action (show actions only) or an array of arguments which are passed to `object_url`.  Passing a String or a Hash will pass your arguments straight to `redirect_to`.
-
+    
 
 ## Transitions
 
@@ -524,7 +524,7 @@ You can implement this action yourself using the `transition_page_action` method
 As usual, you can customise the response by passing a block. And you can pass the following option:
 
  - `:key` -- the key to set as the provided key, for transitions that are `:available_to => :key_holder`. Defaults to `params[:key]`
-
+ 
 ### The 'do transition' action
 
 `FriendshipsController#do_accept` will be routed as `/friendships/:id/accept` for POST requests.
@@ -544,33 +544,27 @@ As usual, you can customise the response by passing a block. And you can pass th
  - `:key` -- the key to set as the provided key, for transitions that are `:available_to => :key_holder`. Defaults to `params[:key]`
 
 
-## Subsite routes
-
-By default, Hobo generates the routes of your transition through the front subsite. If you want it to point the route
-of any creator/transition action to a different subsite, you can pass the :subsite option (e.g.: :subsite => 'any_subsite')
-
-
-# Keys and secure links
+# Keys and secure links 
 
 Hobo's lifecycles also provide support for the "secure link" pattern. By "secure" we mean that on one other than the holder of the link can access the page or feature in question. This is achieved by including some kind of cryptographic key in the URL, which is typically sent in an email address. The two very common examples are:
 
  - Password reset -- following the link gives the ability to set a new password for a specific account. By using a secure link and emailing it to the account holders email address, only a person with access to that email account can chose the new password.
-
+ 
  - Email activation -- by following the link, the user has effectively proved that they have access to that email account. Many sites use this technique to verify that the email address you have given is one that you do in fact have access to.
-
+ 
 In fact the idea of a secure link is more general than that. It can be applied in any situation where you want a particular person to participate in a process, but that person does not have an account on the site. For example, in a CMS workflow application, you might want to email a particular person to ask them to verify that the content of an article is technically correct. Perhaps this is a one-off request so you don't want to trouble them with signing up. Your app could provide a page with "approve"/"reject" buttons, and access to that page could be protected using the secure link pattern. In this way, the person you email the secure link to, and no one else, would be able to accept or reject the article.
 
 Hobo's lifecycles provide support for the secure-link pattern with the following:
 
  - A field added to the database called (by default) "`key_timestamp`". This is a date-time field, and is used to generate a key as follows:
-
+ 
         Digest::SHA1.hexdigest("#{id_of_record}-#{current_state}-#{key_timestamp}")
 {.ruby}
 
  - Both create and transition steps can be given the option `:new_key => true`. This causes the `key_timestamp` to be updated to `Time.now`.
-
+ 
  - The `:available_to => :key_holder` option (transitions only). Setting this means the transition is only allowed if the correct key has been provided, like this:
-
+ 
         record.lifecycle.provided_key = the_key
 {.ruby}
 
@@ -580,35 +574,35 @@ Hobo's "model controller" also has (very simple) support for the secure-link pat
 {.ruby}
 
 ## Implementing a lifecycle with a secure-link
-
+    
 Stringing this all together, we would typically implement the secure-link pattern as follows. We're assuming some knowledge of Rails mailers here, so you may need to read up on those.
 
  - Create a mailer (`script/generate mailer`) which will be used to send the secure link.
 
  - In your lifecycle definition, two steps will work together:
-
+ 
     - A create or transition will initiate the process, by generating a new key, emailing the link, and putting the lifecycle in the correct state.
-
+    
     - A transition from this state will be declared as `:available_to => :key_holder`, and will perform the protected action.
 
  - Add `:new_key => true` to the create or transition step that initiates the process.
-
+ 
  - On this same step, add a callback that uses the mailer to send the key to the appropriate user. The key is available as `lifecycle.key`. For example, the default Hobo user model has:
-
+ 
         transition :request_password_reset, { :active => :active }, :new_key => true do
           UserMailer.deliver_forgot_password(self, lifecycle.key)
-        end
+        end   
 {.ruby}
 
  - Add `:available_to => :key_holder` to the subsequent transition -- the one you want to make available only to recipients of the email.
-
+        
  - The mailer should include a link in the email, and they key should be part of this link as a query parameter. Hobo creates a named route for each transition page, so there will be a URL helper available. For example, if the transition is on `User` and is called `reset_password`, the link in your mailer template should look something like:
-
+ 
         <%= user_reset_password_url :host => @host, :id => @user, :key => @key %>
 {.ruby}
 
   (it's up to you to set @host, but you could use `Hobo::Controller.request_host`)
-
+ 
 That should be it.
 
 
@@ -635,9 +629,9 @@ TO DO.
 Have a look in the auto-generated taglibs:
 
  - `pages.dryml` contains pages for each publishable create and transition.
-
+ 
  - `forms.dryml` contains forms for each publishable create and transition.
-
+ 
 There are a couple of tags in `rapid_lifecycles.dryml` that provide buttons for executing transition steps (e.g. an "Accept Friendship" button).
 
 # Other bits to do:

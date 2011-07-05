@@ -12,14 +12,14 @@ Next you will probably want to check out one of our fine
 
 ## Ruby
 
-[**Hobo Support**](/manual/hobo_support) is akin to
+[**Hobo Support**](/manual/hobosupport) is akin to 
 [Active Support](http://as.rubyonrails.org/) in that it provides a grab bag of
 utility classes and extensions that should be useful to all Ruby
 projects, not just Ruby on Rails projects.
 
 ## Active Record
 
-[**Hobo Fields**](/manual/hobo_fields) is an extension to
+[**Hobo Fields**](/manual/hobofields) is an extension to 
 [Active Record](http://ar.rubyonrails.org/) that allows you to add
 rich types to Active Record and automatically create migrations.
 
@@ -45,7 +45,7 @@ Hobo's extensions to [Active Record](http://ar.rubyonrails.org/).
 ## Action Controller and Routing
 
 [**Controllers and Routing**](/manual/controllers) documents Hobo's
-extensions to
+extensions to 
 [Action Controller](http://api.rubyonrails.org/classes/ActionController/Base.html)
 
 ## Action View

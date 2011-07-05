@@ -12,8 +12,8 @@ class ManualController < ApplicationController
   TITLES = self.create_ordered_hash([# ['to-do',        "To Do List"],
     ['toc',          "Table of Contents"],
     ['download',     "Download and Install"],
-    ['hobo_support', 'Hobo Support'],
-    ['hobo_fields',  'Hobo Fields'],
+    ['hobosupport', 'Hobo Support'],
+    ['hobofields',  'Hobo Fields'],
     ['scopes',       'Automatic Named Scopes'],
     ['permissions',  "The Permission System"],
     ['multi_model_forms', 'Accessible Associations'],
@@ -29,14 +29,14 @@ class ManualController < ApplicationController
   ])
 
   SUBTITLES = {
-    'hobo_fields' => self.create_ordered_hash([['rich_types',         'Rich Types'],
+    'hobofields' => self.create_ordered_hash([['rich_types',         'Rich Types'],
       ['api',                'API'],
       ['migration_generator','Migration Generator'],
       #                                               ['generators',         'Generators'],
       #                                               ['interactive_primary_key', 'Interactive Primary Key'],
       ['migration_generator_comments', 'Migration Generator Comments']
     ]),
-    'hobo_support' => self.create_ordered_hash([['chronic',           'Chronic'],
+    'hobosupport' => self.create_ordered_hash([['chronic',           'Chronic'],
       ['enumerable',        'Enumerable'],
       ['hash',              'Hash'],
       ['implies',           'Implies'],

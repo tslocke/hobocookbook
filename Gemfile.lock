@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/tablatom/hobo.git
-  revision: b46ec8dfc12affac5d709ab458d4cf98da570237
+  revision: 28c1a0c832e7e531281fb4e40aab85937ce31cf1
   branch: rails3
   specs:
     dryml (1.3.0)
@@ -104,7 +104,7 @@ PLATFORMS
 
 DEPENDENCIES
   cocaine
-  hobo!
+  hobo (= 1.3.0)!
   maruku
   mysql
   paperclip!

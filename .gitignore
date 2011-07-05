@@ -2,11 +2,10 @@
 db/*.sqlite3
 log/*.log
 tmp/
-
 .DS_Store
 vendor/plugins/footnotes-edge
 tmtags
 app/views/taglibs/auto
-public/img/*
-rails3app
+manual/generators/*.markdown
 .idea/
+

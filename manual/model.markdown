@@ -1,1 +1,1 @@
-../vendor/hobo13/hobo/doctests/hobo/model.rdoctest
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/bundler/gems/hobo-28c1a0c832e7/hobo/doctests/hobo/model.rdoctest

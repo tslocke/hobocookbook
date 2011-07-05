@@ -85,8 +85,8 @@ Hobocookbook::Application.routes.draw do
 
 
   # Owner routes for controller "answers"
-  get 'users/:user_id/answers(.:format)' => 'answers#index_for_user', :as => 'answers_for_user'
   post 'questions/:question_id/answers(.:format)' => 'answers#create_for_question', :as => 'create_answer_for_question'
+  get 'users/:user_id/answers(.:format)' => 'answers#index_for_user', :as => 'answers_for_user'
 
 
   # Resource routes for controller "comments"

@@ -10,7 +10,7 @@ Hobocookbook::Application.routes.draw do
   match 'tutorials/:tutorial' => 'tutorials#show', :as => 'tutorial'
 
   match 'plugins' => "plugins#index", :as => 'plugins'
-  match 'plugin/:plugin' => "plugins#show", :as => 'plugin'
+  match 'plugins/:plugin' => "plugins#show", :as => 'plugin'
 
   #map.site_search  'search', :controller => 'front', :action => 'search'
 

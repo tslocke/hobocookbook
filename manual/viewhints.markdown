@@ -1,21 +1,140 @@
 View Hints
 {: .document-title}
 
+One of the main attractions of Hobo is its ability to give you a pretty decent starting point for you app's UI, entirely automatically based on information extracted from your models and controllers. The more information available to Hobo, the better job it can do, but some such information doesn't properly belong in either the model or the controller. For example, we might want to declare that a particular field should have a different name in the UI than in the model layer. View-hints are the home for these kinds of declarations.
+
+
+Contents
+{: .contents-heading}
+
+- contents
+{:toc}
+
+# Introduction
+
+View-hints are added to a Hobo application by defining classes, one for each model, that extend `Hobo::ViewHints`. Here's an example - `app/viewhints/answer_hints.rb` from the Hobo Cookbook app:
+
+    class AnswerHints < Hobo::ViewHints
+
+      field_names :body => "", :recipe => "See recipe"
+  
+      field_help  :recipe => "Enter keywords from the name of a recipe"
+
+    end
+{.ruby}
+
+As you can see, the view-hint class contains some simple declarations that pertain to a single model - the `Answer` model in this case. That's really all there is to a view-hints class. If you think of the class as little more than a YAML file with some configuration information in it, you won't be far wrong. In fact we could have used YAML files for view-hints, but using Ruby instead makes things more powerful for the metaprogrammers out there who want to explore new territory. In the normal course of events, these classes will not contain anything other than the declarations described in this chapter.
+
+In that example we made three declarations about the user interface that we desire:
+
+ - The `body` field does not need a label (i.e. it's name is blank).
+
+ - The `recipe` field should be labelled "See recipe"
+ 
+ - The `recipe` field should be displayed with the help text "Enter keywords from the name of a recipe"
+ 
+What do these declarations do? By themselves, nothing. They are just information, metadata if you like, that we have provided about a model. The information can be retrieved using the view-hints API, for example (using the Rails console).
+
+    >> Answer.view_hints.field_name :recipe 
+    => "See recipe"
+    >> Answer.view_hints.field_help[:recipe]
+    => "Enter keywords from the name of a recipe"
+{.ruby}
+
 This API is used internally in Hobo, for example in the Rapid tag library, to create a user interface according to your declarations. That's really all there is to it.
 
-It's important to note that the view-hints mechanism is entirely optional, and may not be appropriate for all applications (especially larger applications). Everything you can do with view-hints can be done with much more flexibility by defining DRYML tags and page templates. What view-hints give you is a way to achieve common UI customisations very quickly and easily.
+At present view-hints are fairly new to Hobo. They will be put to a lot greater use as Hobo develops.
+
+It's important to note that the view-hints mechanism is entirely optional, and may not be appropriate for all applications (especially larger applications). Everything you can do with view-hints can be done with much more flexibility by defining DRYML tags and page templates. What view-hints give you, is a way to achieve common UI customisations very quickly and easily.
+
+# Defining hints
+
+As mentioned, the hints are defined in `ViewHints` classes. There is one per model, and they live in `app/viewhints`. The `hobo_model_generator` will create blank view-hints classes as a starting point.
+
+At present, there are only four kinds of hints you can give about your models:
+
+ - The model name -- in case you want this to differ from the actual class name
+ - Field names -- in case you want any of these to differ from the database column names
+ - Field help -- some simple explanatory text for each field in a model
+ - Child relationships -- allows you to arrange your models in a hierarchy appropriate for the user interface.
+ 
+## Model name
+ 
+To declare a custom model name:
+
+    class BlogPostHints < Hobo::ViewHints
+
+      model_name "Post"
+
+    end
+{.ruby}
+
+If your model name does not pluralize properly, you can also set
+
+    model_name_plural "Indices"
+
+A better mechanism for setting the model name is to use
+translations.  For example, you can add this to your
+config/locales/en.yml:
+
+    en:
+      blog_posts:
+        model_name: "Post"
+
+Translations will take priority over anything set in ViewHints.
+
+## Field names
+
+To declare one or more custom field names:
+
+    class UserHints < Hobo::ViewHints
+
+      field_names :username => "Name", :details => "Profile"
+
+    end
+{.ruby}
+
+If you give an empty string as the name, the Rapid form generators
+will arrange the form appropriately, with no label for that field.
+
+Translations can also be used to set the field names:
+
+    en:
+      users:
+        username: "Name"
+        details: "Profile"
+
+## Field help
+
+To declare help text for one or more fields:
+
+    class AnswerHints < Hobo::ViewHints
+
+      field_help :recipe => "Enter keywords from the name of a recipe", :subject => "Provide a ..."
+
+    end
+{.ruby}
+
+Rapid will include the help text next to each field in the forms that
+it generates.
+
+Translations can also be used to add field help:
+
+    en:
+      answers:
+        hints:
+          recipe: "Enter keywords from the name of a recipe"
 
 ## Child relationships
 
 Many web applications arrange the information they present in a hierarchy. By declaring a hierarchy using the `children` declaration, Hobo can give you a much better default user interface.
 
 At present, the `children` declaration only influences Rapid's show-page -- it governs the display of collections of `<card>` tags embedded in the show-page. If you declare a single child collection, e.g.:
-
-    class User < ActiveRecord::Base
-
-      ....
+  
+    class UserHints < Hobo::ViewHints
+  
       children :recipes
-
+    
     end
 
 ## Parent relationships
@@ -24,8 +143,8 @@ Defining a child relationship also defines a parent relationship on
 the first child.  If this is not sufficient or correct, you may
 explicitly define the parent relationship:
 
-    class Recipe < ActiveRecord::Base
-      view_hints.parent :user
+    class RecipeHints < Hobo::ViewHints
+      parent :user
     end
 
 To remove the automatic relationship, you can pass nil:
@@ -33,15 +152,15 @@ To remove the automatic relationship, you can pass nil:
     parent nil
 
 {.ruby}
-
-The a collection of the user's recipes will be added to the main content of `users/show`.
+  
+The a collection of the user's recipes will be added to the main content of `users/show`. 
 
 You can declare additional child relationships. The order is significant, with the first in the list being the "primary collection". For example:
 
-    class User < ActiveRecord::Base
-
+    class UserHints < Hobo::ViewHints
+  
       children :recipes, :questions, :answers
-
+    
     end
 {.ruby}
 
@@ -67,113 +186,8 @@ That will return the view-hints class from which the hints can be accessed. Each
 
 The following view helpers are defined to simplify access to view-hints information during rendering:
 
- - `this_field_name` -- returns the view-hints translated name of the field currently referenced by DRYML's `this_field`. That is, the field of the current context
+ - `this_field_name` -- returns the view-hints modified name of the field currently referenced by DRYML's `this_field`. That is, the field of the current context
+ 
+ - `this_field_help` -- returns the help text associated with the field currently in context.
 
- - `this_field_help` -- returns the translated help text associated with the field currently in context.
-
-
-## Legacy Hints
-
-Hobo >= 1.3.* generators do not generate view hints files anymore.
-Their functionality has been moved elsewhere, but some backwards
-compatibility has been maintained.  If you used any old version of
-Hobo you might be interested in reading this section, if you are new
-to Hobo, just skip it.
-
-## Renaming
-
-The old view hints renaming has been moved into the locale files. That
-happens because keeping module and attribute names hardcoded in
-strings was i18n hostile. Locale files have been introduced to support
-rails i18n and have their own conventions, and work well for english
-to english translations too. Hobo just uses that already implemented
-tool following the already established conventions.
-
-Here is the uncommented default config/locale/app.en.yml file
-
-    en:
-      hello: "Hello world"
-
-      attributes:
-        created_at: Created at
-        updated_at: Updated at
-
-      activerecord:
-        models:
-          user:
-            one: User
-            other: Users
-        attributes:
-          user:
-            created_at: Created at
-            name: Name
-            password: Password
-            password_confirmation: Password Confirmation
-            email_address: Email Address
-        attribute_help:
-          user:
-            email_address: We will never share your address with third parties
-
-Notice:
-
-- Yaml files use a fixed number of spaces (2) to indent levels. Tabs are illegal
-- Quote marks are not mandatory
-- The locale file structure is a rails convention: you can have more details by reading the [rails 3 i18n guide](http://edgeguides.rubyonrails.org/i18n.html)
-
-You can rename models and attributes by changing or adding key/values in the specific activerecord.models and activerecord.attributes sections, adding also any attributes help you might need in the activerecord.attribute_help section (which is a hobo specific section). For example:
-
-    en:
-      hello: "Hello world"
-
-      attributes:
-        created_at: Created at
-        updated_at: Updated at
-
-      activerecord:
-        models:
-          user:
-            one: User
-            other: Users
-          contact:
-            one: Friend
-            other: Friends
-        attributes:
-          user:
-            created_at: Created at
-            name: Name
-            password: Password
-            password_confirmation: Password Confirmation
-            email_address: eAddress
-          contact:
-            name: Nickname
-            email_address: eAddress
-        attribute_help:
-          user:
-            email_address: We will never share your address with third parties
-          contact:
-            name: This is the nickname
-
-Just be careful: don't mess up the indentation!
-
-Note that the key/values inside the first `attributes:` group are used as the default for all models.
-
-## Hints
-
-The ViewHints.children and theViewHints.inline_booleans methods have been moved into the model, but they are used in the exactly same way they were used before.
-
-The view_hints are now a subclass of Hobo::Model::ViewHints instead of
-Hobo::ViewHints. You can access the view_hints class by accessing the
-Model.view_hints method, so for example User.view_hints.children will
-return the children of the User model. The same applies to the parent,
-parent_defined, sortable? and paginate? methods which remain in the
-view hint class.
-
-## Deprecated methods
-
-- model_name
-- model_name_plural
-- field_name
-- field_names
-
-When called they raise an error with an explanation.
 
