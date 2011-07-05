@@ -47,6 +47,6 @@ gem 'paperclip', :git => "git://github.com/jeanmartin/paperclip.git", :branch =>
 #required by paperclip
 gem "cocaine"
 
-gem "hobo", "1.3.0.RC1", :git => "git://github.com/tablatom/hobo.git", :branch => "rails3"
+gem "hobo", :git => "git://github.com/tablatom/hobo.git", :branch => "rails3"
 
 
