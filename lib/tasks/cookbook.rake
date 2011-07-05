@@ -1,4 +1,4 @@
-require 'lib/api_doc_loader'
+require "#{Rails.root}/lib/api_doc_loader"
 namespace :cookbook do
   desc "Load the api by parsing the taglibs in the Hobo plugin"
   task :load_api_docs => :environment do
