@@ -3,15 +3,15 @@ class ApiTaglib < ActiveRecord::Base
   establish_connection "taglibs_#{RAILS_ENV}"
 
   hobo_model # Don't put anything above this
-  
+
   def self.find(*args)
-    if args.first =~ /[a-zA-Z0-9_-]+/
+    if args.first.is_a?(String) && args.first =~ /[a-zA-Z0-9_-]+/
       find_by_name args.first
     else
       super
     end
   end
-  
+
   def to_param
     to_s
   end
