@@ -23,7 +23,7 @@
       <javascript name="highlighters/diff"/>
       <javascript name="flowplayer-3.1.4.min.js"/>
     </append-scripts:>
-    
+
     <header: replace>
       <aside param="page-aside">
         <h1 param="app-name"><a href="#{base_url}/"><app-name/></a></h1>
@@ -38,7 +38,7 @@
         <account-nav if="&login_url(Hobo::Model::UserBase.default_user_model)" param/>
       </header>
     </header:>
-    
+
     <append-body:>
       <if test="&defined? HOBOCENTRAL_ANALYTICS">
         <script type="text/javascript">
@@ -51,9 +51,9 @@
         </script>
       </if>
     </append-body:>
-    
+
   </old-page>
-  
+
 </extend>
 
 
@@ -115,7 +115,7 @@
       <input:body/>
     </field-list:>
   </old-form>
-</extend>  
+</extend>
 
 <extend tag="form" for="Question">
   <old-form merge>
@@ -210,7 +210,13 @@
   </old-card>
 </extend>
 
-
+<extend tag="card" for="Image">
+  <old-card merge>
+    <body:>
+      <a href="#{this.image.url}"><img src="#{this.image.url :thumbnail}"/></a>
+    </body:>
+  </old-card>
+</extend>
 
 <def tag="markdown-checkbox">
   <p><input:markdown/> Use <markdown-help>markdown</markdown-help> formatting?</p>
@@ -264,7 +270,7 @@
 <def tag="user-notes">
   <section param="user-notes">
     <h3 param="collection-heading">User contributed notes</h3>
-    
+
     <collection param/>
 
     <section param="add-to-collection" if="&can_create?">
