@@ -2,7 +2,7 @@ class Gitorial
   # directory: point at the git repository
   # commit_link_base: the base for URL's to view the commit
   # patch_link_base: the base for URL's to download the patch
-  def initialize(directory, commit_link_base="http://github.com/bryanlarsen/agility-gitorial/commit/", patch_link_base="/patches/agility/")
+  def initialize(directory, commit_link_base="http://github.com/Hobo/agility-gitorial/commit/", patch_link_base="/patches/agility/")
     @gitlogp = `cd #{directory}; git pack-refs --all ; git log --unified=5 --reverse gitorial-001^..HEAD`
     @tag_refs = File.read("#{directory}/.git/packed-refs")    
     @commit_link_base=commit_link_base

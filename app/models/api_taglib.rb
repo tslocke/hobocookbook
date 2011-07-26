@@ -1,5 +1,7 @@
 class ApiTaglib < ActiveRecord::Base
 
+  establish_connection "taglibs_#{RAILS_ENV}"
+
   hobo_model # Don't put anything above this
   
   def self.find(*args)

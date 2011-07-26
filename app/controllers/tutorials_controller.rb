@@ -7,8 +7,7 @@ class TutorialsController < ApplicationController
              [['two-minutes',    "Thingybob - the two minute Hobo app"],
               ['screencast',     "Screencast"],
               ['agility',        "Agility - demonstrates all Hobo features"],
-              ['gitorial',       "Agility sidebar - using git"],
-              ['hobo-as-plugin', "Agility sidebar - using Hobo as a plugin"],
+              ['gitorial',       "Agility git sidebar"],
               ['subsite',        "An admin subsite on a generic Rails app"]
              ].each do |title, desc|
                titles[title]=desc
@@ -20,7 +19,7 @@ class TutorialsController < ApplicationController
     tutorial     = params[:tutorial].gsub(/[^a-z_\-]/, '')
     filename     = "gitorials/#{tutorial}.markdown"
     @title       = TITLES[tutorial]
-    @content     = HoboFields::MarkdownString.new(File.read("#{RAILS_ROOT}/#{filename}"))
+    @content     = HoboFields::Types::MarkdownString.new(File.read("#{RAILS_ROOT}/#{filename}"))
     @last_update = last_update filename
   end
 

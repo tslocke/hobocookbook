@@ -1,11 +1,14 @@
 set :application, "cookbook"
 set :domain,      "cookbook-staging.hobocentral.net"
-set :deploy_to,   "/home/newcookbook"
+# set :domain,      "li285-250.members.linode.com"
+set :deploy_to,   "/home/cookbook3"
 set :repository,  "git://github.com/tablatom/hobocookbook"
-set :revision,    "origin/master"
+set :revision,    "origin/hobo13doc"
 
 set :user, "cookbook"
 set :domain, "#{user}@cookbook-staging.hobocentral.net"
+
+# set :rake_cmd, "/usr/local/rvm/bin/cookbook_rake"
 
 namespace :vlad do
   desc 'Restart Passenger'
@@ -15,13 +18,13 @@ namespace :vlad do
 
   desc 'run hobo:generate_taglibs'
   remote_task :generate_taglibs do
-    run "cd #{current_release}; RAILS_ENV=production rake hobo:generate_taglibs"
+    run " cd #{current_release}; RAILS_ENV=production #{rake_cmd} hobo:generate_taglibs"
   end
 
   desc 'reload api tags'
   remote_task :update_cookbook do
-    run "cd #{current_release}; RAILS_ENV=production rake cookbook:load_api_docs"
-    run "cd #{current_release}; RAILS_ENV=production rake cookbook:rebuild_generator_docs"
+    run " cd #{current_release}; RAILS_ENV=production #{rake_cmd} cookbook:load_api_docs"
+#    run " cd #{current_release}; RAILS_ENV=production #{rake_cmd} cookbook:rebuild_generator_docs"
   end
 
   desc 'update secret in config/environment.rb'
@@ -36,7 +39,12 @@ namespace :vlad do
     run "echo #{scm_path}/repo > #{current_release}/git-path"
   end
 
+  remote_task :copy_config_files, :roles => :app do
+    run "cp #{shared_path}/config/* #{current_release}/config/"
+  end
+
   remote_task :update, :roles => :app do
+    Rake::Task["vlad:copy_config_files"].invoke
     Rake::Task["vlad:save_version"].invoke
     Rake::Task["vlad:update_secret"].invoke
     Rake::Task["vlad:update_cookbook"].invoke

@@ -1,1 +1,1 @@
-../vendor/plugins/hobo/hobosupport/test/hobosupport.rdoctest
+/home/bsleys/.rvm/gems/ruby-1.8.7-p334@hobocookbook/bundler/gems/hobo-28c1a0c832e7/hobo_support/test/hobosupport.rdoctest

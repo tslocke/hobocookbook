@@ -19,7 +19,7 @@ class PluginsController < ApplicationController
     end
     filename     = "#{RAILS_ROOT}/taglibs/#{plugin}/README.markdown"
     @title       = TITLES[plugin]
-    @content     = HoboFields::MarkdownString.new(File.read(filename))
+    @content     = HoboFields::Types::MarkdownString.new(File.read(filename))
     @libs        = ApiTaglib.library_is(plugin)
     @last_update = last_update filename
   end
