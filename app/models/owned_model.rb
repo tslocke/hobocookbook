@@ -4,7 +4,8 @@ OwnedModel = classy_module do
   
   
   def create_permitted?
-    acting_user.signed_up? && user == acting_user
+    # acting_user.signed_up? && user == acting_user
+    acting_user.signed_up?
   end
 
   def update_permitted?
