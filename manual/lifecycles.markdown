@@ -141,7 +141,7 @@ That declaration specifies that:
 {.ruby}
 
 There are five transitions declared: accept, reject, ignore, retract, cancel. These become methods on the lifecycle object (not the
-lifecycle class), e.g. `my_fiendship.lifecycle.accept!(user, attributes)`. Calling that method will:
+lifecycle class), e.g. `my_friendship.lifecycle.accept!(user, attributes)`. Calling that method will:
 
  - Check if the transition is allowed
 
