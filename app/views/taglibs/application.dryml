@@ -82,8 +82,16 @@
   <markdown-checkbox with="&this_parent"/>
 </def>
 
+<def tag="version-switcher">
+  <select id="version-switcher">
+    <option selected="1" value="1.3">Hobo 1.3/Rails 3.0</option>
+    <option value="1.0">Hobo 1.0/Rails 2.3</option>
+  </select>
+</def>
+
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs>
+    <li><version-switcher/></li>
     <nav-item href="#{base_url}/manual/download">Download</nav-item>
     <nav-item href="#{base_url}/plugins"  >Plugins</nav-item>
     <nav-item href="#{base_url}/tutorials">Tutorials</nav-item>
