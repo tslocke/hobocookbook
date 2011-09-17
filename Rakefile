@@ -19,5 +19,5 @@ require(File.join(File.dirname(__FILE__), 'config', 'boot'))
 #
 #require 'tasks/rails'
 #
-#require 'vlad'
-#Vlad.load(:app => nil, :scm => :git)
+require 'vlad'
+Vlad.load(:app => nil, :scm => :git)
