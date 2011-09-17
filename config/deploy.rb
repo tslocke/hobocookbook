@@ -3,6 +3,7 @@ set :domain,      "cookbook-staging.hobocentral.net"
 set :deploy_to,   "/home/newcookbook"
 set :repository,  "git://github.com/tablatom/hobocookbook"
 set :revision,    "origin/master"
+set :skip_scm,    false
 
 set :user, "cookbook"
 set :domain, "#{user}@cookbook-staging.hobocentral.net"
