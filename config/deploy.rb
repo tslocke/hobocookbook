@@ -1,9 +1,9 @@
 set :application, "cookbook"
-set :domain,      "cookbook-staging.hobocentral.net"
+set :domain,      "cookbook-1.3.hobocentral.net"
 # set :domain,      "li285-250.members.linode.com"
-set :deploy_to,   "/home/cookbook3"
+set :deploy_to,   "/home/cookbook13"
 set :repository,  "git://github.com/tablatom/hobocookbook"
-set :revision,    "origin/hobo13doc"
+set :revision,    "origin/rails3"
 
 set :user, "cookbook"
 set :domain, "#{user}@cookbook-staging.hobocentral.net"
