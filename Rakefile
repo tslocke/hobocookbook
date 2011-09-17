@@ -18,6 +18,6 @@ require(File.join(File.dirname(__FILE__), 'config', 'boot'))
 #require 'rake/rdoctask'
 #
 #require 'tasks/rails'
-#
 require 'vlad'
+#require 'vlad-git'
 Vlad.load(:app => nil, :scm => :git)

@@ -4,10 +4,12 @@ set :domain,      "cookbook-1.3.hobocentral.net"
 set :deploy_to,   "/home/cookbook13"
 set :repository,  "git://github.com/tablatom/hobocookbook"
 set :revision,    "origin/rails3"
+set :skip_scm, false
 
 set :user, "cookbook"
 set :domain, "#{user}@cookbook-staging.hobocentral.net"
 
+set :rake_cmd, "/opt/ruby-1.8.7-p334/bin/bundle exec  /opt/ruby-1.8.7-p334/bin/rake"
 # set :rake_cmd, "/usr/local/rvm/bin/cookbook_rake"
 
 namespace :vlad do
