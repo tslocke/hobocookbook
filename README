@@ -2,3 +2,28 @@
 
 This is the open-source code that implements the site at http://cookbook.hobocentral.net
 
+# How to run locally
+
+The cookbook does not run under Ruby 1.9.2, it requires Ruby 1.8.7.
+This should be easy to fix if anybody wants to take a crack at it.
+
+We're using Vlad for deployment, but it messes with our rake tasks at
+other times, so the first step is to comment out the call to Vlad.load
+in Rakefile.
+
+As for many rails3 apps:
+
+    $ git submodule update --init
+    $ bundle install
+    $ vi config/database.yml  # and adjust as required
+    $ bundle exec rake db:migrate
+
+Unique to the cookbook:
+
+    $ pwd > git-path
+    $ echo 'rails3' > git-version
+
+Run this command now and whenever you want to update/rebuild any of the external dependencies such as hobo, the plugins or the tutorials.
+
+    $ bundle exec rake cookbook:update
+
