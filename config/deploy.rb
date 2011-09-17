@@ -18,11 +18,6 @@ namespace :vlad do
     run "touch #{current_release}/tmp/restart.txt"
   end
 
-  desc 'run hobo:generate_taglibs'
-  remote_task :generate_taglibs do
-    run " cd #{current_release}; RAILS_ENV=production #{rake_cmd} hobo:generate_taglibs"
-  end
-
   desc 'reload api tags'
   remote_task :update_cookbook do
     run " cd #{current_release}; RAILS_ENV=production #{rake_cmd} cookbook:load_api_docs"
@@ -50,7 +45,6 @@ namespace :vlad do
     Rake::Task["vlad:save_version"].invoke
     Rake::Task["vlad:update_secret"].invoke
     Rake::Task["vlad:update_cookbook"].invoke
-    Rake::Task["vlad:generate_taglibs"].invoke
   end
 
 end
