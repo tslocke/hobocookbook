@@ -2,13 +2,13 @@
 
 Event.addBehavior({
     "#version-switcher:change": function(ev) {
-        if(this.value == "1.0") {
-            window.location = "http://cookbook-1.0.hobocentral.net"+window.location.pathname;
+        if(this.value == "1.3") {
+            window.location = "http://cookbook-1.3.hobocentral.net"+window.location.pathname;
         }
     }
 });
 
 Event.observe(window, 'load', function() {
-    $("version-switcher").value="1.3";
+    $("version-switcher").value="1.0";
 });
 
