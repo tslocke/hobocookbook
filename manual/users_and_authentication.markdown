@@ -183,19 +183,19 @@ SHA1 one-way-hashed with the salt to create `crypted_password`.  Therefore
 the password may not be retrieved by looking in the database.  The
 only recourse to a lost password is resetting the password.
 
-The *Hobo User Model* adds a very simple validation to the password:
-the password must be 4 characters or greater.   You will probably wish
-to use a stricter validation.  If so, redefine the
-`password_validations` function:
+The *Hobo User Model* adds a validation to the password:
+the password must be 6 characters or greater and must not consist
+solely of lowercase letters.   To change the validation, redefine the
+`validate_password` function
 
-      def password_validations
-        validates_length_of :password, :within => 4..40, :if => :new_password_required?
-      end
+    def validate_password
+      errors.add(:password, Hobo::Translations.ht("hobo.messages.validate_password", :default => "must be at least 6 characters long and must not consist solely of lowercase letters.")) if new_password_required? && (password.nil? || password.length<6 || /^[[:lower:]]*$/.match(password))
+
+    end
 
 If you wish to verify a password, you can use the `authenticated?`
 function.  It will return true if the password you pass to
 `authenticated?` is the valid password.
-
 
 ### The Remember Token
 
