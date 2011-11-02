@@ -19,11 +19,10 @@ namespace :cookbook do
   desc "Rebuild generator documentation"
   task :rebuild_generator_docs => :environment do
     ManualController::SUBTITLES['generators'].each do |gen, title|
-      #raw = `cd rails3app; rvm 1.9.2-p0 exec rails g hobo:#{gen} --help`
-      #raw = `cd rails3app; exec rails g hobo:#{gen} --help`
       raw = `bundle exec rails g hobo:#{gen} --help`
-      out = "Generators -- #{title.gsub('_', '\_')}\n{: .document-title}\n\n" +
-        raw.gsub(/^(\w(\w|\s)*):(.*)/) {|s| "\n## #{$1}\n\n    #{$3}\n"}.
+      out = "Generators -- #{title[1].gsub('_', '\_')}\n{: .document-title}\n\n" +
+        raw.gsub(/^  /,"    ").
+        gsub(/^(\w(\w|\s)*):(.*)/) {|s| "\n## #{$1}\n\n    #{$3}\n"}.
         gsub("#{Rails.root}", ".")
       Dir.mkdir("#{Rails.root}/manual/generators") rescue nil
       open("#{Rails.root}/manual/generators/#{gen}.markdown", "w") do |f|

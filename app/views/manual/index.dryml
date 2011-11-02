@@ -1,6 +1,6 @@
 <page title="The Hobo Manual" without-account-nav>
   <aside-content:>
-    <left-navigation with="&ManualController::TITLES" title="Manual" url="#{base_url}/manual"/>
+    <left-navigation with="&ManualController.titles" title="Manual" url="#{base_url}/manual"/>
   </aside-content:>
   
   <content:>
