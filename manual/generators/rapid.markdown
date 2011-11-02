@@ -6,17 +6,17 @@ Generators -- rapid
 
     
 
-  rails generate hobo:rapid
+    rails generate hobo:rapid
 
 
 ## Runtime options
 
     
 
-  -s, [--skip]     # Skip files that already exist
-  -p, [--pretend]  # Run but do not make any changes
-  -q, [--quiet]    # Supress status output
-  -f, [--force]    # Overwrite files that already exist
+    -f, [--force]    # Overwrite files that already exist
+    -s, [--skip]     # Skip files that already exist
+    -p, [--pretend]  # Run but do not make any changes
+    -q, [--quiet]    # Supress status output
 
 
 ## Description
@@ -24,4 +24,4 @@ Generators -- rapid
     
 
 
-    Adds support for Rapid to your application.
+      Adds support for Rapid to your application.

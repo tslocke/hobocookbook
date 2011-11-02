@@ -382,11 +382,9 @@ The rules for the `:available_to` option are as follows. Firstly, it can be one 
 
  - `:all` -- anyone, including guest users, can trigger the step
 
- - `:key_holder` -- (transitions only) anyone can trigger the transition, provided `record.lifecycle.provided_key` is set to the correct
-     key. Discussed in detail later.
+ - `:key_holder` -- (transitions only) anyone can trigger the transition, provided `record.lifecycle.provided_key` is set to the correct key. Discussed in detail later.
 
- - :self -- (transitions only) the `acting_user` and the record the transition is called on must be one and the same. Only makes sense
-     for user models of course.
+ - :self -- (transitions only) the `acting_user` and the record the transition is called on must be one and the same. Only makes sense for user models of course.
 
 If `:available_to` is not one of those, it is an indication of some code to run (just like the `:if` option for example):
 
@@ -430,6 +428,31 @@ for example:
 
     :available_to => "Roles.editor"
 {.ruby}
+
+A common problem experienced by hoboists is how to turn a boolean
+condition on a user object into something suitable for :available_to.
+The best way to do so is via a named scope.
+
+    class User < ActiveRecord::Base
+       ...
+       named_scope :administrator, :conditions => {:administrator => true}
+       ...
+    end
+
+allows you to do:
+
+    :available_to => "User.administrator"
+
+In fact, the above named_scope definition was just provided for
+illustrative purpose, since [Automatic Named Scopes](../scopes) will
+provide that specific definition for you.
+
+The nice thing about named scopes is that it uses database queries to
+do the matching, so can be very efficient.   But if you are having
+trouble expressing your condition as a database query, you can use
+Proc to provide a snippet of code that either returns acting_user or nil:
+
+    :available_to => Proc.new { acting_user if acting_user.administrator? }
 
 # Validations
 

@@ -6,28 +6,28 @@ Generators -- user\_model
 
     
 
-  rails generate hobo:user_model [NAME=user] [options]
+    rails generate hobo:user_model [NAME=user] [options]
 
 
 ## Options
 
     
 
-      [--timestamps]                             # Indicates when to generate timestamps
-  -i, [--invite-only]                            # Add features for an invite only website
-      [--activation-email]                       # Send an email to activate the account
-      [--admin-subsite-name=ADMIN_SUBSITE_NAME]  # Admin Subsite Name
-                                                 # Default: admin
+    -i, [--invite-only]                            # Add features for an invite only website
+        [--timestamps]                             # Indicates when to generate timestamps
+        [--activation-email]                       # Send an email to activate the account
+        [--admin-subsite-name=ADMIN_SUBSITE_NAME]  # Admin Subsite Name
+                                                   # Default: admin
 
 
 ## Runtime options
 
     
 
-  -s, [--skip]     # Skip files that already exist
-  -p, [--pretend]  # Run but do not make any changes
-  -q, [--quiet]    # Supress status output
-  -f, [--force]    # Overwrite files that already exist
+    -f, [--force]    # Overwrite files that already exist
+    -s, [--skip]     # Skip files that already exist
+    -p, [--pretend]  # Run but do not make any changes
+    -q, [--quiet]    # Supress status output
 
 
 ## Description
@@ -35,6 +35,6 @@ Generators -- user\_model
     
 
 
-    This generator is used by the user_resource generator to generate a
-    user model file into app/models.
+      This generator is used by the user_resource generator to generate a
+      user model file into app/models.
 

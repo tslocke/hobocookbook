@@ -6,28 +6,28 @@ Generators -- resource
 
     
 
-  rails generate hobo:resource NAME [field:type field:type] [options]
+    rails generate hobo:resource NAME [field:type field:type] [options]
 
 
 ## Options
 
     
 
-  [--timestamps]  # Indicates when to generate timestamps
+    [--timestamps]  # Indicates when to generate timestamps
 
 
 ## Runtime options
 
     
 
-  -s, [--skip]     # Skip files that already exist
-  -p, [--pretend]  # Run but do not make any changes
-  -q, [--quiet]    # Supress status output
-  -f, [--force]    # Overwrite files that already exist
+    -f, [--force]    # Overwrite files that already exist
+    -s, [--skip]     # Skip files that already exist
+    -p, [--pretend]  # Run but do not make any changes
+    -q, [--quiet]    # Supress status output
 
 
 ## Description
 
     
 
-    Create hobo files for resource generator.
+      Create hobo files for resource generator.

@@ -6,29 +6,29 @@ Generators -- user\_resource
 
     
 
-  rails generate hobo:user_resource [NAME=user] [options]
+    rails generate hobo:user_resource [NAME=user] [options]
 
 
 ## Options
 
     
 
-  -i, [--invite-only]       # Add features for an invite only website
-      [--activation-email]  # Send an email to activate the account
+    -i, [--invite-only]       # Add features for an invite only website
+        [--activation-email]  # Send an email to activate the account
 
 
 ## Runtime options
 
     
 
-  -s, [--skip]     # Skip files that already exist
-  -p, [--pretend]  # Run but do not make any changes
-  -q, [--quiet]    # Supress status output
-  -f, [--force]    # Overwrite files that already exist
+    -f, [--force]    # Overwrite files that already exist
+    -s, [--skip]     # Skip files that already exist
+    -p, [--pretend]  # Run but do not make any changes
+    -q, [--quiet]    # Supress status output
 
 
 ## Description
 
     
 
-    Create hobo files for user_resource generator.
+      Create hobo files for user_resource generator.

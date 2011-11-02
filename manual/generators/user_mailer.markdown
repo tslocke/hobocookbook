@@ -6,31 +6,31 @@ Generators -- user\_mailer
 
     
 
-  rails generate hobo:user_mailer [NAME=user] [options]
+    rails generate hobo:user_mailer [NAME=user] [options]
 
 
 ## Options
 
     
 
-  -i, [--invite-only]          # Add features for an invite only website
-  -t, [--test-framework=NAME]  # Test framework to be invoked
-                               # Default: test_unit
-      [--activation-email]     # Send an email to activate the account
+    -t, [--test-framework=NAME]  # Test framework to be invoked
+                                 # Default: test_unit
+    -i, [--invite-only]          # Add features for an invite only website
+        [--activation-email]     # Send an email to activate the account
 
 
 ## Runtime options
 
     
 
-  -s, [--skip]     # Skip files that already exist
-  -p, [--pretend]  # Run but do not make any changes
-  -q, [--quiet]    # Supress status output
-  -f, [--force]    # Overwrite files that already exist
+    -f, [--force]    # Overwrite files that already exist
+    -s, [--skip]     # Skip files that already exist
+    -p, [--pretend]  # Run but do not make any changes
+    -q, [--quiet]    # Supress status output
 
 
 ## Description
 
     
 
-    This generator is used by the user_resource generator to generate user_mailer.rb.
+      This generator is used by the user_resource generator to generate user_mailer.rb.
