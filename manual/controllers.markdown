@@ -426,10 +426,10 @@ If you supply a block to the `hobo_*` action, you must redirect or render all po
 
 `:redirect` is only used for valid HTML requests.
 
-The `:redirect:` option may be one of:
+The `:redirect` option may be one of:
 
- - Symbol: redirects to that action using the current controller and model.  (Must be a show action).
- - Hash or String: [redirect\to from Rails](http://api.rubyonrails.org/classes/ActionController/Base.html) is used.
+ - Symbol: redirects to that action using the current controller and model.  If you have `show_action :detail` in your controller, then you could use `:redirect => :detail`.
+- Hash or String: [redirect\_to from Rails](http://api.rubyonrails.org/classes/ActionController/Redirecting.html) is used.   Examples:  `:redirect => {:controller => "sites", :action => :admin, :id => this.site}` and `:redirect => sites_admin_path(this.site)`.   `rake routes` lists available paths that can be used.
  - Array: `object_url` is used.
 
 ## Automatic redirects
