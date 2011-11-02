@@ -70,7 +70,7 @@ class ManualController < ApplicationController
     section      = params[:section].gsub(/[^a-z0-9_\-]/, '')
     filename     = TITLES[section][0]
     @title       = TITLES[section][1]
-    @subtitles   = Hash[*SUBTITLES[section].map {|k,v| [k, v[1]]}.flatten]
+    @subtitles   = SUBTITLES[section].nil? ? nil : Hash[*SUBTITLES[section].map {|k,v| [k, v[1]]}.flatten]
     @content     = HoboFields::Types::MarkdownString.new(File.read(filename))
     @last_update = last_update filename
     # render 'manual_section.dryml'
