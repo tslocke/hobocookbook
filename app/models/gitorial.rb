@@ -4,7 +4,7 @@ class Gitorial
   # patch_link_base: the base for URL's to download the patch
   def initialize(directory, commit_link_base="http://github.com/Hobo/agility-gitorial/commit/", patch_link_base="/patches/agility/")
     @gitlogp = `cd #{directory}; git pack-refs --all ; git log --unified=5 --reverse gitorial-001^..HEAD`
-    @tag_refs = File.read("#{directory}/.git/packed-refs")    
+    @tag_refs = File.readlines("#{directory}/.git/packed-refs")    
     @commit_link_base=commit_link_base
     @patch_link_base=patch_link_base
   end
