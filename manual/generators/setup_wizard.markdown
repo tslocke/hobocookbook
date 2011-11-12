@@ -13,38 +13,38 @@ Generators -- setup\_wizard
 
     
 
-        [--dryml-only-templates]                         # The application uses only dryml templates
-        [--admin-subsite-name=ADMIN_SUBSITE_NAME]        # Admin Subsite Name
-                                                         # Default: admin
-        [--gitignore-auto-generated-files]               # Add the auto-generated files to .gitignore
-                                                         # Default: true
+    -i, [--invite-only]                                  # Add features for an invite only website
+        [--activation-email]                             # Send an email to activate the account
     -t, [--test-framework=TEST_FRAMEWORK]                # Use a specific test framework
                                                          # Default: test_unit
-        [--make-front-site]                              # Rename application.dryml to front_site.dryml
-                                                         # Default: true
-        [--main-title]                                   # Shows the main title
-                                                         # Default: true
-        [--private-site]                                 # Make the site unaccessible to non-members
-        [--wizard]                                       # Ask instead using options
-                                                         # Default: true
-        [--migration-generate]                           # Generate migration only
-        [--front-controller-name=FRONT_CONTROLLER_NAME]  # Front Controller Name
-                                                         # Default: front
-        [--user-resource-name=USER_RESOURCE_NAME]        # User Resource Name
-                                                         # Default: user
-        [--fixture-replacement=FIXTURE_REPLACEMENT]      # Use a specific fixture replacement
-        [--default-locale=DEFAULT_LOCALE]                # Sets the default locale
-        [--migration-migrate]                            # Generate migration and migrate
-                                                         # Default: true
         [--fixtures]                                     # Add the fixture option to the test framework
                                                          # Default: true
-        [--add-admin-subsite]                            # Add an Admin Subsite
+        [--fixture-replacement=FIXTURE_REPLACEMENT]      # Use a specific fixture replacement
         [--update]                                       # Run bundle update to install the missing gems
-        [--activation-email]                             # Send an email to activate the account
-        [--git-repo]                                     # Create the git repository with the initial commit
+        [--user-resource-name=USER_RESOURCE_NAME]        # User Resource Name
+                                                         # Default: user
+        [--main-title]                                   # Shows the main title
+                                                         # Default: true
+        [--wizard]                                       # Ask instead using options
+                                                         # Default: true
+        [--front-controller-name=FRONT_CONTROLLER_NAME]  # Front Controller Name
+                                                         # Default: front
+        [--add-admin-subsite]                            # Add an Admin Subsite
+        [--admin-subsite-name=ADMIN_SUBSITE_NAME]        # Admin Subsite Name
+                                                         # Default: admin
+        [--make-front-site]                              # Rename application.dryml to front_site.dryml
+                                                         # Default: true
+        [--private-site]                                 # Make the site unaccessible to non-members
+        [--migration-generate]                           # Generate migration only
+        [--migration-migrate]                            # Generate migration and migrate
+                                                         # Default: true
+        [--default-locale=DEFAULT_LOCALE]                # Sets the default locale
         [--locales=one two three]                        # Choose the locales
-                                                         # Default: en
-    -i, [--invite-only]                                  # Add features for an invite only website
+                                                         # Default: ["en"]
+        [--git-repo]                                     # Create the git repository with the initial commit
+        [--gitignore-auto-generated-files]               # Add the auto-generated files to .gitignore
+                                                         # Default: true
+        [--dryml-only-templates]                         # The application uses only dryml templates
 
 
 ## Runtime options
@@ -52,9 +52,9 @@ Generators -- setup\_wizard
     
 
     -f, [--force]    # Overwrite files that already exist
-    -s, [--skip]     # Skip files that already exist
     -p, [--pretend]  # Run but do not make any changes
     -q, [--quiet]    # Supress status output
+    -s, [--skip]     # Skip files that already exist
 
 
 ## Description

@@ -13,9 +13,9 @@ Generators -- subsite\_taglib
 
     
 
+    -i, [--invite-only]                            # Add features for an invite only website
         [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
                                                    # Default: user
-    -i, [--invite-only]                            # Add features for an invite only website
 
 
 ## Runtime options
@@ -23,9 +23,9 @@ Generators -- subsite\_taglib
     
 
     -f, [--force]    # Overwrite files that already exist
-    -s, [--skip]     # Skip files that already exist
     -p, [--pretend]  # Run but do not make any changes
     -q, [--quiet]    # Supress status output
+    -s, [--skip]     # Skip files that already exist
 
 
 ## Description

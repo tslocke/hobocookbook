@@ -13,10 +13,10 @@ Generators -- user\_mailer
 
     
 
-    -t, [--test-framework=NAME]  # Test framework to be invoked
-                                 # Default: test_unit
     -i, [--invite-only]          # Add features for an invite only website
         [--activation-email]     # Send an email to activate the account
+    -t, [--test-framework=NAME]  # Test framework to be invoked
+                                 # Default: test_unit
 
 
 ## Runtime options
@@ -24,9 +24,9 @@ Generators -- user\_mailer
     
 
     -f, [--force]    # Overwrite files that already exist
-    -s, [--skip]     # Skip files that already exist
     -p, [--pretend]  # Run but do not make any changes
     -q, [--quiet]    # Supress status output
+    -s, [--skip]     # Skip files that already exist
 
 
 ## Description
