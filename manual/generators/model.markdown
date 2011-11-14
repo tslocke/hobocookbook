@@ -21,9 +21,9 @@ Generators -- model
     
 
     -f, [--force]    # Overwrite files that already exist
+    -s, [--skip]     # Skip files that already exist
     -p, [--pretend]  # Run but do not make any changes
     -q, [--quiet]    # Supress status output
-    -s, [--skip]     # Skip files that already exist
 
 
 ## Description
@@ -50,5 +50,5 @@ Generators -- model
 
           creates a Post model with a string title, text body, and published flag.
 
-After the model is created, and the fields are specified, use hobo:migration
-to create the migrations incrementally.
+      After the model is created, and the fields are specified, use hobo:migration
+      to create the migrations incrementally.

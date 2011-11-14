@@ -13,10 +13,10 @@ Generators -- user\_controller
 
     
 
-        [--helpers]              # Generates helper files
-                                 # Default: true
     -t, [--test-framework=NAME]  # Test framework to be invoked
                                  # Default: test_unit
+        [--helpers]              # Generates helper files
+                                 # Default: true
     -i, [--invite-only]          # Add features for an invite only website
 
 
@@ -25,9 +25,9 @@ Generators -- user\_controller
     
 
     -f, [--force]    # Overwrite files that already exist
+    -s, [--skip]     # Skip files that already exist
     -p, [--pretend]  # Run but do not make any changes
     -q, [--quiet]    # Supress status output
-    -s, [--skip]     # Skip files that already exist
 
 
 ## USAGE

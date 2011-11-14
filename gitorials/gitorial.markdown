@@ -34,9 +34,9 @@ through the tutorial.   Doing so requires a little bit of git
 knowledge -- you may not wish to learn git and Hobo simultaneously.
 
 Check out the [application from
-github](http://github.com/bryanlarsen/agility-gitorial/tree/master):
+github](http://github.com/Hobo/agility-gitorial/tree/master):
 
-    $ git clone git://github.com/bryanlarsen/agility-gitorial.git
+    $ git clone git://github.com/Hobo/agility-gitorial.git
     $ cd agility-gitorial
 
 Now rewind the tutorial to the beginning, and create your own branch
@@ -90,7 +90,7 @@ mechanism, such as `git checkout` or `Stacked Git`.
 This mechanism is the quickest way to jump around in the tutorial.
 However, any changes you make will be lost.
 
-    $ git clone git://github.com/bryanlarsen/agility-gitorial.git
+    $ git clone git://github.com/Hobo/agility-gitorial.git
     $ cd agility-gitorial
     $ git submodule update --init
 
@@ -105,7 +105,7 @@ gitorial.  It's a great tool to follow this gitorial.
 
 Instructions for using stacked git with this gitorial are in the
 README in our [source
-repository](http://github.com/bryanlarsen/agility-gitorial-patches/tree/master).
+repository](http://github.com/Hobo/agility-gitorial-patches/tree/master).
 
 # Updating to later versions of the tutorial
 
@@ -116,5 +116,5 @@ repository again and manually move any changes you have made from your
 old clone to the new one.
 
 
-gitorial-002: [view on github](http://github.com/Hobo/agility-gitorial/commit/9eda3fd2e36824592227ee4be86445a9da5e7f03), [download 02-gitorial-sidebar.patch](/patches/agility/02-gitorial-sidebar.patch)
+gitorial-002: [view on github](http://github.com/Hobo/agility-gitorial/commit/ec14ee2939346e0be5d36ad866c8b2f89ff7796b), [download 02-gitorial-sidebar.patch](/patches/agility/02-gitorial-sidebar.patch)
 {: .commit}
