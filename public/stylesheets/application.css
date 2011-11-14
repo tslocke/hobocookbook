@@ -293,3 +293,8 @@ p.commit {
 }
 
 .command-options td, .command-options th {padding: 3px 20px 3px 0;}
+
+.big-table { border-collapse: collapse }
+
+.big-table th { font-size: 120%; padding: 10px 8px; border-bottom: 2px solid; }
+.big-table td { padding: 6px 8px; border-bottom: 1px solid; }

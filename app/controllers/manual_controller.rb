@@ -2,16 +2,13 @@ class ManualController < ApplicationController
 
   caches_page :manual_section, :manual_subsection
   def self.create_ordered_hash(llist)
-    hash = ActiveSupport::OrderedHash.new
-    llist.each do |key, value|
-      hash[key] = value
-    end
-    hash
+    ActiveSupport::OrderedHash[llist]
   end
 
   TITLES = self.create_ordered_hash([# ['to-do',        "To Do List"],
                                      ['toc',               ["#{Rails.root}/manual/toc.markdown", "Table of Contents"]],
                                      ['download',          ["#{Rails.root}/manual/download.markdown", "Download and Install"]],
+                                     ['changes',          ["#{Hobo.root}/CHANGES.txt", "Changes in 1.3"]],
                                      ['hobo_support',      ["#{HoboSupport.root}/test/hobosupport.rdoctest", 'Hobo Support']],
                                      ['hobo_fields',       ["#{HoboFields.root}/test/doc-only.rdoctest", 'Hobo Fields']],
                                      ['scopes',            ["#{Hobo.root}/doctests/hobo/scopes.rdoctest", 'Automatic Named Scopes']],
@@ -93,7 +90,7 @@ class ManualController < ApplicationController
   end
 
   def self.titles
-    Hash[*TITLES.map {|k,v| [k, v[1]]}.flatten]
+    ActiveSupport::OrderedHash[*TITLES.map {|k,v| [k, v[1]]}.flatten]
   end
 
 end
