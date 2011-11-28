@@ -51,8 +51,11 @@
 
       <section class="add-to-collection" if="&can_create?(@api_tag_def.comments)">
         <h3 class="add-form-heading">Add a Comment</h3>
-        <form with="&@api_tag_def.comments.new" owner="api_tag_def" method="post" without-cancel>
-          <field-list: skip="api_tag_def, markdown"/>
+        <form with="&@api_tag_def.comments.new" owner="api_tag_def" method="post" action="/api_tag_defs/#{this.id}/comments" without-cancel>
+          <field-list: skip="api_tag_def, markdown, user"/>
+          <before-submit:>
+            <input type="hidden" name="api_tag_comment[user_id]" value="&current_user.id"/>
+          </before-submit:>
           <submit: label="Add"/>
         </form>
       </section>
