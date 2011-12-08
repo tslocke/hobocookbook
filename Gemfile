@@ -18,8 +18,8 @@ gem 'mysql'
 gem 'yard'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
+#gem 'ruby-debug', :group => :development
+#gem 'ruby-debug19', :require => 'ruby-debug', :group => :development
 
 # Bundle the extra gems:
 # gem 'bj'
@@ -48,7 +48,7 @@ gem 'paperclip', :git => "git://github.com/jeanmartin/paperclip.git", :branch =>
 #required by paperclip
 gem "cocaine"
 
-gem "hobo", "1.3.0"
+gem "hobo", :git => "git://github.com/tablatom/hobo.git", :branch => "1-3-stable"
 
 group :development do
   gem "vlad", :require => false
