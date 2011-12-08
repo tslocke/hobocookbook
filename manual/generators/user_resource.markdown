@@ -13,8 +13,8 @@ Generators -- user\_resource
 
     
 
-    -i, [--invite-only]       # Add features for an invite only website
         [--activation-email]  # Send an email to activate the account
+    -i, [--invite-only]       # Add features for an invite only website
 
 
 ## Runtime options

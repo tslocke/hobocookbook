@@ -13,9 +13,9 @@ Generators -- migration
 
     
 
+    -n, [--default-name]  # Don't prompt for a migration name - just pick one
     -m, [--migrate]       # Don't prompt for action - generate and migrate
     -g, [--generate]      # Don't prompt for action - generate the migration
-    -n, [--default-name]  # Don't prompt for a migration name - just pick one
     -d, [--drop]          # Don't prompt with 'drop or rename' - just drop everything
 
 
