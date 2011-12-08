@@ -65,17 +65,24 @@ class ManualController < ApplicationController
 
   def manual_section
     section      = params[:section].gsub(/[^a-z0-9_\-]/, '')
+    if TITLES[section].nil?
+      redirect_to :action => :index
+      return
+    end
     filename     = TITLES[section][0]
     @title       = TITLES[section][1]
     @subtitles   = SUBTITLES[section].nil? ? nil : Hash[*SUBTITLES[section].map {|k,v| [k, v[1]]}.flatten]
     @content     = HoboFields::Types::MarkdownString.new(File.read(filename))
     @last_update = last_update filename
-    # render 'manual_section.dryml'
   end
 
   def manual_subsection
     section      = params[:section].gsub(/[^a-z0-9_\-]/, '')
     subsection   = params[:subsection].gsub(/[^a-z0-9_\-]/, '')
+    if SUBTITLES[section].nil? || SUBTITLES[section][subsection].nil?
+      redirect_to :action => :index
+      return
+    end
     filename     = SUBTITLES[section][subsection][0]
     @title       = TITLES[section][1]
     @subtitles   = Hash[*SUBTITLES[section].map {|k,v| [k, v[1]]}.flatten]
