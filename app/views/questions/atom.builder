@@ -4,8 +4,12 @@ atom_feed do |feed|
 
   @questions.each do |question|
     feed.entry(question) do |entry|
-      entry.title(question.name)
-      entry.content(question.body, :type => 'html')
+      entry.title(question.subject)
+      if question.markdown?
+        entry.content(question.description.to_html_from_markdown.html_safe, :type => 'html')
+      else
+        entry.content(question.description)
+      end
 
       entry.author do |author|
         author.name(question.user.username)
