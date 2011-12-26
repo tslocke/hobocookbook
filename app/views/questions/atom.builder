@@ -4,7 +4,7 @@ atom_feed do |feed|
 
   @questions.each do |question|
     feed.entry(question) do |entry|
-      entry.title(question.subject)
+      entry.title("#{question.subject}#{' (pending moderation)' if question.user.state=='pending'}")
       if question.markdown?
         entry.content(question.description.to_html_from_markdown.html_safe, :type => 'html')
       else

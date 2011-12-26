@@ -4,7 +4,7 @@ atom_feed do |feed|
 
   @recipes.each do |recipe|
     feed.entry(recipe) do |entry|
-      entry.title(recipe.name)
+      entry.title("#{recipe.name}#{' (pending moderation)' if recipe.user.state=='pending'}")
       entry.content(recipe.body.to_html, :type => 'html')
       entry.updated(recipe.updated_at)
 
