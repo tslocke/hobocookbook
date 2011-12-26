@@ -59,6 +59,10 @@ class User < ActiveRecord::Base
   #                              :limit => 6
   scope :recently_active,  order("(select created_at from recipes where recipes.user_id = users.id order by created_at limit 1)").limit(6)
 
+  def account_active?
+    true
+  end
+
   # --- Hobo Permissions --- #
 
   def create_permitted?
