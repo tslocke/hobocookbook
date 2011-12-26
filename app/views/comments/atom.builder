@@ -6,7 +6,8 @@ atom_feed do |feed|
     feed.entry(comment, :url => recipe_path(comment.recipe)) do |entry|
       entry.title("Comment on #{comment.recipe.name}#{' (pending moderation)' if comment.user.state=='pending'}")
       if comment.markdown?
-        entry.content(comment.body.to_html_from_markdown.html_safe, :type => 'html')
+        # FIXME hack, I shouldn't need OptionalComment.new
+        entry.content(OptionalComment.new(comment.body).to_html_from_markdown.html_safe, :type => 'html')
       else
         entry.content(comment.body)
       end
