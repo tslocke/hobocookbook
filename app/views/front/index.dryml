@@ -16,12 +16,12 @@
       
       <section-group>
         <section>
-          <a href="&atom_recipes_path" style="float:right;"><image src="rss.png"/></a>
+          <a href="#{atom_recipes_path}.xml" style="float:right;"><image src="rss.png"/></a>
           <preview-with-more name="recent recipes" with="&Recipe.recent"/>
         </section>
         
         <section class="users-and-questions">
-          <a href="&atom_questions_path" style="float:right;"><image src="rss.png"/></a>
+          <a href="#{atom_questions_path}.xml" style="float:right;"><image src="rss.png"/></a>
           <preview-with-more name="recent questions" with="&Question.recent"/>
           <preview-with-more name="active-users" with="&User.recently_active"/>
         </section>
