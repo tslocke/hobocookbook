@@ -147,6 +147,7 @@
 <extend tag="card" for="User">
   <old-card>
     <before-heading:><gravatar size='50' param/></before-heading:>
+    <append-heading:><delete-button label="X"/><transition-buttons/></append-heading:>
     <after-header:>
       <div class="recent-recipes"><repeat:recipes.recent join=", "><a/></repeat></div>
     </after-header:>

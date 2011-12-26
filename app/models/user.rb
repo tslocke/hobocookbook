@@ -15,15 +15,18 @@ class User < ActiveRecord::Base
 
   children :recipes, :questions, :answers
 
+  named_scope :administrator, :conditions => {:administrator => true}
+
   # --- Signup lifecycle --- #
 
   lifecycle do
 
-    state :active, :default => true
+    state :active
+    state :pending, :default => true
 
     create :signup, :available_to => "Guest",
            :params => [:username, :email_address, :password, :password_confirmation],
-           :become => :active
+           :become => :pending
 
     transition :request_password_reset, { :active => :active }, :new_key => true do
       UserMailer.deliver_forgot_password(self, lifecycle.key)
@@ -32,14 +35,25 @@ class User < ActiveRecord::Base
     transition :reset_password, { :active => :active }, :available_to => :key_holder,
                :params => [ :password, :password_confirmation ]
 
+    transition :approve, { :pending => :active }, :available_to => "User.administrator" do
+      # FIXME: use sweepers
+      ActionController::Base.expire_page("/recipes/atom.xml")
+    end
+
+    transition :request_password_reset, { :pending => :pending }, :new_key => true do
+      UserMailer.deliver_forgot_password(self, lifecycle.key)
+    end
+
+    transition :reset_password, { :pending => :pending }, :available_to => :key_holder,
+               :params => [ :password, :password_confirmation ]
 
   end
 
 
-  has_many :recipes
-  has_many :questions
-  has_many :answers
-  has_many :comments
+  has_many :recipes, :dependent => :destroy
+  has_many :questions, :dependent => :destroy
+  has_many :answers, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
 
   #named_scope :recently_active, :order => "(select created_at from recipes where recipes.user_id = users.id order by created_at limit 1)",
   #                              :limit => 6
