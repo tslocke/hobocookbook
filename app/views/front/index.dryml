@@ -13,13 +13,15 @@
     </header>
 
     <section class="content-body">
-      
+
       <section-group>
         <section>
           <a href="#{atom_recipes_path}.xml" style="float:right;"><image src="rss.png"/></a>
-          <preview-with-more name="recent recipes" with="&Recipe.recent"/>
+          <preview-with-more name="recent recipes" with="&current_user.administrator? ? Recipe.recent : Recipe.include('user').where('users.state = \'active\'').recent">
+            <show-all:><a href="&recipes_path">Show all Recipes...</a></show-all:>
+          </preview-with-more>
           <a href="#{atom_comments_path}.xml" style="float:right;"><image src="rss.png"/></a>
-          <preview-with-more name="recent comments" with="&Comment.recent">
+          <preview-with-more name="recent comments" with="&current_user.administrator? ? Comment.recent : Comment.include('user').where('users.state = \'active\'').recent" without-show-all>
             <collection:>
               <card>
                 <body:>
@@ -37,8 +39,12 @@
 
         <section class="users-and-questions">
           <a href="#{atom_questions_path}.xml" style="float:right;"><image src="rss.png"/></a>
-          <preview-with-more name="recent questions" with="&Question.recent"/>
-          <preview-with-more name="active-users" with="&User.recently_active"/>
+          <preview-with-more name="recent questions" with="&current_user.administrator? ? Question.recent : Question.include('user').where('users.state = \'active\'').recent">
+            <show-all:><a href="&questions_path">Show all Questions...</a></show-all:>
+          </preview-with-more>
+          <preview-with-more name="active-users" with="&User.recently_active">
+            <show-all:><a href="&users_path">Show all Users...</a></show-all:>
+          </preview-with-more>
         </section>
       </section-group>
 
