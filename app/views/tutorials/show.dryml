@@ -2,12 +2,15 @@
   <body: class="tutorial"/>
   
   <aside-content:>
-    <left-navigation with="&TutorialsController::TITLES" title="Tutorials" url="#{base_url}/tutorials" current="&@title" />
+    <left-navigation with="&TutorialsController.titles" title="Tutorials" url="#{base_url}/tutorials" current="&@title" />
   </aside-content:>
   
   <content:>
     <section class="content-body">
-      <div class="last-update">Last updated: <view with="&@last_update"/></div>
+      <div class="last-update">
+        Last updated: <view with="&@last_update"/><br/>
+        <a href="&@edit_link">Edit this page</a>
+      </div>
       <view with="&@content"/>
     </section>
   </content:>
