@@ -9,7 +9,7 @@
     <section class="content-body">
       <div class="last-update">
         Last updated: <view with="&@last_update"/><br/>
-        <a href="&@edit_link">Edit this page</a>
+        <if test="&@edit_link"><a href="&@edit_link">Edit this page</a></if>
       </div>
       <view with="&@content"/>
     </section>
