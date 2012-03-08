@@ -20,6 +20,11 @@
      <collection:><card without-gravatar without-asks/></collection:>
    </preview-with-more>
  </aside:>
+
+ <after-edit-link:>
+   <delete-button/>
+   <transition-buttons/>
+ </after-edit-link:>
  
  
  <preview-questions:><collection:><card without-gravatar/></collection:></preview-questions:>

@@ -147,6 +147,7 @@
 <extend tag="card" for="User">
   <old-card>
     <before-heading:><gravatar size='50' param/></before-heading:>
+    <append-heading:><delete-button label="X"/><transition-buttons/></append-heading:>
     <after-header:>
       <div class="recent-recipes"><repeat:recipes.recent join=", "><a/></repeat></div>
     </after-header:>
@@ -157,6 +158,7 @@
 <extend tag="card" for="Question">
   <old-card merge>
     <before-heading:><gravatar:user size='50' param/></before-heading:>
+    <append-heading:><if test="&this.user.state=='pending'"> (pending moderation)</if></append-heading:>
     <body:>
       <do param="asks">Asks <a:user/>.</do> (<count:answers if-any/><else>No answers - help!</else>)
     </body:>
@@ -166,6 +168,7 @@
 <extend tag="card" for="Recipe">
   <old-card merge without-count>
     <before-heading:><gravatar:user size='50' param/></before-heading:>
+    <append-heading:><if test="&this.user.state=='pending'"> (pending moderation)</if></append-heading:>
     <creator-link: replace><div param="user">By: <a:user/></div></creator-link:>
     <append-body:>
       <div param="timestamp">

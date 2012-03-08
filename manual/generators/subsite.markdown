@@ -15,10 +15,10 @@ Generators -- subsite
 
     -t, [--test-framework=NAME]                    # Test framework to be invoked
                                                    # Default: test_unit
-    -i, [--invite-only]                            # Add features for an invite only website
         --make-front-site                          # Rename application.dryml to front_site.dryml
         [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
                                                    # Default: user
+    -i, [--invite-only]                            # Add features for an invite only website
 
 
 ## Runtime options

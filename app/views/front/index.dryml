@@ -13,19 +13,42 @@
     </header>
 
     <section class="content-body">
-      
+
       <section-group>
         <section>
-          <preview-with-more name="recent recipes" with="&Recipe.recent"/>
+          <a href="#{atom_recipes_path}.xml" style="float:right;"><image src="rss.png"/></a>
+          <preview-with-more name="recent recipes" with="&current_user.administrator? ? Recipe.recent : Recipe.include('user').where('users.state = \'active\'').recent">
+            <show-all:><a href="&recipes_path">Show all Recipes...</a></show-all:>
+          </preview-with-more>
+          <a href="#{atom_comments_path}.xml" style="float:right;"><image src="rss.png"/></a>
+          <preview-with-more name="recent comments" with="&current_user.administrator? ? Comment.recent : Comment.include('user').where('users.state = \'active\'').recent" without-show-all>
+            <collection:>
+              <card>
+                <body:>
+                  <gravatar:user size='50'/>
+                  <div class="content">
+                    <h4>On <view:created-at format="%B %d, %Y"/> <a:user/> made a comment on:</h4>
+                    <h4><view:recipe/></h4>
+                    <if test="&this.user.state=='pending'">(Pending Moderation)</if>
+                  </div>
+                </body:>
+              </card>
+            </collection:>
+          </preview-with-more>
         </section>
-        
+
         <section class="users-and-questions">
-          <preview-with-more name="recent questions" with="&Question.recent"/>
-          <preview-with-more name="active-users" with="&User.recently_active"/>
+          <a href="#{atom_questions_path}.xml" style="float:right;"><image src="rss.png"/></a>
+          <preview-with-more name="recent questions" with="&current_user.administrator? ? Question.recent : Question.include('user').where('users.state = \'active\'').recent">
+            <show-all:><a href="&questions_path">Show all Questions...</a></show-all:>
+          </preview-with-more>
+          <preview-with-more name="active-users" with="&User.recently_active">
+            <show-all:><a href="&users_path">Show all Users...</a></show-all:>
+          </preview-with-more>
         </section>
       </section-group>
-        
+
     </section>
   </content:>
-  
+
 </page>

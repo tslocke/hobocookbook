@@ -13,9 +13,9 @@ Generators -- subsite\_taglib
 
     
 
+    -i, [--invite-only]                            # Add features for an invite only website
         [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
                                                    # Default: user
-    -i, [--invite-only]                            # Add features for an invite only website
 
 
 ## Runtime options

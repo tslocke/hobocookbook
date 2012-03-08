@@ -15,8 +15,8 @@ Generators -- user\_mailer
 
     -t, [--test-framework=NAME]  # Test framework to be invoked
                                  # Default: test_unit
-    -i, [--invite-only]          # Add features for an invite only website
         [--activation-email]     # Send an email to activate the account
+    -i, [--invite-only]          # Add features for an invite only website
 
 
 ## Runtime options

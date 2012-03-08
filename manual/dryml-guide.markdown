@@ -12,7 +12,14 @@ Contents
 
 # What is DRYML?
 
-DRYML is a template language for Ruby on Rails that you can use in place of Rails' built-in ERB templates. It is part of the larger Hobo project, but will eventually be made available as a separate plugin. DRYML was created in response to the observation that the vast majority of Rails development time seems to be spent in the view-layer. Rails' models are beautifully declarative, the controllers can be made so pretty easily (witness the many and various "result controller" plugins), but the views, ah the views...
+DRYML is a template language for Ruby on Rails that you can use in
+place of Rails' built-in ERB templates. It is part of the larger Hobo
+project, but can be used standalone without Hobo or even without
+Rails. DRYML was created in response to the observation that the vast
+majority of Rails development time seems to be spent in the
+view-layer. Rails' models are beautifully declarative, the controllers
+can be made so pretty easily (witness the many and various "result
+controller" plugins), but the views, ah the views...
 
 Given that so much of the user interaction we encounter on the web is so similar from one website to another, surely we don't have to code all this stuff up from low-level primitives over and over again? Please, no! Of course what we want is a nice library of ready-to-go user interface components, or widgets, which can be quickly added to our project, and easily tailored to the specifics of our application.
 

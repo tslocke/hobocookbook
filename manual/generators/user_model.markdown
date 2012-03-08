@@ -13,11 +13,11 @@ Generators -- user\_model
 
     
 
-    -i, [--invite-only]                            # Add features for an invite only website
-        [--timestamps]                             # Indicates when to generate timestamps
         [--activation-email]                       # Send an email to activate the account
         [--admin-subsite-name=ADMIN_SUBSITE_NAME]  # Admin Subsite Name
                                                    # Default: admin
+        [--timestamps]                             # Indicates when to generate timestamps
+    -i, [--invite-only]                            # Add features for an invite only website
 
 
 ## Runtime options

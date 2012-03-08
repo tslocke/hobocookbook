@@ -13,17 +13,17 @@ Generators -- front\_controller
 
     
 
-        [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
-                                                   # Default: user
     -t, [--test-framework=NAME]                    # Test framework to be invoked
                                                    # Default: test_unit
         [--helpers]                                # Generates helper files
                                                    # Default: true
-    -i, [--invite-only]                            # Add features for an invite only website
         [--add-routes]                             # Modify config/routes.rb to support the front controller
                                                    # Default: true
     -d, [--delete-index]                           # Delete public/index.html
                                                    # Default: true
+        [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
+                                                   # Default: user
+    -i, [--invite-only]                            # Add features for an invite only website
 
 
 ## Runtime options

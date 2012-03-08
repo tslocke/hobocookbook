@@ -7,7 +7,7 @@ set :revision,    "origin/master"
 set :skip_scm, false
 
 set :user, "cookbook"
-set :domain, "#{user}@cookbook-staging.hobocentral.net"
+set :domain, "#{user}@cookbook.hobocentral.net"
 
 set :rake_cmd, "/opt/ruby-1.8.7-p334/bin/bundle exec  /opt/ruby-1.8.7-p334/bin/rake"
 # set :rake_cmd, "/usr/local/rvm/bin/cookbook_rake"

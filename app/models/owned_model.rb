@@ -16,7 +16,7 @@ OwnedModel = classy_module do
   end
 
   def view_permitted?(attribute)
-    true
+    acting_user == user || acting_user.administrator? || user.state=="active"
   end
   
 end
