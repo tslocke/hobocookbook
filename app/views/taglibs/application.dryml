@@ -6,7 +6,9 @@
 
 <include src="paperclip" plugin="paperclip_with_hobo"/>
 
-<set-theme name="clean"/>
+<include gem='hobo_rapid'/>
+<include gem='hobo_jquery'/>
+<include gem='hobo_clean'/>
 
 <def tag="app-name">Hobo Cookbook</def>
 
@@ -16,14 +18,6 @@
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     </before-title:>
 
-    <append-scripts:>
-      <javascript name="code_highlighter"/>
-      <javascript name="highlighters/ruby"/>
-      <javascript name="highlighters/dryml"/>
-      <javascript name="highlighters/diff"/>
-      <javascript name="flowplayer-3.1.4.min.js"/>
-    </append-scripts:>
-    
     <header: replace>
       <aside param="page-aside">
         <h1 param="app-name"><a href="#{base_url}/"><app-name/></a></h1>
@@ -84,6 +78,7 @@
 
 <def tag="version-switcher">
   <select id="version-switcher">
+    <option value="1.4">Hobo 1.4/Rails 3.1</option>
     <option selected="1" value="1.3">Hobo 1.3/Rails 3.0</option>
     <option value="1.0">Hobo 1.0/Rails 2.3</option>
   </select>

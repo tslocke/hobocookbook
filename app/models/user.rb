@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   children :recipes, :questions, :answers
 
-  named_scope :administrator, :conditions => {:administrator => true}
+  scope :administrator, :conditions => {:administrator => true}
 
   # --- Signup lifecycle --- #
 

@@ -1,6 +1,6 @@
 class ApiTagComment < ActiveRecord::Base
 
-  establish_connection "taglibs_#{RAILS_ENV}"
+  establish_connection "taglibs_#{Rails.env}"
 
   hobo_model # Don't put anything above this
 

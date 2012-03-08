@@ -4,7 +4,7 @@ class PluginsController < ApplicationController
 
   TITLES = begin
              titles = ActiveSupport::OrderedHash.new
-             Dir["#{RAILS_ROOT}/taglibs/*"].map {|fn|
+             Dir["#{Rails.root}/taglibs/*"].map {|fn|
                bfn=File.basename(fn)
                titles[bfn]=bfn.titleize
              }
@@ -17,7 +17,7 @@ class PluginsController < ApplicationController
       redirect_to "/api_taglibs"
       return
     end
-    filename     = "#{RAILS_ROOT}/taglibs/#{plugin}/README.markdown"
+    filename     = "#{Rails.root}/taglibs/#{plugin}/README.markdown"
     @title       = TITLES[plugin]
     @content     = HoboFields::Types::MarkdownString.new(File.read(filename))
     @libs        = ApiTaglib.library_is(plugin)

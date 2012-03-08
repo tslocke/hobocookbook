@@ -1,0 +1,10 @@
+/*
+ * This is the stylesheet manifest file for the admin subsite.
+ * Files or plugins referenced from here or placed in the admin/
+ * directory will be included.
+ *
+ *= require_self
+ *= require application
+ *= require hobo_clean_admin
+ *= require_tree ./admin
+*/
