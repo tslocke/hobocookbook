@@ -7,9 +7,6 @@
 [submodule "taglibs/hobo-contrib"]
 	path = taglibs/hobo-contrib
 	url = git://github.com/bryanlarsen/hobo-contrib.git
-[submodule "taglibs/hobo-jquery"]
-	path = taglibs/hobo-jquery
-	url = git://github.com/bryanlarsen/hobo-jquery.git
 [submodule "taglibs/imaginary-dryml"]
 	path = taglibs/imaginary-dryml
 	url = git://github.com/imaginary-cloud/Imaginary-DRYML.git
