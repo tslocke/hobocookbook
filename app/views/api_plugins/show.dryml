@@ -1,7 +1,7 @@
 <show-page title="#{this.name.titleize}" without-account-nav>
 
   <aside-content:>
-    <api-navigation />
+    <api-navigation/>
   </aside-content:>
 
   <content:>
@@ -14,7 +14,7 @@
       </div>
       <view:short_description/>
       <view:description/>
-      <tags-summary/>
+      <plugin-tags-summary/>
     </div>
   </content:>
 

@@ -11,7 +11,7 @@ gem 'yard'
 
 group :development do
   # set to 0.43 due to problem with .45 see https://github.com/rails/rails/pull/1671
-  gem 'ruby-debug19'
+  gem 'ruby-debug'
   gem 'rails-dev-tweaks'
 end
 
@@ -23,13 +23,15 @@ gem 'paperclip', :git => "git://github.com/jeanmartin/paperclip.git", :branch =>
 #required by paperclip
 gem "cocaine"
 
-gem "hobo_support", :path => "/work/hobo/hobo_support"
-gem "hobo_fields", :path => "/work/hobo/hobo_fields"
-gem "dryml", :path => "/work/hobo/dryml"
-gem "hobo", :path => "/work/hobo/hobo"
-gem "hobo_rapid", :path => "/work/hobo/hobo_rapid"
-gem "hobo_clean", :path => "/work/hobo/hobo_clean"
-gem "hobo_jquery", :path => "/work/hobo/hobo_jquery"
+gem "hobo_support", :git => "git://github.com/tablatom/hobo.git"
+gem "hobo_fields", :git => "git://github.com/tablatom/hobo.git"
+gem "dryml", :git => "git://github.com/tablatom/hobo.git"
+gem "hobo", :git => "git://github.com/tablatom/hobo.git"
+gem "hobo_rapid", :git => "git://github.com/tablatom/hobo.git"
+gem "hobo_clean", :git => "git://github.com/tablatom/hobo.git"
+gem "hobo_clean_admin", :git => "git://github.com/tablatom/hobo.git"
+gem "hobo_jquery", :git => "git://github.com/tablatom/hobo.git"
+gem "hobo_jquery_ui", :git => "git://github.com/tablatom/hobo.git"
 
 gem "jquery-rails"
 gem "jquery-ui-themes"
@@ -46,3 +48,9 @@ group :assets do
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
 end
+
+# Hobo plugins included solely for documentation
+gem "hobo_tree_table", :git => "git://github.com/bryanlarsen/hobo_tree_table.git"
+gem "select_one_or_new_dialog", :git => "git://github.com/bryanlarsen/select_one_or_new_dialog.git"
+
+gem "awesome_print"

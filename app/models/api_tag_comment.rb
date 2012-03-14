@@ -1,6 +1,8 @@
 class ApiTagComment < ActiveRecord::Base
 
-  establish_connection "taglibs_#{Rails.env}"
+  # so we can coexist with other
+  # versions of the cookbook
+  set_table_name "api_tag_comments_14"
 
   hobo_model # Don't put anything above this
 

@@ -184,7 +184,7 @@ a.gravatar {display: block; border: 1px solid #ccc; background: #ccc; padding: 2
 
 /* === Manual Formatting === */
 
-body.manual .last-update, body.tutorial .last-update {float:right; font-style: italic; font-size: 90%;}
+body .last-update, body .last-update {float:right; font-style: italic; font-size: 90%;}
 .content .aside { background:#EEEEEE;border:1px solid #BBB; margin:20px 0px; padding:10px; width:auto;}
 
 body.manual .content-body h1 { border-top: 1px dotted #999; margin-top: 80px; padding-top: 10px;}

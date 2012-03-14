@@ -1,6 +1,8 @@
 class ApiTagDef < ActiveRecord::Base
 
-  establish_connection "taglibs_#{Rails.env}"
+  # so we can coexist with other
+  # versions of the cookbook
+  set_table_name "api_tag_defs_14"
 
   hobo_model # Don't put anything above this
 
@@ -9,7 +11,7 @@ class ApiTagDef < ActiveRecord::Base
   end
 
   fields do
-    tag               :string, :name => true
+    tag               :string, :name => true, :index => true
     extension         :boolean
     polymorphic       :boolean
     for_type          :string
@@ -23,6 +25,8 @@ class ApiTagDef < ActiveRecord::Base
     merge_params      :string
 
     source            :text
+
+    edit_link         :string
 
     timestamps
   end

@@ -1,20 +1,19 @@
 <index-page without-account-nav>
 
   <aside-content:>
-    <api-navigation with="&this[0].library" />
+    <api-navigation/>
   </aside-content:>
-  
+
   <content:>
     <section class="content-header">
-      <h2>DRYML Taglibs Reference</h2>
     </section>
     <section class="content-body">
       <collection>
-        <h3><a><%= this.name.titleize %></a></h3>
+        <h2><a><%= this.name.titleize %></a></h2>
         <view:short-description/>
-        <tags-summary/>
+        <plugin-tags-summary/>
       </collection>
-    </section>    
+    </section>
   </content:>
-  
+
 </index-page>

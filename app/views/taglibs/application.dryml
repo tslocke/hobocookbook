@@ -8,6 +8,7 @@
 
 <include gem='hobo_rapid'/>
 <include gem='hobo_jquery'/>
+<include gem='hobo_jquery_ui'/>
 <include gem='hobo_clean'/>
 
 <def tag="app-name">Hobo Cookbook</def>
@@ -50,7 +51,6 @@
   
 </extend>
 
-
 <def tag="view" for="markdown"><%=
   begin
     images = this_parent._?.images
@@ -88,10 +88,9 @@
   <navigation class="main-nav" merge-attrs>
     <li><version-switcher/></li>
     <nav-item href="#{base_url}/manual/download">Download</nav-item>
-    <nav-item href="#{base_url}/plugins"  >Plugins</nav-item>
     <nav-item href="#{base_url}/tutorials">Tutorials</nav-item>
     <nav-item href="#{base_url}/manual"   >Manual</nav-item>
-    <nav-item with="&ApiTaglib"           >Taglibs</nav-item>
+    <nav-item with="&ApiPlugin"           >Taglibs</nav-item>
     <nav-item with="&Recipe"              >Recipes</nav-item>
   </navigation>
 </def>
@@ -235,18 +234,60 @@
   </collection>
 </def>
 
-<def tag="tag-def-link"><a class="#{'undocumented' unless this.documented?}"><view:short-def-line/></a></def>
+<def tag="related-tags-summary">
+  <% tags = ApiTagDef.find_all_by_tag(this.tag) %>
+  <if with="&tags" test="&tags.length > 1">
+    <h3>Related Tags</h3>
+    <collection without-empty-message class="tags">
+      <tag-def-link/>
+    </collection>
+  </if>
+</def>
 
-<def tag="api-navigation" attrs="current">
-  <h2><a href="#{base_url}/plugins/#{this}"><%= this.titleize %></a></h2>
-  <navigation current="&current.name.titleize if current.is_a?(ApiTaglib)">
-    <repeat with="&ApiTaglib.library_is(this).order_by(:name)">
-      <nav-item><%= this.name.titleize %></nav-item>
-      <ul if="&current == this || current.try.taglib_is?(this)">
-        <li class="#{'current' if this == current}" repeat="tags.no_for_type"><tag-def-link/></li>
-      </ul>
-    </repeat>
-  </navigation>
+<def tag="plugin-tags-summary">
+  <if test="&this.taglibs.length==1">
+    <tags-summary:taglibs.first />
+  </if>
+  <else>
+    <repeat:taglibs>
+      <h3><a><%= this.name.titleize %></a></h3>
+      <view:short-description/>
+      <tags-summary />
+    </repeat:taglibs>
+  </else>
+</def>
+
+<def tag="tag-def-link">
+  <a class="#{'undocumented' unless this.documented?}" href="&tagdef_path(:plugin => this.taglib.plugin.name, :taglib => this.taglib.name, :tag => this.tag, :for => this.for_type)">
+    <view:short-def-line/>
+  </a>
+</def>
+
+<def tag="api-navigation">
+  <% current = this %>
+  <% if current.is_a?(ApiTagDef)
+       current_plugin = current.taglib.plugin
+     elsif current.is_a?(ApiTaglib)
+       current_plugin = current.plugin
+     else
+       current_plugin = this
+     end %>
+  <repeat with="&ApiPlugin.all">
+    <% plugin = this %>
+    <h2><a><%= this.name.titleize %></a></h2>
+    <if test="&current_plugin.id == this.id">
+      <navigation current="&current.name.titleize if current.is_a?(ApiTaglib)">
+        <repeat with="&this.taglibs.order_by(:name)">
+          <if test="&plugin.taglibs.length != 1">
+            <nav-item><%= this.name.titleize %></nav-item>
+          </if>
+          <ul if="&current == this || current.try.taglib_is?(this) || (current.typed_id==plugin.typed_id && plugin.taglibs.length == 1)">
+            <li class="#{'current' if this == current}" repeat="tags.no_for_type"><tag-def-link/></li>
+          </ul>
+        </repeat>
+      </navigation>
+    </if>
+  </repeat>
 </def>
 
 

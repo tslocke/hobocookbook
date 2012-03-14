@@ -1,8 +1,6 @@
-class ApiTaglib < ActiveRecord::Base
+class ApiPlugin < ActiveRecord::Base
 
-  # so we can coexist with other
-  # versions of the cookbook
-  set_table_name "api_taglibs_14"
+  set_table_name "api_plugins_14"
 
   hobo_model # Don't put anything above this
 
@@ -19,17 +17,21 @@ class ApiTaglib < ActiveRecord::Base
   end
 
   fields do
-    name        :string, :index => true
+    name              :string, :index => true
     short_description :html
-    description :html
-    edit_link :string
+    description       :html
+    edit_link_base    :string
+    edit_link         :string
+    position          :integer
     timestamps
   end
 
-  belongs_to :plugin, :class_name => "ApiPlugin"
-  has_many :tags, :class_name => "ApiTagDef", :foreign_key => "taglib_id"
+  attr_accessor :dir
+
+  has_many :taglibs, :class_name => "ApiTaglib", :foreign_key => "plugin_id"
 
   set_default_order "name"
+
 
   # --- Hobo Permissions --- #
 

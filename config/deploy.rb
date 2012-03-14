@@ -1,7 +1,7 @@
 set :application, "cookbook"
 set :domain,      "cookbook-staging.hobocentral.net"
 # set :domain,      "li285-250.members.linode.com"
-set :deploy_to,   "/home/cookbook-staging"
+set :deploy_to,   "/home/cookbook14"
 set :repository,  "git://github.com/tablatom/hobocookbook"
 set :revision,    "origin/master"
 set :skip_scm, false

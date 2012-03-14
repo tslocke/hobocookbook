@@ -10,4 +10,5 @@
 //= require jquery-ui
 //= require hobo_rapid
 //= require hobo_jquery
+//= require hobo_jquery_ui
 //= require_tree ./application

@@ -6,6 +6,8 @@ Hobocookbook::Application.routes.draw do
   match 'manual/:section' => 'manual#manual_section', :as => 'manual_section'
   match 'manual/:section/:subsection' => 'manual#manual_subsection'
 
+  match 'tagdef/:plugin/:taglib/:tag' => 'api_tag_defs#tagdef', :as => 'tagdef'
+
   match 'tutorials' => 'tutorials#index', :as => 'tutorials'
   match 'tutorials/:tutorial' => 'tutorials#show', :as => 'tutorial'
 

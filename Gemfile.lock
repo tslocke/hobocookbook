@@ -1,4 +1,20 @@
 GIT
+  remote: git://github.com/bryanlarsen/hobo_tree_table.git
+  revision: a859c75984e025f942bacb2f98e72433ba620cb5
+  specs:
+    hobo_tree_table (0.0.1)
+      hobo (~> 1.4.0.pre1)
+      rails (~> 3.1.0)
+
+GIT
+  remote: git://github.com/bryanlarsen/select_one_or_new_dialog.git
+  revision: e143e7f5cc384270877c3640ec58c64dbe1ad4fd
+  specs:
+    select_one_or_new_dialog (0.0.1)
+      hobo (~> 1.4.0.pre1)
+      hobo_jquery_ui (~> 1.4.0.pre1)
+
+GIT
   remote: git://github.com/bryanlarsen/vlad-git.git
   revision: 0fa91ca93089003779aa564b4cdef238f08385cf
   specs:
@@ -14,50 +30,33 @@ GIT
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
 
-PATH
-  remote: /work/hobo/dryml
+GIT
+  remote: git://github.com/tablatom/hobo.git
+  revision: 6befe46db39dc64c755a88aa99a0159d817e854a
   specs:
     dryml (1.4.0.pre1)
       actionpack (~> 3.1.0)
       hobo_support (= 1.4.0.pre1)
-
-PATH
-  remote: /work/hobo/hobo
-  specs:
     hobo (1.4.0.pre1)
       dryml (= 1.4.0.pre1)
       hobo_fields (= 1.4.0.pre1)
       hobo_support (= 1.4.0.pre1)
       will_paginate (~> 3.0.0)
-
-PATH
-  remote: /work/hobo/hobo_clean
-  specs:
     hobo_clean (1.4.0.pre1)
       hobo (= 1.4.0.pre1)
-
-PATH
-  remote: /work/hobo/hobo_fields
-  specs:
+    hobo_clean_admin (1.4.0.pre1)
+      rails (~> 3.1.0)
     hobo_fields (1.4.0.pre1)
       hobo_support (= 1.4.0.pre1)
-
-PATH
-  remote: /work/hobo/hobo_jquery
-  specs:
     hobo_jquery (1.4.0.pre1)
       hobo (= 1.4.0.pre1)
       jquery-rails (~> 1.0)
-
-PATH
-  remote: /work/hobo/hobo_rapid
-  specs:
+    hobo_jquery_ui (1.4.0.pre1)
+      hobo (= 1.4.0.pre1)
+      hobo_jquery (= 1.4.0.pre1)
+      jquery-ui-themes (~> 0.0.4)
     hobo_rapid (1.4.0.pre1)
-      rails (~> 3.1.0)
-
-PATH
-  remote: /work/hobo/hobo_support
-  specs:
+      hobo (= 1.4.0.pre1)
     hobo_support (1.4.0.pre1)
       rails (~> 3.1.0)
 
@@ -92,8 +91,8 @@ GEM
       activesupport (= 3.1.4)
     activesupport (3.1.4)
       multi_json (~> 1.0)
-    archive-tar-minitar (0.5.2)
     arel (2.2.3)
+    awesome_print (1.0.2)
     builder (3.0.0)
     cocaine (0.2.1)
     coffee-rails (3.1.1)
@@ -114,9 +113,9 @@ GEM
       thor (~> 0.14)
     jquery-ui-themes (0.0.4)
     json (1.6.5)
-    linecache19 (0.5.12)
-      ruby_core_source (>= 0.1.4)
-    mail (2.3.2)
+    linecache (0.46)
+      rbx-require-relative (> 0.0.4)
+    mail (2.3.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -158,18 +157,14 @@ GEM
     rake-remote_task (2.0.6)
       open4 (~> 1.0)
       rake (~> 0.8)
+    rbx-require-relative (0.0.9)
     rdoc (3.12)
       json (~> 1.4)
-    ruby-debug-base19 (0.11.25)
-      columnize (>= 0.3.1)
-      linecache19 (>= 0.5.11)
-      ruby_core_source (>= 0.1.4)
-    ruby-debug19 (0.11.6)
-      columnize (>= 0.3.1)
-      linecache19 (>= 0.5.11)
-      ruby-debug-base19 (>= 0.11.19)
-    ruby_core_source (0.1.5)
-      archive-tar-minitar (>= 0.5.2)
+    ruby-debug (0.10.4)
+      columnize (>= 0.1)
+      ruby-debug-base (~> 0.10.4.0)
+    ruby-debug-base (0.10.4)
+      linecache (>= 0.3)
     sass (3.1.15)
     sass-rails (3.1.5)
       actionpack (~> 3.1.0)
@@ -179,7 +174,7 @@ GEM
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
-      tilt (!= 1.3.0, ~> 1.1)
+      tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.5)
     syntax (1.0.0)
     thor (0.14.6)
@@ -201,15 +196,19 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   cocaine
   coffee-rails (~> 3.1.1)
   dryml!
   hobo!
   hobo_clean!
+  hobo_clean_admin!
   hobo_fields!
   hobo_jquery!
+  hobo_jquery_ui!
   hobo_rapid!
   hobo_support!
+  hobo_tree_table!
   jquery-rails
   jquery-ui-themes
   maruku
@@ -218,8 +217,9 @@ DEPENDENCIES
   rails (= 3.1.4)
   rails-dev-tweaks
   rake (= 0.8.7)
-  ruby-debug19
+  ruby-debug
   sass-rails (~> 3.1.5)
+  select_one_or_new_dialog!
   sqlite3
   uglifier (>= 1.0.3)
   vlad
