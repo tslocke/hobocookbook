@@ -5,10 +5,10 @@ class ManualController < ApplicationController
     ActiveSupport::OrderedHash[llist]
   end
 
-  COOKBOOK_GITHUB =   "https://github.com/tablatom/hobocookbook/edit/1-3-stable"
-  HOBO_GITHUB =       "https://github.com/tablatom/hobo/edit/1-3-stable/hobo"
-  HOBOFIELDS_GITHUB = "https://github.com/tablatom/hobo/edit/1-3-stable/hobo_fields"
-  HOBOSUPPORT_GITHUB ="https://github.com/tablatom/hobo/edit/1-3-stable/hobo_support"
+  COOKBOOK_GITHUB =   "https://github.com/tablatom/hobocookbook/edit/master"
+  HOBO_GITHUB =       "https://github.com/tablatom/hobo/edit/master/hobo"
+  HOBOFIELDS_GITHUB = "https://github.com/tablatom/hobo/edit/master/hobo_fields"
+  HOBOSUPPORT_GITHUB ="https://github.com/tablatom/hobo/edit/master/hobo_support"
 
   TITLES = self.create_ordered_hash(
    [# ['to-do',        "To Do List"],
@@ -56,9 +56,9 @@ class ManualController < ApplicationController
       ["controller",         ["controller", "manual/generators/controller.markdown", Rails.root, COOKBOOK_GITHUB]],
       ["front_controller",   ["front_controller", "manual/generators/front_controller.markdown", Rails.root, COOKBOOK_GITHUB]],
       ["i18n",               ["i18n", "manual/generators/i18n.markdown", Rails.root, COOKBOOK_GITHUB]],
+      ["install_plugin",     ["install_plugin", "manual/generators/install_plugin.markdown", Rails.root, COOKBOOK_GITHUB]],
       ["migration",          ["migration", "manual/generators/migration.markdown", Rails.root, COOKBOOK_GITHUB]],
       ["model",              ["model", "manual/generators/model.markdown", Rails.root, COOKBOOK_GITHUB]],
-      ["rapid",              ["rapid", "manual/generators/rapid.markdown", Rails.root, COOKBOOK_GITHUB]],
       ["resource",           ["resource", "manual/generators/resource.markdown", Rails.root, COOKBOOK_GITHUB]],
       ["routes",             ["routes", "manual/generators/routes.markdown", Rails.root, COOKBOOK_GITHUB]],
       ["setup_wizard",       ["setup_wizard", "manual/generators/setup_wizard.markdown", Rails.root, COOKBOOK_GITHUB]],

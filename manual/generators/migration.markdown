@@ -1,4 +1,4 @@
-Generators -- migration
+Generators -- manual/generators/migration.markdown
 {: .document-title}
 
 
@@ -13,9 +13,9 @@ Generators -- migration
 
     
 
+    -g, [--generate]      # Don't prompt for action - generate the migration
     -n, [--default-name]  # Don't prompt for a migration name - just pick one
     -m, [--migrate]       # Don't prompt for action - generate and migrate
-    -g, [--generate]      # Don't prompt for action - generate the migration
     -d, [--drop]          # Don't prompt with 'drop or rename' - just drop everything
 
 
@@ -24,9 +24,9 @@ Generators -- migration
     
 
     -f, [--force]    # Overwrite files that already exist
+    -q, [--quiet]    # Supress status output
     -s, [--skip]     # Skip files that already exist
     -p, [--pretend]  # Run but do not make any changes
-    -q, [--quiet]    # Supress status output
 
 
 ## Description

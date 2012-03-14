@@ -14,11 +14,12 @@ Under the 'Hobo' group we find the hobo generators:
     hobo:admin_subsite
     hobo:assets
     hobo:controller
+    hobo:dev_tweaks
     hobo:front_controller
     hobo:i18n
+    hobo:install_plugin
     hobo:migration
     hobo:model
-    hobo:rapid
     hobo:resource
     hobo:routes
     hobo:setup_wizard

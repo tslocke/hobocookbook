@@ -1,4 +1,4 @@
-Generators -- admin\_subsite
+Generators -- manual/generators/admin\_subsite.markdown
 {: .document-title}
 
 
@@ -13,22 +13,24 @@ Generators -- admin\_subsite
 
     
 
+        [--skip-namespace]                         # Skip namespace (affects only isolated applications)
+        [--old-style-hash]                         # Force using old style hash (:foo => 'bar') on Ruby >= 1.9
+        --make-front-site                          # Rename application.dryml to front_site.dryml
+        [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
+                                                   # Default: user
     -t, [--test-framework=NAME]                    # Test framework to be invoked
                                                    # Default: test_unit
     -i, [--invite-only]                            # Add features for an invite only website
-        [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
-                                                   # Default: user
-        --make-front-site                          # Rename application.dryml to front_site.dryml
 
 
 ## Runtime options
 
     
 
+    -q, [--quiet]    # Supress status output
     -f, [--force]    # Overwrite files that already exist
     -s, [--skip]     # Skip files that already exist
     -p, [--pretend]  # Run but do not make any changes
-    -q, [--quiet]    # Supress status output
 
 
 ## Description

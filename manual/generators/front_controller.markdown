@@ -1,4 +1,4 @@
-Generators -- front\_controller
+Generators -- manual/generators/front\_controller.markdown
 {: .document-title}
 
 
@@ -13,27 +13,29 @@ Generators -- front\_controller
 
     
 
-    -t, [--test-framework=NAME]                    # Test framework to be invoked
-                                                   # Default: test_unit
         [--helpers]                                # Generates helper files
                                                    # Default: true
         [--add-routes]                             # Modify config/routes.rb to support the front controller
                                                    # Default: true
     -d, [--delete-index]                           # Delete public/index.html
                                                    # Default: true
+        [--skip-namespace]                         # Skip namespace (affects only isolated applications)
         [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
                                                    # Default: user
+        [--old-style-hash]                         # Force using old style hash (:foo => 'bar') on Ruby >= 1.9
     -i, [--invite-only]                            # Add features for an invite only website
+    -t, [--test-framework=NAME]                    # Test framework to be invoked
+                                                   # Default: test_unit
 
 
 ## Runtime options
 
     
 
+    -q, [--quiet]    # Supress status output
     -f, [--force]    # Overwrite files that already exist
     -s, [--skip]     # Skip files that already exist
     -p, [--pretend]  # Run but do not make any changes
-    -q, [--quiet]    # Supress status output
 
 
 ## Description

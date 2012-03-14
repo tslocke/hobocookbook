@@ -1,4 +1,4 @@
-Generators -- setup\_wizard
+Generators -- manual/generators/setup\_wizard.markdown
 {: .document-title}
 
 
@@ -13,37 +13,35 @@ Generators -- setup\_wizard
 
     
 
-        [--front-controller-name=FRONT_CONTROLLER_NAME]  # Front Controller Name
-                                                         # Default: front
+        [--wizard]                                       # Ask instead using options
+                                                         # Default: true
         [--user-resource-name=USER_RESOURCE_NAME]        # User Resource Name
                                                          # Default: user
-    -t, [--test-framework=TEST_FRAMEWORK]                # Use a specific test framework
-                                                         # Default: test_unit
         [--migration-migrate]                            # Generate migration and migrate
                                                          # Default: true
         [--fixtures]                                     # Add the fixture option to the test framework
                                                          # Default: true
-        [--add-admin-subsite]                            # Add an Admin Subsite
-        [--activation-email]                             # Send an email to activate the account
-        [--dryml-only-templates]                         # The application uses only dryml templates
-        [--git-repo]                                     # Create the git repository with the initial commit
     -i, [--invite-only]                                  # Add features for an invite only website
-        [--admin-subsite-name=ADMIN_SUBSITE_NAME]        # Admin Subsite Name
-                                                         # Default: admin
+        [--front-controller-name=FRONT_CONTROLLER_NAME]  # Front Controller Name
+                                                         # Default: front
+        [--activation-email]                             # Send an email to activate the account
+        [--git-repo]                                     # Create the git repository with the initial commit
+        [--add-admin-subsite]                            # Add an Admin Subsite
+        [--fixture-replacement=FIXTURE_REPLACEMENT]      # Use a specific fixture replacement
         [--gitignore-auto-generated-files]               # Add the auto-generated files to .gitignore
                                                          # Default: true
-        [--make-front-site]                              # Rename application.dryml to front_site.dryml
-                                                         # Default: true
-        [--fixture-replacement=FIXTURE_REPLACEMENT]      # Use a specific fixture replacement
+        [--admin-subsite-name=ADMIN_SUBSITE_NAME]        # Admin Subsite Name
+                                                         # Default: admin
         [--default-locale=DEFAULT_LOCALE]                # Sets the default locale
+        [--private-site]                                 # Make the site unaccessible to non-members
+        [--dryml-only-templates]                         # The application uses only dryml templates
         [--main-title]                                   # Shows the main title
                                                          # Default: true
-        [--private-site]                                 # Make the site unaccessible to non-members
+        [--update]                                       # Run bundle update to install the missing gems
+    -t, [--test-framework=TEST_FRAMEWORK]                # Use a specific test framework
+                                                         # Default: test_unit
         [--locales=one two three]                        # Choose the locales
                                                          # Default: en
-        [--wizard]                                       # Ask instead using options
-                                                         # Default: true
-        [--update]                                       # Run bundle update to install the missing gems
         [--migration-generate]                           # Generate migration only
 
 
@@ -52,9 +50,9 @@ Generators -- setup\_wizard
     
 
     -f, [--force]    # Overwrite files that already exist
+    -q, [--quiet]    # Supress status output
     -s, [--skip]     # Skip files that already exist
     -p, [--pretend]  # Run but do not make any changes
-    -q, [--quiet]    # Supress status output
 
 
 ## Description
