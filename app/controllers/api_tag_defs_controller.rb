@@ -6,6 +6,8 @@ class ApiTagDefsController < ApplicationController
 
   auto_actions_for :taglib, [:index]
 
+  caches_page :show, :tagdef
+
   def show
     conditions = {:tag => params[:id]}
     conditions[:for_type] = params[:for]

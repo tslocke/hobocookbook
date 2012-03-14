@@ -1,4 +1,4 @@
-<def tag="show-api-tag">
+<def tag="show-api-tag" without-account-nav>
   <div class="show-api-tag">
     <header>
       <h2><view:short-def-line/></h2>
