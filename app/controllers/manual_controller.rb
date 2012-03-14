@@ -80,7 +80,7 @@ class ManualController < ApplicationController
     end
     filename     = "#{TITLES[section][2]}/#{TITLES[section][1]}"
     @title       = TITLES[section][0]
-    @subtitles   = SUBTITLES[section].nil? ? nil : Hash[*SUBTITLES[section].map {|k,v| [k, v[0]]}.flatten]
+    @subtitles   = SUBTITLES[section].nil? ? nil : ActiveSupport::OrderedHash[*SUBTITLES[section].map {|k,v| [k, v[0]]}.flatten]
     @content     = HoboFields::Types::MarkdownString.new(File.read(filename))
     @last_update = last_update filename
     @edit_link   = "#{TITLES[section][3]}/#{TITLES[section][1]}"
@@ -95,7 +95,7 @@ class ManualController < ApplicationController
     end
     filename     = "#{SUBTITLES[section][subsection][2]}/#{SUBTITLES[section][subsection][1]}"
     @title       = TITLES[section][0]
-    @subtitles   = Hash[*SUBTITLES[section].map {|k,v| [k, v[0]]}.flatten]
+    @subtitles   = ActiveSupport::OrderedHash[*SUBTITLES[section].map {|k,v| [k, v[0]]}.flatten]
     @current_subtitle    = SUBTITLES[section][subsection][0]
     @content     = HoboFields::Types::MarkdownString.new(File.read(filename))
     @last_update = last_update filename
