@@ -32,7 +32,7 @@ GIT
 
 GIT
   remote: git://github.com/tablatom/hobo.git
-  revision: 6befe46db39dc64c755a88aa99a0159d817e854a
+  revision: 6ec94d6a0870dc76c368d5f6b35fb0641ae29119
   specs:
     dryml (1.4.0.pre1)
       actionpack (~> 3.1.0)
