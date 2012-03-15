@@ -27,7 +27,7 @@ namespace :vlad do
   desc 'update secret in config/environment.rb'
   remote_task :update_secret do
     secret=`dd if=/dev/urandom bs=64 count=1`.unpack("Q8").map {|i| i.to_s(16)}.join("")
-    run "cd #{current_release}/config; sed -i.bak -e's/REPLACE_ME_WITH_A_REAL_SECRET/#{secret}/' environment.rb"
+    run "cd #{current_release}/config/initializers; sed -i.bak -e's/REPLACE_ME_WITH_A_REAL_SECRET/#{secret}/' secret_token.rb"
   end
 
   desc 'save version'
