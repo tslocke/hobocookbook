@@ -9,7 +9,8 @@ set :skip_scm, false
 set :user, "cookbook"
 set :domain, "#{user}@cookbook.hobocentral.net"
 
-set :rake_cmd, "/opt/ruby-1.8.7-p334/bin/bundle exec  /opt/ruby-1.8.7-p334/bin/rake"
+set :bundle_cmd, "/opt/ruby-1.8.7-p334/bin/bundle"
+set :rake_cmd, "#{bundle_cmd} exec /opt/ruby-1.8.7-p334/bin/rake"
 # set :rake_cmd, "/usr/local/rvm/bin/cookbook_rake"
 
 namespace :vlad do
@@ -40,7 +41,19 @@ namespace :vlad do
     run "cp #{shared_path}/config/* #{current_release}/config/"
   end
 
+  desc 'bundle install --deployment'
+  remote_task :bundle_install do
+    run " cd #{current_release}; RAILS_ENV=production #{bundle_cmd} install --deployment"
+  end
+
+  desc 'precompile assets'
+  remote_task :precompile_assets do
+    run " cd #{current_release}; RAILS_ENV=production #{rake_cmd} assets:precompile"
+  end
+
   remote_task :update, :roles => :app do
+    Rake::Task["vlad:bundle_install"].invoke
+    Rake::Task["vlad:precompile_assets"].invoke
     Rake::Task["vlad:copy_config_files"].invoke
     Rake::Task["vlad:save_version"].invoke
     Rake::Task["vlad:update_secret"].invoke
