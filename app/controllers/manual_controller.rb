@@ -16,6 +16,7 @@ class ManualController < ApplicationController
     ["download",          ["Download and Install", "manual/download.markdown", Rails.root, COOKBOOK_GITHUB]],
     ["changes13",         ["Changes in 1.3", "CHANGES-1.3.txt", Hobo.root, HOBO_GITHUB]],
     ["changes14",         ["Changes in 1.4", "CHANGES-1.4.txt", Hobo.root, HOBO_GITHUB]],
+    ["faq",               ["FAQ and Misunderstandings", "manual/FAQ.markdown", Rails.root, COOKBOOK_GITHUB]],
     ["hobo_support",      ["Hobo Support", "test/hobosupport.rdoctest", HoboSupport.root, HOBOSUPPORT_GITHUB]],
     ["hobo_fields",       ["Hobo Fields", "test/doc-only.rdoctest", HoboFields.root, HOBOFIELDS_GITHUB]],
     ["scopes",            ["Automatic Named Scopes", "doctests/hobo/scopes.rdoctest", Hobo.root, HOBO_GITHUB]],
