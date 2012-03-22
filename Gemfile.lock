@@ -1,14 +1,14 @@
 GIT
-  remote: git://github.com/bryanlarsen/hobo_tree_table.git
-  revision: a859c75984e025f942bacb2f98e72433ba620cb5
+  remote: git://github.com/Hobo/hobo_tree_table.git
+  revision: d7731f26b3bc500cfe63fefaa72ad67656a15d45
   specs:
     hobo_tree_table (0.0.1)
       hobo (~> 1.4.0.pre1)
       rails (~> 3.1.0)
 
 GIT
-  remote: git://github.com/bryanlarsen/select_one_or_new_dialog.git
-  revision: e143e7f5cc384270877c3640ec58c64dbe1ad4fd
+  remote: git://github.com/Hobo/select_one_or_new_dialog.git
+  revision: 817866ce8c101eb5dc426c072d61d2a9c4d6d0ad
   specs:
     select_one_or_new_dialog (0.0.1)
       hobo (~> 1.4.0.pre1)
