@@ -47,10 +47,12 @@ group :assets do
   gem 'sass-rails',   '~> 3.1.5'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'execjs'
+  gem 'therubyracer'
 end
 
 # Hobo plugins included solely for documentation
-gem "hobo_tree_table", :git => "git://github.com/bryanlarsen/hobo_tree_table.git"
-gem "select_one_or_new_dialog", :git => "git://github.com/bryanlarsen/select_one_or_new_dialog.git"
+gem "hobo_tree_table", :git => "git://github.com/Hobo/hobo_tree_table.git"
+gem "select_one_or_new_dialog", :git => "git://github.com/Hobo/select_one_or_new_dialog.git"
 
 gem "awesome_print"
