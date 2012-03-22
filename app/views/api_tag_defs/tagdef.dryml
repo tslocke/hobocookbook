@@ -1,4 +1,4 @@
-<def tag="show-api-tag" without-account-nav>
+<def tag="show-api-tag">
   <div class="show-api-tag">
     <header>
       <h2><view:short-def-line/></h2>
@@ -33,7 +33,7 @@
   </ul>
 </def>
 
-<show-page title="#{h this.short_def_line}" without-content-header>
+<show-page title="#{h this.short_def_line}" without-content-header without-account-nav>
 
   <aside-content:>
     <api-navigation />
