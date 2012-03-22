@@ -81,10 +81,10 @@ module ApiDocLoader
   def self.load
     clear
 
-    [HoboRapid,HoboJquery,HoboJqueryUi,HoboTreeTable,SelectOneOrNewDialog].each_with_index do |mod, position|
+    [Dryml,HoboRapid,HoboJquery,HoboJqueryUi,HoboClean,HoboTreeTable,SelectOneOrNewDialog].each_with_index do |mod, position|
       plugin = ApiPlugin.new
       plugin.dir = mod.root
-      plugin.name = File.basename(plugin.dir)
+      plugin.name = mod.name.underscore
       plugin.position = position+1
       plugin.edit_link_base = mod::EDIT_LINK_BASE
       readme_file = Dir["#{plugin.dir}/README*"].first
@@ -112,13 +112,15 @@ module ApiDocLoader
       b = Proc.new do |t|
         tt=ApiTagDef.find_by_tag($1)
         if tt.nil?
-          puts "Could not link to #{$1} in #{tag.tag}"
+          unless %w(def div ul select li td th span br ol img textarea).include?($1)
+            puts "Could not link to #{$1} in #{tag.tag}"
+          end
           t
         else
           Helper.new.link(tt)
         end
       end
-      re = /<code>&lt;(\S*?)\s?\/?&gt;<\/code>/
+      re = /<code>&lt;([-a-zA-Z0-9]*)[!:]*?\/?&gt;<\/code>/
       tag.short_description = tag.short_description.gsub(re, &b)
       tag.description = tag.description.gsub(re, &b)
       tag.save!
