@@ -275,7 +275,7 @@
   <repeat with="&ApiPlugin.all">
     <% plugin = this %>
     <h2><a><%= this.name.titleize %></a></h2>
-    <if test="&current_plugin.id == this.id">
+    <if test="&current_plugin == this">
       <navigation current="&current.name.titleize if current.is_a?(ApiTaglib)">
         <repeat with="&this.taglibs.order_by(:name)">
           <if test="&plugin.taglibs.length != 1">
