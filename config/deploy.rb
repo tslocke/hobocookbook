@@ -37,7 +37,7 @@ namespace :vlad do
   end
 
   remote_task :copy_config_files, :roles => :app do
-    run "cp #{shared_path}/config/* #{current_release}/config/"
+    run "cp -r #{shared_path}/config/* #{current_release}/config/"
   end
 
   remote_task :update, :roles => :app do

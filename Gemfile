@@ -54,3 +54,5 @@ group :development do
   gem "vlad", :require => false
   gem "vlad-git", :git => "git://github.com/bryanlarsen/vlad-git.git", :require => false
 end
+
+gem "recaptcha", :require => "recaptcha/rails"

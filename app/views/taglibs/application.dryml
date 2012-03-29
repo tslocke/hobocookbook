@@ -287,3 +287,12 @@
     </section>
   </section>
 </def>
+
+ <extend tag="signup-form" for="User">
+   <old-signup-form merge>
+     <field-list: replace>
+       <field-list fields="username, email_address, password, password_confirmation"/>
+       <%= recaptcha_tags %>
+     </field-list:>
+   </old-signup-form>
+ </extend>
