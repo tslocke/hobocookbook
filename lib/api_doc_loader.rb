@@ -81,7 +81,7 @@ module ApiDocLoader
   def self.load
     clear
 
-    [Dryml,HoboRapid,HoboJquery,HoboJqueryUi,HoboClean,HoboTreeTable,SelectOneOrNewDialog].each_with_index do |mod, position|
+    [Dryml,HoboRapid,HoboJquery,HoboJqueryUi,HoboClean,HoboSimpleColor,HoboTreeTable,SelectOneOrNewDialog].each_with_index do |mod, position|
       plugin = ApiPlugin.new
       plugin.dir = mod.root
       plugin.name = mod.name.underscore
