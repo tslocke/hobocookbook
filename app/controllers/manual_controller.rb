@@ -31,6 +31,7 @@ class ManualController < ApplicationController
     ["viewhints",         ["View Hints", "manual/viewhints.markdown", Rails.root, COOKBOOK_GITHUB]],
     ["generators",        ["Generators", "manual/generators.markdown", Rails.root, COOKBOOK_GITHUB]],
     ["i18n",              ["Internationalization", "manual/i18n.markdown", Rails.root, COOKBOOK_GITHUB]],
+    ["plugins",           ["Creating Plugins", "manual/plugins.markdown", Rails.root, COOKBOOK_GITHUB]],
    ])
 
   SUBTITLES = {
