@@ -161,6 +161,7 @@ GEM
     rbx-require-relative (0.0.9)
     rdoc (3.12)
       json (~> 1.4)
+    recaptcha (0.3.4)
     ruby-debug (0.10.4)
       columnize (>= 0.1)
       ruby-debug-base (~> 0.10.4.0)
@@ -220,6 +221,7 @@ DEPENDENCIES
   rails (= 3.1.4)
   rails-dev-tweaks
   rake (= 0.8.7)
+  recaptcha
   ruby-debug
   sass-rails (~> 3.1.5)
   select_one_or_new_dialog!
