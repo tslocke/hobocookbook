@@ -74,3 +74,5 @@ allows you to access via `script/generate`.
 
 Hobo allows you to [**Internationalize**](/manual/i18n) your program to
 support multiple languages.
+
+Once you've created useful tags for your own application, how about turning them into a [**plugin**](/manual/plugins) and sharing them with the world?
