@@ -36,7 +36,7 @@ namespace :cookbook do
     ['vendor/plugins/paperclip_with_hobo', 'public/patches/agility', 'taglibs/hoboyui', 'taglibs/hobo-contrib', 'taglibs/imaginary-dryml'].each {|sub|
       sh "cd #{sub} && git fetch origin && git checkout origin/master"
     }
-    sh 'cd taglibs/hobo-jquery && git fetch origin && git checkout origin/rails3'
+    #sh 'cd taglibs/hobo-jquery && git fetch origin && git checkout origin/rails3'
     #sh 'cd vendor/hobo13 && git fetch origin && git checkout origin/rails3'
     #sh "cd vendor/plugins/hobo && git fetch origin && git checkout origin/1-0-stable"
     sh "rm -rf gitorials/agility ; git submodule update gitorials/agility ; cd gitorials/agility && git checkout -f origin/master"
