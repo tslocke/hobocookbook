@@ -44,8 +44,9 @@ GIT
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
 
-PATH
-  remote: /work/hobo
+GIT
+  remote: git://github.com/tablatom/hobo.git
+  revision: 2a2797900baf540e46b72ac63a727b8940b5c2b8
   specs:
     dryml (1.4.0.pre5)
       actionpack (~> 3.1.0)
@@ -70,6 +71,10 @@ PATH
       jquery-ui-themes (~> 0.0.4)
     hobo_rapid (1.4.0.pre5)
       hobo (= 1.4.0.pre5)
+
+PATH
+  remote: /work/hobo
+  specs:
     hobo_support (1.4.0.pre5)
       rails (~> 3.1.0)
 
