@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: git://github.com/Hobo/hobo_tree_table.git
-  revision: d7731f26b3bc500cfe63fefaa72ad67656a15d45
+  revision: e1aa36974e3e2fbdeaf355e8ba9f10400a90b2c2
   specs:
     hobo_tree_table (0.0.1)
       hobo (~> 1.4.0.pre1)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/Hobo/select_one_or_new_dialog.git
-  revision: 817866ce8c101eb5dc426c072d61d2a9c4d6d0ad
+  revision: 512a164192cb9db9b05ca28709806a61e9a43d44
   specs:
     select_one_or_new_dialog (0.0.1)
       hobo (~> 1.4.0.pre1)
@@ -44,34 +44,33 @@ GIT
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
 
-GIT
-  remote: git://github.com/tablatom/hobo.git
-  revision: 674eaedcf5b376add0a926d1f2562f616bd1f5b1
+PATH
+  remote: /work/hobo
   specs:
-    dryml (1.4.0.pre4)
+    dryml (1.4.0.pre5)
       actionpack (~> 3.1.0)
-      hobo_support (= 1.4.0.pre4)
-    hobo (1.4.0.pre4)
-      dryml (= 1.4.0.pre4)
-      hobo_fields (= 1.4.0.pre4)
-      hobo_support (= 1.4.0.pre4)
+      hobo_support (= 1.4.0.pre5)
+    hobo (1.4.0.pre5)
+      dryml (= 1.4.0.pre5)
+      hobo_fields (= 1.4.0.pre5)
+      hobo_support (= 1.4.0.pre5)
       will_paginate (~> 3.0.0)
-    hobo_clean (1.4.0.pre4)
-      hobo (= 1.4.0.pre4)
-    hobo_clean_admin (1.4.0.pre4)
+    hobo_clean (1.4.0.pre5)
+      hobo (= 1.4.0.pre5)
+    hobo_clean_admin (1.4.0.pre5)
       rails (~> 3.1.0)
-    hobo_fields (1.4.0.pre4)
-      hobo_support (= 1.4.0.pre4)
-    hobo_jquery (1.4.0.pre4)
-      hobo (= 1.4.0.pre4)
+    hobo_fields (1.4.0.pre5)
+      hobo_support (= 1.4.0.pre5)
+    hobo_jquery (1.4.0.pre5)
+      hobo (= 1.4.0.pre5)
       jquery-rails (~> 1.0)
-    hobo_jquery_ui (1.4.0.pre4)
-      hobo (= 1.4.0.pre4)
-      hobo_jquery (= 1.4.0.pre4)
+    hobo_jquery_ui (1.4.0.pre5)
+      hobo (= 1.4.0.pre5)
+      hobo_jquery (= 1.4.0.pre5)
       jquery-ui-themes (~> 0.0.4)
-    hobo_rapid (1.4.0.pre4)
-      hobo (= 1.4.0.pre4)
-    hobo_support (1.4.0.pre4)
+    hobo_rapid (1.4.0.pre5)
+      hobo (= 1.4.0.pre5)
+    hobo_support (1.4.0.pre5)
       rails (~> 3.1.0)
 
 GEM
