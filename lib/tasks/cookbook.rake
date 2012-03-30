@@ -40,6 +40,11 @@ namespace :cookbook do
     #sh 'cd vendor/hobo13 && git fetch origin && git checkout origin/rails3'
     #sh "cd vendor/plugins/hobo && git fetch origin && git checkout origin/1-0-stable"
     sh "rm -rf gitorials/agility ; git submodule update gitorials/agility ; cd gitorials/agility && git checkout -f origin/master"
+    sh "bundle update hobo_tokeninput"
+    sh "bundle update hobo_simple_color"
+    sh "bundle update hobo_tree_table"
+    sh "bundle update select_one_or_new_dialog"
+
   end
 
   desc "do all update tasks"

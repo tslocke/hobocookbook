@@ -1,8 +1,15 @@
 GIT
   remote: git://github.com/Hobo/hobo_simple_color.git
-  revision: 3ce5514337bf81ec27509ca8a1e0260078d99177
+  revision: fafd51156b0445aa9cbdb81c235a23a64875ca4c
   specs:
-    hobo_simple_color (0.0.1)
+    hobo_simple_color (0.0.2)
+      hobo (~> 1.4.0.pre4)
+
+GIT
+  remote: git://github.com/Hobo/hobo_tokeninput.git
+  revision: fca558f8a9bb5e05554ebffbe3bb760f243dc210
+  specs:
+    hobo_tokeninput (0.0.1)
       hobo (~> 1.4.0.pre4)
 
 GIT
@@ -220,6 +227,7 @@ DEPENDENCIES
   hobo_rapid!
   hobo_simple_color!
   hobo_support!
+  hobo_tokeninput!
   hobo_tree_table!
   jquery-rails
   jquery-ui-themes
