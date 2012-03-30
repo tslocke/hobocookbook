@@ -23,7 +23,7 @@ gem 'paperclip', :git => "git://github.com/jeanmartin/paperclip.git", :branch =>
 #required by paperclip
 gem "cocaine"
 
-gem "hobo_support", :path => "/work/hobo"
+gem "hobo_support", :git => "git://github.com/tablatom/hobo.git"
 gem "hobo_fields", :git => "git://github.com/tablatom/hobo.git"
 gem "dryml", :git => "git://github.com/tablatom/hobo.git"
 gem "hobo", :git => "git://github.com/tablatom/hobo.git"

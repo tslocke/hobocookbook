@@ -71,10 +71,6 @@ GIT
       jquery-ui-themes (~> 0.0.4)
     hobo_rapid (1.4.0.pre5)
       hobo (= 1.4.0.pre5)
-
-PATH
-  remote: /work/hobo
-  specs:
     hobo_support (1.4.0.pre5)
       rails (~> 3.1.0)
 
