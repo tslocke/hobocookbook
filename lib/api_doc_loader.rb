@@ -60,13 +60,13 @@ module ApiDocLoader
     filename = "#{dir}/#{name}.dryml"
     taglib = ApiDocLoader::Taglib.new(dir, filename, name)
     api_taglib = taglib.api_taglib(plugin)
-    api_taglib.edit_link = File.join(plugin.edit_link_base, filename[(filename.length - dir.length - 1)..-1])
+    api_taglib.edit_link = File.join(plugin.edit_link_base, filename[-(filename.length - plugin.dir.to_s.length - 1)..-1])
     api_taglib.tags = taglib.api_tagdefs(api_taglib, api_taglib.edit_link)
     taglib.tag_defs.clear
 
     (Dir["#{dir}/*.dryml"] - ["#{dir}/#{name}.dryml"]).sort.map {|filename|
       taglib.parse_file filename
-      edit_link = File.join(plugin.edit_link_base, filename[(filename.length - dir.length - 1)..-1])
+      edit_link = File.join(plugin.edit_link_base, filename[-(filename.length - plugin.dir.to_s.length - 1)..-1])
       api_taglib.tags += taglib.api_tagdefs(api_taglib, edit_link)
       taglib.tag_defs.clear
     }
