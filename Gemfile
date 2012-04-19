@@ -56,6 +56,7 @@ gem "hobo_tree_table", :git => "git://github.com/Hobo/hobo_tree_table.git"
 gem "select_one_or_new_dialog", :git => "git://github.com/Hobo/select_one_or_new_dialog.git"
 gem "hobo_simple_color", :git => "git://github.com/Hobo/hobo_simple_color.git"
 gem "hobo_tokeninput", :git => "git://github.com/Hobo/hobo_tokeninput.git"
+gem "hobo_data_tables", :git => "git://github.com/Hobo/hobo_data_tables.git"
 
 gem "awesome_print"
 
