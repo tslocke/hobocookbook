@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/Hobo/hobo_tree_table.git
-  revision: e1aa36974e3e2fbdeaf355e8ba9f10400a90b2c2
+  revision: dcdfec3c4c94931610143d0d384bcce5fbdf7dc6
   specs:
     hobo_tree_table (0.0.1)
       hobo (~> 1.4.0.pre1)
@@ -54,32 +54,32 @@ GIT
 
 GIT
   remote: git://github.com/tablatom/hobo.git
-  revision: fae79985b27bb0ae428596a50e17c92032d0002c
+  revision: 5ea1c71359bc73ff69540acff2c8ada3cfa6f751
   specs:
-    dryml (1.4.0.pre5)
+    dryml (1.4.0.pre6)
       actionpack (~> 3.1.0)
-      hobo_support (= 1.4.0.pre5)
-    hobo (1.4.0.pre5)
-      dryml (= 1.4.0.pre5)
-      hobo_fields (= 1.4.0.pre5)
-      hobo_support (= 1.4.0.pre5)
+      hobo_support (= 1.4.0.pre6)
+    hobo (1.4.0.pre6)
+      dryml (= 1.4.0.pre6)
+      hobo_fields (= 1.4.0.pre6)
+      hobo_support (= 1.4.0.pre6)
       will_paginate (~> 3.0.0)
-    hobo_clean (1.4.0.pre5)
-      hobo (= 1.4.0.pre5)
-    hobo_clean_admin (1.4.0.pre5)
+    hobo_clean (1.4.0.pre6)
+      hobo (= 1.4.0.pre6)
+    hobo_clean_admin (1.4.0.pre6)
       rails (~> 3.1.0)
-    hobo_fields (1.4.0.pre5)
-      hobo_support (= 1.4.0.pre5)
-    hobo_jquery (1.4.0.pre5)
-      hobo (= 1.4.0.pre5)
+    hobo_fields (1.4.0.pre6)
+      hobo_support (= 1.4.0.pre6)
+    hobo_jquery (1.4.0.pre6)
+      hobo (= 1.4.0.pre6)
       jquery-rails (~> 1.0)
-    hobo_jquery_ui (1.4.0.pre5)
-      hobo (= 1.4.0.pre5)
-      hobo_jquery (= 1.4.0.pre5)
+    hobo_jquery_ui (1.4.0.pre6)
+      hobo (= 1.4.0.pre6)
+      hobo_jquery (= 1.4.0.pre6)
       jquery-ui-themes (~> 0.0.4)
-    hobo_rapid (1.4.0.pre5)
-      hobo (= 1.4.0.pre5)
-    hobo_support (1.4.0.pre5)
+    hobo_rapid (1.4.0.pre6)
+      hobo (= 1.4.0.pre6)
+    hobo_support (1.4.0.pre6)
       rails (~> 3.1.0)
 
 GEM
@@ -129,14 +129,18 @@ GEM
     execjs (1.3.0)
       multi_json (~> 1.0)
     hike (1.2.1)
+    httparty (0.8.3)
+      multi_json (~> 1.0)
+      multi_xml
     i18n (0.6.0)
     jquery-datatables-rails (1.9.1.3)
       jquery-rails
     jquery-rails (1.0.19)
       railties (~> 3.0)
       thor (~> 0.14)
-    jquery-ui-themes (0.0.4)
-    json (1.6.6)
+    jquery-ui-themes (0.0.5)
+      httparty
+    json (1.7.0)
     libv8 (3.3.10.4)
     linecache (0.46)
       rbx-require-relative (> 0.0.4)
@@ -147,7 +151,8 @@ GEM
     maruku (0.6.0)
       syntax (>= 1.0.0)
     mime-types (1.18)
-    multi_json (1.3.2)
+    multi_json (1.3.4)
+    multi_xml (0.4.4)
     mysql (2.8.1)
     open4 (1.3.0)
     polyglot (0.3.3)
@@ -197,7 +202,7 @@ GEM
       railties (~> 3.1.0)
       sass (>= 3.1.10)
       tilt (~> 1.3.2)
-    sprockets (2.0.3)
+    sprockets (2.0.4)
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)

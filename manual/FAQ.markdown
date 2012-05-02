@@ -127,6 +127,27 @@ to config/environments/production.rb
 
 # How do I pass back an extra field from a form?
 
+# Where do I put the DRYML for owner actions?
+
+Owner actions are added to an application like this:
+
+    class CommentsController < ApplicationController
+       hobo_model_controller
+       auto_actions_for :post, [:index, :new, :create]
+    end
+
+The URL for the new action would be:
+
+    /posts/1/comments/new
+
+You can customize the page by creating `app/views/comments/new_for_post.dryml`:
+
+    <new-for-post-page>
+      <content-body:>
+        ...
+      </content-body:>
+    </new-for-post-page>
+
 # What does the colon do in DRYML?
 
 *What's the difference between a tag invocation without a colon,
@@ -248,6 +269,7 @@ behavior as sometimes the default tag wraps other parameters.
 Historically, has_one was a bastard cousin to has_many that made it
 difficult to support. We also haven't generally found the need for it,
 perhaps because it's not available to us. In the meantime you can
-approximate a has_one by using a has_many with validates_length_of
+approximate a has_one by using a has_many with validates_length_of to
+constrain it to a single item.
 
 That being said, Peter Pavlovich is working on support for has_one.
