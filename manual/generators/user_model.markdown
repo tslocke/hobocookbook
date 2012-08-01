@@ -15,10 +15,10 @@ Generators -- manual/generators/user\_model.markdown
 
         [--skip-namespace]                         # Skip namespace (affects only isolated applications)
         [--activation-email]                       # Send an email to activate the account
-        [--timestamps]                             # Indicates when to generate timestamps
         [--old-style-hash]                         # Force using old style hash (:foo => 'bar') on Ruby >= 1.9
         [--admin-subsite-name=ADMIN_SUBSITE_NAME]  # Admin Subsite Name
                                                    # Default: admin
+        [--timestamps]                             # Indicates when to generate timestamps
     -i, [--invite-only]                            # Add features for an invite only website
 
 
@@ -28,8 +28,8 @@ Generators -- manual/generators/user\_model.markdown
 
     -s, [--skip]     # Skip files that already exist
     -p, [--pretend]  # Run but do not make any changes
-    -q, [--quiet]    # Supress status output
     -f, [--force]    # Overwrite files that already exist
+    -q, [--quiet]    # Supress status output
 
 
 ## Description

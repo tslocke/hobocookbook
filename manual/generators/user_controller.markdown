@@ -13,11 +13,11 @@ Generators -- manual/generators/user\_controller.markdown
 
     
 
+    -i, [--invite-only]          # Add features for an invite only website
     -t, [--test-framework=NAME]  # Test framework to be invoked
                                  # Default: test_unit
         [--helpers]              # Generates helper files
                                  # Default: true
-    -i, [--invite-only]          # Add features for an invite only website
         [--skip-namespace]       # Skip namespace (affects only isolated applications)
         [--old-style-hash]       # Force using old style hash (:foo => 'bar') on Ruby >= 1.9
 
@@ -28,8 +28,8 @@ Generators -- manual/generators/user\_controller.markdown
 
     -s, [--skip]     # Skip files that already exist
     -p, [--pretend]  # Run but do not make any changes
-    -q, [--quiet]    # Supress status output
     -f, [--force]    # Overwrite files that already exist
+    -q, [--quiet]    # Supress status output
 
 
 ## USAGE

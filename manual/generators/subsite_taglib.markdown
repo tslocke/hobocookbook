@@ -26,8 +26,8 @@ Generators -- manual/generators/subsite\_taglib.markdown
 
     -s, [--skip]     # Skip files that already exist
     -p, [--pretend]  # Run but do not make any changes
-    -q, [--quiet]    # Supress status output
     -f, [--force]    # Overwrite files that already exist
+    -q, [--quiet]    # Supress status output
 
 
 ## Description
