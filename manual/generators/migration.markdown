@@ -23,10 +23,10 @@ Generators -- manual/generators/migration.markdown
 
     
 
-    -p, [--pretend]  # Run but do not make any changes
-    -q, [--quiet]    # Supress status output
     -s, [--skip]     # Skip files that already exist
+    -p, [--pretend]  # Run but do not make any changes
     -f, [--force]    # Overwrite files that already exist
+    -q, [--quiet]    # Supress status output
 
 
 ## Description

@@ -13,24 +13,24 @@ Generators -- manual/generators/install\_plugin.markdown
 
     
 
+    -e, [--subsite=SUBSITE]    # Subsite name (without '_site') or 'all' or 'application'
+                               # Default: application
+    -v, [--version=VERSION]    # Gemspec version string
+    -M, [--skip-gem]           # don't add plugin to Gemfile
         [--comments=COMMENTS]  # comments to add before require/include
     -J, [--skip-js]            # don't add require to application.js
-    -v, [--version=VERSION]    # Gemspec version string
     -C, [--skip-css]           # doesn't add require to application.css
         [--css-top]            # add the require statement to the top of the CSS file rather tahn the bottom.
         [--skip-namespace]     # Skip namespace (affects only isolated applications)
         [--old-style-hash]     # Force using old style hash (:foo => 'bar') on Ruby >= 1.9
-    -e, [--subsite=SUBSITE]    # Subsite name (without '_site') or 'all' or 'application'
-                               # Default: application
-    -M, [--skip-gem]           # don't add plugin to Gemfile
 
 
 ## Runtime options
 
     
 
-    -p, [--pretend]  # Run but do not make any changes
     -s, [--skip]     # Skip files that already exist
+    -p, [--pretend]  # Run but do not make any changes
     -q, [--quiet]    # Supress status output
     -f, [--force]    # Overwrite files that already exist
 

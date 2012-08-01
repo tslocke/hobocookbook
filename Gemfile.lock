@@ -7,6 +7,13 @@ GIT
       jquery-datatables-rails
 
 GIT
+  remote: git://github.com/Hobo/hobo_mapstraction.git
+  revision: e5d8f048e379dbf3fe3ffcbb278f9a12060b4059
+  specs:
+    hobo_mapstraction (0.0.1)
+      hobo (~> 1.4.0.pre7)
+
+GIT
   remote: git://github.com/Hobo/hobo_simple_color.git
   revision: fafd51156b0445aa9cbdb81c235a23a64875ca4c
   specs:
@@ -53,33 +60,40 @@ GIT
       activesupport (>= 2.3.2)
 
 GIT
-  remote: git://github.com/tablatom/hobo.git
-  revision: 5ea1c71359bc73ff69540acff2c8ada3cfa6f751
+  remote: git://github.com/suyccom/hobo_bootstrap.git
+  revision: e5f27af79048931a56515d9b74e0f02fab965a50
   specs:
-    dryml (1.4.0.pre6)
+    hobo_bootstrap (1.4.0.pre7)
+      hobo (~> 1.4.0.pre7)
+
+GIT
+  remote: git://github.com/tablatom/hobo.git
+  revision: e304543d531e04e319d20ab6dd53c90d5b8a802a
+  specs:
+    dryml (1.4.0.pre8)
       actionpack (~> 3.1.0)
-      hobo_support (= 1.4.0.pre6)
-    hobo (1.4.0.pre6)
-      dryml (= 1.4.0.pre6)
-      hobo_fields (= 1.4.0.pre6)
-      hobo_support (= 1.4.0.pre6)
+      hobo_support (= 1.4.0.pre8)
+    hobo (1.4.0.pre8)
+      dryml (= 1.4.0.pre8)
+      hobo_fields (= 1.4.0.pre8)
+      hobo_support (= 1.4.0.pre8)
       will_paginate (~> 3.0.0)
-    hobo_clean (1.4.0.pre6)
-      hobo (= 1.4.0.pre6)
-    hobo_clean_admin (1.4.0.pre6)
+    hobo_clean (1.4.0.pre8)
+      hobo (= 1.4.0.pre8)
+    hobo_clean_admin (1.4.0.pre8)
       rails (~> 3.1.0)
-    hobo_fields (1.4.0.pre6)
-      hobo_support (= 1.4.0.pre6)
-    hobo_jquery (1.4.0.pre6)
-      hobo (= 1.4.0.pre6)
+    hobo_fields (1.4.0.pre8)
+      hobo_support (= 1.4.0.pre8)
+    hobo_jquery (1.4.0.pre8)
+      hobo (= 1.4.0.pre8)
       jquery-rails (~> 1.0)
-    hobo_jquery_ui (1.4.0.pre6)
-      hobo (= 1.4.0.pre6)
-      hobo_jquery (= 1.4.0.pre6)
+    hobo_jquery_ui (1.4.0.pre8)
+      hobo (= 1.4.0.pre8)
+      hobo_jquery (= 1.4.0.pre8)
       jquery-ui-themes (~> 0.0.4)
-    hobo_rapid (1.4.0.pre6)
-      hobo (= 1.4.0.pre6)
-    hobo_support (1.4.0.pre6)
+    hobo_rapid (1.4.0.pre8)
+      hobo (= 1.4.0.pre8)
+    hobo_support (1.4.0.pre8)
       rails (~> 3.1.0)
 
 GEM
@@ -123,24 +137,24 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.2.0)
+    coffee-script-source (1.3.3)
     columnize (0.3.6)
     erubis (2.7.0)
-    execjs (1.3.0)
+    execjs (1.4.0)
       multi_json (~> 1.0)
     hike (1.2.1)
     httparty (0.8.3)
       multi_json (~> 1.0)
       multi_xml
     i18n (0.6.0)
-    jquery-datatables-rails (1.9.1.3)
+    jquery-datatables-rails (1.10.0)
       jquery-rails
     jquery-rails (1.0.19)
       railties (~> 3.0)
       thor (~> 0.14)
-    jquery-ui-themes (0.0.5)
+    jquery-ui-themes (0.0.6)
       httparty
-    json (1.7.0)
+    json (1.7.4)
     libv8 (3.3.10.4)
     linecache (0.46)
       rbx-require-relative (> 0.0.4)
@@ -150,9 +164,9 @@ GEM
       treetop (~> 1.4.8)
     maruku (0.6.0)
       syntax (>= 1.0.0)
-    mime-types (1.18)
-    multi_json (1.3.4)
-    multi_xml (0.4.4)
+    mime-types (1.19)
+    multi_json (1.3.6)
+    multi_xml (0.5.1)
     mysql (2.8.1)
     open4 (1.3.0)
     polyglot (0.3.3)
@@ -196,7 +210,7 @@ GEM
       ruby-debug-base (~> 0.10.4.0)
     ruby-debug-base (0.10.4)
       linecache (>= 0.3)
-    sass (3.1.15)
+    sass (3.1.20)
     sass-rails (3.1.6)
       actionpack (~> 3.1.0)
       railties (~> 3.1.0)
@@ -207,7 +221,7 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     syntax (1.0.0)
-    therubyracer (0.9.10)
+    therubyracer (0.10.1)
       libv8 (~> 3.3.10)
     thor (0.14.6)
     tilt (1.3.3)
@@ -215,14 +229,14 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.33)
-    uglifier (1.2.3)
+    uglifier (1.2.6)
       execjs (>= 0.3.0)
-      multi_json (>= 1.0.2)
+      multi_json (~> 1.3)
     vlad (2.2.5)
       rake (~> 0.8)
       rake-remote_task (~> 2.0)
     will_paginate (3.0.3)
-    yard (0.7.5)
+    yard (0.8.2.1)
 
 PLATFORMS
   ruby
@@ -234,12 +248,14 @@ DEPENDENCIES
   dryml!
   execjs
   hobo!
+  hobo_bootstrap!
   hobo_clean!
   hobo_clean_admin!
   hobo_data_tables!
   hobo_fields!
   hobo_jquery!
   hobo_jquery_ui!
+  hobo_mapstraction!
   hobo_rapid!
   hobo_simple_color!
   hobo_support!

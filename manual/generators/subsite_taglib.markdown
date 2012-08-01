@@ -13,19 +13,19 @@ Generators -- manual/generators/subsite\_taglib.markdown
 
     
 
+    -i, [--invite-only]                            # Add features for an invite only website
         [--skip-namespace]                         # Skip namespace (affects only isolated applications)
         [--old-style-hash]                         # Force using old style hash (:foo => 'bar') on Ruby >= 1.9
         [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
                                                    # Default: user
-    -i, [--invite-only]                            # Add features for an invite only website
 
 
 ## Runtime options
 
     
 
-    -p, [--pretend]  # Run but do not make any changes
     -s, [--skip]     # Skip files that already exist
+    -p, [--pretend]  # Run but do not make any changes
     -q, [--quiet]    # Supress status output
     -f, [--force]    # Overwrite files that already exist
 
