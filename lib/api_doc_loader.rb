@@ -81,10 +81,11 @@ module ApiDocLoader
   def self.load
     clear
 
-    [Dryml,HoboRapid,HoboJquery,HoboJqueryUi,HoboClean,HoboBootstrap,HoboDataTables,HoboTokeninput,HoboSimpleColor,HoboTreeTable,HoboMapstraction,SelectOneOrNewDialog].each_with_index do |mod, position|
+    [Dryml,HoboRapid,HoboJquery,HoboJqueryUi,HoboClean,HoboCleanSidemenu,HoboBootstrap,HoboDataTables,HoboTokeninput,HoboSimpleColor,HoboTreeTable,HoboMapstraction,SelectOneOrNewDialog].each_with_index do |mod, position|
       plugin = ApiPlugin.new
       plugin.dir = mod.root
       plugin.name = mod.name.underscore
+      puts "**** #{plugin.name}"
       plugin.position = position+1
       plugin.edit_link_base = mod::EDIT_LINK_BASE
       readme_file = Dir["#{plugin.dir}/README*"].first

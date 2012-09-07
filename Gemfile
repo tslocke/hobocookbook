@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.4'
-gem 'rake', '0.8.7'
-gem 'will_paginate', '~> 3.0.0'
+gem 'rails', '3.2.8'
+#gem 'rake', '0.8.7'
+#gem 'will_paginate', '~> 3.0.0'
 
 #gem 'sqlite3'
 gem 'mysql'
@@ -18,8 +18,8 @@ end
 gem "maruku"
 
 #temp workaround for hash_secret issue see https://groups.google.com/forum/#!topic/hobousers/dS4VT_lyVIY
-#gem "paperclip", "~> 2.3"
-gem 'paperclip', :git => "git://github.com/jeanmartin/paperclip.git", :branch => "master"
+gem "paperclip", "~> 2.7"
+# gem 'paperclip', :git => "git://github.com/jeanmartin/paperclip.git", :branch => "master"
 #required by paperclip
 gem "cocaine"
 
@@ -29,6 +29,7 @@ gem "dryml", :git => "git://github.com/tablatom/hobo.git"
 gem "hobo", :git => "git://github.com/tablatom/hobo.git"
 gem "hobo_rapid", :git => "git://github.com/tablatom/hobo.git"
 gem "hobo_clean", :git => "git://github.com/tablatom/hobo.git"
+gem "hobo_clean_sidemenu", :git => "git://github.com/tablatom/hobo.git"
 gem "hobo_clean_admin", :git => "git://github.com/tablatom/hobo.git"
 gem "hobo_jquery", :git => "git://github.com/tablatom/hobo.git"
 gem "hobo_jquery_ui", :git => "git://github.com/tablatom/hobo.git"
@@ -44,8 +45,8 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.5'
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'execjs'
   gem 'therubyracer'
@@ -64,3 +65,5 @@ gem "hobo_mapstraction", :git => "git://github.com/Hobo/hobo_mapstraction.git"
 gem "awesome_print"
 
 gem "recaptcha", :require => "recaptcha/rails"
+
+gem "will_paginate", :git => "git://github.com/bryanlarsen/will_paginate.git"
