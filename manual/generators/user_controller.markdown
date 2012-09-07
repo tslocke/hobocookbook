@@ -13,9 +13,9 @@ Generators -- manual/generators/user\_controller.markdown
 
     
 
-    -i, [--invite-only]          # Add features for an invite only website
     -t, [--test-framework=NAME]  # Test framework to be invoked
                                  # Default: test_unit
+    -i, [--invite-only]          # Add features for an invite only website
         [--helpers]              # Generates helper files
                                  # Default: true
         [--skip-namespace]       # Skip namespace (affects only isolated applications)
@@ -26,10 +26,10 @@ Generators -- manual/generators/user\_controller.markdown
 
     
 
+    -q, [--quiet]    # Suppress status output
     -s, [--skip]     # Skip files that already exist
-    -p, [--pretend]  # Run but do not make any changes
     -f, [--force]    # Overwrite files that already exist
-    -q, [--quiet]    # Supress status output
+    -p, [--pretend]  # Run but do not make any changes
 
 
 ## USAGE

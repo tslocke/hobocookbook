@@ -13,24 +13,24 @@ Generators -- manual/generators/test\_framework.markdown
 
     
 
-        [--old-style-hash]                           # Force using old style hash (:foo => 'bar') on Ruby >= 1.9
-        [--fixture-replacement=FIXTURE_REPLACEMENT]  # Use a specific fixture replacement
-        [--fixtures]                                 # Add the fixture option to the test framework
-                                                     # Default: true
     -t, [--test-framework=TEST_FRAMEWORK]            # Use a specific test framework
                                                      # Default: test_unit
-        [--update]                                   # Run bundle update to install the missing gems
+        [--fixture-replacement=FIXTURE_REPLACEMENT]  # Use a specific fixture replacement
         [--skip-namespace]                           # Skip namespace (affects only isolated applications)
+        [--update]                                   # Run bundle update to install the missing gems
+        [--fixtures]                                 # Add the fixture option to the test framework
+                                                     # Default: true
+        [--old-style-hash]                           # Force using old style hash (:foo => 'bar') on Ruby >= 1.9
 
 
 ## Runtime options
 
     
 
+    -q, [--quiet]    # Suppress status output
     -s, [--skip]     # Skip files that already exist
-    -p, [--pretend]  # Run but do not make any changes
     -f, [--force]    # Overwrite files that already exist
-    -q, [--quiet]    # Supress status output
+    -p, [--pretend]  # Run but do not make any changes
 
 
 ## Description

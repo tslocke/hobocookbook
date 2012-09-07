@@ -13,9 +13,9 @@ Generators -- manual/generators/migration.markdown
 
     
 
+    -m, [--migrate]       # Don't prompt for action - generate and migrate
     -g, [--generate]      # Don't prompt for action - generate the migration
     -n, [--default-name]  # Don't prompt for a migration name - just pick one
-    -m, [--migrate]       # Don't prompt for action - generate and migrate
     -d, [--drop]          # Don't prompt with 'drop or rename' - just drop everything
 
 
@@ -23,10 +23,10 @@ Generators -- manual/generators/migration.markdown
 
     
 
+    -q, [--quiet]    # Suppress status output
     -s, [--skip]     # Skip files that already exist
     -f, [--force]    # Overwrite files that already exist
     -p, [--pretend]  # Run but do not make any changes
-    -q, [--quiet]    # Supress status output
 
 
 ## Description

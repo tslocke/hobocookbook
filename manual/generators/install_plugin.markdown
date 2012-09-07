@@ -14,25 +14,25 @@ Generators -- manual/generators/install\_plugin.markdown
     
 
     -v, [--version=VERSION]    # Gemspec version string
-    -M, [--skip-gem]           # don't add plugin to Gemfile
-    -J, [--skip-js]            # don't add require to [subsite].js
     -C, [--skip-css]           # doesn't add require to [subsite].css
-        [--comments=COMMENTS]  # comments to add before require/include
     -e, [--subsite=SUBSITE]    # Subsite name (without '_site') or 'all'
                                # Default: all
         [--skip-dryml]         # doesn't add include to [subsite]_site.dryml
+        [--comments=COMMENTS]  # comments to add before require/include
         [--skip-namespace]     # Skip namespace (affects only isolated applications)
+    -M, [--skip-gem]           # don't add plugin to Gemfile
         [--old-style-hash]     # Force using old style hash (:foo => 'bar') on Ruby >= 1.9
+    -J, [--skip-js]            # don't add require to [subsite].js
 
 
 ## Runtime options
 
     
 
+    -q, [--quiet]    # Suppress status output
     -s, [--skip]     # Skip files that already exist
-    -p, [--pretend]  # Run but do not make any changes
     -f, [--force]    # Overwrite files that already exist
-    -q, [--quiet]    # Supress status output
+    -p, [--pretend]  # Run but do not make any changes
 
 This generator installs a hobo plugin.
 

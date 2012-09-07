@@ -13,23 +13,23 @@ Generators -- manual/generators/subsite.markdown
 
     
 
-        [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
-                                                   # Default: user
-        [--skip-namespace]                         # Skip namespace (affects only isolated applications)
     -t, [--test-framework=NAME]                    # Test framework to be invoked
                                                    # Default: test_unit
+        [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
+                                                   # Default: user
         [--old-style-hash]                         # Force using old style hash (:foo => 'bar') on Ruby >= 1.9
     -i, [--invite-only]                            # Add features for an invite only website
+        [--skip-namespace]                         # Skip namespace (affects only isolated applications)
 
 
 ## Runtime options
 
     
 
+    -q, [--quiet]    # Suppress status output
     -s, [--skip]     # Skip files that already exist
-    -p, [--pretend]  # Run but do not make any changes
     -f, [--force]    # Overwrite files that already exist
-    -q, [--quiet]    # Supress status output
+    -p, [--pretend]  # Run but do not make any changes
 
 
 ## Description
@@ -45,17 +45,9 @@ Generators -- manual/generators/subsite.markdown
       and two different sets of views for the same model.
 
       The subsite will use app/views/taglibs/<subsite_name>_site.dryml
-      as well as app/views/taglibs/application.dryml.  This allows you
-      to customize the look and feel of a portion of your site.  The
-      remaining views of your application that are not under a subsite
-      load both application.dryml and front_site.dryml.
-
-      It is thus recommended that you ensure that
-      <subsite_name>_site.dryml and application.dryml do not repeat
-      code, such as the inclusion of rapid or the setting of the theme.
-      One easy way of ensuring this is to use the --make-front-site
-      option.  If you have already accounted for this, use
-      --make-front-site=false.
+      for common tags. The assets that the subsite will load are
+      specified in app/assets/javascripts/<subsite_name>.js and
+      app/assets/stylesheets/<subsite_name>.[s]css
 
       The difference between hobo:admin_site and hobo:subsite is that
       hobo:admin_site limits the subsite to use by administrators only.
