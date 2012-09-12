@@ -13,23 +13,27 @@ Generators -- manual/generators/admin\_subsite.markdown
 
     
 
+    -i, [--invite-only]                            # Add features for an invite only website
+        [--ui-theme=UI_THEME]                      # jQuery-UI Theme
+                                                   # Default: flick
+        [--skip-namespace]                         # Skip namespace (affects only isolated applications)
     -t, [--test-framework=NAME]                    # Test framework to be invoked
                                                    # Default: test_unit
-        [--skip-namespace]                         # Skip namespace (affects only isolated applications)
-    -i, [--invite-only]                            # Add features for an invite only website
-        [--old-style-hash]                         # Force using old style hash (:foo => 'bar') on Ruby >= 1.9
         [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
                                                    # Default: user
+        [--theme=THEME]                            # Theme
+                                                   # Default: clean_admin
+        [--old-style-hash]                         # Force using old style hash (:foo => 'bar') on Ruby >= 1.9
 
 
 ## Runtime options
 
     
 
-    -q, [--quiet]    # Suppress status output
     -s, [--skip]     # Skip files that already exist
     -f, [--force]    # Overwrite files that already exist
     -p, [--pretend]  # Run but do not make any changes
+    -q, [--quiet]    # Suppress status output
 
 
 ## Description

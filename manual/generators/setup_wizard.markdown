@@ -13,46 +13,54 @@ Generators -- manual/generators/setup\_wizard.markdown
 
     
 
-        [--admin-subsite-name=ADMIN_SUBSITE_NAME]        # Admin Subsite Name
-                                                         # Default: admin
-    -t, [--test-framework=TEST_FRAMEWORK]                # Use a specific test framework
-                                                         # Default: test_unit
-        [--gitignore-auto-generated-files]               # Add the auto-generated files to .gitignore
-                                                         # Default: true
-        [--invite-only]                                  # Require invitation to join site
+        [--migration-generate]                           # Generate migration only
         [--main-title]                                   # Shows the main title
                                                          # Default: true
-        [--default-locale=DEFAULT_LOCALE]                # Sets the default locale
-        [--private-site]                                 # Make the site unaccessible to non-members
-        [--fixture-replacement=FIXTURE_REPLACEMENT]      # Use a specific fixture replacement
-        [--dryml-only-templates]                         # The application uses only dryml templates
-        [--wizard]                                       # Ask instead using options
-                                                         # Default: true
-        [--migration-generate]                           # Generate migration only
-        [--locales=one two three]                        # Choose the locales
-                                                         # Default: en
-        [--front-controller-name=FRONT_CONTROLLER_NAME]  # Front Controller Name
-                                                         # Default: front
+        [--admin-subsite-name=ADMIN_SUBSITE_NAME]        # Admin Subsite Name
+                                                         # Default: admin
         [--user-resource-name=USER_RESOURCE_NAME]        # User Resource Name
                                                          # Default: user
+        [--default-locale=DEFAULT_LOCALE]                # Sets the default locale
         [--migration-migrate]                            # Generate migration and migrate
                                                          # Default: true
+        [--wizard]                                       # Ask instead using options
+                                                         # Default: true
+        [--fixture-replacement=FIXTURE_REPLACEMENT]      # Use a specific fixture replacement
         [--fixtures]                                     # Add the fixture option to the test framework
                                                          # Default: true
-        [--add-admin-subsite]                            # Add an Admin Subsite
-        [--update]                                       # Run bundle update to install the missing gems
+        [--admin-theme=ADMIN_THEME]                      # Admin Theme
+                                                         # Default: clean
         [--activation-email]                             # Send an email to activate the account
+        [--dryml-only-templates]                         # The application uses only dryml templates
         [--git-repo]                                     # Create the git repository with the initial commit
+        [--front-controller-name=FRONT_CONTROLLER_NAME]  # Front Controller Name
+                                                         # Default: front
+        [--locales=one two three]                        # Choose the locales
+                                                         # Default: en
+        [--admin-ui-theme=ADMIN_UI_THEME]                # Admin jQuery-UI Theme
+                                                         # Default: redmond
+        [--gitignore-auto-generated-files]               # Add the auto-generated files to .gitignore
+                                                         # Default: true
+        [--front-theme=FRONT_THEME]                      # Front Theme
+                                                         # Default: clean
+        [--invite-only]                                  # Require invitation to join site
+        [--front-ui-theme=FRONT_UI_THEME]                # Front jQuery-UI Theme
+                                                         # Default: redmond
+        [--private-site]                                 # Make the site unaccessible to non-members
+        [--update]                                       # Run bundle update to install the missing gems
+    -t, [--test-framework=TEST_FRAMEWORK]                # Use a specific test framework
+                                                         # Default: test_unit
+        [--add-admin-subsite]                            # Add an Admin Subsite
 
 
 ## Runtime options
 
     
 
-    -q, [--quiet]    # Suppress status output
     -s, [--skip]     # Skip files that already exist
     -f, [--force]    # Overwrite files that already exist
     -p, [--pretend]  # Run but do not make any changes
+    -q, [--quiet]    # Suppress status output
 
 
 ## Description
