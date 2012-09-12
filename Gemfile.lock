@@ -1,46 +1,54 @@
 GIT
   remote: git://github.com/Hobo/hobo_data_tables.git
-  revision: 8d7cfcd65de13adcf9c463373fb08ecb9beded24
+  revision: 89a5a882b938c8cb775eb50e79ea6c3ab3d1dbaa
   specs:
     hobo_data_tables (0.0.1)
-      hobo (~> 1.4.0.pre5)
+      hobo (> 1.4.0.pre5)
       jquery-datatables-rails
 
 GIT
   remote: git://github.com/Hobo/hobo_mapstraction.git
-  revision: dee01a208eae5725179966ba7e3d5f0354b60ed3
+  revision: 87dd624828f3d0d41447dc8b6eebd55457e70271
   specs:
     hobo_mapstraction (0.0.1)
-      hobo (~> 1.4.0.pre7)
+      hobo (> 1.4.0.pre6)
 
 GIT
   remote: git://github.com/Hobo/hobo_simple_color.git
-  revision: fafd51156b0445aa9cbdb81c235a23a64875ca4c
+  revision: a3004f3cbebd4412647735a87ff470464a63832b
   specs:
     hobo_simple_color (0.0.2)
-      hobo (~> 1.4.0.pre4)
+      hobo (> 1.4.0.pre4)
 
 GIT
   remote: git://github.com/Hobo/hobo_tokeninput.git
-  revision: fca558f8a9bb5e05554ebffbe3bb760f243dc210
+  revision: 271317004e0a3c6fd6083405b30193e3fbbae0ba
   specs:
     hobo_tokeninput (0.0.1)
-      hobo (~> 1.4.0.pre4)
+      hobo (> 1.4.0.pre5)
 
 GIT
   remote: git://github.com/Hobo/hobo_tree_table.git
-  revision: 9aa2c6acd295dd9172c1081b1d00220d2e8e937a
+  revision: f3533062ae8f8051daeb82292d31735cdee7b697
   specs:
     hobo_tree_table (0.0.1)
-      hobo (~> 1.4.0.pre1)
+      hobo (> 1.4.0.pre1)
 
 GIT
   remote: git://github.com/Hobo/select_one_or_new_dialog.git
-  revision: 512a164192cb9db9b05ca28709806a61e9a43d44
+  revision: 238312c2d032e40c899215835c220fc338c0f472
   specs:
     select_one_or_new_dialog (0.0.1)
-      hobo (~> 1.4.0.pre1)
-      hobo_jquery_ui (~> 1.4.0.pre1)
+      hobo (> 1.4.0.pre1)
+      hobo_jquery_ui (> 1.4.0.pre1)
+
+GIT
+  remote: git://github.com/bryanlarsen/hobo_bootstrap.git
+  revision: 771b4f76d64114cf87eb955193fad54f3cf41825
+  specs:
+    hobo_bootstrap (2.0.0.pre1)
+      hobo (~> 2.0.0.pre1)
+      will_paginate-bootstrap (~> 0.2.1)
 
 GIT
   remote: git://github.com/bryanlarsen/vlad-git.git
@@ -56,43 +64,35 @@ GIT
     will_paginate (3.0.3)
 
 GIT
-  remote: git://github.com/suyccom/hobo_bootstrap.git
-  revision: 2405601ca244fe6621a0e639ce801bacc71df232
-  specs:
-    hobo_bootstrap (1.4.0.pre9)
-      hobo (~> 1.4.0.pre9)
-      will_paginate-bootstrap (~> 0.2.1)
-
-GIT
   remote: git://github.com/tablatom/hobo.git
-  revision: f62057c2799981103cb1877f2e24373d88c1b6f8
+  revision: b409f49773f37b99af45983e4cfcccc694b93ea4
   specs:
-    dryml (1.4.0.pre9)
+    dryml (2.0.0.pre1)
       actionpack (~> 3.2.0)
-      hobo_support (= 1.4.0.pre9)
-    hobo (1.4.0.pre9)
-      dryml (= 1.4.0.pre9)
-      hobo_fields (= 1.4.0.pre9)
-      hobo_support (= 1.4.0.pre9)
+      hobo_support (= 2.0.0.pre1)
+    hobo (2.0.0.pre1)
+      dryml (= 2.0.0.pre1)
+      hobo_fields (= 2.0.0.pre1)
+      hobo_support (= 2.0.0.pre1)
       will_paginate (~> 3.0.0)
-    hobo_clean (1.4.0.pre9)
-      hobo (= 1.4.0.pre9)
-    hobo_clean_admin (1.4.0.pre9)
+    hobo_clean (2.0.0.pre1)
+      hobo (= 2.0.0.pre1)
+    hobo_clean_admin (2.0.0.pre1)
       rails (~> 3.2.0)
-    hobo_clean_sidemenu (1.4.0.pre9)
+    hobo_clean_sidemenu (2.0.0.pre1)
       rails (~> 3.2.0)
-    hobo_fields (1.4.0.pre9)
-      hobo_support (= 1.4.0.pre9)
-    hobo_jquery (1.4.0.pre9)
-      hobo (= 1.4.0.pre9)
+    hobo_fields (2.0.0.pre1)
+      hobo_support (= 2.0.0.pre1)
+    hobo_jquery (2.0.0.pre1)
+      hobo (= 2.0.0.pre1)
       jquery-rails (~> 2.0)
-    hobo_jquery_ui (1.4.0.pre9)
-      hobo (= 1.4.0.pre9)
-      hobo_jquery (= 1.4.0.pre9)
+    hobo_jquery_ui (2.0.0.pre1)
+      hobo (= 2.0.0.pre1)
+      hobo_jquery (= 2.0.0.pre1)
       jquery-ui-themes (~> 0.0.4)
-    hobo_rapid (1.4.0.pre9)
-      hobo (= 1.4.0.pre9)
-    hobo_support (1.4.0.pre9)
+    hobo_rapid (2.0.0.pre1)
+      hobo (= 2.0.0.pre1)
+    hobo_support (2.0.0.pre1)
       rails (~> 3.2.0)
 
 GEM
@@ -127,7 +127,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     awesome_print (1.0.2)
-    builder (3.0.2)
+    builder (3.0.3)
     cocaine (0.3.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -141,7 +141,7 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     hike (1.2.1)
-    httparty (0.8.3)
+    httparty (0.9.0)
       multi_json (~> 1.0)
       multi_xml
     i18n (0.6.1)

@@ -53,7 +53,7 @@ group :assets do
 end
 
 # Hobo plugins included solely for documentation
-gem "hobo_bootstrap", :git => "git://github.com/suyccom/hobo_bootstrap.git"
+gem "hobo_bootstrap", :git => "git://github.com/bryanlarsen/hobo_bootstrap.git"
 gem "hobo_tree_table", :git => "git://github.com/Hobo/hobo_tree_table.git"
 gem "select_one_or_new_dialog", :git => "git://github.com/Hobo/select_one_or_new_dialog.git"
 gem "hobo_simple_color", :git => "git://github.com/Hobo/hobo_simple_color.git"
