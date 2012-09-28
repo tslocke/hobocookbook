@@ -1,4 +1,49 @@
 GIT
+  remote: git://github.com/Hobo/hobo.git
+  revision: 0c9f9d0b038b3f4b729a5c3014fc7b2285775f32
+  specs:
+    doc (0.0.1)
+    dryml (2.0.0.pre3)
+      actionpack (~> 3.2.0)
+      hobo_support (= 2.0.0.pre3)
+    hobo (2.0.0.pre3)
+      dryml (= 2.0.0.pre3)
+      hobo_fields (= 2.0.0.pre3)
+      hobo_support (= 2.0.0.pre3)
+      will_paginate (~> 3.0.0)
+    hobo_clean (2.0.0.pre3)
+      hobo (= 2.0.0.pre3)
+      hobo_jquery_ui (= 2.0.0.pre3)
+    hobo_clean_admin (2.0.0.pre3)
+      hobo_clean (= 2.0.0.pre3)
+    hobo_clean_sidemenu (2.0.0.pre3)
+      hobo_clean (= 2.0.0.pre3)
+    hobo_fields (2.0.0.pre3)
+      hobo_support (= 2.0.0.pre3)
+    hobo_jquery (2.0.0.pre3)
+      hobo_rapid (= 2.0.0.pre3)
+      jquery-rails (~> 2.0)
+    hobo_jquery_ui (2.0.0.pre3)
+      hobo (= 2.0.0.pre3)
+      hobo_jquery (= 2.0.0.pre3)
+      jquery-ui-themes (~> 0.0.4)
+    hobo_rapid (2.0.0.pre3)
+      hobo (= 2.0.0.pre3)
+    hobo_support (2.0.0.pre3)
+      rails (~> 3.2.0)
+
+GIT
+  remote: git://github.com/Hobo/hobo_bootstrap.git
+  revision: dcb2c618ff03d7a0edd8b44e37c95ba0e5305a64
+  specs:
+    hobo_bootstrap (2.0.0.pre3)
+      compass-rails (~> 1.0.3)
+      compass_twitter_bootstrap (~> 2.0.3)
+      hobo (~> 2.0.0.pre1)
+      hobo_jquery_ui (~> 2.0.0.pre1)
+      will_paginate-bootstrap (~> 0.2.1)
+
+GIT
   remote: git://github.com/Hobo/hobo_data_tables.git
   revision: 89a5a882b938c8cb775eb50e79ea6c3ab3d1dbaa
   specs:
@@ -8,7 +53,7 @@ GIT
 
 GIT
   remote: git://github.com/Hobo/hobo_mapstraction.git
-  revision: 87dd624828f3d0d41447dc8b6eebd55457e70271
+  revision: 3f545243d4a2190b2ee9568cf6ba043b74b929ee
   specs:
     hobo_mapstraction (0.0.1)
       hobo (> 1.4.0.pre6)
@@ -43,12 +88,10 @@ GIT
       hobo_jquery_ui (> 1.4.0.pre1)
 
 GIT
-  remote: git://github.com/bryanlarsen/hobo_bootstrap.git
-  revision: 771b4f76d64114cf87eb955193fad54f3cf41825
+  remote: git://github.com/Hobo/will_paginate.git
+  revision: 2695031cf4d55a6816ff36941605125418ceb8cb
   specs:
-    hobo_bootstrap (2.0.0.pre1)
-      hobo (~> 2.0.0.pre1)
-      will_paginate-bootstrap (~> 0.2.1)
+    will_paginate (3.0.3)
 
 GIT
   remote: git://github.com/bryanlarsen/vlad-git.git
@@ -56,44 +99,6 @@ GIT
   specs:
     vlad-git (2.2.0)
       vlad (>= 2.1.0)
-
-GIT
-  remote: git://github.com/bryanlarsen/will_paginate.git
-  revision: 3096f88403096f7207c4c3ede0a8bb7c344bb78a
-  specs:
-    will_paginate (3.0.3)
-
-GIT
-  remote: git://github.com/tablatom/hobo.git
-  revision: b409f49773f37b99af45983e4cfcccc694b93ea4
-  specs:
-    dryml (2.0.0.pre1)
-      actionpack (~> 3.2.0)
-      hobo_support (= 2.0.0.pre1)
-    hobo (2.0.0.pre1)
-      dryml (= 2.0.0.pre1)
-      hobo_fields (= 2.0.0.pre1)
-      hobo_support (= 2.0.0.pre1)
-      will_paginate (~> 3.0.0)
-    hobo_clean (2.0.0.pre1)
-      hobo (= 2.0.0.pre1)
-    hobo_clean_admin (2.0.0.pre1)
-      rails (~> 3.2.0)
-    hobo_clean_sidemenu (2.0.0.pre1)
-      rails (~> 3.2.0)
-    hobo_fields (2.0.0.pre1)
-      hobo_support (= 2.0.0.pre1)
-    hobo_jquery (2.0.0.pre1)
-      hobo (= 2.0.0.pre1)
-      jquery-rails (~> 2.0)
-    hobo_jquery_ui (2.0.0.pre1)
-      hobo (= 2.0.0.pre1)
-      hobo_jquery (= 2.0.0.pre1)
-      jquery-ui-themes (~> 0.0.4)
-    hobo_rapid (2.0.0.pre1)
-      hobo (= 2.0.0.pre1)
-    hobo_support (2.0.0.pre1)
-      rails (~> 3.2.0)
 
 GEM
   remote: http://rubygems.org/
@@ -128,6 +133,7 @@ GEM
     arel (3.0.2)
     awesome_print (1.0.2)
     builder (3.0.3)
+    chunky_png (1.2.6)
     cocaine (0.3.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -136,27 +142,33 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
-    columnize (0.3.6)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
+    compass_twitter_bootstrap (2.0.3)
+      compass
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fssm (0.2.9)
     hike (1.2.1)
     httparty (0.9.0)
       multi_json (~> 1.0)
       multi_xml
     i18n (0.6.1)
     journey (1.0.4)
-    jquery-datatables-rails (1.11.0)
+    jquery-datatables-rails (1.11.1)
       jquery-rails
-    jquery-rails (2.1.2)
+    jquery-rails (2.1.3)
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
     jquery-ui-themes (0.0.7)
       httparty
     json (1.7.5)
     libv8 (3.3.10.4)
-    linecache (0.46)
-      rbx-require-relative (> 0.0.4)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -174,12 +186,14 @@ GEM
       cocaine (>= 0.0.2)
       mime-types
     polyglot (0.3.3)
+    quiet_assets (1.0.1)
+      railties (~> 3.1)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-ssl (1.3.2)
       rack
-    rack-test (0.6.1)
+    rack-test (0.6.2)
       rack (>= 1.0)
     rails (3.2.8)
       actionmailer (= 3.2.8)
@@ -189,9 +203,6 @@ GEM
       activesupport (= 3.2.8)
       bundler (~> 1.0)
       railties (= 3.2.8)
-    rails-dev-tweaks (0.6.1)
-      actionpack (~> 3.1)
-      railties (~> 3.1)
     railties (3.2.8)
       actionpack (= 3.2.8)
       activesupport (= 3.2.8)
@@ -203,15 +214,9 @@ GEM
     rake-remote_task (2.0.6)
       open4 (~> 1.0)
       rake (~> 0.8)
-    rbx-require-relative (0.0.9)
     rdoc (3.12)
       json (~> 1.4)
     recaptcha (0.3.4)
-    ruby-debug (0.10.4)
-      columnize (>= 0.1)
-      ruby-debug-base (~> 0.10.4.0)
-    ruby-debug-base (0.10.4)
-      linecache (>= 0.3)
     sass (3.2.1)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -247,6 +252,7 @@ DEPENDENCIES
   awesome_print
   cocaine
   coffee-rails (~> 3.2.1)
+  doc!
   dryml!
   execjs
   hobo!
@@ -269,10 +275,9 @@ DEPENDENCIES
   maruku
   mysql
   paperclip (~> 2.7)
+  quiet_assets
   rails (= 3.2.8)
-  rails-dev-tweaks
   recaptcha
-  ruby-debug
   sass-rails (~> 3.2.3)
   select_one_or_new_dialog!
   therubyracer

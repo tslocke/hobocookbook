@@ -11,8 +11,7 @@ gem 'yard'
 
 group :development do
   # set to 0.43 due to problem with .45 see https://github.com/rails/rails/pull/1671
-  gem 'ruby-debug'
-  gem 'rails-dev-tweaks'
+  gem 'quiet_assets'
 end
 
 gem "maruku"
@@ -23,16 +22,17 @@ gem "paperclip", "~> 2.7"
 #required by paperclip
 gem "cocaine"
 
-gem "hobo_support", :git => "git://github.com/tablatom/hobo.git"
-gem "hobo_fields", :git => "git://github.com/tablatom/hobo.git"
-gem "dryml", :git => "git://github.com/tablatom/hobo.git"
-gem "hobo", :git => "git://github.com/tablatom/hobo.git"
-gem "hobo_rapid", :git => "git://github.com/tablatom/hobo.git"
-gem "hobo_clean", :git => "git://github.com/tablatom/hobo.git"
-gem "hobo_clean_sidemenu", :git => "git://github.com/tablatom/hobo.git"
-gem "hobo_clean_admin", :git => "git://github.com/tablatom/hobo.git"
-gem "hobo_jquery", :git => "git://github.com/tablatom/hobo.git"
-gem "hobo_jquery_ui", :git => "git://github.com/tablatom/hobo.git"
+gem "hobo_support", :git => "git://github.com/Hobo/hobo.git"
+gem "hobo_fields", :git => "git://github.com/Hobo/hobo.git"
+gem "dryml", :git => "git://github.com/Hobo/hobo.git"
+gem "hobo", :git => "git://github.com/Hobo/hobo.git"
+gem "hobo_rapid", :git => "git://github.com/Hobo/hobo.git"
+gem "hobo_clean", :git => "git://github.com/Hobo/hobo.git"
+gem "hobo_clean_sidemenu", :git => "git://github.com/Hobo/hobo.git"
+gem "hobo_clean_admin", :git => "git://github.com/Hobo/hobo.git"
+gem "hobo_jquery", :git => "git://github.com/Hobo/hobo.git"
+gem "hobo_jquery_ui", :git => "git://github.com/Hobo/hobo.git"
+gem "doc", :git => "git://github.com/Hobo/hobo.git"
 
 gem "jquery-rails"
 gem "jquery-ui-themes"
@@ -53,7 +53,7 @@ group :assets do
 end
 
 # Hobo plugins included solely for documentation
-gem "hobo_bootstrap", :git => "git://github.com/bryanlarsen/hobo_bootstrap.git"
+gem "hobo_bootstrap", :git => "git://github.com/Hobo/hobo_bootstrap.git"
 gem "hobo_tree_table", :git => "git://github.com/Hobo/hobo_tree_table.git"
 gem "select_one_or_new_dialog", :git => "git://github.com/Hobo/select_one_or_new_dialog.git"
 gem "hobo_simple_color", :git => "git://github.com/Hobo/hobo_simple_color.git"
@@ -66,4 +66,4 @@ gem "awesome_print"
 
 gem "recaptcha", :require => "recaptcha/rails"
 
-gem "will_paginate", :git => "git://github.com/bryanlarsen/will_paginate.git"
+gem "will_paginate", :git => "git://github.com/Hobo/will_paginate.git"

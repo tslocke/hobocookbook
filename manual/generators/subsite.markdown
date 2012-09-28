@@ -13,16 +13,16 @@ Generators -- manual/generators/subsite.markdown
 
     
 
+    -t, [--test-framework=NAME]                    # Test framework to be invoked
+                                                   # Default: test_unit
         [--user-resource-name=USER_RESOURCE_NAME]  # User Resource Name
                                                    # Default: user
         [--old-style-hash]                         # Force using old style hash (:foo => 'bar') on Ruby >= 1.9
+        [--theme=THEME]                            # Theme
+                                                   # Default: clean_admin
         [--ui-theme=UI_THEME]                      # jQuery-UI Theme
                                                    # Default: flick
     -i, [--invite-only]                            # Add features for an invite only website
-    -t, [--test-framework=NAME]                    # Test framework to be invoked
-                                                   # Default: test_unit
-        [--theme=THEME]                            # Theme
-                                                   # Default: clean_admin
         [--skip-namespace]                         # Skip namespace (affects only isolated applications)
 
 
@@ -30,10 +30,10 @@ Generators -- manual/generators/subsite.markdown
 
     
 
+    -q, [--quiet]    # Suppress status output
     -s, [--skip]     # Skip files that already exist
     -f, [--force]    # Overwrite files that already exist
     -p, [--pretend]  # Run but do not make any changes
-    -q, [--quiet]    # Suppress status output
 
 
 ## Description

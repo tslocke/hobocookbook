@@ -1,4 +1,7 @@
 Hobocookbook::Application.configure do
+  # Hobo: tell ActiveReload about dryml
+  config.watchable_dirs[File.join(config.root, 'app/view')] = ['dryml']
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -27,16 +30,6 @@ Hobocookbook::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-
-  # By default, rails-dev-tweaks also applies to XHR, but that's not a great default for Hobo
-  config.dev_tweaks.autoload_rules do
-    keep :all
-
-    skip '/favicon.ico'
-    skip :assets
-    keep :xhr
-    keep :forced
-  end
 end
 
 #Debugger.start

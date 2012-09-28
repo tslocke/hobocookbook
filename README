@@ -21,7 +21,7 @@ As for many rails3 apps:
 Unique to the cookbook:
 
     $ pwd > git-path
-    $ echo 'rails3' > git-version
+    $ echo 'master' > git-version
 
 Run this command now and whenever you want to update/rebuild any of the external dependencies such as hobo, the plugins or the tutorials.
 
