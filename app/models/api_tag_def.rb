@@ -37,6 +37,8 @@ class ApiTagDef < ActiveRecord::Base
   #named_scope :no_for_type, :conditions => "for_type is null"
   scope :no_for_type, where("for_type is null")
 
+  set_search_columns :tag, :short_description, :description, :source
+
   children :comments
 
   def def_line
