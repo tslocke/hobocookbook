@@ -238,7 +238,9 @@
 
 <def tag="tags-summary">
   <collection:tags without-empty-message>
-    <tag-def-link/>
+    <tag-def-link>
+      <a:><view:short-short-def-line/></a:>
+    </tag-def-link>
   </collection>
 </def>
 
