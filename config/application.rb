@@ -50,5 +50,6 @@ module Hobocookbook
 
     config.assets.precompile += %w(front.css front.js)
 
+    config.action_controller.page_cache_directory = "#{Rails.root}/public/cache"
   end
 end
