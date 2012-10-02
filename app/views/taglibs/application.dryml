@@ -215,6 +215,14 @@
   </old-card>
 </extend>
 
+<extend tag="card" for="ApiTagDef">
+  <old-card merge>
+    <heading:><a><%= this.full_name %></a></heading:>
+    <body:>
+      <view:short_description/>
+    </body:>
+  </old-card>
+</extend>
 
 
 <def tag="markdown-checkbox">
@@ -258,7 +266,7 @@
 </def>
 
 <def tag="tag-def-link">
-  <a class="#{'undocumented' unless this.documented?}" href="&tagdef_path(:plugin => this.taglib.plugin.name, :taglib => this.taglib.name, :tag => this.tag, :for => this.for_type)">
+  <a class="#{'undocumented' unless this.documented?}" href="&tagdef_path(:plugin => this.taglib.plugin.name, :taglib => this.taglib.name, :tag => this.tag, :for => this.for_type)" param>
     <view:short-def-line/>
   </a>
 </def>
@@ -282,7 +290,7 @@
             <nav-item><%= this.name.titleize %></nav-item>
           </if>
           <ul if="&current == this || current.try.taglib_is?(this) || (current.typed_id==plugin.typed_id && plugin.taglibs.length == 1)">
-            <li class="#{'current' if this == current}" repeat="tags.no_for_type"><tag-def-link/></li>
+            <li class="#{'current' if this == current}" repeat="tags.no_for_type"><tag-def-link><a:><view:short-short-def-line/></a:></tag-def-link></li>
           </ul>
         </repeat>
       </navigation>

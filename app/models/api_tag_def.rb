@@ -41,11 +41,23 @@ class ApiTagDef < ActiveRecord::Base
 
   children :comments
 
+  def full_name
+    if taglib.plugin.name == taglib.name
+      "#{tag} (#{taglib.name})"
+    else
+      "#{tag} (#{taglib.plugin.name}/#{taglib.name})"
+    end
+  end
+
   def def_line
     "<#{extension? ? 'extend' : 'def'} tag='#{tag}'#{' polymorphic' if polymorphic?}#{' for=\'' + for_type + '\'' if for_type}>"
   end
 
   def short_def_line
+    "<#{full_name}#{' for=\'' + for_type + '\'' if for_type}>"
+  end
+
+  def short_short_def_line
     "<#{tag}#{' for=\'' + for_type + '\'' if for_type}>"
   end
 
