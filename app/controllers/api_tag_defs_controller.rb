@@ -13,7 +13,7 @@ class ApiTagDefsController < ApplicationController
     conditions[:for_type] = params[:for]
     conditions[:taglib_id] = ApiTaglib.find_by_name(params[:taglib]).id if params[:taglib]
     self.this = ApiTagDef.find(:first, :conditions => conditions)
-    hobo_show
+    redirect_to tagdef_path(:plugin => this.taglib.plugin.name, :taglib => this.taglib.name, :tag => this.tag)
   end
 
   def tagdef
