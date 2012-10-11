@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Hobo/hobo.git
-  revision: 06c31d3f6f2c532ad1d59ad07e444e5f6a3d55e5
+  revision: db1b7f6a237b08e6a4e5925b0df5ab8a89740b71
   specs:
     doc (0.0.1)
     dryml (2.0.0.pre3)
@@ -89,9 +89,9 @@ GIT
 
 GIT
   remote: git://github.com/Hobo/will_paginate.git
-  revision: 2695031cf4d55a6816ff36941605125418ceb8cb
+  revision: cc7ef01551b94fe4f607e38929037234dc70bb62
   specs:
-    will_paginate (3.0.3)
+    will_paginate (3.0.4.hobo)
 
 GIT
   remote: git://github.com/bryanlarsen/vlad-git.git
