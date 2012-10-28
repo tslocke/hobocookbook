@@ -1,20 +1,24 @@
 # Hobo in Two Minutes
 
-To build a Hobo 1.3 app you need to have a working Rails setup. If you can
+To build a Hobo 2.0 app you need to have a working Rails setup. If you can
 create a Rails app and have it connect to a database, you're all set.
-You need at least version 3.0 of Rails:
+You need at least version 3.2.5 of Rails:
 
-     $ rails -v
+	$ rails -v
 
-First install Hobo:
+First install Hobo (currently we need to specify --pre, since Hobo 
+2.0.0 is not the official release yet):
 
-	$ gem install hobo
+	$ gem install hobo --pre
+
+	$ hobo -v
 
 Now create an app! We've only got two minutes so we'll create an ultra-useful Thing Manager.
 
 	$ hobo new thingybob --setup
 
-	...Lots of output as Hobo runs the rails command and runs the setup generator
+	...Lots of output as Hobo runs the rails command and runs the setup generator. This 
+        process may take a while, depending on your internet connection and computer speed
 
 	$ cd thingybob
 	$ hobo g resource thing name:string body:text
