@@ -60,7 +60,7 @@ gem "hobo_simple_color", :git => "git://github.com/Hobo/hobo_simple_color.git"
 gem "hobo_tokeninput", :git => "git://github.com/Hobo/hobo_tokeninput.git"
 gem "hobo_data_tables", :git => "git://github.com/Hobo/hobo_data_tables.git"
 gem "hobo_mapstraction", :git => "git://github.com/Hobo/hobo_mapstraction.git"
-
+gem "hobo_paperclip", :git => "git://github.com/Hobo/hobo_paperclip.git"
 
 gem "awesome_print"
 
