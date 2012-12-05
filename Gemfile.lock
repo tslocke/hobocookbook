@@ -1,50 +1,50 @@
 GIT
   remote: git://github.com/Hobo/hobo.git
-  revision: 5b8b665ca0ae772a77956c08dda76fdbe6b25c62
+  revision: bdd8fbb15cf229a2809e82ed1aa2f2460898260a
   specs:
     doc (0.0.1)
-    dryml (2.0.0.pre6)
+    dryml (2.0.0.pre7)
       actionpack (~> 3.2.0)
-      hobo_support (= 2.0.0.pre6)
-    hobo (2.0.0.pre6)
-      dryml (= 2.0.0.pre6)
-      hobo_fields (= 2.0.0.pre6)
-      hobo_support (= 2.0.0.pre6)
+      hobo_support (= 2.0.0.pre7)
+    hobo (2.0.0.pre7)
+      dryml (= 2.0.0.pre7)
+      hobo_fields (= 2.0.0.pre7)
+      hobo_support (= 2.0.0.pre7)
       will_paginate (~> 3.0.0)
-    hobo_clean (2.0.0.pre6)
-      hobo (= 2.0.0.pre6)
-      hobo_jquery_ui (= 2.0.0.pre6)
-    hobo_clean_admin (2.0.0.pre6)
-      hobo_clean (= 2.0.0.pre6)
-    hobo_clean_sidemenu (2.0.0.pre6)
-      hobo_clean (= 2.0.0.pre6)
-    hobo_fields (2.0.0.pre6)
-      hobo_support (= 2.0.0.pre6)
-    hobo_jquery (2.0.0.pre6)
-      hobo_rapid (= 2.0.0.pre6)
+    hobo_clean (2.0.0.pre7)
+      hobo (= 2.0.0.pre7)
+      hobo_jquery (= 2.0.0.pre7)
+    hobo_clean_admin (2.0.0.pre7)
+      hobo_clean (= 2.0.0.pre7)
+    hobo_clean_sidemenu (2.0.0.pre7)
+      hobo_clean (= 2.0.0.pre7)
+    hobo_fields (2.0.0.pre7)
+      hobo_support (= 2.0.0.pre7)
+    hobo_jquery (2.0.0.pre7)
+      hobo_rapid (= 2.0.0.pre7)
       jquery-rails (~> 2.0)
-    hobo_jquery_ui (2.0.0.pre6)
-      hobo (= 2.0.0.pre6)
-      hobo_jquery (= 2.0.0.pre6)
+    hobo_jquery_ui (2.0.0.pre7)
+      hobo (= 2.0.0.pre7)
+      hobo_jquery (= 2.0.0.pre7)
       jquery-ui-themes (~> 0.0.4)
-    hobo_rapid (2.0.0.pre6)
-      hobo (= 2.0.0.pre6)
-    hobo_support (2.0.0.pre6)
+    hobo_rapid (2.0.0.pre7)
+      hobo (= 2.0.0.pre7)
+    hobo_support (2.0.0.pre7)
       rails (~> 3.2.0)
 
 GIT
   remote: git://github.com/Hobo/hobo_bootstrap.git
-  revision: acc4aac62740e1ef6f545f4fc884994f9b11c373
+  revision: 854c5ae38bd31a437ed9d9d39c3691b46aa77e48
   specs:
-    hobo_bootstrap (2.0.0.pre6)
+    hobo_bootstrap (2.0.0.pre7)
       bootstrap-sass (~> 2.1)
-      hobo (~> 2.0.0.pre1)
-      hobo_jquery_ui (~> 2.0.0.pre1)
+      hobo (~> 2.0.0.pre6)
+      hobo_jquery (~> 2.0.0.pre6)
       will_paginate-bootstrap (~> 0.2.1)
 
 GIT
   remote: git://github.com/Hobo/hobo_bootstrap_ui.git
-  revision: 93e699a93baec961ae0592575ffec8589cb8972c
+  revision: d84bf4d8f95a9b6715f3ae38618e91cf37e0b0a8
   specs:
     hobo_bootstrap_ui (2.0.0.pre6)
       hobo_bootstrap (~> 2.0.0.pre1)
@@ -63,6 +63,14 @@ GIT
   specs:
     hobo_mapstraction (0.0.1)
       hobo (> 1.4.0.pre6)
+
+GIT
+  remote: git://github.com/Hobo/hobo_omniauth.git
+  revision: c84bbce605333c7069a3c1080e0477e15bb3a253
+  specs:
+    hobo_omniauth (0.0.1)
+      hobo (~> 2.0.0.pre7)
+      omniauth (~> 1.1)
 
 GIT
   remote: git://github.com/Hobo/hobo_paperclip.git
@@ -159,6 +167,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    hashie (1.2.0)
     hike (1.2.1)
     httparty (0.9.0)
       multi_json (~> 1.0)
@@ -181,9 +190,12 @@ GEM
     maruku (0.6.1)
       syntax (>= 1.0.0)
     mime-types (1.19)
-    multi_json (1.3.7)
+    multi_json (1.4.0)
     multi_xml (0.5.1)
-    mysql (2.8.1)
+    mysql (2.9.0)
+    omniauth (1.1.1)
+      hashie (~> 1.2)
+      rack
     open4 (1.3.0)
     paperclip (2.8.0)
       activerecord (>= 2.3.0)
@@ -271,6 +283,7 @@ DEPENDENCIES
   hobo_jquery!
   hobo_jquery_ui!
   hobo_mapstraction!
+  hobo_omniauth!
   hobo_paperclip!
   hobo_rapid!
   hobo_simple_color!
@@ -287,7 +300,7 @@ DEPENDENCIES
   recaptcha
   sass-rails (~> 3.2.3)
   select_one_or_new_dialog!
-  therubyracer
+  therubyracer (~> 0.10.2)
   uglifier (>= 1.0.3)
   vlad
   vlad-git!

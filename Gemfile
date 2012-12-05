@@ -49,7 +49,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'execjs'
-  gem 'therubyracer'
+  gem 'therubyracer', '~> 0.10.2'
 end
 
 # Hobo plugins included solely for documentation
@@ -62,6 +62,7 @@ gem "hobo_tokeninput", :git => "git://github.com/Hobo/hobo_tokeninput.git"
 gem "hobo_data_tables", :git => "git://github.com/Hobo/hobo_data_tables.git"
 gem "hobo_mapstraction", :git => "git://github.com/Hobo/hobo_mapstraction.git"
 gem "hobo_paperclip", :git => "git://github.com/Hobo/hobo_paperclip.git"
+gem "hobo_omniauth", :git => "git://github.com/Hobo/hobo_omniauth.git"
 
 gem "awesome_print"
 
