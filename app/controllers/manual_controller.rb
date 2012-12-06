@@ -26,6 +26,7 @@ class ManualController < ApplicationController
     ["users_and_authentication",  ["Users and Authentication", "manual/users_and_authentication.markdown", DOC_ROOT, DOC_GITHUB]],
     ["model",             ["Miscellaneous Model Extensions", "test/doctest/hobo/model.rdoctest", Hobo.root, HOBO_GITHUB]],
     ["controllers",       ["Controllers and Routing", "manual/controllers.markdown", DOC_ROOT, DOC_GITHUB]],
+    ["controller",        ["Miscellaneous Controller Extensions", "test/doctest/hobo/controller.rdoctest", Hobo.root, HOBO_GITHUB]],
     ["dryml-guide",       ["The DRYML Guide", "manual/dryml-guide.markdown", DOC_ROOT, DOC_GITHUB]],
     ["ajax",              ["Ajax in Hobo", "manual/ajax.markdown", DOC_ROOT, DOC_GITHUB]],
     ["lifecycles",        ["Lifecycles", "manual/lifecycles.markdown", DOC_ROOT, DOC_GITHUB]],
