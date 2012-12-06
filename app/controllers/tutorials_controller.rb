@@ -4,11 +4,12 @@ class TutorialsController < ApplicationController
   
   TITLES = begin
              titles = ActiveSupport::OrderedHash.new
-             [['two-minutes',    ["Thingybob - the two minute Hobo app", "https://github.com/tablatom/hobocookbook/edit/1-3-stable/gitorials/two-minutes.markdown"]],
-              ['screencast',     ["Screencast", "https://github.com/tablatom/hobocookbook/edit/1-3-stable/gitorials/screencast.markdown"]],
+             [['two-minutes',    ["Thingybob - the two minute Hobo app", "https://github.com/tablatom/hobocookbook/edit/master/gitorials/two-minutes.markdown"]],
+              ['screencast',     ["Screencast", "https://github.com/tablatom/hobocookbook/edit/master/gitorials/screencast.markdown"]],
               ['agility',        ["Agility - demonstrates all Hobo features", nil]],
               ['gitorial',       ["Agility git sidebar", nil]],
-              ['subsite',        ["An admin subsite on a generic Rails app", "https://github.com/tablatom/hobocookbook/edit/1-3-stable/gitorials/subsite.markdown"]]
+              ['subsite',        ["An admin subsite on a generic Rails app", "https://github.com/tablatom/hobocookbook/edit/master/gitorials/subsite.markdown"]],
+              ['caching',        ["How to use the caching tags", "https://github.com/tablatom/hobocookbook/edit/master/gitorials/caching.markdown"]]
              ].each do |title, desc|
                titles[title]=desc
              end
