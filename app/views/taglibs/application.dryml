@@ -268,7 +268,7 @@
 </def>
 
 <def tag="tag-def-link">
-  <a class="#{'undocumented' unless this.documented?}" href="&tagdef_path(:plugin => this.taglib.plugin.name, :taglib => this.taglib.name, :tag => this.tag, :for => this.for_type)" param>
+  <a class="#{'undocumented' unless this.documented?}" href="&this.for_type.blank? ? tagdef_path(:plugin => this.taglib.plugin.name, :taglib => this.taglib.name, :tag => this.tag) : tagdef_for_path(:plugin => this.taglib.plugin.name, :taglib => this.taglib.name, :tag => this.tag, :for => this.for_type)" param>
     <view:short-def-line/>
   </a>
 </def>
