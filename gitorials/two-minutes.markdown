@@ -6,7 +6,7 @@ You need at least version 3.2.5 of Rails:
 
 	$ rails -v
 
-First install Hobo (currently we need to specify --pre, since Hobo 
+First install Hobo (currently we need to specify --pre, since Hobo
 2.0.0 is not the official release yet):
 
 	$ gem install hobo --pre
@@ -17,8 +17,12 @@ Now create an app! We've only got two minutes so we'll create an ultra-useful Th
 
 	$ hobo new thingybob --setup
 
-	...Lots of output as Hobo runs the rails command and runs the setup generator. This 
-        process may take a while, depending on your internet connection and computer speed
+(The `--setup` option tells hobo to use the defaults rather than
+asking questions about your application.)
+
+There will be lots of output produced as Hobo runs the rails command
+and runs the setup generator. This process may take a while, depending
+on your internet connection and computer speed.
 
 	$ cd thingybob
 	$ hobo g resource thing name:string body:text
