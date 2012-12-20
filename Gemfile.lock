@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Hobo/hobo.git
-  revision: ce12b71b030844ef0708232599c987b6d8b87750
+  revision: 7f62e463328f7aa70a8e98e5d44ff58cd4fb7624
   specs:
     doc (0.0.1)
     dryml (2.0.0.pre7)
