@@ -34,6 +34,7 @@ class ManualController < ApplicationController
     ["generators",        ["Generators", "manual/generators.markdown", DOC_ROOT, DOC_GITHUB]],
     ["i18n",              ["Internationalization", "manual/i18n.markdown", DOC_ROOT, DOC_GITHUB]],
     ["plugins",           ["Creating Plugins", "manual/plugins.markdown", DOC_ROOT, DOC_GITHUB]],
+    ["gems",              ["The Hobo Gem Stack and UI Plugins", "manual/gems.markdown", DOC_ROOT, DOC_GITHUB]],
    ])
 
   SUBTITLES = {
